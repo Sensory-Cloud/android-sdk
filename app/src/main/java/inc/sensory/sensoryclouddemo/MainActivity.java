@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import inc.sensory.sensorycloud.SensoryCloud;
+import inc.sensory.sensorycloud.Testing;
 import inc.sensory.sensoryclouddemo.databinding.ActivityMainBinding;
 
 import android.view.Menu;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, SensoryCloud.Hello, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, Testing.hello, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
