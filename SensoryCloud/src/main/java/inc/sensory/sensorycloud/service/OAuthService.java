@@ -7,6 +7,7 @@ import io.sensory.api.common.GenericClient;
 import io.sensory.api.common.TokenResponse;
 import io.sensory.api.oauth.OauthServiceGrpc;
 import io.sensory.api.oauth.TokenRequest;
+import io.sensory.api.oauth.WhoAmIResponse;
 import io.sensory.api.v1.management.DeviceResponse;
 import io.sensory.api.v1.management.DeviceServiceGrpc;
 import io.sensory.api.v1.management.EnrollDeviceRequest;
@@ -20,6 +21,11 @@ public class OAuthService {
 
     public interface GetTokenListener {
         void onSuccess(TokenResponse response);
+        void onFailure(Throwable t);
+    }
+
+    public interface GetWhoAmIListener {
+        void onSuccess(WhoAmIResponse response);
         void onFailure(Throwable t);
     }
 
@@ -99,5 +105,10 @@ public class OAuthService {
         };
 
         client.getToken(tokenRequest, responseObserver);
+    }
+
+    // TODO - token manager
+    public void getWhoAmI() {
+
     }
 }
