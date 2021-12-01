@@ -1,8 +1,5 @@
 package inc.sensory.sensoryclouddemo;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
 import inc.sensory.sensoryclouddemo.databinding.FragmentFirstBinding;
 import io.sensory.api.common.TokenResponse;
@@ -46,12 +44,15 @@ public class FirstFragment extends Fragment {
     }
 
     public void attemptEnrollDevice() {
-        OAuthService service = new OAuthService();
+
+        Config config = new Config(
+                new Config.CloudConfig("10.0.2.2:50051"),
+                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+                new Config.DeviceConfig("device", "en_US"),
+                new Config.TokenManagerConfig(getContext()));
+        OAuthService service = new OAuthService(config);
 
         service.enrollDevice(
-                "10.0.2.2:50051",
-                "abcdef01-2345-6789-0123-456789abcdef",
-                "b6e1b848-75da-46cb-aad8-981cc3ccebcd",
                 "Niles Android",
                 "Enroll123Sensory!!",
                 "95bd507d-e200-4721-87d5-bfdcfa3f5ab4",
@@ -73,10 +74,14 @@ public class FirstFragment extends Fragment {
     }
 
     public void attemptGetToken() {
-        OAuthService service = new OAuthService();
+        Config config = new Config(
+                new Config.CloudConfig("10.0.2.2:50051"),
+                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+                new Config.DeviceConfig("device", "en_US"),
+                new Config.TokenManagerConfig(getContext()));
+        OAuthService service = new OAuthService(config);
 
         service.getToken(
-                "10.0.2.2:50051",
                 "95bd507d-e200-4721-87d5-bfdcfa3f5ab4",
                 "407833043d144c7c8c866c97575ef3f1",
                 new OAuthService.GetTokenListener() {

@@ -1,22 +1,20 @@
-package tokenManager;
+package inc.sensory.sensorycloud.tokenManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.security.SecureRandom;
-import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
 import io.sensory.api.common.TokenResponse;
 
 public class TokenManager {
-
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
     private final String prefsName = "SensoryCloud";
     private final String accessTokenKey = "accessToken";
@@ -28,6 +26,12 @@ public class TokenManager {
     final Lock lock = new ReentrantLock();
     final Condition complete = lock.newCondition();
 
+    private Config config;
+
+    public TokenManager(Config config) {
+        this.config = config;
+    }
+
     public class AccessTokenCredentials {
         public String clientID;
         public String secret;
@@ -38,13 +42,12 @@ public class TokenManager {
         }
     }
 
-    public AccessTokenCredentials generateCredentials(Context context) {
-
+    public AccessTokenCredentials generateCredentials() {
         String clientID = UUID.randomUUID().toString();
         String secret = secRandomString(15);
 
         // TODO: - secure credential storage/configurable credential storage
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(clientIDKey, clientID);
         editor.putString(clientSecretKey, secret);
@@ -53,28 +56,27 @@ public class TokenManager {
         return new AccessTokenCredentials(clientID, secret);
     }
 
-    public boolean hasSavedCredentials(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+    public boolean hasSavedCredentials() {
+        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String clientID = prefs.getString(clientIDKey, "");
         String secret = prefs.getString(clientSecretKey, "");
 
         return !clientID.equals("") && !secret.equals("");
     }
 
-    // TODO: - config
-    public String getAccessToken(Context context, String url) {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+    public String getAccessToken() {
+        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String accessToken = prefs.getString(accessTokenKey, "");
         long expiration = prefs.getLong(expirationKey, 0);
         long now = System.currentTimeMillis();
         if (accessToken.equals("") || now > expiration - expirationBuffer) {
-            return fetchNewAccessToken(context, url);
+            return fetchNewAccessToken();
         }
         return accessToken;
     }
 
-    public void deleteCredentials(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+    public void deleteCredentials() {
+        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove(accessTokenKey);
         editor.remove(expirationKey);
@@ -84,16 +86,16 @@ public class TokenManager {
     }
 
     // TODO: - better error handling
-    private String fetchNewAccessToken(Context context, String url) {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+    private String fetchNewAccessToken() {
+        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String clientID = prefs.getString(clientIDKey, "");
         String secret = prefs.getString(clientSecretKey, "");
         final String[] newToken = {""};
         final Throwable[] throwable = {null};
 
         lock.lock();
-        OAuthService oAuthService = new OAuthService();
-        oAuthService.getToken(url, clientID, secret, new OAuthService.GetTokenListener() {
+        OAuthService oAuthService = new OAuthService(config);
+        oAuthService.getToken(clientID, secret, new OAuthService.GetTokenListener() {
             @Override
             public void onSuccess(TokenResponse response) {
                 SharedPreferences.Editor editor = prefs.edit();

@@ -1,5 +1,7 @@
 package inc.sensory.sensorycloud.service;
 
+import inc.sensory.sensorycloud.config.Config;
+import inc.sensory.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -39,10 +41,16 @@ public class ManagementService {
         void onFailure(Throwable t);
     }
 
-    // TODO: - url config
-    // TODO: - token manager
-    public void getEnrollments(String url, String token, String userId, GetEnrollmentsListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+    private Config config;
+    private TokenManager tokenManager;
+
+    public ManagementService(Config config, TokenManager tokenManager) {
+        this.config = config;
+        this.tokenManager = tokenManager;
+    }
+
+    public void getEnrollments(String userId, GetEnrollmentsListener listener) {
+        ManagedClient client = getManagedClient();
 
         GetEnrollmentsRequest request = GetEnrollmentsRequest.newBuilder()
                 .setUserId(userId)
@@ -67,10 +75,8 @@ public class ManagementService {
         client.client.getEnrollments(request, responseObserver);
     }
 
-    // TODO: - url config
-    // TODO: - token manager
-    public void getEnrollmentGroups(String url, String token, String userId, GetEnrollmentGroupsListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+    public void getEnrollmentGroups(String userId, GetEnrollmentGroupsListener listener) {
+        ManagedClient client = getManagedClient();
 
         GetEnrollmentsRequest request = GetEnrollmentsRequest.newBuilder()
                 .setUserId(userId)
@@ -96,15 +102,13 @@ public class ManagementService {
     }
 
     public void createEnrollmentGroup(
-            String url, // TODO - config
-            String token, // TODO - token manager
             String userId,
             String groupId, // TODO - config/default value
             String groupName,
             String description,
             String modelName,
             EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+        ManagedClient client = getManagedClient();
 
         CreateEnrollmentGroupRequest request = CreateEnrollmentGroupRequest.newBuilder()
                 .setId(groupId)
@@ -134,12 +138,10 @@ public class ManagementService {
     }
 
     public void appendEnrollmentGroup(
-            String url, // TODO - config
-            String token, // TODO - token manager
             String groupId,
             Iterable<String> enrollments,
             EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+        ManagedClient client = getManagedClient();
 
         AppendEnrollmentGroupRequest request = AppendEnrollmentGroupRequest.newBuilder()
                 .setGroupId(groupId)
@@ -165,10 +167,8 @@ public class ManagementService {
         client.client.appendEnrollmentGroup(request, responseObserver);
     }
 
-    // TODO - config
-    // TODO - token manager
-    public void deleteEnrollment(String url, String token, String enrollmentId, EnrollmentListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+    public void deleteEnrollment(String enrollmentId, EnrollmentListener listener) {
+        ManagedClient client = getManagedClient();
 
         DeleteEnrollmentRequest request = DeleteEnrollmentRequest.newBuilder()
                 .setId(enrollmentId)
@@ -193,10 +193,8 @@ public class ManagementService {
         client.client.deleteEnrollment(request, responseObserver);
     }
 
-    // TODO - config
-    // TODO - token manager
-    public void deleteEnrollmentGroup(String url, String token, String enrollmentGroupId, EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient(url, token);
+    public void deleteEnrollmentGroup(String enrollmentGroupId, EnrollmentGroupListener listener) {
+        ManagedClient client = getManagedClient();
 
         DeleteEnrollmentGroupRequest request = DeleteEnrollmentGroupRequest.newBuilder()
                 .setId(enrollmentGroupId)
@@ -231,10 +229,11 @@ public class ManagementService {
         }
     }
 
-    private ManagedClient getManagedClient(String url, String token) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).usePlaintext().build();
+    private ManagedClient getManagedClient() {
+        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
+        String token = tokenManager.getAccessToken();
         Metadata header = new Metadata();
         Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
         header.put(key, "Bearer " + token);

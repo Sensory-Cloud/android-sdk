@@ -1,5 +1,6 @@
 package inc.sensory.sensorycloud.service;
 
+import inc.sensory.sensorycloud.config.Config;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -29,18 +30,21 @@ public class OAuthService {
         void onFailure(Throwable t);
     }
 
+    private Config config;
+
+    public OAuthService(Config config) {
+        this.config = config;
+    }
+
     public void enrollDevice(
-            String url, // TODO - config?
-            String deviceID, // TODO - config?
-            String tenantID, // TODO - config?
             String name,
             String credential,
             String clientID,
             String clientSecret,
             EnrollDeviceListener listener ) {
 
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).usePlaintext().build();
+        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
         GenericClient genericClient = GenericClient.newBuilder()
@@ -49,8 +53,8 @@ public class OAuthService {
                 .build();
         EnrollDeviceRequest enrollDeviceRequest = EnrollDeviceRequest.newBuilder()
                 .setName(name)
-                .setDeviceId(deviceID)
-                .setTenantId(tenantID)
+                .setDeviceId(config.deviceConfig.deviceId)
+                .setTenantId(config.tenantConfig.tenantId)
                 .setClient(genericClient)
                 .setCredential(credential)
                 .build();
@@ -75,10 +79,9 @@ public class OAuthService {
         deviceServiceStub.enrollDevice(enrollDeviceRequest, responseObserver);
     }
 
-    // TODO: - url config?
-    public void getToken(String url, String clientID, String secret, GetTokenListener listener) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).usePlaintext().build();
+    public void getToken(String clientID, String secret, GetTokenListener listener) {
+        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
         OauthServiceGrpc.OauthServiceStub client = OauthServiceGrpc.newStub(managedChannel);
 

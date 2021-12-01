@@ -1,5 +1,6 @@
 package inc.sensory.sensorycloud.service;
 
+import inc.sensory.sensorycloud.config.Config;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -14,10 +15,15 @@ public class HealthService {
         void onFailure(Throwable t);
     }
 
-    // TODO: - url config
-    public void getHealth(String url, GetHealthListener listener) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(url).usePlaintext().build();
+    private Config config;
+
+    public HealthService(Config config) {
+        this.config = config;
+    }
+
+    public void getHealth(GetHealthListener listener) {
+        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
         HealthServiceGrpc.HealthServiceStub client = HealthServiceGrpc.newStub(managedChannel);
 
