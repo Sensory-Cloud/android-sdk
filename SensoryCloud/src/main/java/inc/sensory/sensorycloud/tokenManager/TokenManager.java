@@ -15,21 +15,20 @@ import inc.sensory.sensorycloud.service.OAuthService;
 import io.sensory.api.common.TokenResponse;
 
 public class TokenManager {
-    private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
     private final String prefsName = "SensoryCloud";
     private final String accessTokenKey = "accessToken";
     private final String expirationKey = "tokenExpiration";
-    private final String clientIDKey = "clientID";
-    private final String clientSecretKey = "clientSecret";
     private final long expirationBuffer = 5 * 60 * 1000; // 5 minutes in ms
 
     final Lock lock = new ReentrantLock();
     final Condition complete = lock.newCondition();
 
-    private Config config;
+    private Context context;
+    private OAuthService oAuthService;
 
-    public TokenManager(Config config) {
-        this.config = config;
+    public TokenManager(Context context, OAuthService oAuthService) {
+        this.context = context;
+        this.oAuthService = oAuthService;
     }
 
     public class AccessTokenCredentials {
@@ -42,30 +41,8 @@ public class TokenManager {
         }
     }
 
-    public AccessTokenCredentials generateCredentials() {
-        String clientID = UUID.randomUUID().toString();
-        String secret = secRandomString(15);
-
-        // TODO: - secure credential storage/configurable credential storage
-        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(clientIDKey, clientID);
-        editor.putString(clientSecretKey, secret);
-        editor.apply();
-
-        return new AccessTokenCredentials(clientID, secret);
-    }
-
-    public boolean hasSavedCredentials() {
-        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        String clientID = prefs.getString(clientIDKey, "");
-        String secret = prefs.getString(clientSecretKey, "");
-
-        return !clientID.equals("") && !secret.equals("");
-    }
-
     public String getAccessToken() {
-        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String accessToken = prefs.getString(accessTokenKey, "");
         long expiration = prefs.getLong(expirationKey, 0);
         long now = System.currentTimeMillis();
@@ -75,29 +52,24 @@ public class TokenManager {
         return accessToken;
     }
 
-    public void deleteCredentials() {
-        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
+    public void deleteCachedToken() {
+        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove(accessTokenKey);
         editor.remove(expirationKey);
-        editor.remove(clientIDKey);
-        editor.remove(clientSecretKey);
         editor.apply();
     }
 
     // TODO: - better error handling
     private String fetchNewAccessToken() {
-        SharedPreferences prefs = config.tokenManagerConfig.context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        String clientID = prefs.getString(clientIDKey, "");
-        String secret = prefs.getString(clientSecretKey, "");
         final String[] newToken = {""};
         final Throwable[] throwable = {null};
 
         lock.lock();
-        OAuthService oAuthService = new OAuthService(config);
-        oAuthService.getToken(clientID, secret, new OAuthService.GetTokenListener() {
+        oAuthService.getToken(new OAuthService.GetTokenListener() {
             @Override
             public void onSuccess(TokenResponse response) {
+                SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString(accessTokenKey, response.getAccessToken());
                 editor.putLong(expirationKey, response.getExpiresIn() * 1000L);
@@ -128,16 +100,5 @@ public class TokenManager {
         } finally {
             lock.unlock();
         }
-    }
-
-    private String secRandomString(int length) {
-        Random random = new SecureRandom();
-        StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < length; i++) {
-            builder.append(chars[random.nextInt(chars.length)]);
-        }
-
-        return builder.toString();
     }
 }

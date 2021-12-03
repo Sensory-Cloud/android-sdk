@@ -11,6 +11,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
+import inc.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
+import inc.sensory.sensorycloud.tokenManager.SecureCredentialStore;
 import inc.sensory.sensoryclouddemo.databinding.FragmentFirstBinding;
 import io.sensory.api.common.TokenResponse;
 import io.sensory.api.v1.management.DeviceResponse;
@@ -24,10 +26,8 @@ public class FirstFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -48,15 +48,14 @@ public class FirstFragment extends Fragment {
         Config config = new Config(
                 new Config.CloudConfig("10.0.2.2:50051"),
                 new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig("device", "en_US"),
-                new Config.TokenManagerConfig(getContext()));
-        OAuthService service = new OAuthService(config);
+                new Config.DeviceConfig("device", "en_US"));
+        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext());
 
-        service.enrollDevice(
+        OAuthService service = new OAuthService(config, credentialStore);
+
+        service.register(
                 "Niles Android",
                 "Enroll123Sensory!!",
-                "95bd507d-e200-4721-87d5-bfdcfa3f5ab4",
-                "407833043d144c7c8c866c97575ef3f1",
                 new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
@@ -70,21 +69,17 @@ public class FirstFragment extends Fragment {
                 t.printStackTrace();
             }
         });
-
     }
 
     public void attemptGetToken() {
         Config config = new Config(
                 new Config.CloudConfig("10.0.2.2:50051"),
                 new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig("device", "en_US"),
-                new Config.TokenManagerConfig(getContext()));
-        OAuthService service = new OAuthService(config);
+                new Config.DeviceConfig("device", "en_US"));
+        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext());
+        OAuthService service = new OAuthService(config, credentialStore);
 
-        service.getToken(
-                "95bd507d-e200-4721-87d5-bfdcfa3f5ab4",
-                "407833043d144c7c8c866c97575ef3f1",
-                new OAuthService.GetTokenListener() {
+        service.getToken( new OAuthService.GetTokenListener() {
             @Override
             public void onSuccess(TokenResponse response) {
                 System.out.println(response.getAccessToken());
@@ -102,5 +97,4 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
