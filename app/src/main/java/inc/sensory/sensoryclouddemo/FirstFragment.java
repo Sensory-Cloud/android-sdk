@@ -1,6 +1,7 @@
 package inc.sensory.sensoryclouddemo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,27 @@ public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
 
+    private static final String LOG_TAG = "LoginView";
+
+    private Config sensoryConfig;
+    private DefaultSecureCredentialStore credentialStore;
+    private OAuthService oAuthService;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+
+        // TODO: - proper device id
+        sensoryConfig = new Config(
+                new Config.CloudConfig("10.0.2.2:50051"),
+                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+                new Config.DeviceConfig("f6921e40-4e9c-4580-9734-5fdf6d22d983", "en_US"));
+
+        credentialStore = new DefaultSecureCredentialStore(getContext());
+        oAuthService = new OAuthService(sensoryConfig, credentialStore);
+
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -33,39 +50,39 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptEnrollDevice();
-//                NavHostFragment.findNavController(FirstFragment.this)
-//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                String username = binding.usernameField.getText().toString();
+                String password = binding.passwordField.getText().toString();
+                if( username.isEmpty() || password.isEmpty() ) {
+                    Log.i(LOG_TAG, "username and password must be entered");
+                    return;
+                }
+                enrollDevice(username, password);
             }
         });
     }
 
-    public void attemptEnrollDevice() {
+    public void enrollDevice(String username, String password) {
 
-        Config config = new Config(
-                new Config.CloudConfig("10.0.2.2:50051"),
-                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig("device", "en_US"));
-        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext());
+        OAuthService.OAuthClient client = oAuthService.generateCredentials();
+        Log.i(LOG_TAG, "Generated credentials with clientID: " + client.clientId);
+        credentialStore.setCredentials(client.clientId, client.clientSecret);
 
-        OAuthService service = new OAuthService(config, credentialStore);
-
-        service.register(
-                "Niles Android",
-                "Enroll123Sensory!!",
+        oAuthService.register(
+                username,
+                password,
                 new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
-                System.out.println("Received enrollment response");
+                Log.i(LOG_TAG, "Received enrollment response");
                 attemptGetToken();
             }
 
             @Override
             public void onFailure(Throwable t) {
-                System.out.println(t.getMessage());
+                Log.e(LOG_TAG, t.getMessage());
                 t.printStackTrace();
             }
         });
@@ -82,12 +99,13 @@ public class FirstFragment extends Fragment {
         service.getToken( new OAuthService.GetTokenListener() {
             @Override
             public void onSuccess(TokenResponse response) {
-                System.out.println(response.getAccessToken());
+                Log.i(LOG_TAG, response.getAccessToken());
             }
 
             @Override
             public void onFailure(Throwable t) {
-                System.out.println(t.getMessage());
+                Log.e(LOG_TAG, t.getMessage());
+                t.printStackTrace();
             }
         });
     }
