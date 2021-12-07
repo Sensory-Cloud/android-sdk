@@ -1,5 +1,7 @@
 package inc.sensory.sensoryclouddemo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,19 +12,25 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.UUID;
+
 import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
 import inc.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import inc.sensory.sensorycloud.tokenManager.SecureCredentialStore;
-import inc.sensory.sensoryclouddemo.databinding.FragmentFirstBinding;
+import inc.sensory.sensoryclouddemo.databinding.LoginFragmentBinding;
 import io.sensory.api.common.TokenResponse;
 import io.sensory.api.v1.management.DeviceResponse;
 
-public class FirstFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private LoginFragmentBinding binding;
 
     private static final String LOG_TAG = "LoginView";
+
+    private final String clientAppPrefs = "SensoryClient";
+    private final String deviceIDKey = "deviceID";
+    private String deviceID;
 
     private Config sensoryConfig;
     private DefaultSecureCredentialStore credentialStore;
@@ -33,17 +41,27 @@ public class FirstFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
-        // TODO: - proper device id
-        sensoryConfig = new Config(
-                new Config.CloudConfig("10.0.2.2:50051"),
-                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig("f6921e40-4e9c-4580-9734-5fdf6d22d983", "en_US"));
-
         credentialStore = new DefaultSecureCredentialStore(getContext());
-        oAuthService = new OAuthService(sensoryConfig, credentialStore);
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        // Check if we're logged in
+        if (credentialStore.getClientId().isEmpty() && credentialStore.getClientSecret().isEmpty()) {
+            deviceID = UUID.randomUUID().toString();
+            SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(deviceIDKey, deviceID);
+            editor.apply();
+
+            sensoryConfig = new Config(
+                    new Config.CloudConfig("10.0.2.2:50051"),
+                    new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+                    new Config.DeviceConfig(deviceID, "en_US"));
+
+            oAuthService = new OAuthService(sensoryConfig, credentialStore);
+        } else {
+            showLoggedIn();
+        }
+
+        binding = LoginFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -77,35 +95,23 @@ public class FirstFragment extends Fragment {
             @Override
             public void onSuccess(DeviceResponse response) {
                 Log.i(LOG_TAG, "Received enrollment response");
-                attemptGetToken();
+                showLoggedIn();
             }
 
             @Override
             public void onFailure(Throwable t) {
+                credentialStore.setCredentials("", "");
                 Log.e(LOG_TAG, t.getMessage());
                 t.printStackTrace();
             }
         });
     }
 
-    public void attemptGetToken() {
-        Config config = new Config(
-                new Config.CloudConfig("10.0.2.2:50051"),
-                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig("device", "en_US"));
-        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext());
-        OAuthService service = new OAuthService(config, credentialStore);
-
-        service.getToken( new OAuthService.GetTokenListener() {
+    public void showLoggedIn() {
+        getActivity().runOnUiThread(new Runnable() {
             @Override
-            public void onSuccess(TokenResponse response) {
-                Log.i(LOG_TAG, response.getAccessToken());
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e(LOG_TAG, t.getMessage());
-                t.printStackTrace();
+            public void run() {
+                NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.action_login);
             }
         });
     }

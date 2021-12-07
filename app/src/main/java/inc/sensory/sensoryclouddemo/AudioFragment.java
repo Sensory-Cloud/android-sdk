@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import inc.sensory.sensoryclouddemo.databinding.FragmentSecondBinding;
+import inc.sensory.sensoryclouddemo.databinding.AudioFragmentBinding;
 
-public class SecondFragment extends Fragment {
+public class AudioFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private AudioFragmentBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = AudioFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -32,8 +32,8 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                NavHostFragment.findNavController(AudioFragment.this)
+                        .navigate(R.id.action_logout);
             }
         });
     }
