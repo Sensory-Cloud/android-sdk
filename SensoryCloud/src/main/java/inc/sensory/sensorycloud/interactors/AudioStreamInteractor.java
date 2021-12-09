@@ -62,13 +62,18 @@ public class AudioStreamInteractor {
                         e.printStackTrace();
                     }
                 }
+                recorder.stop();
             }
         });
         mThread.start();
     }
 
     public void stopRecording() {
-        recorder.stop();
         stopped.set(true);
+    }
+
+    public void close() {
+        recorder.release();
+        recorder = null;
     }
 }

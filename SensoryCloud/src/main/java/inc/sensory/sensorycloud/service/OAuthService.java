@@ -65,6 +65,21 @@ public class OAuthService {
         return new OAuthClient(clientId, clientSecret);
     }
 
+    public TokenResponse getTokenSync() {
+        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+
+        OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
+
+        TokenRequest tokenRequest = TokenRequest.newBuilder()
+                .setClientId(secureCredentialStore.getClientId())
+                .setSecret(secureCredentialStore.getClientSecret())
+                .build();
+
+        return client.getToken(tokenRequest);
+    }
+
+
     public void getToken(GetTokenListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();

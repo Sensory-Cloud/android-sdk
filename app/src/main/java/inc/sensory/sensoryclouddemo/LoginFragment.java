@@ -1,7 +1,9 @@
 package inc.sensory.sensoryclouddemo;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -17,15 +21,14 @@ import java.util.UUID;
 import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
 import inc.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
-import inc.sensory.sensorycloud.tokenManager.SecureCredentialStore;
 import inc.sensory.sensoryclouddemo.databinding.LoginFragmentBinding;
-import io.sensory.api.common.TokenResponse;
 import io.sensory.api.v1.management.DeviceResponse;
 
 public class LoginFragment extends Fragment {
 
     private LoginFragmentBinding binding;
 
+    private static final int REQUEST_MICROPHONE = 1;
     private static final String LOG_TAG = "LoginView";
 
     private final String clientAppPrefs = "SensoryClient";
@@ -67,6 +70,11 @@ public class LoginFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Request audio permissions if not allowed
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_MICROPHONE);
+        }
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

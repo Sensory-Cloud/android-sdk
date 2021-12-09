@@ -216,6 +216,7 @@ public class ManagementService {
                 client.managedChannel.shutdown();
             }
         };
+
         client.client.deleteEnrollmentGroup(request, responseObserver);
     }
 
@@ -233,14 +234,9 @@ public class ManagementService {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
-        String token = tokenManager.getAccessToken();
-        Metadata header = new Metadata();
-        Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
-        header.put(key, "Bearer " + token);
-        ClientInterceptor interceptor = MetadataUtils.newAttachHeadersInterceptor(header);
-
+        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         EnrollmentServiceGrpc.EnrollmentServiceStub managementClient = EnrollmentServiceGrpc.newStub(managedChannel);
-        managementClient = managementClient.withInterceptors(interceptor);
+        managementClient = managementClient.withInterceptors(header);
 
         return new ManagedClient(managedChannel, managementClient);
     }

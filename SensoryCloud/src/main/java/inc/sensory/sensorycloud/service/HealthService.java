@@ -44,6 +44,6 @@ public class HealthService {
             }
         };
 
-        client.getHealth(HealthRequest.newBuilder().build(), responseObserver);
+        client.getHealth(HealthRequest.getDefaultInstance(), responseObserver);
     }
 }
