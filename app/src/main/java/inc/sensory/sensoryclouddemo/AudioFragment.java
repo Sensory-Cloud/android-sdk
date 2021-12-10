@@ -125,6 +125,7 @@ public class AudioFragment extends Fragment {
         requestObserver = audioService.validateTrigger(
                 modelName,
                 userID,
+                "",
                 ThresholdSensitivity.LOW,
                 new StreamObserver<ValidateEventResponse>() {
             @Override
