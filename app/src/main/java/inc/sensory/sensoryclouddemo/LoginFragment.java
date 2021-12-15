@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
 
     private LoginFragmentBinding binding;
 
-    private static final int REQUEST_MICROPHONE = 1;
+    private static final int REQUEST_CODE = 1;
     private static final String LOG_TAG = "LoginView";
 
     private final String clientAppPrefs = "SensoryClient";
@@ -72,8 +72,11 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Request audio permissions if not allowed
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_MICROPHONE);
+        boolean hasAudio = (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED);
+        boolean hasVideo = (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED);
+
+        if( !hasAudio || !hasVideo ) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA}, REQUEST_CODE);
         }
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {

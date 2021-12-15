@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.protobuf.ByteString;
 
@@ -79,20 +80,27 @@ public class AudioFragment extends Fragment {
         }
 
         spinnerAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item);
-        binding.modelTypeSpinner.setAdapter(spinnerAdapter);
+        binding.audioModelSpinner.setAdapter(spinnerAdapter);
 
         fetchModels();
 
         binding.recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = binding.userIDField.getText().toString();
-                String model = binding.modelTypeSpinner.getSelectedItem().toString();
+                String userID = binding.audioUserIDField.getText().toString();
+                String model = binding.audioModelSpinner.getSelectedItem().toString();
                 if( userID.isEmpty() || model.isEmpty() ) {
                     Log.i(LOG_TAG, "Model name and userID must be entered");
                     return;
                 }
                 toggleAudioStream(userID, model);
+            }
+        });
+
+        binding.openVideoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(AudioFragment.this).navigate(R.id.action_open_video);
             }
         });
     }
