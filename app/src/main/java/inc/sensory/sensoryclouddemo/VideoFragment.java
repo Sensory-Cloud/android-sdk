@@ -2,54 +2,30 @@ package inc.sensory.sensoryclouddemo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageCapture;
-import androidx.camera.core.ImageCaptureException;
-import androidx.camera.core.ImageProxy;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.provider.ContactsContract;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.ByteString;
 
-import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
-import java.nio.ByteBuffer;
-import java.util.Objects;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import inc.sensory.sensorycloud.config.Config;
-import inc.sensory.sensorycloud.interactors.AudioStreamInteractor;
-import inc.sensory.sensorycloud.service.AudioService;
+import inc.sensory.sensorycloud.interactors.VideoStreamInteractor;
 import inc.sensory.sensorycloud.service.OAuthService;
 import inc.sensory.sensorycloud.service.VideoService;
 import inc.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import inc.sensory.sensorycloud.tokenManager.SecureCredentialStore;
 import inc.sensory.sensorycloud.tokenManager.TokenManager;
-import inc.sensory.sensoryclouddemo.databinding.AudioFragmentBinding;
 import inc.sensory.sensoryclouddemo.databinding.VideoFragmentBinding;
 import io.grpc.stub.StreamObserver;
 import io.sensory.api.v1.video.GetModelsResponse;
@@ -68,19 +44,10 @@ public class VideoFragment extends Fragment {
     private ArrayAdapter<String> spinnerAdapter;
     private AtomicBoolean isRecording = new AtomicBoolean(false);
     private StreamObserver<ValidateRecognitionRequest> requestObserver;
-    private ImageUploader imageUploader = new ImageUploader(new ImageUploaderListener() {
-        @Override
-        public void onSuccess(byte[] image) {
-            ValidateRecognitionRequest request = ValidateRecognitionRequest.newBuilder()
-                    .setImageContent(ByteString.copyFrom(image))
-                    .build();
-            requestObserver.onNext(request);
-        }
-    });
-    private ProcessCameraProvider cameraProvider;
 
     private Config sensoryConfig;
     private VideoService videoService;
+    private VideoStreamInteractor videoStreamInteractor;
 
     @Override
     public View onCreateView(
@@ -106,6 +73,42 @@ public class VideoFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        try {
+            videoStreamInteractor = VideoStreamInteractor.newVideoStreamInteractor(
+                    getContext(),
+                    binding.viewFinder.getSurfaceProvider(),
+                    null,
+                    new VideoStreamInteractor.VideoStreamListener() {
+                        @Override
+                        public void onSuccess(byte[] image) {
+                            if (requestObserver == null) {
+                                Handler mainHandler = new Handler(getContext().getMainLooper());
+                                mainHandler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.i(LOG_TAG, "Received photo without open grpc stream");
+                                        videoStreamInteractor.stopRecording();
+                                    }
+                                });
+                                return;
+                            }
+                            ValidateRecognitionRequest request = ValidateRecognitionRequest.newBuilder()
+                                    .setImageContent(ByteString.copyFrom(image))
+                                    .build();
+                            requestObserver.onNext(request);
+                        }
+
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.e(LOG_TAG, e.getMessage());
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Failed to initialize video stream interactor");
+            e.printStackTrace();
+        }
 
         spinnerAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item);
         binding.videoModelSpinner.setAdapter(spinnerAdapter);
@@ -158,8 +161,9 @@ public class VideoFragment extends Fragment {
         if (isRecording.get()) {
             Log.i(LOG_TAG, "Stopping video stream");
             isRecording.set(false);
-            stopCamera();
+            videoStreamInteractor.stopRecording();
             requestObserver.onCompleted();
+            requestObserver = null;
             return;
         }
 
@@ -172,7 +176,7 @@ public class VideoFragment extends Fragment {
             @Override
             public void onNext(LivenessRecognitionResponse value) {
                 Log.i(LOG_TAG, "Video stream response. Recognized: " + value.getIsAlive() + " Score: " + value.getScore());
-                imageUploader.takePicture.set(true);
+                videoStreamInteractor.takeImageCapture();
             }
 
             @Override
@@ -187,97 +191,14 @@ public class VideoFragment extends Fragment {
             }
         });
 
-        startCamera();
+        videoStreamInteractor.startRecording(getActivity());
+        videoStreamInteractor.takeImageCapture();
         isRecording.set(true);
-        imageUploader.takePicture.set(true);
-    }
-
-    private void startCamera() {
-        Log.i(LOG_TAG, "Starting camera");
-        ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(getContext());
-
-        cameraProviderFuture.addListener(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.i(LOG_TAG, "initializing camera");
-                    ProcessCameraProvider provider = cameraProviderFuture.get();
-
-                    Preview preview = new Preview.Builder().build();
-                    preview.setSurfaceProvider(binding.viewFinder.getSurfaceProvider());
-
-                    CameraSelector cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA;
-
-                    ImageAnalysis imageAnalyzer = new ImageAnalysis.Builder().build();
-                    imageAnalyzer.setAnalyzer(Executors.newSingleThreadExecutor(), imageUploader);
-
-                    provider.unbindAll();
-                    provider.bindToLifecycle(getActivity(), cameraSelector, preview, imageAnalyzer);
-                    cameraProvider = provider;
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        }, ContextCompat.getMainExecutor(getContext()));
-    }
-
-    private void stopCamera() {
-        Log.i(LOG_TAG, "Stopping camera");
-        cameraProvider.unbindAll();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-}
-
-interface ImageUploaderListener {
-    void onSuccess(byte[] image);
-}
-
-// TODO: take in a listener
-class ImageUploader implements ImageAnalysis.Analyzer {
-
-    public AtomicBoolean takePicture = new AtomicBoolean(false);
-    private ImageUploaderListener listener;
-
-    ImageUploader(ImageUploaderListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void analyze(@NonNull ImageProxy image) {
-        Log.i("VideoView", "received image to analyze");
-        if (takePicture.get()) {
-            Log.i("VideoView", "Sending processed picture");
-            listener.onSuccess(toBytes(image));
-        }
-        image.close();
-    }
-
-    private byte[] toBytes(ImageProxy image) {
-        ImageProxy.PlaneProxy[] planes = image.getPlanes();
-        ByteBuffer yBuffer = planes[0].getBuffer();
-        ByteBuffer uBuffer = planes[1].getBuffer();
-        ByteBuffer vBuffer = planes[2].getBuffer();
-
-        int ySize = yBuffer.remaining();
-        int uSize = uBuffer.remaining();
-        int vSize = vBuffer.remaining();
-
-        byte[] nv21 = new byte[ySize + uSize + vSize];
-        //U and V are swapped
-        yBuffer.get(nv21, 0, ySize);
-        vBuffer.get(nv21, ySize, vSize);
-        uBuffer.get(nv21, ySize + vSize, uSize);
-
-        YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, image.getWidth(), image.getHeight(), null);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 75, out);
-
-        return out.toByteArray();
     }
 }
