@@ -163,7 +163,7 @@ public class AudioFragment extends Fragment {
                 isRecording.set(true);
                 while(isRecording.get()) {
                     try {
-                        byte[] buffer = audioStreamInteractor.queue.take();
+                        byte[] buffer = audioStreamInteractor.audioQueue.take();
                         ByteString audio = ByteString.copyFrom(buffer);
                         ValidateEventRequest validateEventRequest = ValidateEventRequest.newBuilder()
                                 .setAudioContent(audio)

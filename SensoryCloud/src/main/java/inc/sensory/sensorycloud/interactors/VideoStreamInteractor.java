@@ -28,10 +28,27 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Class for getting pictures from the device's camera
+ */
 public class VideoStreamInteractor {
 
+    /**
+     * Listener class for receiving image data
+     */
     public interface VideoStreamListener {
+        /**
+         * Called after successfully taking a picture
+         * The image data is properly formatted to be directly sent to a VideoService grpc stream
+         *
+         * @param image compressed JPEG image data
+         */
         void onSuccess(byte[] image);
+
+        /**
+         * Called when an exception occurs while taking a picture
+         * @param e The exception that occurred
+         */
         void onFailure(Exception e);
     }
 
@@ -39,13 +56,27 @@ public class VideoStreamInteractor {
     final static int PHOTO_HEIGHT = 720;
     final static int JPEG_QUALITY = 75;
 
+    /**
+     * Listener instance that image data is passed back to
+     */
     public VideoStreamListener listener;
+
     private Preview preview;
     private CameraSelector cameraSelector;
     private ImageAnalysis imageAnalysis;
     private ProcessCameraProvider cameraProvider;
     private AtomicBoolean takeCapture = new AtomicBoolean(false);
 
+    /**
+     * Checks device permissions and returns a new VideoStreamInteractor if allowed
+     *
+     * @param context Application context, used for checking permissions and initializing the camera instance
+     * @param surfaceProvider SurfaceProvider that the camera preview feed will be directed to
+     * @param cameraSelector CameraSelector if null `CameraSelector.DEFAULT_FRONT_CAMERA` will be used
+     * @param listener Listener that image data will be passed back to
+     * @return A new videoStreamInteractor instance
+     * @throws Exception if camera permissions are not allowed by the system
+     */
     public static VideoStreamInteractor newVideoStreamInteractor(
             Context context,
             Preview.SurfaceProvider surfaceProvider,
@@ -99,15 +130,27 @@ public class VideoStreamInteractor {
         }, ContextCompat.getMainExecutor(context));
     }
 
+    /**
+     * Starts the camera preview feed
+     *
+     * @param lifecycleOwner Lifecycle to bind the camera instance to
+     */
     public void startRecording(LifecycleOwner lifecycleOwner) {
         cameraProvider.unbindAll();
         cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, imageAnalysis);
     }
 
+    /**
+     * Stops the camera preview feed
+     */
     public void stopRecording() {
         cameraProvider.unbindAll();
     }
 
+    /**
+     * Takes a picture from the current preview feed
+     * image data is returned via the video stream listener
+     */
     public void takeImageCapture() {
         takeCapture.set(true);
     }

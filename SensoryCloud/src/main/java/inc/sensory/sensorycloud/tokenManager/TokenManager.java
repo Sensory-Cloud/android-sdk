@@ -17,6 +17,9 @@ import io.grpc.Metadata;
 import io.grpc.stub.MetadataUtils;
 import io.sensory.api.common.TokenResponse;
 
+/**
+ * A token manager that manages storing and fetching OAuth tokens for Sensory Cloud
+ */
 public class TokenManager {
 
     private final String prefsName = "SensoryCloud";
@@ -27,13 +30,29 @@ public class TokenManager {
     private Context context;
     private OAuthService oAuthService;
 
+    /**
+     * Creates a new Token Manager instance
+     *
+     * @param context Application context, used for caching the current OAuth token
+     * @param oAuthService OAuth service for fetching new OAuth tokens from
+     */
     public TokenManager(Context context, OAuthService oAuthService) {
         this.context = context;
         this.oAuthService = oAuthService;
     }
 
+    /**
+     * Wrapper struct for OAuth client credentials
+     * TODO: duplicate of OAuthService.OAuthClient
+     */
     public class AccessTokenCredentials {
+        /**
+         * OAuth client ID
+         */
         public String clientID;
+        /**
+         * OAuth client secret
+         */
         public String secret;
 
         public AccessTokenCredentials(String clientID, String secret) {
@@ -42,6 +61,12 @@ public class TokenManager {
         }
     }
 
+    /**
+     * Returns a valid OAuth access token
+     * This call will fetch a new token if the current token is expired
+     *
+     * @return A valid OAuth token
+     */
     public String getAccessToken() {
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String accessToken = prefs.getString(accessTokenKey, "");
@@ -54,6 +79,12 @@ public class TokenManager {
         }
     }
 
+    /**
+     * Returns an OAuth authorization header
+     * This call will fetch a new token if teh current token is expired
+     *
+     * @return A valid OAuth authorization header
+     */
     public ClientInterceptor getAuthorizationMetadata() {
         String token = getAccessToken();
         Metadata header = new Metadata();
@@ -62,6 +93,9 @@ public class TokenManager {
         return MetadataUtils.newAttachHeadersInterceptor(header);
     }
 
+    /**
+     * Deletes the currently cached OAuth token
+     */
     public void deleteCachedToken() {
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -69,7 +103,6 @@ public class TokenManager {
         editor.remove(expirationKey);
         editor.apply();
     }
-
 
     private String fetchNewAccessToken() {
         TokenResponse response = oAuthService.getTokenSync();

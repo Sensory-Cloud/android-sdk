@@ -27,21 +27,47 @@ import io.sensory.api.v1.audio.ValidateEventConfig;
 import io.sensory.api.v1.audio.ValidateEventRequest;
 import io.sensory.api.v1.audio.ValidateEventResponse;
 
+/**
+ * A collection of grpc service calls for using audio models through Sensory Cloud
+ */
 public class AudioService {
 
+    /**
+     * Listener class for the getModels grpc response
+     */
     public interface GetModelsListener {
+        /**
+         * Called once the audio models have been successfully retrieved
+         * @param response A list of audio models supported by the cloud host
+         */
         void onSuccess(GetModelsResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
     private Config config;
     private TokenManager tokenManager;
 
+    /**
+     * Creates a new AudioService instance
+     *
+     * @param config SDK configuration to use for audio calls
+     * @param tokenManager Token Manager instance to get OAuth credentials from
+     */
     public AudioService(Config config, TokenManager tokenManager) {
         this.config = config;
         this.tokenManager = tokenManager;
     }
 
+    /**
+     * Fetches a list of the current audio models supported by the cloud host
+     *
+     * @param listener Listener that the results will be passed back to
+     */
     public void getModels(GetModelsListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
@@ -69,6 +95,24 @@ public class AudioService {
         audioClient.getModels(GetModelsRequest.getDefaultInstance(), responseObserver);
     }
 
+    /**
+     * Opens a bidirectional stream to the server for the purpose of creating an audio enrollment
+     * This will will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param modelName Name of the model to enroll against
+     * @param userID Unique user identifier
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param description User supplied description of the enrollment
+     * @param isLivenessEnabled Verifies liveness during the enrollment process
+     * @param numUtterances Sets how many utterances should be required for text-dependent enrollments
+     *                      defaults to 4 if not specified.
+     *                      This parameter should be 0 for text-independent enrollments
+     * @param enrollmentDuration Sets the duration in seconds for text-independent enrollments.
+     *                           defaults to 12.5 without liveness enabled, and 8 with liveness enabled.
+     *                           this parameter should be 0 for text-dependent enrollments
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server
+     */
     public StreamObserver<CreateEnrollmentRequest> createEnrollment(
             String modelName,
             String userID,
@@ -107,6 +151,16 @@ public class AudioService {
         return requestObserver;
     }
 
+    /**
+     * Opens a bidirectional stream for the purpose of authentication against an audio enrollment
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param enrollmentID Enrollment to authenticate against
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server
+     */
     public StreamObserver<AuthenticateRequest> authenticate(
             String enrollmentID,
             String languageCode,
@@ -115,6 +169,16 @@ public class AudioService {
         return streamAuthentication(enrollmentID, "", languageCode, isLivenessEnabled, responseObserver);
     }
 
+    /**
+     * Opens a bidirectional stream for the purpose of authentication against an audio enrollment group
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param groupID Enrollment group to authenticate against
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server
+     */
     public StreamObserver<AuthenticateRequest> authenticateGroup(
             String groupID,
             String languageCode,
@@ -123,6 +187,17 @@ public class AudioService {
         return streamAuthentication("", groupID, languageCode, isLivenessEnabled, responseObserver);
     }
 
+    /**
+     * Opens a bidirectional stream for the purpose of audio event validation
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param modelName Name of model to validate
+     * @param userID Unique user identifier
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param sensitivity How sensitive the model should be to false accepts
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server
+     */
     public StreamObserver<ValidateEventRequest> validateTrigger(
             String modelName,
             String userID,
@@ -153,6 +228,16 @@ public class AudioService {
         return requestObserver;
     }
 
+    /**
+     * Opens a bidirectional stream to the server that provides a transcription of the provided audio data
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param modelName Name of model to validate
+     * @param userID Unique user identifier
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server
+     */
     public StreamObserver<TranscribeRequest> transcribeAudio(
             String modelName,
             String userID,

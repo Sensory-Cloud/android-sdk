@@ -19,36 +19,99 @@ import io.sensory.api.v1.management.GetEnrollmentGroupsResponse;
 import io.sensory.api.v1.management.GetEnrollmentsRequest;
 import io.sensory.api.v1.management.GetEnrollmentsResponse;
 
+/**
+ * A collection of grpc service calls for managing existing enrollments and enrollment groups
+ */
 public class ManagementService {
 
+    /**
+     * Listener class for receiving a list of enrollments from the server
+     */
     public interface GetEnrollmentsListener {
+        /**
+         * Called when the grpc call succeeds
+         * @param response A list of enrollments
+         */
         void onSuccess(GetEnrollmentsResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
+    /**
+     * Listener class for receiving a list of enrollment groups from the server
+     */
     public interface GetEnrollmentGroupsListener {
+        /**
+         * Called when the grpc call succeeds
+         * @param response A list of enrollment groups
+         */
         void onSuccess(GetEnrollmentGroupsResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
+    /**
+     * Listener class for receiving a single enrollment from the server
+     */
     public interface EnrollmentListener {
+        /**
+         * Called when the grpc call succeeds
+         * @param response A single enrollment
+         */
         void onSuccess(EnrollmentResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
+    /**
+     * Listener class for receiving a single enrollment group from the server
+     */
     public interface EnrollmentGroupListener {
+        /**
+         * Called when the grpc call succeeds
+         * @param response A single enrollment group
+         */
         void onSuccess(EnrollmentGroupResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
     private Config config;
     private TokenManager tokenManager;
 
+    /**
+     * Creates a new ManagementService instance
+     *
+     * @param config SDK configuration to use for management calls
+     * @param tokenManager Token Manager instance to get OAuth credentials from
+     */
     public ManagementService(Config config, TokenManager tokenManager) {
         this.config = config;
         this.tokenManager = tokenManager;
     }
 
+    /**
+     * Fetches a list of enrollments for the given userID
+     *
+     * @param userId userID to fetch enrollments for
+     * @param listener Listener that the results will be passed back to
+     */
     public void getEnrollments(String userId, GetEnrollmentsListener listener) {
         ManagedClient client = getManagedClient();
 
@@ -75,6 +138,12 @@ public class ManagementService {
         client.client.getEnrollments(request, responseObserver);
     }
 
+    /**
+     * Fetches a list of enrollment groups for the given userID
+     *
+     * @param userId userID to fetch enrollment groups for
+     * @param listener Listener that the results will be passed back to
+     */
     public void getEnrollmentGroups(String userId, GetEnrollmentGroupsListener listener) {
         ManagedClient client = getManagedClient();
 
@@ -101,6 +170,16 @@ public class ManagementService {
         client.client.getEnrollmentGroups(request, responseObserver);
     }
 
+    /**
+     * Creates a new group of enrollments that can be used for group authentication
+     *
+     * @param userId userID of the user that owns the enrollment group
+     * @param groupId unique group identifier for the enrollment group
+     * @param groupName Friendly display name for the enrollment group
+     * @param description User supplied description of the enrollment group
+     * @param modelName The name of the model that all enrollments in this group will use
+     * @param listener Listener that the results will be passed back to
+     */
     public void createEnrollmentGroup(
             String userId,
             String groupId, // TODO - config/default value
@@ -137,6 +216,13 @@ public class ManagementService {
         client.client.createEnrollmentGroup(request, responseObserver);
     }
 
+    /**
+     * Appends enrollments to an existing enrollment group
+     *
+     * @param groupId Group ID of the enrollment group to append enrollments to
+     * @param enrollments A list of enrollment IDs to append to the enrollment group
+     * @param listener Listener that the results will be passed back to
+     */
     public void appendEnrollmentGroup(
             String groupId,
             Iterable<String> enrollments,
@@ -167,6 +253,13 @@ public class ManagementService {
         client.client.appendEnrollmentGroup(request, responseObserver);
     }
 
+    /**
+     * Requests the deletion of an enrollment
+     * The server will prevent users from deleting their last enrollment
+     *
+     * @param enrollmentId Enrollment ID of the enrollment to delete
+     * @param listener Listener that the results will be passed back to
+     */
     public void deleteEnrollment(String enrollmentId, EnrollmentListener listener) {
         ManagedClient client = getManagedClient();
 
@@ -193,6 +286,12 @@ public class ManagementService {
         client.client.deleteEnrollment(request, responseObserver);
     }
 
+    /**
+     * Requests the deletion of an enrollment group
+     *
+     * @param enrollmentGroupId Enrollment group ID of the group to delete
+     * @param listener Listener that the results will be passed back to
+     */
     public void deleteEnrollmentGroup(String enrollmentGroupId, EnrollmentGroupListener listener) {
         ManagedClient client = getManagedClient();
 

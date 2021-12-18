@@ -23,10 +23,22 @@ import io.sensory.api.v1.management.DeviceResponse;
 import io.sensory.api.v1.management.DeviceServiceGrpc;
 import io.sensory.api.v1.management.EnrollDeviceRequest;
 
+/**
+ * A collection of grpc calls for enrolling and requesting OAuth tokens
+ */
 public class OAuthService {
 
+    /**
+     * Wrapper struct for OAuth client credentials
+     */
     public class OAuthClient {
+        /**
+         * OAuth client ID
+         */
         public String clientId;
+        /**
+         * OAuth client secret
+         */
         public String clientSecret;
 
         public OAuthClient(String clientId, String clientSecret) {
@@ -35,18 +47,54 @@ public class OAuthService {
         }
     }
 
+    /**
+     * Listener class for the device enrollment grpc response
+     */
     public interface EnrollDeviceListener {
+        /**
+         * Called once the device has been successfully enrolled
+         * @param response The device enrollment response
+         */
         void onSuccess(DeviceResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
+    /**
+     * Listener class for OAuth token grpc responses
+     */
     public interface GetTokenListener {
+        /**
+         * Called once a new OAuth token has been received from the server
+         * @param response The OAuth token response
+         */
         void onSuccess(TokenResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
+    /**
+     * Listener class for WhoAmI grpc responses
+     */
     public interface GetWhoAmIListener {
+        /**
+         * Called once the WhoAmI response is received
+         * @param response the WhoAmI response
+         */
         void onSuccess(WhoAmIResponse response);
+
+        /**
+         * Called if a grpc error occurs
+         * @param t the error that occurred
+         */
         void onFailure(Throwable t);
     }
 
@@ -54,17 +102,33 @@ public class OAuthService {
     private SecureCredentialStore secureCredentialStore;
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 
+    /**
+     * Creates a new OAuthService instance
+     *
+     * @param config SDK configuration to use
+     * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
+     */
     public OAuthService(Config config, SecureCredentialStore secureCredentialStore) {
         this.config = config;
         this.secureCredentialStore = secureCredentialStore;
     }
 
+    /**
+     * Generates a cryptographically secure set of OAuth credentials
+     *
+     * @return a clientID and clientSecret that could be used for device enrollment
+     */
     public OAuthClient generateCredentials() {
         String clientId = UUID.randomUUID().toString();
         String clientSecret = secRandomString(16);
         return new OAuthClient(clientId, clientSecret);
     }
 
+    /**
+     * Requests a new OAuth token from the server, blocking the current thread until a response is received
+     *
+     * @return The OAuth token response
+     */
     public TokenResponse getTokenSync() {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
@@ -79,7 +143,11 @@ public class OAuthService {
         return client.getToken(tokenRequest);
     }
 
-
+    /**
+     * Requests a new OAuth token from the server
+     *
+     * @param listener Listener that the results will be passed back to
+     */
     public void getToken(GetTokenListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
@@ -111,6 +179,17 @@ public class OAuthService {
         client.getToken(tokenRequest, responseObserver);
     }
 
+    /**
+     * Creates a device enrollment for the current device
+     * The credential string authenticates that this device is allowed to enroll. Depending on the server configuration the credential string may be one of multiple values:
+     *  - An empty string if no authentication is configured on the server
+     *  - A shared secret (password)
+     *  - A signed JWT
+     *
+     * @param deviceName Name of the enrolling device
+     * @param credential Credential string to authenticate that this device is alled to enroll
+     * @param listener Listener that the results will be passed back to
+     */
     public void register(
             String deviceName,
             String credential,
@@ -152,6 +231,12 @@ public class OAuthService {
         deviceServiceStub.enrollDevice(enrollDeviceRequest, responseObserver);
     }
 
+    /**
+     * Gets information about the current registered device inferred from the credentials supplied by the credential store
+     * A new token is requested every time this is called, so use sparingly
+     *
+     * @param listener Listener that the results will be passed back to
+     */
     public void getWhoAmI(GetWhoAmIListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
