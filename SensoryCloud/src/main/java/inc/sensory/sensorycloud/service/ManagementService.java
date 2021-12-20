@@ -113,7 +113,13 @@ public class ManagementService {
      * @param listener Listener that the results will be passed back to
      */
     public void getEnrollments(String userId, GetEnrollmentsListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         GetEnrollmentsRequest request = GetEnrollmentsRequest.newBuilder()
                 .setUserId(userId)
@@ -145,7 +151,13 @@ public class ManagementService {
      * @param listener Listener that the results will be passed back to
      */
     public void getEnrollmentGroups(String userId, GetEnrollmentGroupsListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         GetEnrollmentsRequest request = GetEnrollmentsRequest.newBuilder()
                 .setUserId(userId)
@@ -187,7 +199,13 @@ public class ManagementService {
             String description,
             String modelName,
             EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         CreateEnrollmentGroupRequest request = CreateEnrollmentGroupRequest.newBuilder()
                 .setId(groupId)
@@ -227,7 +245,13 @@ public class ManagementService {
             String groupId,
             Iterable<String> enrollments,
             EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         AppendEnrollmentGroupRequest request = AppendEnrollmentGroupRequest.newBuilder()
                 .setGroupId(groupId)
@@ -261,7 +285,13 @@ public class ManagementService {
      * @param listener Listener that the results will be passed back to
      */
     public void deleteEnrollment(String enrollmentId, EnrollmentListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         DeleteEnrollmentRequest request = DeleteEnrollmentRequest.newBuilder()
                 .setId(enrollmentId)
@@ -293,7 +323,13 @@ public class ManagementService {
      * @param listener Listener that the results will be passed back to
      */
     public void deleteEnrollmentGroup(String enrollmentGroupId, EnrollmentGroupListener listener) {
-        ManagedClient client = getManagedClient();
+        ManagedClient client;
+        try {
+            client = getManagedClient();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         DeleteEnrollmentGroupRequest request = DeleteEnrollmentGroupRequest.newBuilder()
                 .setId(enrollmentGroupId)
@@ -329,7 +365,7 @@ public class ManagementService {
         }
     }
 
-    private ManagedClient getManagedClient() {
+    private ManagedClient getManagedClient() throws io.grpc.StatusRuntimeException {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 

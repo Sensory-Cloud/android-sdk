@@ -71,10 +71,15 @@ public class AudioService {
     public void getModels(GetModelsListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         AudioModelsGrpc.AudioModelsStub audioClient = AudioModelsGrpc.newStub(managedChannel);
-        audioClient = audioClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         StreamObserver<GetModelsResponse> responseObserver = new StreamObserver<GetModelsResponse>() {
             @Override
@@ -111,7 +116,7 @@ public class AudioService {
      *                           defaults to 12.5 without liveness enabled, and 8 with liveness enabled.
      *                           this parameter should be 0 for text-dependent enrollments
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<CreateEnrollmentRequest> createEnrollment(
             String modelName,
@@ -124,10 +129,15 @@ public class AudioService {
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
-        audioClient = audioClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<CreateEnrollmentRequest> requestObserver = audioClient.createEnrollment(responseObserver);
 
@@ -159,7 +169,7 @@ public class AudioService {
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<AuthenticateRequest> authenticate(
             String enrollmentID,
@@ -177,7 +187,7 @@ public class AudioService {
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<AuthenticateRequest> authenticateGroup(
             String groupID,
@@ -196,7 +206,7 @@ public class AudioService {
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param sensitivity How sensitive the model should be to false accepts
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<ValidateEventRequest> validateTrigger(
             String modelName,
@@ -206,10 +216,15 @@ public class AudioService {
             StreamObserver<ValidateEventResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         AudioEventsGrpc.AudioEventsStub audioClient = AudioEventsGrpc.newStub(managedChannel);
-        audioClient = audioClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<ValidateEventRequest> requestObserver = audioClient.validateEvent(responseObserver);
 
@@ -236,7 +251,7 @@ public class AudioService {
      * @param userID Unique user identifier
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<TranscribeRequest> transcribeAudio(
             String modelName,
@@ -245,10 +260,15 @@ public class AudioService {
             StreamObserver<TranscribeResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         AudioTranscriptionsGrpc.AudioTranscriptionsStub audioClient = AudioTranscriptionsGrpc.newStub(managedChannel);
-        audioClient = audioClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<TranscribeRequest> requestObserver = audioClient.transcribe(responseObserver);
 
@@ -283,10 +303,15 @@ public class AudioService {
             StreamObserver<AuthenticateResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
-        audioClient = audioClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<AuthenticateRequest> requestObserver = audioClient.authenticate(responseObserver);
 

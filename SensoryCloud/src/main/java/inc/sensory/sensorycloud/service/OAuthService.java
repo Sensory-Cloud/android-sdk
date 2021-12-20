@@ -128,8 +128,9 @@ public class OAuthService {
      * Requests a new OAuth token from the server, blocking the current thread until a response is received
      *
      * @return The OAuth token response
+     * @Throws io.grpc.StatusRuntimeException – on grpc error
      */
-    public TokenResponse getTokenSync() {
+    public TokenResponse getTokenSync() throws io.grpc.StatusRuntimeException {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 

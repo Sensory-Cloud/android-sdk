@@ -66,10 +66,15 @@ public class VideoService {
     public void getModels(GetModelsListener listener) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         VideoModelsGrpc.VideoModelsStub videoClient = VideoModelsGrpc.newStub(managedChannel);
-        videoClient = videoClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            videoClient = videoClient.withInterceptors(header);
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
 
         StreamObserver<GetModelsResponse> responseObserver = new StreamObserver<GetModelsResponse>() {
             @Override
@@ -100,7 +105,7 @@ public class VideoService {
      * @param isLivenessEnabled Determines if a liveness check should be conducted as well as an enrollment
      * @param livenessThreshold Liveness threshold for the potential liveness check
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<CreateEnrollmentRequest> createEnrollment(
             String modelName,
@@ -111,10 +116,15 @@ public class VideoService {
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
-        videoClient = videoClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            videoClient = videoClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<CreateEnrollmentRequest> requestObserver = videoClient.createEnrollment(responseObserver);
 
@@ -140,7 +150,7 @@ public class VideoService {
      * @param isLivenessEnabled Determines if a liveness check should be conducted as well as an enrollment
      * @param livenessThreshold Liveness threshold for the potential liveness check
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<AuthenticateRequest> authenticate(
             String enrollmentID,
@@ -149,10 +159,15 @@ public class VideoService {
             StreamObserver<AuthenticateResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
-        videoClient = videoClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            videoClient = videoClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<AuthenticateRequest> requestObserver = videoClient.authenticate(responseObserver);
 
@@ -175,7 +190,7 @@ public class VideoService {
      * @param userId Unique user identifier
      * @param livenessThreshold Threshold of how confident the model has to be to give a positive liveness result
      * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<ValidateRecognitionRequest> validateLiveness(
             String modelName,
@@ -184,10 +199,15 @@ public class VideoService {
             StreamObserver<LivenessRecognitionResponse> responseObserver) {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
-
-        ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         VideoRecognitionGrpc.VideoRecognitionStub videoClient = VideoRecognitionGrpc.newStub(managedChannel);
-        videoClient = videoClient.withInterceptors(header);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            videoClient = videoClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
 
         StreamObserver<ValidateRecognitionRequest> requestObserver = videoClient.validateLiveness(responseObserver);
 

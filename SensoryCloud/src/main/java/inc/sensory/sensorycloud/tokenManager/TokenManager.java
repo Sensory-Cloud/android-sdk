@@ -3,14 +3,6 @@ package inc.sensory.sensorycloud.tokenManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.security.SecureRandom;
-import java.util.Random;
-import java.util.UUID;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import inc.sensory.sensorycloud.config.Config;
 import inc.sensory.sensorycloud.service.OAuthService;
 import io.grpc.ClientInterceptor;
 import io.grpc.Metadata;
@@ -42,32 +34,13 @@ public class TokenManager {
     }
 
     /**
-     * Wrapper struct for OAuth client credentials
-     * TODO: duplicate of OAuthService.OAuthClient
-     */
-    public class AccessTokenCredentials {
-        /**
-         * OAuth client ID
-         */
-        public String clientID;
-        /**
-         * OAuth client secret
-         */
-        public String secret;
-
-        public AccessTokenCredentials(String clientID, String secret) {
-            this.clientID = clientID;
-            this.secret = secret;
-        }
-    }
-
-    /**
      * Returns a valid OAuth access token
      * This call will fetch a new token if the current token is expired
      *
      * @return A valid OAuth token
+     * @Throws io.grpc.StatusRuntimeException – if an error occurs while requesting a new token
      */
-    public String getAccessToken() {
+    public String getAccessToken() throws io.grpc.StatusRuntimeException {
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String accessToken = prefs.getString(accessTokenKey, "");
         long expiration = prefs.getLong(expirationKey, 0);
@@ -81,11 +54,12 @@ public class TokenManager {
 
     /**
      * Returns an OAuth authorization header
-     * This call will fetch a new token if teh current token is expired
+     * This call will fetch a new token if the current token is expired
      *
      * @return A valid OAuth authorization header
+     * @Throws io.grpc.StatusRuntimeException – if an error occurs while requesting a new token
      */
-    public ClientInterceptor getAuthorizationMetadata() {
+    public ClientInterceptor getAuthorizationMetadata() throws io.grpc.StatusRuntimeException {
         String token = getAccessToken();
         Metadata header = new Metadata();
         Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
@@ -104,7 +78,7 @@ public class TokenManager {
         editor.apply();
     }
 
-    private String fetchNewAccessToken() {
+    private String fetchNewAccessToken() throws io.grpc.StatusRuntimeException {
         TokenResponse response = oAuthService.getTokenSync();
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
