@@ -365,7 +365,7 @@ public class ManagementService {
         }
     }
 
-    private ManagedClient getManagedClient() throws io.grpc.StatusRuntimeException {
+    private ManagedClient getManagedClient() throws Exception {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 

@@ -5,12 +5,16 @@ package inc.sensory.sensorycloud.tokenManager;
  */
 public interface SecureCredentialStore {
     /**
-     * @return The saved clientID in the credential store
+     * Fetches the client ID from secure storage
+     * @return the saved client ID
+     * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
      */
-    String getClientId();
+    String getClientId() throws Exception;
 
     /**
-     * @return The saved client secret in the credential store
+     * Fetches the client Secret from secure storage
+     * @return the saved client Secret
+     * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
      */
-    String getClientSecret();
+    String getClientSecret() throws Exception;
 }

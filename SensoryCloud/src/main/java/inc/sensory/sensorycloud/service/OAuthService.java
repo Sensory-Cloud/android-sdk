@@ -128,9 +128,9 @@ public class OAuthService {
      * Requests a new OAuth token from the server, blocking the current thread until a response is received
      *
      * @return The OAuth token response
-     * @Throws io.grpc.StatusRuntimeException – on grpc error
+     * @Throws Exception – on grpc error or Secure Credential Store error
      */
-    public TokenResponse getTokenSync() throws io.grpc.StatusRuntimeException {
+    public TokenResponse getTokenSync() throws Exception {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
@@ -155,9 +155,18 @@ public class OAuthService {
 
         OauthServiceGrpc.OauthServiceStub client = OauthServiceGrpc.newStub(managedChannel);
 
+        String clientID, clientSecret;
+        try {
+            clientID = secureCredentialStore.getClientId();
+            clientSecret = secureCredentialStore.getClientSecret();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
+
         TokenRequest tokenRequest = TokenRequest.newBuilder()
-                .setClientId(secureCredentialStore.getClientId())
-                .setSecret(secureCredentialStore.getClientSecret())
+                .setClientId(clientID)
+                .setSecret(clientSecret)
                 .build();
 
         StreamObserver<TokenResponse> responseObserver = new StreamObserver<TokenResponse>() {
@@ -199,10 +208,19 @@ public class OAuthService {
         // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
         ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
 
+        String clientID, clientSecret;
+        try {
+            clientID = secureCredentialStore.getClientId();
+            clientSecret = secureCredentialStore.getClientSecret();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
+
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
         GenericClient genericClient = GenericClient.newBuilder()
-                .setClientId(secureCredentialStore.getClientId())
-                .setSecret(secureCredentialStore.getClientSecret())
+                .setClientId(clientID)
+                .setSecret(clientSecret)
                 .build();
         EnrollDeviceRequest enrollDeviceRequest = EnrollDeviceRequest.newBuilder()
                 .setName(deviceName)

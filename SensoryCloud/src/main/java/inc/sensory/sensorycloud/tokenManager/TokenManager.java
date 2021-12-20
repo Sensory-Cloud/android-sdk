@@ -38,9 +38,9 @@ public class TokenManager {
      * This call will fetch a new token if the current token is expired
      *
      * @return A valid OAuth token
-     * @Throws io.grpc.StatusRuntimeException – if an error occurs while requesting a new token
+     * @Throws Exception – if an error occurs while requesting a new token
      */
-    public String getAccessToken() throws io.grpc.StatusRuntimeException {
+    public String getAccessToken() throws Exception {
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         String accessToken = prefs.getString(accessTokenKey, "");
         long expiration = prefs.getLong(expirationKey, 0);
@@ -57,9 +57,9 @@ public class TokenManager {
      * This call will fetch a new token if the current token is expired
      *
      * @return A valid OAuth authorization header
-     * @Throws io.grpc.StatusRuntimeException – if an error occurs while requesting a new token
+     * @Throws Exception – if an error occurs while requesting a new token
      */
-    public ClientInterceptor getAuthorizationMetadata() throws io.grpc.StatusRuntimeException {
+    public ClientInterceptor getAuthorizationMetadata() throws Exception {
         String token = getAccessToken();
         Metadata header = new Metadata();
         Metadata.Key<String> key = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
@@ -78,7 +78,7 @@ public class TokenManager {
         editor.apply();
     }
 
-    private String fetchNewAccessToken() throws io.grpc.StatusRuntimeException {
+    private String fetchNewAccessToken() throws Exception {
         TokenResponse response = oAuthService.getTokenSync();
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

@@ -44,10 +44,14 @@ public class LoginFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        credentialStore = new DefaultSecureCredentialStore(getContext());
+        credentialStore = new DefaultSecureCredentialStore(getContext(), "");
 
         // Check if we're logged in
-        if (credentialStore.getClientId().isEmpty() && credentialStore.getClientSecret().isEmpty()) {
+        try {
+            credentialStore.getClientId();
+            credentialStore.getClientSecret();
+            showLoggedIn();
+        } catch (Exception e) {
             deviceID = UUID.randomUUID().toString();
             SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
@@ -60,8 +64,6 @@ public class LoginFragment extends Fragment {
                     new Config.DeviceConfig(deviceID, "en_US"));
 
             oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        } else {
-            showLoggedIn();
         }
 
         binding = LoginFragmentBinding.inflate(inflater, container, false);
@@ -97,7 +99,13 @@ public class LoginFragment extends Fragment {
 
         OAuthService.OAuthClient client = oAuthService.generateCredentials();
         Log.i(LOG_TAG, "Generated credentials with clientID: " + client.clientId);
-        credentialStore.setCredentials(client.clientId, client.clientSecret);
+        try {
+            credentialStore.setCredentials(client.clientId, client.clientSecret);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+            e.printStackTrace();
+            return;
+        }
 
         oAuthService.register(
                 username,
@@ -111,7 +119,12 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Throwable t) {
-                credentialStore.setCredentials("", "");
+                try {
+                    credentialStore.setCredentials("", "");
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, e.getMessage());
+                    e.printStackTrace();
+                }
                 Log.e(LOG_TAG, t.getMessage());
                 t.printStackTrace();
             }

@@ -60,7 +60,7 @@ public class AudioFragment extends Fragment {
                 new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
                 new Config.DeviceConfig(deviceID, "en_US"));
 
-        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext());
+        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
         OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
         TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
         audioService = new AudioService(sensoryConfig, tokenManager);
