@@ -131,8 +131,7 @@ public class OAuthService {
      * @Throws Exception – on grpc error or Secure Credential Store error
      */
     public TokenResponse getTokenSync() throws Exception {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
 
         OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
@@ -150,8 +149,7 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getToken(GetTokenListener listener) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
 
         OauthServiceGrpc.OauthServiceStub client = OauthServiceGrpc.newStub(managedChannel);
 
@@ -205,8 +203,7 @@ public class OAuthService {
             String credential,
             EnrollDeviceListener listener ) {
 
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
 
         String clientID, clientSecret;
         try {
@@ -257,8 +254,7 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getWhoAmI(GetWhoAmIListener listener) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
 
         StreamObserver<WhoAmIResponse> responseObserver = new StreamObserver<WhoAmIResponse>() {
             @Override

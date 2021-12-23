@@ -47,8 +47,7 @@ public class HealthService {
      * @param listener Listener that results are passed back to
      */
     public void getHealth(GetHealthListener listener) {
-        // ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).usePlaintext().build();
+        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
 
         HealthServiceGrpc.HealthServiceStub client = HealthServiceGrpc.newStub(managedChannel);
 
