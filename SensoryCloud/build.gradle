@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'com.google.protobuf' version '0.8.17'
+    id 'maven-publish'
 }
 
 android {
@@ -64,4 +65,26 @@ dependencies {
     implementation "androidx.camera:camera-camera2:$camerax_version"
     // CameraX Lifecycle Library
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
+}
+
+// Create the SensoryCloud artifact
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'io.sensory.sensorycloud'
+                artifactId = 'final'
+                version = '1.0'
+            }
+            debug(MavenPublication) {
+                from components.debug
+
+                groupId = 'io.sensory.sensorycloud'
+                artifactId = 'final-debug'
+                version = '1.0'
+            }
+        }
+    }
 }
