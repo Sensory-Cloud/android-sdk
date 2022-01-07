@@ -49,10 +49,17 @@ public class AudioStreamInteractor {
      */
     public BlockingQueue<byte[]> audioQueue;
 
-    private AudioStreamInteractor(AudioRecord recorder) {
+    /**
+     * Constructs a new AudioStreamInteractor given an AudioRecorder. It is recommended to use
+     * `newAudioStreamInteractor(context) instead as that will automatically configure the audio
+     * recorder.
+     *
+     * @param recorder AudioRecorder instance to use for recording
+     */
+    public AudioStreamInteractor(AudioRecord recorder) {
         this.recorder = recorder;
         this.audioQueue = new LinkedBlockingQueue<>();
-        stopped = new AtomicBoolean(false);
+        stopped = new AtomicBoolean(true);
     }
 
     /**
