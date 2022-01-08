@@ -92,6 +92,7 @@ public class ManagementService {
 
     private Config config;
     private TokenManager tokenManager;
+    private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new ManagementService instance
@@ -102,6 +103,19 @@ public class ManagementService {
     public ManagementService(Config config, TokenManager tokenManager) {
         this.config = config;
         this.tokenManager = tokenManager;
+    }
+
+    /**
+     * Creates a new ManagementService instance
+     *
+     * @param config SDK configuration to use for management calls
+     * @param tokenManager Token Manager instance to get OAuth credentials from
+     * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
+     */
+    public ManagementService(Config config, TokenManager tokenManager, ManagedChannel managedChannel) {
+        this.config = config;
+        this.tokenManager = tokenManager;
+        this.unitTestingManagedChannel = managedChannel;
     }
 
     /**
@@ -364,7 +378,10 @@ public class ManagementService {
     }
 
     private ManagedClient getManagedClient() throws Exception {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
 
         ClientInterceptor header = tokenManager.getAuthorizationMetadata();
         EnrollmentServiceGrpc.EnrollmentServiceStub managementClient = EnrollmentServiceGrpc.newStub(managedChannel);
