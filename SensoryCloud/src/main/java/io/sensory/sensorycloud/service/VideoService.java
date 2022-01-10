@@ -46,6 +46,7 @@ public class VideoService {
 
     private Config config;
     private TokenManager tokenManager;
+    private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new VideoService instance
@@ -59,12 +60,25 @@ public class VideoService {
     }
 
     /**
+     * Creates a new VideoService instance
+     *
+     * @param config SDK configuration to use for video calls
+     * @param tokenManager Token Manager instance to get OAuth credentials from
+     * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
+     */
+    public VideoService(Config config, TokenManager tokenManager, ManagedChannel managedChannel) {
+        this.config = config;
+        this.tokenManager = tokenManager;
+        this.unitTestingManagedChannel = managedChannel;
+    }
+
+    /**
      * Fetches a list of the current vision models supported by the cloud host
      *
      * @param listener Listener that the results will be passed back to
      */
     public void getModels(GetModelsListener listener) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         VideoModelsGrpc.VideoModelsStub videoClient = VideoModelsGrpc.newStub(managedChannel);
 
         try {
@@ -113,7 +127,7 @@ public class VideoService {
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
 
         try {
@@ -155,7 +169,7 @@ public class VideoService {
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
             StreamObserver<AuthenticateResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
 
         try {
@@ -194,7 +208,7 @@ public class VideoService {
             String userId,
             RecognitionThreshold livenessThreshold,
             StreamObserver<LivenessRecognitionResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         VideoRecognitionGrpc.VideoRecognitionStub videoClient = VideoRecognitionGrpc.newStub(managedChannel);
 
         try {
@@ -216,5 +230,13 @@ public class VideoService {
         requestObserver.onNext(request);
 
         return requestObserver;
+    }
+
+    private ManagedChannel getManagedChannel() {
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
+        return managedChannel;
     }
 }

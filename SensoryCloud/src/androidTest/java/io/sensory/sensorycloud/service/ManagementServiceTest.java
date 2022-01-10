@@ -227,9 +227,7 @@ public class ManagementServiceTest extends TestCase {
                     }
 
                     @Override
-                    public void onFailure(Throwable t) {
-                        fail("Call should not fail: " + t.getMessage());
-                    }
+                    public void onFailure(Throwable t) { fail("Call should not fail: " + t.getMessage()); }
                 });
 
         await().until(() -> responseReceived);
