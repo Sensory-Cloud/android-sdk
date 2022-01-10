@@ -51,6 +51,7 @@ public class AudioService {
 
     private Config config;
     private TokenManager tokenManager;
+    private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new AudioService instance
@@ -64,12 +65,25 @@ public class AudioService {
     }
 
     /**
+     * Creates a new AudioService instance
+     *
+     * @param config SDK configuration to use for audio calls
+     * @param tokenManager Token Manager instance to get OAuth credentials from
+     * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
+     */
+    public AudioService(Config config, TokenManager tokenManager, ManagedChannel managedChannel) {
+        this.config = config;
+        this.tokenManager = tokenManager;
+        this.unitTestingManagedChannel = managedChannel;
+    }
+
+    /**
      * Fetches a list of the current audio models supported by the cloud host
      *
      * @param listener Listener that the results will be passed back to
      */
     public void getModels(GetModelsListener listener) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         AudioModelsGrpc.AudioModelsStub audioClient = AudioModelsGrpc.newStub(managedChannel);
 
         try {
@@ -126,7 +140,7 @@ public class AudioService {
             int numUtterances,
             float enrollmentDuration,
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
 
         try {
@@ -212,7 +226,7 @@ public class AudioService {
             String languageCode,
             ThresholdSensitivity sensitivity,
             StreamObserver<ValidateEventResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         AudioEventsGrpc.AudioEventsStub audioClient = AudioEventsGrpc.newStub(managedChannel);
 
         try {
@@ -255,7 +269,7 @@ public class AudioService {
             String userID,
             String languageCode,
             StreamObserver<TranscribeResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         AudioTranscriptionsGrpc.AudioTranscriptionsStub audioClient = AudioTranscriptionsGrpc.newStub(managedChannel);
 
         try {
@@ -297,7 +311,7 @@ public class AudioService {
             String languageCode,
             boolean isLivenessEnabled,
             StreamObserver<AuthenticateResponse> responseObserver) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = getManagedChannel();
         AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
 
         try {
@@ -324,5 +338,13 @@ public class AudioService {
         requestObserver.onNext(request);
 
         return requestObserver;
+    }
+
+    private ManagedChannel getManagedChannel() {
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
+        return managedChannel;
     }
 }
