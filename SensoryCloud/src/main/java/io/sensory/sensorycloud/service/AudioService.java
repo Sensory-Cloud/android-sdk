@@ -1,5 +1,10 @@
 package io.sensory.sensorycloud.service;
 
+import io.sensory.api.v1.audio.CreateEnrolledEventRequest;
+import io.sensory.api.v1.audio.CreateEnrollmentEventConfig;
+import io.sensory.api.v1.audio.ValidateEnrolledEventConfig;
+import io.sensory.api.v1.audio.ValidateEnrolledEventRequest;
+import io.sensory.api.v1.audio.ValidateEnrolledEventResponse;
 import io.sensory.sensorycloud.config.Config;
 import io.sensory.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
@@ -31,6 +36,14 @@ import io.sensory.api.v1.audio.ValidateEventResponse;
  * A collection of grpc service calls for using audio models through Sensory Cloud
  */
 public class AudioService {
+
+    /**
+     * Enum for determining if an enrollment ID is a enrollment ID or an enrollment group ID
+     */
+    public enum EnrollmentType {
+        ENROLLMENT_ID,
+        ENROLLMENT_GROUP_ID
+    }
 
     /**
      * Listener class for the getModels grpc response
@@ -174,39 +187,52 @@ public class AudioService {
     }
 
     /**
-     * Opens a bidirectional stream for the purpose of authentication against an audio enrollment
+     * Opens a bidirectional stream for the purpose of authentication against audio enrollments
      * This call will automatically send the initial `AudioConfig` message to the server
      *
-     * @param enrollmentID Enrollment to authenticate against
+     * @param enrollmentType Determines if enrollmentID is associated to a single enrollment or an enrollment group
+     * @param enrollmentID Either the enrollment ID or the enrollment group ID to authenticate against
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<AuthenticateRequest> authenticate(
+            EnrollmentType enrollmentType,
             String enrollmentID,
             String languageCode,
             boolean isLivenessEnabled,
             StreamObserver<AuthenticateResponse> responseObserver) {
-        return streamAuthentication(enrollmentID, "", languageCode, isLivenessEnabled, responseObserver);
-    }
+        ManagedChannel managedChannel = getManagedChannel();
+        AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
 
-    /**
-     * Opens a bidirectional stream for the purpose of authentication against an audio enrollment group
-     * This call will automatically send the initial `AudioConfig` message to the server
-     *
-     * @param groupID Enrollment group to authenticate against
-     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
-     * @param isLivenessEnabled Specifies if the authentication should also include a liveness check
-     * @param responseObserver Observer that will be populated with the stream responses
-     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
-     */
-    public StreamObserver<AuthenticateRequest> authenticateGroup(
-            String groupID,
-            String languageCode,
-            boolean isLivenessEnabled,
-            StreamObserver<AuthenticateResponse> responseObserver) {
-        return streamAuthentication("", groupID, languageCode, isLivenessEnabled, responseObserver);
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
+
+        StreamObserver<AuthenticateRequest> requestObserver = audioClient.authenticate(responseObserver);
+
+        AudioConfig audioConfig = getDefaultAudioConfig(languageCode);
+        AuthenticateConfig.Builder authConfigBuilder = AuthenticateConfig.newBuilder()
+                .setAudio(audioConfig)
+                .setIsLivenessEnabled(isLivenessEnabled);
+        switch (enrollmentType) {
+            case ENROLLMENT_ID:
+                authConfigBuilder.setEnrollmentId(enrollmentID);
+                break;
+            case ENROLLMENT_GROUP_ID:
+                authConfigBuilder.setEnrollmentGroupId(enrollmentID);
+                break;
+        }
+        AuthenticateConfig authConfig = authConfigBuilder.build();
+        AuthenticateRequest request = AuthenticateRequest.newBuilder().setConfig(authConfig).build();
+        requestObserver.onNext(request);
+
+        return requestObserver;
     }
 
     /**
@@ -253,6 +279,100 @@ public class AudioService {
 
         return requestObserver;
     }
+
+    /**
+     * Opens a bidirectional stream for the purpose of creating an enrolled audio event
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param modelName Name of the model to enroll against
+     * @param userID Unique user identifier
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param description User supplied description of the enrollment
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
+     */
+    public StreamObserver<CreateEnrolledEventRequest> createEnrolledEvent(
+            String modelName,
+            String userID,
+            String languageCode,
+            String description,
+            StreamObserver<CreateEnrollmentResponse> responseObserver) {
+        ManagedChannel managedChannel = getManagedChannel();
+        AudioEventsGrpc.AudioEventsStub audioClient = AudioEventsGrpc.newStub(managedChannel);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
+
+        StreamObserver<CreateEnrolledEventRequest> requestObserver = audioClient.createEnrolledEvent(responseObserver);
+
+        AudioConfig audioConfig = getDefaultAudioConfig(languageCode);
+        CreateEnrollmentEventConfig enrollmentConfig = CreateEnrollmentEventConfig.newBuilder()
+                .setAudio(audioConfig)
+                .setModelName(modelName)
+                .setUserId(userID)
+                .setDescription(description)
+                .build();
+        CreateEnrolledEventRequest enrollmentRequest = CreateEnrolledEventRequest.newBuilder()
+                .setConfig(enrollmentConfig)
+                .build();
+        requestObserver.onNext(enrollmentRequest);
+
+        return requestObserver;
+    }
+
+    /**
+     * Opens a bidirectional stream for the purpose of authentication against an enrolled audio event
+     * This call will automatically send the initial `AudioConfig` message to the server
+     *
+     * @param enrollmentType Determines if enrollmentID is associated to a single enrollment or an enrollment group
+     * @param enrollmentID Either the enrollment ID or the enrollment group ID to authenticate against
+     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param sensitivity How sensitive the model should be to false accepts
+     * @param responseObserver Observer that will be populated with the stream responses
+     * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
+     */
+    public StreamObserver<ValidateEnrolledEventRequest> validateEnrolledEvent(
+            EnrollmentType enrollmentType,
+            String enrollmentID,
+            String languageCode,
+            ThresholdSensitivity sensitivity,
+            StreamObserver<ValidateEnrolledEventResponse> responseObserver) {
+        ManagedChannel managedChannel = getManagedChannel();
+        AudioEventsGrpc.AudioEventsStub audioClient = AudioEventsGrpc.newStub(managedChannel);
+
+        try {
+            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
+            audioClient = audioClient.withInterceptors(header);
+        } catch (Exception e) {
+            responseObserver.onError(e);
+            return null;
+        }
+
+        StreamObserver<ValidateEnrolledEventRequest> requestObserver = audioClient.validateEnrolledEvent(responseObserver);
+
+        AudioConfig audioConfig = getDefaultAudioConfig(languageCode);
+        ValidateEnrolledEventConfig.Builder authConfigBuilder = ValidateEnrolledEventConfig.newBuilder()
+                .setAudio(audioConfig)
+                .setSensitivity(sensitivity);
+        switch (enrollmentType) {
+            case ENROLLMENT_ID:
+                authConfigBuilder.setEnrollmentId(enrollmentID);
+                break;
+            case ENROLLMENT_GROUP_ID:
+                authConfigBuilder.setEnrollmentGroupId(enrollmentID);
+                break;
+        }
+        ValidateEnrolledEventRequest request = ValidateEnrolledEventRequest.newBuilder().setConfig(authConfigBuilder).build();
+        requestObserver.onNext(request);
+
+        return requestObserver;
+    }
+
 
     /**
      * Opens a bidirectional stream to the server that provides a transcription of the provided audio data
@@ -303,41 +423,6 @@ public class AudioService {
                 .setAudioChannelCount(1)
                 .setLanguageCode(language)
                 .build();
-    }
-
-    private StreamObserver<AuthenticateRequest> streamAuthentication(
-            String enrollmentID,
-            String groupID,
-            String languageCode,
-            boolean isLivenessEnabled,
-            StreamObserver<AuthenticateResponse> responseObserver) {
-        ManagedChannel managedChannel = getManagedChannel();
-        AudioBiometricsGrpc.AudioBiometricsStub audioClient = AudioBiometricsGrpc.newStub(managedChannel);
-
-        try {
-            ClientInterceptor header = tokenManager.getAuthorizationMetadata();
-            audioClient = audioClient.withInterceptors(header);
-        } catch (Exception e) {
-            responseObserver.onError(e);
-            return null;
-        }
-
-        StreamObserver<AuthenticateRequest> requestObserver = audioClient.authenticate(responseObserver);
-
-        AudioConfig audioConfig = getDefaultAudioConfig(languageCode);
-        AuthenticateConfig.Builder authConfigBuilder = AuthenticateConfig.newBuilder()
-                .setAudio(audioConfig)
-                .setIsLivenessEnabled(isLivenessEnabled);
-        if (enrollmentID.isEmpty()) {
-            authConfigBuilder.setEnrollmentGroupId(groupID);
-        } else {
-            authConfigBuilder.setEnrollmentId(enrollmentID);
-        }
-        AuthenticateConfig authConfig = authConfigBuilder.build();
-        AuthenticateRequest request = AuthenticateRequest.newBuilder().setConfig(authConfig).build();
-        requestObserver.onNext(request);
-
-        return requestObserver;
     }
 
     private ManagedChannel getManagedChannel() {

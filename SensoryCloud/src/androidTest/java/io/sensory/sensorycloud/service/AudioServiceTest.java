@@ -34,7 +34,9 @@ import io.sensory.api.v1.audio.AudioTranscriptionsGrpc;
 import io.sensory.api.v1.audio.AuthenticateConfig;
 import io.sensory.api.v1.audio.AuthenticateRequest;
 import io.sensory.api.v1.audio.AuthenticateResponse;
+import io.sensory.api.v1.audio.CreateEnrolledEventRequest;
 import io.sensory.api.v1.audio.CreateEnrollmentConfig;
+import io.sensory.api.v1.audio.CreateEnrollmentEventConfig;
 import io.sensory.api.v1.audio.CreateEnrollmentRequest;
 import io.sensory.api.v1.audio.CreateEnrollmentResponse;
 import io.sensory.api.v1.audio.GetModelsRequest;
@@ -43,6 +45,9 @@ import io.sensory.api.v1.audio.ThresholdSensitivity;
 import io.sensory.api.v1.audio.TranscribeConfig;
 import io.sensory.api.v1.audio.TranscribeRequest;
 import io.sensory.api.v1.audio.TranscribeResponse;
+import io.sensory.api.v1.audio.ValidateEnrolledEventConfig;
+import io.sensory.api.v1.audio.ValidateEnrolledEventRequest;
+import io.sensory.api.v1.audio.ValidateEnrolledEventResponse;
 import io.sensory.api.v1.audio.ValidateEventConfig;
 import io.sensory.api.v1.audio.ValidateEventRequest;
 import io.sensory.api.v1.audio.ValidateEventResponse;
@@ -130,6 +135,31 @@ public class AudioServiceTest extends TestCase {
             .setAudioEnergy(100)
             .setSuccess(true)
             .setScore(50)
+            .build();
+
+    final CreateEnrolledEventRequest expectedEnrollEventRequest = CreateEnrolledEventRequest.newBuilder()
+            .setConfig(CreateEnrollmentEventConfig.newBuilder()
+                    .setAudio(mockAudioConfig)
+                    .setModelName("AudioEventModel")
+                    .setUserId("Some user")
+                    .setDescription("Description")
+            ).build();
+
+    final CreateEnrollmentResponse expectedEnrollEventResponse = expectedEnrollmentResponse;
+
+    final ValidateEnrolledEventRequest expectedValidateEnrolledEventRequest = ValidateEnrolledEventRequest.newBuilder()
+            .setConfig(ValidateEnrolledEventConfig.newBuilder()
+                    .setAudio(mockAudioConfig)
+                    .setSensitivity(ThresholdSensitivity.HIGHEST)
+                    .setEnrollmentGroupId("GroupID")
+            ).build();
+
+    final ValidateEnrolledEventResponse expectedValidateEnrolledEventResponse = ValidateEnrolledEventResponse.newBuilder()
+            .setAudioEnergy(10)
+            .setEnrollmentId("Some Enrollment ID")
+            .setUserId("User")
+            .setSuccess(true)
+            .setModelPrompt("prompt")
             .build();
 
     final TranscribeRequest expectedTranscriptionRequest = TranscribeRequest.newBuilder()
@@ -230,6 +260,46 @@ public class AudioServiceTest extends TestCase {
                                 @Override
                                 public void onError(Throwable t) {
                                     fail("Call should not fail: " + t.getMessage());
+                                }
+
+                                @Override
+                                public void onCompleted() { }
+                            };
+                        }
+
+                        @Override
+                        public StreamObserver<CreateEnrolledEventRequest> createEnrolledEvent(StreamObserver<CreateEnrollmentResponse> responseObserver) {
+                            responseObserver.onNext(expectedEnrollEventResponse);
+                            return new StreamObserver<CreateEnrolledEventRequest>() {
+                                @Override
+                                public void onNext(CreateEnrolledEventRequest value) {
+                                    assertEquals("Initial config should be sent", expectedEnrollEventRequest, value);
+                                    requestReceived = true;
+                                }
+
+                                @Override
+                                public void onError(Throwable t) {
+                                    fail("Call should not fail: " + t.getMessage());
+                                }
+
+                                @Override
+                                public void onCompleted() { }
+                            };
+                        }
+
+                        @Override
+                        public StreamObserver<ValidateEnrolledEventRequest> validateEnrolledEvent(StreamObserver<ValidateEnrolledEventResponse> responseObserver) {
+                            responseObserver.onNext(expectedValidateEnrolledEventResponse);
+                            return new StreamObserver<ValidateEnrolledEventRequest>() {
+                                @Override
+                                public void onNext(ValidateEnrolledEventRequest value) {
+                                    assertEquals("Initial config should be sent", expectedValidateEnrolledEventRequest, value);
+                                    requestReceived = true;
+                                }
+
+                                @Override
+                                public void onError(Throwable t) {
+                                    fail("call should not fail: " + t.getMessage());
                                 }
 
                                 @Override
@@ -339,6 +409,7 @@ public class AudioServiceTest extends TestCase {
 
     public void testAuthenticate() {
         service.authenticate(
+                AudioService.EnrollmentType.ENROLLMENT_ID,
                 expectedAuthenticateRequest.getConfig().getEnrollmentId(),
                 "",
                 expectedAuthenticateRequest.getConfig().getIsLivenessEnabled(),
@@ -369,6 +440,52 @@ public class AudioServiceTest extends TestCase {
                     @Override
                     public void onNext(ValidateEventResponse value) {
                         assertEquals("Response should match", expectedValidationResponse, value);
+                        responseReceived = true;
+                    }
+
+                    @Override
+                    public void onError(Throwable t) { fail("Call should not fail: " + t.getMessage()); }
+
+                    @Override
+                    public void onCompleted() { }
+                });
+
+        await().until(() -> requestReceived && responseReceived);
+    }
+
+    public void testEnrollEvent() {
+        service.createEnrolledEvent(
+                expectedEnrollEventRequest.getConfig().getModelName(),
+                expectedEnrollEventRequest.getConfig().getUserId(),
+                "",
+                expectedEnrollEventRequest.getConfig().getDescription(),
+                new StreamObserver<CreateEnrollmentResponse>() {
+                    @Override
+                    public void onNext(CreateEnrollmentResponse value) {
+                        assertEquals("Response should match", expectedEnrollEventResponse, value);
+                        responseReceived = true;
+                    }
+
+                    @Override
+                    public void onError(Throwable t) { fail("Call should not fail: " + t.getMessage()); }
+
+                    @Override
+                    public void onCompleted() { }
+                });
+
+        await().until(() -> requestReceived && responseReceived);
+    }
+
+    public void testValidateEnrolledEvent() {
+        service.validateEnrolledEvent(
+                AudioService.EnrollmentType.ENROLLMENT_GROUP_ID,
+                expectedValidateEnrolledEventRequest.getConfig().getEnrollmentGroupId(),
+                "",
+                expectedValidateEnrolledEventRequest.getConfig().getSensitivity(),
+                new StreamObserver<ValidateEnrolledEventResponse>() {
+                    @Override
+                    public void onNext(ValidateEnrolledEventResponse value) {
+                        assertEquals("Response should match", expectedValidateEnrolledEventResponse, value);
                         responseReceived = true;
                     }
 
