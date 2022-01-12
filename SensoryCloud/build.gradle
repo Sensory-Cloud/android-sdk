@@ -95,14 +95,14 @@ afterEvaluate {
 
                 groupId = 'io.sensory.sensorycloud'
                 artifactId = 'final'
-                version = '1.0'
+                version = '0.5.3'
             }
             debug(MavenPublication) {
                 from components.debug
 
                 groupId = 'io.sensory.sensorycloud'
                 artifactId = 'final-debug'
-                version = '1.0'
+                version = '0.5.3'
             }
         }
     }
