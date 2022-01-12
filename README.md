@@ -388,14 +388,245 @@ requestObserver.onCompleted();
 
 ### Creating a Video Service
 
+`VideoService` provides methods to stream images to Sensory Cloud. It is recommended to only have 1 instance of `VideoService` instantiated per `Config`. In most circumstances you will only ever have one `Config`, unless your app communicates with multiple Sensory Cloud servers.
+
+```Java
+VideoService videoService = new VideoService(config, tokenManager);
+```
+
 ### Creating a Video Stream Interactor
+
+`VideoStreamInteractor` is a Sensory implementation for accessing the phone's camera. This uses CameraX behind the scenes. `VideoStreamInteractor` requires that your app requests camera permissions before initializing an instance (Manifest.permission.CAMERA).
+
+```Java
+if( ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+    // request camera permissions
+    return;
+}
+
+try {
+    VideoStreamInteractor interactor = VideoStreamInteractor.newVideoStreamInteractor(
+            getContext(),
+            binding.viewFinder.getSurfaceProvider(), // Surface provider to display video preview on
+            null,
+            new VideoStreamInteractor.VideoStreamListener() {
+                // Listener for receiving video data through
+                // See Video Enrollment example for details
+            });
+} catch (Exception e) {
+    // Handle error (may be due to not having camera permissions)
+}
+```
 
 ### Obtaining Video Models
 
+Certain video models are available to your application depending on the models that are configured for your instance of Sensory Cloud. In order to determine which video models are accessible to you, you can execute the following:
+
+```Java
+VideoService videoService = getVideoService();
+
+videoService.getModels(new VideoService.GetModelsListener() {
+    @Override
+    public void onSuccess(GetModelsResponse response) {
+        response.getModelsList();
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+        // Handle server error
+    }
+});
+```
+
+Video models contain the following properties:
+
+ - Name - the unique name tied to this model. Used when calling any other video function.
+ - IsEnrollable - indicates if the model can be enrolled into. Models that are enrollable can be used in the CreateEnrollment function.
+ - ModelType - indicates the class of model and it's general function.
+ - FixedObject - for recognition-based models only. Indicates if this model is built to recognize a specific object.
+ - IsLivenessSupported - indicates if this model supports liveness for enrollment and authentication. Liveness provides an added layer of security.
+
 ### Enrolling with Video
+
+In order to enroll with video, you must first ensure you have an enrollable model enabled for your Sensory Cloud instance. This can be obtained via the `getModels` request. Enrolling with video uses a call and response streaming pattern to allow immediate feedback to the user during enrollment. It is important to save the enrollmentID in order to perform authentication against it in the future.
+
+```Java
+// Get basic enrollment information
+String modelName = "face_biometric_hektor";
+String userID = "72f286b8-173f-436a-8869-6f7887789ee9";
+String enrollmentDescription = "My Enrollment";
+boolean isLivenessEnabled = true;
+RecognitionThreshold threshold = RecognitionThreshold.MEDIUM;
+
+StreamObserver<CreateEnrollmentRequest> requestObserver = null;
+
+// Initialize the video stream interactor
+VideoStreamInteractor videoStreamInteractor = VideoStreamInteractor.newVideoStreamInteractor(
+        getContext(),
+        binding.viewFinder.getSurfaceProvider(),
+        null,
+        new VideoStreamInteractor.VideoStreamListener() {
+            @Override
+            public void onSuccess(byte[] image) {
+                if (requestObserver != null) {
+                    // (Make sure you use the proper type for the grpc stream you're using)
+                    CreateEnrollmentRequest request = CreateEnrollmentRequest.newBuilder()
+                            .setImageContent(ByteString.copyFrom(image))
+                            .build();
+                    requestObserver.onNext(request);
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                // Handle video capture error
+            }
+        }
+);
+
+// Open the grpc stream
+requestObserver = videoService.createEnrollment(
+        modelName,
+        userID,
+        enrollmentDescription,
+        isLivenessEnabled,
+        threshold,
+        new StreamObserver<CreateEnrollmentResponse>() {
+            @Override
+            public void onNext(CreateEnrollmentResponse value) {
+                // The response contains information about the enrollment status.
+                // * percentComplete
+
+                // enrollmentID will be populated once the enrollment is complete
+                String enrollmentID = value.getEnrollmentId();
+
+                // If the enrollment is not complete, send the next video frame
+                if (enrollmentID.isEmpty()) {
+                    videoStreamInteractor.takeImageCapture();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // Handle server error
+            }
+
+            @Override
+            public void onCompleted() {
+                // Handler grpc stream being closed
+                videoStreamInteractor.stopRecording();
+            }
+        }
+
+);
+
+// Start the video preview and request an initial image
+videoStreamInteractor.startRecording(getActivity());
+videoStreamInteractor.takeImageCapture();
+```
 
 ### Authenticating with Video
 
+Authenticating with video is similar to enrollment, except now you pass in an enrollmentID instead of the model name.
+
+```Java
+// Get basic authentication information
+String enrollmentID = "fcc8a800-252e-442c-af30-41846f248238";
+boolean isLivenessEnabled = true;
+RecognitionThreshold threshold = RecognitionThreshold.MEDIUM;
+
+StreamObserver<AuthenticateRequest> requestObserver = null;
+
+// Initialize the video stream interactor
+// See video enrollment example for details
+
+// Open the grpc stream
+requestObserver = videoService.authenticate(
+        enrollmentID,
+        isLivenessEnabled,
+        threshold,
+        new StreamObserver<AuthenticateResponse>() {
+            @Override
+            public void onNext(AuthenticateResponse value) {
+                if (value.getSuccess()) {
+                    // Authentication was successful
+                } else {
+                    // Send the next video frame
+                    videoStreamInteractor.takeImageCapture();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // Handle server error
+            }
+
+            @Override
+            public void onCompleted() {
+                // Handler grpc stream being closed
+                videoStreamInteractor.stopRecording();
+            }
+        }
+);
+
+// Start the video preview and request an initial image
+videoStreamInteractor.startRecording(getActivity());
+videoStreamInteractor.takeImageCapture();
+```
+
 ### Video Liveness
 
+Video Liveness allows one to send images to Sensory Cloud in order to determine if the subject is a live individual rather than a spoof, such as a paper mask or picture.
+
+```Java
+// Get basic liveness information
+String userId = "bea536c2-45d7-47b3-94e2-4962e1bb8a2f";
+String modelName = "face_recognition_mathilde";
+RecognitionThreshold threshold = RecognitionThreshold.MEDIUM;
+
+StreamObserver<ValidateRecognitionRequest> requestObserver = null;
+
+// Initialize the video stream interactor
+// See video enrollment example for details
+
+// Open the grpc stream
+requestObserver = videoService.validateLiveness(
+        modelName,
+        userId,
+        threshold,
+        new StreamObserver<LivenessRecognitionResponse>() {
+            @Override
+            public void onNext(LivenessRecognitionResponse value) {
+                if (value.getIsAlive()) {
+                    // Previous frame was determined to be alive
+                }
+
+                // Send the next video frame
+                videoStreamInteractor.takeImageCapture();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // Handle server error
+            }
+
+            @Override
+            public void onCompleted() {
+                // Handler grpc stream being closed
+                videoStreamInteractor.stopRecording();
+            }
+        }
+);
+
+// Start the video preview and request an initial image
+videoStreamInteractor.startRecording(getActivity());
+videoStreamInteractor.takeImageCapture();
+```
+
 ## Creating a Management Service
+
+The `ManagementService` is used to manage typical CRUD operations with Sensory Cloud, such as deleting enrollments or creating enrollment groups. For more information on the specific functions of the `ManagementService`, please refer to the ManagementService file located in the services folder.
+
+```Java
+ManagementService managementService = new ManagementService(config, tokenManager);
+```
