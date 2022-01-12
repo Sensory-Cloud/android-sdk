@@ -31,6 +31,7 @@ public class HealthService {
     }
 
     private Config config;
+    private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new HealthService instance
@@ -42,15 +43,29 @@ public class HealthService {
     }
 
     /**
+     * Creates a new HealthService instance
+     *
+     * @param config SDK configuration to use
+     * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
+     */
+    public HealthService(Config config, ManagedChannel managedChannel) {
+        this.config = config;
+        this.unitTestingManagedChannel = managedChannel;
+    }
+
+    /**
      * Fetches the current health status of the cloud host
      *
      * @param listener Listener that results are passed back to
      */
     public void getHealth(GetHealthListener listener) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
         HealthServiceGrpc.HealthServiceStub client = HealthServiceGrpc.newStub(managedChannel);
 
+        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<ServerHealthResponse> responseObserver = new StreamObserver<ServerHealthResponse>() {
             @Override
             public void onNext(ServerHealthResponse value) {
@@ -64,7 +79,7 @@ public class HealthService {
 
             @Override
             public void onCompleted() {
-                managedChannel.shutdown();
+                finalManagedChannel.shutdown();
             }
         };
 

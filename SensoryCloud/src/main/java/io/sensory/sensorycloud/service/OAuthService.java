@@ -99,6 +99,7 @@ public class OAuthService {
 
     private Config config;
     private SecureCredentialStore secureCredentialStore;
+    private ManagedChannel unitTestingManagedChannel;
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 
     /**
@@ -110,6 +111,20 @@ public class OAuthService {
     public OAuthService(Config config, SecureCredentialStore secureCredentialStore) {
         this.config = config;
         this.secureCredentialStore = secureCredentialStore;
+        this.unitTestingManagedChannel = null;
+    }
+
+    /**
+     * Creates a new OAuthService instance
+     *
+     * @param config SDK configuration to use
+     * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
+     * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
+     */
+    public OAuthService(Config config, SecureCredentialStore secureCredentialStore, ManagedChannel managedChannel) {
+        this.config = config;
+        this.secureCredentialStore = secureCredentialStore;
+        this.unitTestingManagedChannel = managedChannel;
     }
 
     /**
@@ -130,7 +145,10 @@ public class OAuthService {
      * @Throws Exception – on grpc error or Secure Credential Store error
      */
     public TokenResponse getTokenSync() throws Exception {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
 
         OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
@@ -148,7 +166,10 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getToken(GetTokenListener listener) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
 
         OauthServiceGrpc.OauthServiceStub client = OauthServiceGrpc.newStub(managedChannel);
 
@@ -166,6 +187,7 @@ public class OAuthService {
                 .setSecret(clientSecret)
                 .build();
 
+        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<TokenResponse> responseObserver = new StreamObserver<TokenResponse>() {
             @Override
             public void onNext(TokenResponse value) {
@@ -179,7 +201,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                managedChannel.shutdown();
+                finalManagedChannel.shutdown();
             }
         };
 
@@ -201,8 +223,10 @@ public class OAuthService {
             String deviceName,
             String credential,
             EnrollDeviceListener listener ) {
-
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
 
         String clientID, clientSecret;
         try {
@@ -226,6 +250,7 @@ public class OAuthService {
                 .setCredential(credential)
                 .build();
 
+        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<DeviceResponse> responseObserver = new StreamObserver<DeviceResponse>() {
             @Override
             public void onNext(DeviceResponse value) {
@@ -239,7 +264,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                managedChannel.shutdown();
+                finalManagedChannel.shutdown();
             }
         };
 
@@ -253,8 +278,12 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getWhoAmI(GetWhoAmIListener listener) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
 
+        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<WhoAmIResponse> responseObserver = new StreamObserver<WhoAmIResponse>() {
             @Override
             public void onNext(WhoAmIResponse value) {
@@ -268,7 +297,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                managedChannel.shutdown();
+                finalManagedChannel.shutdown();
             }
         };
 
@@ -280,7 +309,7 @@ public class OAuthService {
                 header.put(key, "Bearer " + response.getAccessToken());
                 ClientInterceptor interceptor = MetadataUtils.newAttachHeadersInterceptor(header);
 
-                OauthServiceGrpc.OauthServiceStub oauthServiceStub = OauthServiceGrpc.newStub(managedChannel);
+                OauthServiceGrpc.OauthServiceStub oauthServiceStub = OauthServiceGrpc.newStub(finalManagedChannel);
                 oauthServiceStub = oauthServiceStub.withInterceptors(interceptor);
 
                 oauthServiceStub.getWhoAmI(WhoAmIRequest.getDefaultInstance(), responseObserver);

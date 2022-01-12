@@ -1,0 +1,4 @@
+[submodule "SensoryCloud/src/main/proto"]
+  path = SensoryCloud/src/main/proto
+  url = https://gitlab.com/sensory-cloud/sdk/proto.git
+  branch = master

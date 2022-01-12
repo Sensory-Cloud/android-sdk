@@ -83,7 +83,7 @@ public class TokenManager {
         SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(accessTokenKey, response.getAccessToken());
-        editor.putLong(expirationKey, response.getExpiresIn() * 1000L);
+        editor.putLong(expirationKey, System.currentTimeMillis() + (response.getExpiresIn() * 1000L));
         editor.apply();
         return response.getAccessToken();
     }
