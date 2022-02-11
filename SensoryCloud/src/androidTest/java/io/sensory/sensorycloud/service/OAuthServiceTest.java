@@ -24,6 +24,7 @@ import io.sensory.api.oauth.WhoAmIResponse;
 import io.sensory.api.v1.management.DeviceResponse;
 import io.sensory.api.v1.management.DeviceServiceGrpc;
 import io.sensory.api.v1.management.EnrollDeviceRequest;
+import io.sensory.api.v1.management.RenewDeviceCredentialRequest;
 import io.sensory.sensorycloud.config.Config;
 import io.sensory.sensorycloud.tokenManager.SecureCredentialStore;
 
@@ -77,6 +78,13 @@ public class OAuthServiceTest extends TestCase {
             .setTenantId("Some-Tenant")
             .build();
 
+    final RenewDeviceCredentialRequest expectedRenewDeviceRequest = RenewDeviceCredentialRequest.newBuilder()
+            .setDeviceId(mockConfig.deviceConfig.deviceId)
+            .setTenantId(mockConfig.tenantConfig.tenantId)
+            .setClientId("MockClientID")
+            .setCredential("Credential")
+            .build();
+
     private final ServerInterceptor mockServerInterceptor = mock(ServerInterceptor.class, delegatesTo(
             new ServerInterceptor() {
                 @Override
@@ -118,6 +126,13 @@ public class OAuthServiceTest extends TestCase {
                     @Override
                     public void enrollDevice(EnrollDeviceRequest request, StreamObserver<DeviceResponse> responseObserver) {
                         assertEquals("Request should match", expectedEnrollRequest, request);
+                        responseObserver.onNext(expectedEnrollResponse);
+                        responseObserver.onCompleted();
+                    }
+
+                    @Override
+                    public void renewDeviceCredential(RenewDeviceCredentialRequest request, StreamObserver<DeviceResponse> responseObserver) {
+                        assertEquals("Request should match", expectedRenewDeviceRequest, request);
                         responseObserver.onNext(expectedEnrollResponse);
                         responseObserver.onCompleted();
                     }
@@ -236,6 +251,26 @@ public class OAuthServiceTest extends TestCase {
                 fail("Call should not fail: " + t.getMessage());
             }
         });
+
+        await().until(() -> responseReceived);
+    }
+
+    public void testRenewDeviceCredentials() throws Exception {
+        when(mockCredentialStore.getClientId()).thenReturn(expectedRenewDeviceRequest.getClientId());
+
+        oAuthService.renewDeviceCredential(
+                expectedRenewDeviceRequest.getCredential(),
+                new OAuthService.EnrollDeviceListener() {
+                    @Override
+                    public void onSuccess(DeviceResponse response) {
+                        assertEquals("Response should match", expectedEnrollResponse, response);
+                        responseReceived = true;
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) { fail("Call should not fail: " + t.getMessage()); }
+                }
+        );
 
         await().until(() -> responseReceived);
     }
