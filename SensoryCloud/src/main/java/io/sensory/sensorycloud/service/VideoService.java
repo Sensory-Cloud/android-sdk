@@ -117,6 +117,8 @@ public class VideoService {
      * @param description User supplied description of the enrollment
      * @param isLivenessEnabled Determines if a liveness check should be conducted as well as an enrollment
      * @param livenessThreshold Liveness threshold for the potential liveness check
+     * @param numLiveFramesRequired The number of frames that need to pass the liveness check for a successful enrollment (if liveness is enabled)
+     *                              A value of 0 means that *all* frames need to pass the liveness check
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -126,6 +128,7 @@ public class VideoService {
             String description,
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
+            int numLiveFramesRequired,
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
@@ -147,6 +150,7 @@ public class VideoService {
                 .setDescription(description)
                 .setIsLivenessEnabled(isLivenessEnabled)
                 .setLivenessThreshold(livenessThreshold)
+                .setNumLivenessFramesRequired(numLiveFramesRequired)
                 .build();
         CreateEnrollmentRequest request = CreateEnrollmentRequest.newBuilder().setConfig(enrollmentConfig).build();
         requestObserver.onNext(request);
@@ -158,13 +162,15 @@ public class VideoService {
      * Opens a bidirectional stream for teh purpose of video authentication
      * This call will automatically send the initial `VideoConfig` message to the server
      *
-     * @param enrollmentID Enrollment to authenticate against
+     * @param enrollmentType Determines if enrollmentID is associated to a single enrollment or an enrollment group
+     * @param enrollmentID Either the enrollment ID or the enrollment group ID to authenticate against
      * @param isLivenessEnabled Determines if a liveness check should be conducted as well as an enrollment
      * @param livenessThreshold Liveness threshold for the potential liveness check
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
     public StreamObserver<AuthenticateRequest> authenticate(
+            AudioService.EnrollmentType enrollmentType,
             String enrollmentID,
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
@@ -182,11 +188,20 @@ public class VideoService {
 
         StreamObserver<AuthenticateRequest> requestObserver = videoClient.authenticate(responseObserver);
 
-        AuthenticateConfig authConfig = AuthenticateConfig.newBuilder()
-                .setEnrollmentId(enrollmentID)
+        AuthenticateConfig.Builder authConfigBuilder = AuthenticateConfig.newBuilder()
                 .setIsLivenessEnabled(isLivenessEnabled)
-                .setLivenessThreshold(livenessThreshold)
-                .build();
+                .setLivenessThreshold(livenessThreshold);
+
+        switch (enrollmentType) {
+            case ENROLLMENT_ID:
+                authConfigBuilder.setEnrollmentId(enrollmentID);
+                break;
+            case ENROLLMENT_GROUP_ID:
+                authConfigBuilder.setEnrollmentGroupId(enrollmentID);
+                break;
+        }
+
+        AuthenticateConfig authConfig = authConfigBuilder.build();
         AuthenticateRequest request = AuthenticateRequest.newBuilder().setConfig(authConfig).build();
         requestObserver.onNext(request);
 

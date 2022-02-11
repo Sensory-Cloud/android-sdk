@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.UUID;
 
+import io.sensory.api.v1.management.RenewDeviceCredentialRequest;
 import io.sensory.sensorycloud.config.Config;
 import io.sensory.sensorycloud.tokenManager.SecureCredentialStore;
 import io.grpc.ClientInterceptor;
@@ -145,11 +146,7 @@ public class OAuthService {
      * @Throws Exception – on grpc error or Secure Credential Store error
      */
     public TokenResponse getTokenSync() throws Exception {
-        ManagedChannel managedChannel = unitTestingManagedChannel;
-        if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        }
-
+        ManagedChannel managedChannel = getManagedChannel();
         OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
         TokenRequest tokenRequest = TokenRequest.newBuilder()
@@ -166,11 +163,7 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getToken(GetTokenListener listener) {
-        ManagedChannel managedChannel = unitTestingManagedChannel;
-        if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        }
-
+        ManagedChannel managedChannel = getManagedChannel();
         OauthServiceGrpc.OauthServiceStub client = OauthServiceGrpc.newStub(managedChannel);
 
         String clientID, clientSecret;
@@ -187,7 +180,6 @@ public class OAuthService {
                 .setSecret(clientSecret)
                 .build();
 
-        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<TokenResponse> responseObserver = new StreamObserver<TokenResponse>() {
             @Override
             public void onNext(TokenResponse value) {
@@ -201,7 +193,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                finalManagedChannel.shutdown();
+                managedChannel.shutdown();
             }
         };
 
@@ -223,10 +215,8 @@ public class OAuthService {
             String deviceName,
             String credential,
             EnrollDeviceListener listener ) {
-        ManagedChannel managedChannel = unitTestingManagedChannel;
-        if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        }
+        ManagedChannel managedChannel = getManagedChannel();
+        DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
 
         String clientID, clientSecret;
         try {
@@ -237,7 +227,6 @@ public class OAuthService {
             return;
         }
 
-        DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
         GenericClient genericClient = GenericClient.newBuilder()
                 .setClientId(clientID)
                 .setSecret(clientSecret)
@@ -250,7 +239,6 @@ public class OAuthService {
                 .setCredential(credential)
                 .build();
 
-        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<DeviceResponse> responseObserver = new StreamObserver<DeviceResponse>() {
             @Override
             public void onNext(DeviceResponse value) {
@@ -264,7 +252,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                finalManagedChannel.shutdown();
+                managedChannel.shutdown();
             }
         };
 
@@ -278,12 +266,8 @@ public class OAuthService {
      * @param listener Listener that the results will be passed back to
      */
     public void getWhoAmI(GetWhoAmIListener listener) {
-        ManagedChannel managedChannel = unitTestingManagedChannel;
-        if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
-        }
+        ManagedChannel managedChannel = getManagedChannel();
 
-        ManagedChannel finalManagedChannel = managedChannel;
         StreamObserver<WhoAmIResponse> responseObserver = new StreamObserver<WhoAmIResponse>() {
             @Override
             public void onNext(WhoAmIResponse value) {
@@ -297,7 +281,7 @@ public class OAuthService {
 
             @Override
             public void onCompleted() {
-                finalManagedChannel.shutdown();
+                managedChannel.shutdown();
             }
         };
 
@@ -309,7 +293,7 @@ public class OAuthService {
                 header.put(key, "Bearer " + response.getAccessToken());
                 ClientInterceptor interceptor = MetadataUtils.newAttachHeadersInterceptor(header);
 
-                OauthServiceGrpc.OauthServiceStub oauthServiceStub = OauthServiceGrpc.newStub(finalManagedChannel);
+                OauthServiceGrpc.OauthServiceStub oauthServiceStub = OauthServiceGrpc.newStub(managedChannel);
                 oauthServiceStub = oauthServiceStub.withInterceptors(interceptor);
 
                 oauthServiceStub.getWhoAmI(WhoAmIRequest.getDefaultInstance(), responseObserver);
@@ -322,6 +306,51 @@ public class OAuthService {
         });
     }
 
+    /**
+     * Renews the credentials stored in the attached SecureCredentialStore. This should be called once the device key has expired.
+     *
+     * @param credential The credential configured on the Sensory Cloud Server
+     * @param listener Listener that the results will be passed back to
+     */
+    public void renewDeviceCredential(String credential, EnrollDeviceListener listener) {
+        ManagedChannel managedChannel = getManagedChannel();
+        DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
+
+        String clientId;
+        try {
+            clientId = secureCredentialStore.getClientId();
+        } catch (Exception e) {
+            listener.onFailure(e);
+            return;
+        }
+
+        RenewDeviceCredentialRequest request = RenewDeviceCredentialRequest.newBuilder()
+                .setDeviceId(config.deviceConfig.deviceId)
+                .setClientId(clientId)
+                .setTenantId(config.tenantConfig.tenantId)
+                .setCredential(credential)
+                .build();
+
+        StreamObserver<DeviceResponse> responseObserver = new StreamObserver<DeviceResponse>() {
+            @Override
+            public void onNext(DeviceResponse value) {
+                listener.onSuccess(value);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                listener.onFailure(t);
+            }
+
+            @Override
+            public void onCompleted() {
+                managedChannel.shutdown();
+            }
+        };
+
+        deviceServiceStub.renewDeviceCredential(request, responseObserver);
+    }
+
     private String secRandomString(int length) {
         Random random = new SecureRandom();
         StringBuilder builder = new StringBuilder();
@@ -331,5 +360,13 @@ public class OAuthService {
         }
 
         return builder.toString();
+    }
+
+    private ManagedChannel getManagedChannel() {
+        ManagedChannel managedChannel = unitTestingManagedChannel;
+        if (managedChannel == null) {
+            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+        }
+        return managedChannel;
     }
 }

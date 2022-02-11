@@ -75,6 +75,7 @@ public class VideoServiceTest extends TestCase {
                     .setDescription("Some Description")
                     .setIsLivenessEnabled(true)
                     .setLivenessThreshold(RecognitionThreshold.HIGHEST)
+                    .setNumLivenessFramesRequired(3)
             ).build();
 
     final CreateEnrollmentResponse expectedEnrollmentResponse = CreateEnrollmentResponse.newBuilder()
@@ -257,6 +258,7 @@ public class VideoServiceTest extends TestCase {
                 expectedEnrollmentRequest.getConfig().getDescription(),
                 expectedEnrollmentRequest.getConfig().getIsLivenessEnabled(),
                 expectedEnrollmentRequest.getConfig().getLivenessThreshold(),
+                expectedEnrollmentRequest.getConfig().getNumLivenessFramesRequired(),
                 new StreamObserver<CreateEnrollmentResponse>() {
                     @Override
                     public void onNext(CreateEnrollmentResponse value) {
@@ -276,6 +278,7 @@ public class VideoServiceTest extends TestCase {
 
     public void testAuthenticate() {
         service.authenticate(
+                AudioService.EnrollmentType.ENROLLMENT_ID,
                 expectedAuthenticationRequest.getConfig().getEnrollmentId(),
                 expectedAuthenticationRequest.getConfig().getIsLivenessEnabled(),
                 expectedAuthenticationRequest.getConfig().getLivenessThreshold(),
