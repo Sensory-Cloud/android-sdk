@@ -17,19 +17,19 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.sensory.sensorycloud.config.Config;
-import io.sensory.sensorycloud.interactors.AudioStreamInteractor;
-import io.sensory.sensorycloud.service.AudioService;
-import io.sensory.sensorycloud.service.OAuthService;
-import io.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
-import io.sensory.sensorycloud.tokenManager.SecureCredentialStore;
-import io.sensory.sensorycloud.tokenManager.TokenManager;
+import ai.sensorycloud.config.Config;
+import ai.sensorycloud.interactors.AudioStreamInteractor;
+import ai.sensorycloud.service.AudioService;
+import ai.sensorycloud.service.OAuthService;
+import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
+import ai.sensorycloud.tokenManager.SecureCredentialStore;
+import ai.sensorycloud.tokenManager.TokenManager;
 import io.sensory.sensoryclouddemo.databinding.AudioFragmentBinding;
 import io.grpc.stub.StreamObserver;
-import io.sensory.api.v1.audio.GetModelsResponse;
-import io.sensory.api.v1.audio.ThresholdSensitivity;
-import io.sensory.api.v1.audio.ValidateEventRequest;
-import io.sensory.api.v1.audio.ValidateEventResponse;
+import ai.sensorycloud.api.v1.audio.GetModelsResponse;
+import ai.sensorycloud.api.v1.audio.ThresholdSensitivity;
+import ai.sensorycloud.api.v1.audio.ValidateEventRequest;
+import ai.sensorycloud.api.v1.audio.ValidateEventResponse;
 
 public class AudioFragment extends Fragment {
 

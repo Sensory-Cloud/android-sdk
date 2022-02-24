@@ -19,19 +19,19 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.sensory.sensorycloud.config.Config;
-import io.sensory.sensorycloud.interactors.VideoStreamInteractor;
-import io.sensory.sensorycloud.service.OAuthService;
-import io.sensory.sensorycloud.service.VideoService;
-import io.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
-import io.sensory.sensorycloud.tokenManager.SecureCredentialStore;
-import io.sensory.sensorycloud.tokenManager.TokenManager;
+import ai.sensorycloud.config.Config;
+import ai.sensorycloud.interactors.VideoStreamInteractor;
+import ai.sensorycloud.service.OAuthService;
+import ai.sensorycloud.service.VideoService;
+import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
+import ai.sensorycloud.tokenManager.SecureCredentialStore;
+import ai.sensorycloud.tokenManager.TokenManager;
 import io.sensory.sensoryclouddemo.databinding.VideoFragmentBinding;
 import io.grpc.stub.StreamObserver;
-import io.sensory.api.v1.video.GetModelsResponse;
-import io.sensory.api.v1.video.LivenessRecognitionResponse;
-import io.sensory.api.v1.video.RecognitionThreshold;
-import io.sensory.api.v1.video.ValidateRecognitionRequest;
+import ai.sensorycloud.api.v1.video.GetModelsResponse;
+import ai.sensorycloud.api.v1.video.LivenessRecognitionResponse;
+import ai.sensorycloud.api.v1.video.RecognitionThreshold;
+import ai.sensorycloud.api.v1.video.ValidateRecognitionRequest;
 
 public class VideoFragment extends Fragment {
 

@@ -18,11 +18,11 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.UUID;
 
-import io.sensory.sensorycloud.config.Config;
-import io.sensory.sensorycloud.service.OAuthService;
-import io.sensory.sensorycloud.tokenManager.DefaultSecureCredentialStore;
+import ai.sensorycloud.config.Config;
+import ai.sensorycloud.service.OAuthService;
+import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import io.sensory.sensoryclouddemo.databinding.LoginFragmentBinding;
-import io.sensory.api.v1.management.DeviceResponse;
+import ai.sensorycloud.api.v1.management.DeviceResponse;
 
 public class LoginFragment extends Fragment {
 

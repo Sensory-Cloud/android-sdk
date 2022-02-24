@@ -64,14 +64,14 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                groupId = 'io.sensory.sensorycloud'
+                groupId = 'ai.sensorycloud'
                 artifactId = 'final'
                 version = '0.5.3'
             }
             debug(MavenPublication) {
                 from components.debug
 
-                groupId = 'io.sensory.sensorycloud'
+                groupId = 'ai.sensorycloud'
                 artifactId = 'final-debug'
                 version = '0.5.3'
             }
