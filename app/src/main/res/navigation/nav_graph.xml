@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="io.sensory.sensoryclouddemo.LoginFragment"
+        android:name="ai.sensorycloud.demo.LoginFragment"
         android:label="@string/login_fragment_label"
         tools:layout="@layout/login_fragment">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/AudioFragment"
-        android:name="io.sensory.sensoryclouddemo.AudioFragment"
+        android:name="ai.sensorycloud.demo.AudioFragment"
         android:label="@string/audio_fragment_label"
         tools:layout="@layout/audio_fragment">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/videoFragment"
-        android:name="io.sensory.sensoryclouddemo.VideoFragment"
+        android:name="ai.sensorycloud.demo.VideoFragment"
         android:label="@string/video_fragment_label"
         tools:layout="@layout/video_fragment">
         <action
