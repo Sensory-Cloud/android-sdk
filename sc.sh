@@ -28,7 +28,6 @@ fi
 # --- Helper Functions ---------------------------------------------
 gen_proto() {
 
-  mkdir -p "Sources/SensoryCloud/Generated"
   for x in $(find ./proto -iname "*.proto");
   do
     
@@ -38,10 +37,8 @@ gen_proto() {
 
     protoc \
       --proto_path="./proto" \
-      --swift_opt="Visibility=Public" \
-      --swift_out="./Sources/SensoryCloud/Generated" \
-      --grpc-swift_opt="Visibility=Public" \
-      --grpc-swift_out="Client=true,TestClient=true,Server=false:./Sources/SensoryCloud/Generated" \
+      --java_out=lite:"./SensoryCloud/src/main/java" \
+      --grpc-java_out=lite:"./SensoryCloud/src/main/java" \
       $x;
 
     echo "Generated grpc code for $x";
