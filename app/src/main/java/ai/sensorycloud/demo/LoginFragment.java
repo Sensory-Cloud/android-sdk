@@ -1,4 +1,4 @@
-package io.sensory.sensoryclouddemo;
+package ai.sensorycloud.demo;
 
 import android.Manifest;
 import android.content.Context;
@@ -21,7 +21,7 @@ import java.util.UUID;
 import ai.sensorycloud.config.Config;
 import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
-import io.sensory.sensoryclouddemo.databinding.LoginFragmentBinding;
+import ai.sensorycloud.demo.databinding.LoginFragmentBinding;
 import ai.sensorycloud.api.v1.management.DeviceResponse;
 
 public class LoginFragment extends Fragment {

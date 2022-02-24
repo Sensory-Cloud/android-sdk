@@ -1,4 +1,4 @@
-package io.sensory.sensoryclouddemo;
+package ai.sensorycloud.demo;
 
 import android.content.Context;
 

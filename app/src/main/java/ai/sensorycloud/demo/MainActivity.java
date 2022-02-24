@@ -1,4 +1,4 @@
-package io.sensory.sensoryclouddemo;
+package ai.sensorycloud.demo;
 
 import android.os.Bundle;
 
@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import io.sensory.sensoryclouddemo.databinding.ActivityMainBinding;
+import ai.sensorycloud.demo.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;

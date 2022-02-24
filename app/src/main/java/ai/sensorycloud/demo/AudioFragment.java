@@ -1,4 +1,4 @@
-package io.sensory.sensoryclouddemo;
+package ai.sensorycloud.demo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,7 +24,7 @@ import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 import ai.sensorycloud.tokenManager.TokenManager;
-import io.sensory.sensoryclouddemo.databinding.AudioFragmentBinding;
+import ai.sensorycloud.demo.databinding.AudioFragmentBinding;
 import io.grpc.stub.StreamObserver;
 import ai.sensorycloud.api.v1.audio.GetModelsResponse;
 import ai.sensorycloud.api.v1.audio.ThresholdSensitivity;

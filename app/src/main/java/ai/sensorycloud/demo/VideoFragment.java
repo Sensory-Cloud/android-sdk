@@ -1,4 +1,4 @@
-package io.sensory.sensoryclouddemo;
+package ai.sensorycloud.demo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,7 +26,7 @@ import ai.sensorycloud.service.VideoService;
 import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 import ai.sensorycloud.tokenManager.TokenManager;
-import io.sensory.sensoryclouddemo.databinding.VideoFragmentBinding;
+import ai.sensorycloud.demo.databinding.VideoFragmentBinding;
 import io.grpc.stub.StreamObserver;
 import ai.sensorycloud.api.v1.video.GetModelsResponse;
 import ai.sensorycloud.api.v1.video.LivenessRecognitionResponse;
