@@ -158,7 +158,7 @@ AudioService audioService = getAudioService();
 
 audioService.getModels(new AudioService.GetModelsListener() {
     @Override
-    public void onSuccess(io.sensory.api.v1.audio.GetModelsResponse response) {
+    public void onSuccess(ai.sensorycloud.api.v1.audio.GetModelsResponse response) {
         response.getModelsList();
     }
 
