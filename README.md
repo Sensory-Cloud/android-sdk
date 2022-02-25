@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/Sensory-Cloud/android-sdk.svg)](https://jitpack.io/#Sensory-Cloud/android-sdk)
+
 # Android SDK
 
 This repository contains the source code for the Sensory Cloud Android SDK.
@@ -11,7 +13,38 @@ Before getting started, you must spin up a Sensory Cloud inference server or hav
 
 ## Integration
 
-The Android SDK is available via [JitPack.io](https://jitpack.io/). See their webpage for detailed integration instructions.
+The Android SDK is available via [JitPack.io](https://jitpack.io/#Sensory-Cloud/android-sdk). Jitpack can be easily integrated by first adding their repository to the root `build.gradle` file:
+
+```Java
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+For Android projects that are setup for "settings repositories" over "project repositories", add the Jitpack repository to the `settings.gradle` file instead:
+
+```Java
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Now that the repository has been added, just add the dependency to `build.gradle`
+
+```Java
+dependencies {
+    implementation 'com.github.Sensory-Cloud:android-sdk:<VERSION>'
+}
+```
+
+where `<VERSION>` is the specific SDK version to use, ex: `com.github.Sensory-Cloud:android-sdk:v0.7.1`
 
 # Examples
 
@@ -158,7 +191,7 @@ AudioService audioService = getAudioService();
 
 audioService.getModels(new AudioService.GetModelsListener() {
     @Override
-    public void onSuccess(ai.sensorycloud.api.v1.audio.GetModelsResponse response) {
+    public void onSuccess(GetModelsResponse response) {
         response.getModelsList();
     }
 
