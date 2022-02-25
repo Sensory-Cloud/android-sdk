@@ -8,7 +8,7 @@ USAGE="Usage: ./sc.sh [COMMAND]"
 
 COMMANDS="
     Commands:\n
-    genproto | gp\t\t Generate Proto Files\n
+    genproto | gp [tag]\t Pulls and generates proto files from master or from an optional git tag\n
     help | h\t\t Display This Help Message\n
 "
 
@@ -25,6 +25,13 @@ if [ $# == 0 ] ; then
     exit 1;
 fi
 
+# --- Vars ---------------------------------------------------------
+PROTO_PATH='./proto'
+GEN_PATH='./SensoryCloud/src/main/java'
+PACKAGE_PATH='/ai/sensorycloud/api'
+PROTO_REPO='git@gitlab.com:sensory-cloud/sdk/proto.git'
+PROTO_BRANCH='master'
+
 # --- Helper Functions ---------------------------------------------
 gen_proto() {
 
@@ -36,9 +43,9 @@ gen_proto() {
     fi
 
     protoc \
-      --proto_path="./proto" \
-      --java_out=lite:"./SensoryCloud/src/main/java" \
-      --grpc-java_out=lite:"./SensoryCloud/src/main/java" \
+      --proto_path="${PROTO_PATH}" \
+      --java_out=lite:"${GEN_PATH}" \
+      --grpc-java_out=lite:"${GEN_PATH}" \
       $x;
 
     echo "Generated grpc code for $x";
@@ -49,7 +56,22 @@ gen_proto() {
 case "$1" in
 
   "genproto"|"gp")
+    echo "Deleting old generated code"
+    rm -rf "${GEN_PATH}${PACKAGE_PATH}"
+
+    echo "Pulling raw proto files"
+    if [[ $# -eq 2 ]]; then
+      git clone -b $2 "${PROTO_REPO}"
+    else
+      git clone -b "${PROTO_BRANCH}" "${PROTO_REPO}" 
+    fi
+    
+    echo "Generating Java code"
     gen_proto
+
+    echo "Deleting raw proto files"
+    rm -rf "${PROTO_PATH}"
+
     exit 0;
     ;;
 
