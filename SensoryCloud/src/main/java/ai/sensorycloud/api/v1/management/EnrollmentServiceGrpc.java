@@ -198,6 +198,96 @@ public final class EnrollmentServiceGrpc {
     return getDeleteEnrollmentGroupMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentResponse> getUpdateEnrollmentMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateEnrollment",
+      requestType = ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest.class,
+      responseType = ai.sensorycloud.api.v1.management.EnrollmentResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentResponse> getUpdateEnrollmentMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest, ai.sensorycloud.api.v1.management.EnrollmentResponse> getUpdateEnrollmentMethod;
+    if ((getUpdateEnrollmentMethod = EnrollmentServiceGrpc.getUpdateEnrollmentMethod) == null) {
+      synchronized (EnrollmentServiceGrpc.class) {
+        if ((getUpdateEnrollmentMethod = EnrollmentServiceGrpc.getUpdateEnrollmentMethod) == null) {
+          EnrollmentServiceGrpc.getUpdateEnrollmentMethod = getUpdateEnrollmentMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest, ai.sensorycloud.api.v1.management.EnrollmentResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateEnrollment"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.EnrollmentResponse.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getUpdateEnrollmentMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getUpdateEnrollmentGroupMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateEnrollmentGroup",
+      requestType = ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest.class,
+      responseType = ai.sensorycloud.api.v1.management.EnrollmentGroupResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getUpdateEnrollmentGroupMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest, ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getUpdateEnrollmentGroupMethod;
+    if ((getUpdateEnrollmentGroupMethod = EnrollmentServiceGrpc.getUpdateEnrollmentGroupMethod) == null) {
+      synchronized (EnrollmentServiceGrpc.class) {
+        if ((getUpdateEnrollmentGroupMethod = EnrollmentServiceGrpc.getUpdateEnrollmentGroupMethod) == null) {
+          EnrollmentServiceGrpc.getUpdateEnrollmentGroupMethod = getUpdateEnrollmentGroupMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest, ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateEnrollmentGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.EnrollmentGroupResponse.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getUpdateEnrollmentGroupMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getRemoveEnrollmentsFromGroupMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RemoveEnrollmentsFromGroup",
+      requestType = ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest.class,
+      responseType = ai.sensorycloud.api.v1.management.EnrollmentGroupResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest,
+      ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getRemoveEnrollmentsFromGroupMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest, ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> getRemoveEnrollmentsFromGroupMethod;
+    if ((getRemoveEnrollmentsFromGroupMethod = EnrollmentServiceGrpc.getRemoveEnrollmentsFromGroupMethod) == null) {
+      synchronized (EnrollmentServiceGrpc.class) {
+        if ((getRemoveEnrollmentsFromGroupMethod = EnrollmentServiceGrpc.getRemoveEnrollmentsFromGroupMethod) == null) {
+          EnrollmentServiceGrpc.getRemoveEnrollmentsFromGroupMethod = getRemoveEnrollmentsFromGroupMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest, ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveEnrollmentsFromGroup"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.EnrollmentGroupResponse.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getRemoveEnrollmentsFromGroupMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -317,6 +407,39 @@ public final class EnrollmentServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteEnrollmentGroupMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * Updates the name of an enrollment
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void updateEnrollment(ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateEnrollmentMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void updateEnrollmentGroup(ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateEnrollmentGroupMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Removes a list of enrollments from an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void removeEnrollmentsFromGroup(ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveEnrollmentsFromGroupMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -361,6 +484,27 @@ public final class EnrollmentServiceGrpc {
                 ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest,
                 ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
                   this, METHODID_DELETE_ENROLLMENT_GROUP)))
+          .addMethod(
+            getUpdateEnrollmentMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest,
+                ai.sensorycloud.api.v1.management.EnrollmentResponse>(
+                  this, METHODID_UPDATE_ENROLLMENT)))
+          .addMethod(
+            getUpdateEnrollmentGroupMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest,
+                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                  this, METHODID_UPDATE_ENROLLMENT_GROUP)))
+          .addMethod(
+            getRemoveEnrollmentsFromGroupMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest,
+                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                  this, METHODID_REMOVE_ENROLLMENTS_FROM_GROUP)))
           .build();
     }
   }
@@ -455,6 +599,42 @@ public final class EnrollmentServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteEnrollmentGroupMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void updateEnrollment(ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateEnrollmentMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void updateEnrollmentGroup(ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateEnrollmentGroupMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Removes a list of enrollments from an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void removeEnrollmentsFromGroup(ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRemoveEnrollmentsFromGroupMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -540,6 +720,39 @@ public final class EnrollmentServiceGrpc {
     public ai.sensorycloud.api.v1.management.EnrollmentGroupResponse deleteEnrollmentGroup(ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteEnrollmentGroupMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.management.EnrollmentResponse updateEnrollment(ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateEnrollmentMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.management.EnrollmentGroupResponse updateEnrollmentGroup(ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateEnrollmentGroupMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Removes a list of enrollments from an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.management.EnrollmentGroupResponse removeEnrollmentsFromGroup(ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRemoveEnrollmentsFromGroupMethod(), getCallOptions(), request);
     }
   }
 
@@ -633,6 +846,42 @@ public final class EnrollmentServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteEnrollmentGroupMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.management.EnrollmentResponse> updateEnrollment(
+        ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateEnrollmentMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Updates the name of an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> updateEnrollmentGroup(
+        ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateEnrollmentGroupMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Removes a list of enrollments from an enrollment group
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> removeEnrollmentsFromGroup(
+        ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRemoveEnrollmentsFromGroupMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_GET_ENROLLMENTS = 0;
@@ -641,6 +890,9 @@ public final class EnrollmentServiceGrpc {
   private static final int METHODID_APPEND_ENROLLMENT_GROUP = 3;
   private static final int METHODID_DELETE_ENROLLMENT = 4;
   private static final int METHODID_DELETE_ENROLLMENT_GROUP = 5;
+  private static final int METHODID_UPDATE_ENROLLMENT = 6;
+  private static final int METHODID_UPDATE_ENROLLMENT_GROUP = 7;
+  private static final int METHODID_REMOVE_ENROLLMENTS_FROM_GROUP = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -683,6 +935,18 @@ public final class EnrollmentServiceGrpc {
           serviceImpl.deleteEnrollmentGroup((ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest) request,
               (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>) responseObserver);
           break;
+        case METHODID_UPDATE_ENROLLMENT:
+          serviceImpl.updateEnrollment((ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_ENROLLMENT_GROUP:
+          serviceImpl.updateEnrollmentGroup((ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>) responseObserver);
+          break;
+        case METHODID_REMOVE_ENROLLMENTS_FROM_GROUP:
+          serviceImpl.removeEnrollmentsFromGroup((ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -714,6 +978,9 @@ public final class EnrollmentServiceGrpc {
               .addMethod(getAppendEnrollmentGroupMethod())
               .addMethod(getDeleteEnrollmentMethod())
               .addMethod(getDeleteEnrollmentGroupMethod())
+              .addMethod(getUpdateEnrollmentMethod())
+              .addMethod(getUpdateEnrollmentGroupMethod())
+              .addMethod(getRemoveEnrollmentsFromGroupMethod())
               .build();
         }
       }

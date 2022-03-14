@@ -433,7 +433,8 @@ public  final class UsageEvent extends
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.TechnologyType getTechnologies(int index) {
-    return technologies_converter_.convert(technologies_.getInt(index));
+    ai.sensorycloud.api.common.TechnologyType result = ai.sensorycloud.api.common.TechnologyType.forNumber(technologies_.getInt(index));
+    return result == null ? ai.sensorycloud.api.common.TechnologyType.UNRECOGNIZED : result;
   }
   /**
    * <pre>
