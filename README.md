@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/Sensory-Cloud/android-sdk.svg)](https://jitpack.io/#Sensory-Cloud/android-sdk)
 
-# Android SDK
+# Sensory Cloud Android SDK
 
 This repository contains the source code for the Sensory Cloud Android SDK.
 
@@ -167,7 +167,7 @@ AudioService audioService = new AudioService(config, tokenManager);
 
 ### Creating an Audio Stream Interactor
 
-`AudioStreamInteractor` is a Sensory implementation for accessing the phone's microphone. This uses an instance of `AudioRecord` behind the scenes. `AudioStreamInteractor` requires that your app requests audio record permissions before initializing an instance (Manifest.permission.RECORD_AUDIO). It is important to call `close()` on your `AudioStreamInteractor` instance when you are finished using it to free up resources.
+`AudioStreamInteractor` is a Sensory implementation for accessing the device's microphone. This uses an instance of `AudioRecord` behind the scenes. `AudioStreamInteractor` requires that your app requests audio record permissions before initializing an instance (Manifest.permission.RECORD_AUDIO). It is important to call `close()` on your `AudioStreamInteractor` instance when you are finished using it to free up resources.
 
 ```Java
 if( ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -206,7 +206,7 @@ Audio models contain the following properties:
 
  - Name - the unique name tied to this model. Used when calling any other audio function.
  - IsEnrollable - indicates if the model can be enrolled into. Models that are enrollable can be used in the CreateEnrollment function.
- - ModelType - indicates the class of model and it's general function.
+ - ModelType - indicates the class of model and its general function.
  - FixedPhrase - for speech-based models only. Indicates if a specific phrase must be said.
  - SampleRate - indicates the audio sample rate required by this model. Generally, the number will be 16000.
  - IsLivenessSupported - indicates if this model supports liveness for enrollment and authentication. Liveness provides an added layer of security by requiring a users to speak random digits.
@@ -475,7 +475,7 @@ Video models contain the following properties:
 
  - Name - the unique name tied to this model. Used when calling any other video function.
  - IsEnrollable - indicates if the model can be enrolled into. Models that are enrollable can be used in the CreateEnrollment function.
- - ModelType - indicates the class of model and it's general function.
+ - ModelType - indicates the class of model and its general function.
  - FixedObject - for recognition-based models only. Indicates if this model is built to recognize a specific object.
  - IsLivenessSupported - indicates if this model supports liveness for enrollment and authentication. Liveness provides an added layer of security.
 
