@@ -108,6 +108,66 @@ public final class DeviceServiceGrpc {
     return getGetWhoAmIMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.DeleteDeviceRequest,
+      ai.sensorycloud.api.v1.management.DeviceResponse> getDeleteDeviceMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "DeleteDevice",
+      requestType = ai.sensorycloud.api.v1.management.DeleteDeviceRequest.class,
+      responseType = ai.sensorycloud.api.v1.management.DeviceResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.DeleteDeviceRequest,
+      ai.sensorycloud.api.v1.management.DeviceResponse> getDeleteDeviceMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.DeleteDeviceRequest, ai.sensorycloud.api.v1.management.DeviceResponse> getDeleteDeviceMethod;
+    if ((getDeleteDeviceMethod = DeviceServiceGrpc.getDeleteDeviceMethod) == null) {
+      synchronized (DeviceServiceGrpc.class) {
+        if ((getDeleteDeviceMethod = DeviceServiceGrpc.getDeleteDeviceMethod) == null) {
+          DeviceServiceGrpc.getDeleteDeviceMethod = getDeleteDeviceMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.management.DeleteDeviceRequest, ai.sensorycloud.api.v1.management.DeviceResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteDevice"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.DeleteDeviceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.DeviceResponse.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getDeleteDeviceMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateDeviceRequest,
+      ai.sensorycloud.api.v1.management.DeviceResponse> getUpdateDeviceMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateDevice",
+      requestType = ai.sensorycloud.api.v1.management.UpdateDeviceRequest.class,
+      responseType = ai.sensorycloud.api.v1.management.DeviceResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateDeviceRequest,
+      ai.sensorycloud.api.v1.management.DeviceResponse> getUpdateDeviceMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.UpdateDeviceRequest, ai.sensorycloud.api.v1.management.DeviceResponse> getUpdateDeviceMethod;
+    if ((getUpdateDeviceMethod = DeviceServiceGrpc.getUpdateDeviceMethod) == null) {
+      synchronized (DeviceServiceGrpc.class) {
+        if ((getUpdateDeviceMethod = DeviceServiceGrpc.getUpdateDeviceMethod) == null) {
+          DeviceServiceGrpc.getUpdateDeviceMethod = getUpdateDeviceMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.management.UpdateDeviceRequest, ai.sensorycloud.api.v1.management.DeviceResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateDevice"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.UpdateDeviceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.management.DeviceResponse.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getUpdateDeviceMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -191,6 +251,26 @@ public final class DeviceServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetWhoAmIMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * Allows a device to be deleted
+     * </pre>
+     */
+    public void deleteDevice(ai.sensorycloud.api.v1.management.DeleteDeviceRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteDeviceMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Allows the name of a device to be updated
+     * </pre>
+     */
+    public void updateDevice(ai.sensorycloud.api.v1.management.UpdateDeviceRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateDeviceMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -214,6 +294,20 @@ public final class DeviceServiceGrpc {
                 ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest,
                 ai.sensorycloud.api.v1.management.DeviceResponse>(
                   this, METHODID_GET_WHO_AM_I)))
+          .addMethod(
+            getDeleteDeviceMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.management.DeleteDeviceRequest,
+                ai.sensorycloud.api.v1.management.DeviceResponse>(
+                  this, METHODID_DELETE_DEVICE)))
+          .addMethod(
+            getUpdateDeviceMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.management.UpdateDeviceRequest,
+                ai.sensorycloud.api.v1.management.DeviceResponse>(
+                  this, METHODID_UPDATE_DEVICE)))
           .build();
     }
   }
@@ -269,6 +363,28 @@ public final class DeviceServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetWhoAmIMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Allows a device to be deleted
+     * </pre>
+     */
+    public void deleteDevice(ai.sensorycloud.api.v1.management.DeleteDeviceRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDeleteDeviceMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Allows the name of a device to be updated
+     * </pre>
+     */
+    public void updateDevice(ai.sensorycloud.api.v1.management.UpdateDeviceRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateDeviceMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -318,6 +434,26 @@ public final class DeviceServiceGrpc {
     public ai.sensorycloud.api.v1.management.DeviceResponse getWhoAmI(ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetWhoAmIMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Allows a device to be deleted
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.management.DeviceResponse deleteDevice(ai.sensorycloud.api.v1.management.DeleteDeviceRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteDeviceMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Allows the name of a device to be updated
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.management.DeviceResponse updateDevice(ai.sensorycloud.api.v1.management.UpdateDeviceRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateDeviceMethod(), getCallOptions(), request);
     }
   }
 
@@ -372,11 +508,35 @@ public final class DeviceServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetWhoAmIMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Allows a device to be deleted
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.management.DeviceResponse> deleteDevice(
+        ai.sensorycloud.api.v1.management.DeleteDeviceRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDeleteDeviceMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Allows the name of a device to be updated
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.management.DeviceResponse> updateDevice(
+        ai.sensorycloud.api.v1.management.UpdateDeviceRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateDeviceMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_ENROLL_DEVICE = 0;
   private static final int METHODID_RENEW_DEVICE_CREDENTIAL = 1;
   private static final int METHODID_GET_WHO_AM_I = 2;
+  private static final int METHODID_DELETE_DEVICE = 3;
+  private static final int METHODID_UPDATE_DEVICE = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -407,6 +567,14 @@ public final class DeviceServiceGrpc {
           serviceImpl.getWhoAmI((ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest) request,
               (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse>) responseObserver);
           break;
+        case METHODID_DELETE_DEVICE:
+          serviceImpl.deleteDevice((ai.sensorycloud.api.v1.management.DeleteDeviceRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_DEVICE:
+          serviceImpl.updateDevice((ai.sensorycloud.api.v1.management.UpdateDeviceRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -435,6 +603,8 @@ public final class DeviceServiceGrpc {
               .addMethod(getEnrollDeviceMethod())
               .addMethod(getRenewDeviceCredentialMethod())
               .addMethod(getGetWhoAmIMethod())
+              .addMethod(getDeleteDeviceMethod())
+              .addMethod(getUpdateDeviceMethod())
               .build();
         }
       }

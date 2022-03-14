@@ -66,7 +66,8 @@ public  final class CompressionConfiguration extends
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.CompressionType getCompressions(int index) {
-    return compressions_converter_.convert(compressions_.getInt(index));
+    ai.sensorycloud.api.common.CompressionType result = ai.sensorycloud.api.common.CompressionType.forNumber(compressions_.getInt(index));
+    return result == null ? ai.sensorycloud.api.common.CompressionType.UNRECOGNIZED : result;
   }
   /**
    * <pre>
