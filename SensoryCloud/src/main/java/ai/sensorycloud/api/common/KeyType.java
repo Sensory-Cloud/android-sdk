@@ -37,6 +37,14 @@ public enum KeyType
    * <code>SHARED_SECRET = 3;</code>
    */
   SHARED_SECRET(3),
+  /**
+   * <pre>
+   * AES-256 32 byte string
+   * </pre>
+   *
+   * <code>AES_256 = 4;</code>
+   */
+  AES_256(4),
   UNRECOGNIZED(-1),
   ;
 
@@ -64,6 +72,14 @@ public enum KeyType
    * <code>SHARED_SECRET = 3;</code>
    */
   public static final int SHARED_SECRET_VALUE = 3;
+  /**
+   * <pre>
+   * AES-256 32 byte string
+   * </pre>
+   *
+   * <code>AES_256 = 4;</code>
+   */
+  public static final int AES_256_VALUE = 4;
 
 
   @java.lang.Override
@@ -90,6 +106,7 @@ public enum KeyType
       case 0: return PUBLIC_KEY;
       case 1: return PUBLIC_KEY_ED25519;
       case 3: return SHARED_SECRET;
+      case 4: return AES_256;
       default: return null;
     }
   }
