@@ -56,7 +56,7 @@ public class AudioFragment extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
         String deviceID = prefs.getString(deviceIDKey, "");
         sensoryConfig = new Config(
-                new Config.CloudConfig("10.0.2.2:50051"),
+                new Config.CloudConfig("10.0.2.2:50050"),
                 new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
                 new Config.DeviceConfig(deviceID, "en_US"));
 
