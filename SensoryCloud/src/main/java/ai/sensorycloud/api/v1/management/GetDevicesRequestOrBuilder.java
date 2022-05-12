@@ -48,7 +48,7 @@ public interface GetDevicesRequestOrBuilder extends
 
   /**
    * <pre>
-   * User id to get a list of devices for
+   * Optional user id to filter devices by
    * </pre>
    *
    * <code>string userId = 3 [(.validate.rules) = { ... }</code>
@@ -57,7 +57,7 @@ public interface GetDevicesRequestOrBuilder extends
   java.lang.String getUserId();
   /**
    * <pre>
-   * User id to get a list of devices for
+   * Optional user id to filter devices by
    * </pre>
    *
    * <code>string userId = 3 [(.validate.rules) = { ... }</code>

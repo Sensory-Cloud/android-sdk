@@ -3,8 +3,8 @@
 
 package ai.sensorycloud.api.v1.management;
 
-public interface DeleteDeviceRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:sensory.api.v1.management.DeleteDeviceRequest)
+public interface DeviceRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:sensory.api.v1.management.DeviceRequest)
     com.google.protobuf.MessageLiteOrBuilder {
 
   /**
