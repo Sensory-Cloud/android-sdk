@@ -90,7 +90,7 @@ public  final class PaginationResponse extends
   private boolean decending_;
   /**
    * <pre>
-   * "True" if the data has been sorted in decending order
+   * "True" if the data has been sorted in descending order
    * </pre>
    *
    * <code>bool decending = 2;</code>
@@ -102,7 +102,7 @@ public  final class PaginationResponse extends
   }
   /**
    * <pre>
-   * "True" if the data has been sorted in decending order
+   * "True" if the data has been sorted in descending order
    * </pre>
    *
    * <code>bool decending = 2;</code>
@@ -114,7 +114,7 @@ public  final class PaginationResponse extends
   }
   /**
    * <pre>
-   * "True" if the data has been sorted in decending order
+   * "True" if the data has been sorted in descending order
    * </pre>
    *
    * <code>bool decending = 2;</code>
@@ -613,7 +613,7 @@ public  final class PaginationResponse extends
 
     /**
      * <pre>
-     * "True" if the data has been sorted in decending order
+     * "True" if the data has been sorted in descending order
      * </pre>
      *
      * <code>bool decending = 2;</code>
@@ -625,7 +625,7 @@ public  final class PaginationResponse extends
     }
     /**
      * <pre>
-     * "True" if the data has been sorted in decending order
+     * "True" if the data has been sorted in descending order
      * </pre>
      *
      * <code>bool decending = 2;</code>
@@ -639,7 +639,7 @@ public  final class PaginationResponse extends
     }
     /**
      * <pre>
-     * "True" if the data has been sorted in decending order
+     * "True" if the data has been sorted in descending order
      * </pre>
      *
      * <code>bool decending = 2;</code>

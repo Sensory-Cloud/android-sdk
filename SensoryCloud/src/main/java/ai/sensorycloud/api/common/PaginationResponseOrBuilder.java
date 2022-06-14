@@ -29,7 +29,7 @@ public interface PaginationResponseOrBuilder extends
 
   /**
    * <pre>
-   * "True" if the data has been sorted in decending order
+   * "True" if the data has been sorted in descending order
    * </pre>
    *
    * <code>bool decending = 2;</code>

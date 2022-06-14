@@ -16,6 +16,7 @@ public  final class AuthenticateConfig extends
     // @@protoc_insertion_point(message_implements:sensory.api.v1.audio.AuthenticateConfig)
     AuthenticateConfigOrBuilder {
   private AuthenticateConfig() {
+    enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
   }
   /**
    * <pre>
@@ -640,6 +641,48 @@ public  final class AuthenticateConfig extends
     isLivenessEnabled_ = false;
   }
 
+  public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 8;
+  private com.google.protobuf.ByteString enrollmentToken_;
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 8;</code>
+   * @return The enrollmentToken.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getEnrollmentToken() {
+    return enrollmentToken_;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 8;</code>
+   * @param value The enrollmentToken to set.
+   */
+  private void setEnrollmentToken(com.google.protobuf.ByteString value) {
+    java.lang.Class<?> valueClass = value.getClass();
+  
+    enrollmentToken_ = value;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 8;</code>
+   */
+  private void clearEnrollmentToken() {
+    
+    enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
+  }
+
   public static ai.sensorycloud.api.v1.audio.AuthenticateConfig parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1208,6 +1251,49 @@ public  final class AuthenticateConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @return The enrollmentToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getEnrollmentToken() {
+      return instance.getEnrollmentToken();
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @param value The enrollmentToken to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnrollmentToken(com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setEnrollmentToken(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnrollmentToken() {
+      copyOnWrite();
+      instance.clearEnrollmentToken();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.AuthenticateConfig)
   }
   @java.lang.Override
@@ -1231,10 +1317,11 @@ public  final class AuthenticateConfig extends
             "sensitivity_",
             "security_",
             "isLivenessEnabled_",
+            "enrollmentToken_",
           };
           java.lang.String info =
-              "\u0000\u0007\u0001\u0000\u0001\u0007\u0007\u0000\u0000\u0000\u0001\t\u0002\u023b" +
-              "\u0000\u0003\u023b\u0000\u0004\u0007\u0005\f\u0006\f\u0007\u0007";
+              "\u0000\b\u0001\u0000\u0001\b\b\u0000\u0000\u0000\u0001\t\u0002\u023b\u0000\u0003" +
+              "\u023b\u0000\u0004\u0007\u0005\f\u0006\f\u0007\u0007\b\n";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through
