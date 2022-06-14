@@ -147,14 +147,21 @@ public class OAuthService {
      */
     public TokenResponse getTokenSync() throws Exception {
         ManagedChannel managedChannel = getManagedChannel();
-        OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
+        try {
+            OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
-        TokenRequest tokenRequest = TokenRequest.newBuilder()
-                .setClientId(secureCredentialStore.getClientId())
-                .setSecret(secureCredentialStore.getClientSecret())
-                .build();
+            TokenRequest tokenRequest = TokenRequest.newBuilder()
+                    .setClientId(secureCredentialStore.getClientId())
+                    .setSecret(secureCredentialStore.getClientSecret())
+                    .build();
 
-        return client.getToken(tokenRequest);
+            TokenResponse token = client.getToken(tokenRequest);
+            return token;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            managedChannel.shutdown();
+        }
     }
 
     /**

@@ -62,7 +62,7 @@ public class AudioFragment extends Fragment {
 
         SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
         OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
+        TokenManager tokenManager = new TokenManager(oAuthService);
         audioService = new AudioService(sensoryConfig, tokenManager);
 
         binding = AudioFragmentBinding.inflate(inflater, container, false);

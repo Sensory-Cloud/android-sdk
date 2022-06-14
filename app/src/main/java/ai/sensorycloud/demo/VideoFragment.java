@@ -64,7 +64,7 @@ public class VideoFragment extends Fragment {
 
         SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
         OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
+        TokenManager tokenManager = new TokenManager(oAuthService);
         videoService = new VideoService(sensoryConfig, tokenManager);
 
         binding = VideoFragmentBinding.inflate(inflater, container, false);
