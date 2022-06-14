@@ -32,6 +32,14 @@ public enum AudioPostProcessingAction
    * <code>RESET = 2;</code>
    */
   RESET(2),
+  /**
+   * <pre>
+   * Indicates this message is the final message. The audio engine will create a final result, return it to the client, and close the stream.
+   * </pre>
+   *
+   * <code>FINAL = 3;</code>
+   */
+  FINAL(3),
   UNRECOGNIZED(-1),
   ;
 
@@ -59,6 +67,14 @@ public enum AudioPostProcessingAction
    * <code>RESET = 2;</code>
    */
   public static final int RESET_VALUE = 2;
+  /**
+   * <pre>
+   * Indicates this message is the final message. The audio engine will create a final result, return it to the client, and close the stream.
+   * </pre>
+   *
+   * <code>FINAL = 3;</code>
+   */
+  public static final int FINAL_VALUE = 3;
 
 
   @java.lang.Override
@@ -85,6 +101,7 @@ public enum AudioPostProcessingAction
       case 0: return NOT_SET;
       case 1: return FLUSH;
       case 2: return RESET;
+      case 3: return FINAL;
       default: return null;
     }
   }

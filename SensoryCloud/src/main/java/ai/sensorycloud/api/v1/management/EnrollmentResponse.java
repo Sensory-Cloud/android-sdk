@@ -859,6 +859,44 @@ public  final class EnrollmentResponse extends
     
   }
 
+  public static final int DIDENROLLASBIOMETRIC_FIELD_NUMBER = 14;
+  private boolean didEnrollAsBiometric_;
+  /**
+   * <pre>
+   * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+   * </pre>
+   *
+   * <code>bool didEnrollAsBiometric = 14;</code>
+   * @return The didEnrollAsBiometric.
+   */
+  @java.lang.Override
+  public boolean getDidEnrollAsBiometric() {
+    return didEnrollAsBiometric_;
+  }
+  /**
+   * <pre>
+   * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+   * </pre>
+   *
+   * <code>bool didEnrollAsBiometric = 14;</code>
+   * @param value The didEnrollAsBiometric to set.
+   */
+  private void setDidEnrollAsBiometric(boolean value) {
+    
+    didEnrollAsBiometric_ = value;
+  }
+  /**
+   * <pre>
+   * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+   * </pre>
+   *
+   * <code>bool didEnrollAsBiometric = 14;</code>
+   */
+  private void clearDidEnrollAsBiometric() {
+    
+    didEnrollAsBiometric_ = false;
+  }
+
   public static ai.sensorycloud.api.v1.management.EnrollmentResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1829,6 +1867,46 @@ public  final class EnrollmentResponse extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+     * </pre>
+     *
+     * <code>bool didEnrollAsBiometric = 14;</code>
+     * @return The didEnrollAsBiometric.
+     */
+    @java.lang.Override
+    public boolean getDidEnrollAsBiometric() {
+      return instance.getDidEnrollAsBiometric();
+    }
+    /**
+     * <pre>
+     * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+     * </pre>
+     *
+     * <code>bool didEnrollAsBiometric = 14;</code>
+     * @param value The didEnrollAsBiometric to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDidEnrollAsBiometric(boolean value) {
+      copyOnWrite();
+      instance.setDidEnrollAsBiometric(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+     * </pre>
+     *
+     * <code>bool didEnrollAsBiometric = 14;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDidEnrollAsBiometric() {
+      copyOnWrite();
+      instance.clearDidEnrollAsBiometric();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.management.EnrollmentResponse)
   }
   @java.lang.Override
@@ -1858,11 +1936,12 @@ public  final class EnrollmentResponse extends
             "deviceName_",
             "didEnrollWithLiveness_",
             "referenceId_",
+            "didEnrollAsBiometric_",
           };
           java.lang.String info =
-              "\u0000\r\u0000\u0000\u0001\r\r\u0000\u0000\u0000\u0001\u0208\u0002\t\u0003\t\u0004" +
-              "\u0208\u0005\u0208\u0006\f\u0007\u0208\b\u0208\t\u0208\n\t\u000b\u0208\f\u0007\r" +
-              "\u0208";
+              "\u0000\u000e\u0000\u0000\u0001\u000e\u000e\u0000\u0000\u0000\u0001\u0208\u0002\t" +
+              "\u0003\t\u0004\u0208\u0005\u0208\u0006\f\u0007\u0208\b\u0208\t\u0208\n\t\u000b\u0208" +
+              "\f\u0007\r\u0208\u000e\u0007";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

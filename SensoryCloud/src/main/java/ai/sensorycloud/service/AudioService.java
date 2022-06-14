@@ -377,6 +377,7 @@ public class AudioService {
     /**
      * Opens a bidirectional stream to the server that provides a transcription of the provided audio data
      * This call will automatically send the initial `AudioConfig` message to the server
+     * The final message sent on the returned observer *must* include a post-processing action of FINAL
      *
      * @param modelName Name of model to validate
      * @param userID Unique user identifier

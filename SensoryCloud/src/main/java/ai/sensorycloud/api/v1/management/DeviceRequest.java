@@ -5,17 +5,17 @@ package ai.sensorycloud.api.v1.management;
 
 /**
  * <pre>
- * A request to delete a device
+ * A request for a device
  * </pre>
  *
- * Protobuf type {@code sensory.api.v1.management.DeleteDeviceRequest}
+ * Protobuf type {@code sensory.api.v1.management.DeviceRequest}
  */
-public  final class DeleteDeviceRequest extends
+public  final class DeviceRequest extends
     com.google.protobuf.GeneratedMessageLite<
-        DeleteDeviceRequest, DeleteDeviceRequest.Builder> implements
-    // @@protoc_insertion_point(message_implements:sensory.api.v1.management.DeleteDeviceRequest)
-    DeleteDeviceRequestOrBuilder {
-  private DeleteDeviceRequest() {
+        DeviceRequest, DeviceRequest.Builder> implements
+    // @@protoc_insertion_point(message_implements:sensory.api.v1.management.DeviceRequest)
+    DeviceRequestOrBuilder {
+  private DeviceRequest() {
     deviceId_ = "";
   }
   public static final int DEVICEID_FIELD_NUMBER = 1;
@@ -85,73 +85,73 @@ public  final class DeleteDeviceRequest extends
     
   }
 
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(byte[] data)
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(java.io.InputStream input)
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseDelimitedFrom(java.io.InputStream input)
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseDelimitedFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest parseFrom(
+  public static ai.sensorycloud.api.v1.management.DeviceRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -162,23 +162,23 @@ public  final class DeleteDeviceRequest extends
   public static Builder newBuilder() {
     return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-  public static Builder newBuilder(ai.sensorycloud.api.v1.management.DeleteDeviceRequest prototype) {
+  public static Builder newBuilder(ai.sensorycloud.api.v1.management.DeviceRequest prototype) {
     return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
    * <pre>
-   * A request to delete a device
+   * A request for a device
    * </pre>
    *
-   * Protobuf type {@code sensory.api.v1.management.DeleteDeviceRequest}
+   * Protobuf type {@code sensory.api.v1.management.DeviceRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageLite.Builder<
-        ai.sensorycloud.api.v1.management.DeleteDeviceRequest, Builder> implements
-      // @@protoc_insertion_point(builder_implements:sensory.api.v1.management.DeleteDeviceRequest)
-      ai.sensorycloud.api.v1.management.DeleteDeviceRequestOrBuilder {
-    // Construct using ai.sensorycloud.api.v1.management.DeleteDeviceRequest.newBuilder()
+        ai.sensorycloud.api.v1.management.DeviceRequest, Builder> implements
+      // @@protoc_insertion_point(builder_implements:sensory.api.v1.management.DeviceRequest)
+      ai.sensorycloud.api.v1.management.DeviceRequestOrBuilder {
+    // Construct using ai.sensorycloud.api.v1.management.DeviceRequest.newBuilder()
     private Builder() {
       super(DEFAULT_INSTANCE);
     }
@@ -253,7 +253,7 @@ public  final class DeleteDeviceRequest extends
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:sensory.api.v1.management.DeleteDeviceRequest)
+    // @@protoc_insertion_point(builder_scope:sensory.api.v1.management.DeviceRequest)
   }
   @java.lang.Override
   @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
@@ -262,7 +262,7 @@ public  final class DeleteDeviceRequest extends
       java.lang.Object arg0, java.lang.Object arg1) {
     switch (method) {
       case NEW_MUTABLE_INSTANCE: {
-        return new ai.sensorycloud.api.v1.management.DeleteDeviceRequest();
+        return new ai.sensorycloud.api.v1.management.DeviceRequest();
       }
       case NEW_BUILDER: {
         return new Builder();
@@ -280,13 +280,13 @@ public  final class DeleteDeviceRequest extends
         return DEFAULT_INSTANCE;
       }
       case GET_PARSER: {
-        com.google.protobuf.Parser<ai.sensorycloud.api.v1.management.DeleteDeviceRequest> parser = PARSER;
+        com.google.protobuf.Parser<ai.sensorycloud.api.v1.management.DeviceRequest> parser = PARSER;
         if (parser == null) {
-          synchronized (ai.sensorycloud.api.v1.management.DeleteDeviceRequest.class) {
+          synchronized (ai.sensorycloud.api.v1.management.DeviceRequest.class) {
             parser = PARSER;
             if (parser == null) {
               parser =
-                  new DefaultInstanceBasedParser<ai.sensorycloud.api.v1.management.DeleteDeviceRequest>(
+                  new DefaultInstanceBasedParser<ai.sensorycloud.api.v1.management.DeviceRequest>(
                       DEFAULT_INSTANCE);
               PARSER = parser;
             }
@@ -305,24 +305,24 @@ public  final class DeleteDeviceRequest extends
   }
 
 
-  // @@protoc_insertion_point(class_scope:sensory.api.v1.management.DeleteDeviceRequest)
-  private static final ai.sensorycloud.api.v1.management.DeleteDeviceRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:sensory.api.v1.management.DeviceRequest)
+  private static final ai.sensorycloud.api.v1.management.DeviceRequest DEFAULT_INSTANCE;
   static {
-    DeleteDeviceRequest defaultInstance = new DeleteDeviceRequest();
+    DeviceRequest defaultInstance = new DeviceRequest();
     // New instances are implicitly immutable so no need to make
     // immutable.
     DEFAULT_INSTANCE = defaultInstance;
     com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-      DeleteDeviceRequest.class, defaultInstance);
+      DeviceRequest.class, defaultInstance);
   }
 
-  public static ai.sensorycloud.api.v1.management.DeleteDeviceRequest getDefaultInstance() {
+  public static ai.sensorycloud.api.v1.management.DeviceRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static volatile com.google.protobuf.Parser<DeleteDeviceRequest> PARSER;
+  private static volatile com.google.protobuf.Parser<DeviceRequest> PARSER;
 
-  public static com.google.protobuf.Parser<DeleteDeviceRequest> parser() {
+  public static com.google.protobuf.Parser<DeviceRequest> parser() {
     return DEFAULT_INSTANCE.getParserForType();
   }
 }

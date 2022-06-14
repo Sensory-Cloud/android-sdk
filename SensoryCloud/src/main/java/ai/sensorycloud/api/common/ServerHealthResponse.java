@@ -330,6 +330,68 @@ public  final class ServerHealthResponse extends
     services_.remove(index);
   }
 
+  public static final int SERVERTYPE_FIELD_NUMBER = 5;
+  private int serverType_;
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @return The enum numeric value on the wire for serverType.
+   */
+  @java.lang.Override
+  public int getServerTypeValue() {
+    return serverType_;
+  }
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @return The serverType.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.common.ServerType getServerType() {
+    ai.sensorycloud.api.common.ServerType result = ai.sensorycloud.api.common.ServerType.forNumber(serverType_);
+    return result == null ? ai.sensorycloud.api.common.ServerType.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @param value The enum numeric value on the wire for serverType to set.
+   */
+  private void setServerTypeValue(int value) {
+      serverType_ = value;
+  }
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @param value The serverType to set.
+   */
+  private void setServerType(ai.sensorycloud.api.common.ServerType value) {
+    serverType_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   */
+  private void clearServerType() {
+    
+    serverType_ = 0;
+  }
+
   public static ai.sensorycloud.api.common.ServerHealthResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -757,6 +819,72 @@ public  final class ServerHealthResponse extends
       return this;
     }
 
+    /**
+     * <pre>
+     * The type of server that is sending the health response
+     * </pre>
+     *
+     * <code>.sensory.api.common.ServerType serverType = 5;</code>
+     * @return The enum numeric value on the wire for serverType.
+     */
+    @java.lang.Override
+    public int getServerTypeValue() {
+      return instance.getServerTypeValue();
+    }
+    /**
+     * <pre>
+     * The type of server that is sending the health response
+     * </pre>
+     *
+     * <code>.sensory.api.common.ServerType serverType = 5;</code>
+     * @param value The serverType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setServerTypeValue(int value) {
+      copyOnWrite();
+      instance.setServerTypeValue(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The type of server that is sending the health response
+     * </pre>
+     *
+     * <code>.sensory.api.common.ServerType serverType = 5;</code>
+     * @return The serverType.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.common.ServerType getServerType() {
+      return instance.getServerType();
+    }
+    /**
+     * <pre>
+     * The type of server that is sending the health response
+     * </pre>
+     *
+     * <code>.sensory.api.common.ServerType serverType = 5;</code>
+     * @param value The enum numeric value on the wire for serverType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setServerType(ai.sensorycloud.api.common.ServerType value) {
+      copyOnWrite();
+      instance.setServerType(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The type of server that is sending the health response
+     * </pre>
+     *
+     * <code>.sensory.api.common.ServerType serverType = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearServerType() {
+      copyOnWrite();
+      instance.clearServerType();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.common.ServerHealthResponse)
   }
   @java.lang.Override
@@ -778,10 +906,11 @@ public  final class ServerHealthResponse extends
             "id_",
             "services_",
             ai.sensorycloud.api.common.ServiceHealth.class,
+            "serverType_",
           };
           java.lang.String info =
-              "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0001\u0000\u0001\u0007\u0002\u0208" +
-              "\u0003\u0208\u0004\u001b";
+              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0001\u0000\u0001\u0007\u0002\u0208" +
+              "\u0003\u0208\u0004\u001b\u0005\f";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

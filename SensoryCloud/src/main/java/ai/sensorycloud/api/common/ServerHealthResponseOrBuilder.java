@@ -82,4 +82,23 @@ public interface ServerHealthResponseOrBuilder extends
    * <code>repeated .sensory.api.common.ServiceHealth services = 4;</code>
    */
   int getServicesCount();
+
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @return The enum numeric value on the wire for serverType.
+   */
+  int getServerTypeValue();
+  /**
+   * <pre>
+   * The type of server that is sending the health response
+   * </pre>
+   *
+   * <code>.sensory.api.common.ServerType serverType = 5;</code>
+   * @return The serverType.
+   */
+  ai.sensorycloud.api.common.ServerType getServerType();
 }

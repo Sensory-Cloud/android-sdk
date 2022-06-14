@@ -252,4 +252,14 @@ public interface EnrollmentResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getReferenceIdBytes();
+
+  /**
+   * <pre>
+   * Indicates if the enrollmed is suited for biometrics. If this value is false, the enrollment cannot be used for authentication.
+   * </pre>
+   *
+   * <code>bool didEnrollAsBiometric = 14;</code>
+   * @return The didEnrollAsBiometric.
+   */
+  boolean getDidEnrollAsBiometric();
 }
