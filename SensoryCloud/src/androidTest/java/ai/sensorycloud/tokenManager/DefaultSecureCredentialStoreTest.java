@@ -42,15 +42,8 @@ public class DefaultSecureCredentialStoreTest extends TestCase {
         ArgumentCaptor<String> keyCaptor = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> valueCaptor = ArgumentCaptor.forClass(String.class);
 
-        try {
-            credentialStore.getClientId();
-            fail("Call should throw when no saved credentials");
-        } catch (Exception ignored) {}
-
-        try {
-            credentialStore.getClientSecret();
-            fail("Call should throw when no saved credentials");
-        } catch (Exception ignored) {}
+        assertFalse("empty optional should be returned on not present", credentialStore.getClientId().isPresent());
+        assertFalse("empty optional should be returned on not present", credentialStore.getClientSecret().isPresent());
 
         credentialStore.setCredentials("client", "secret");
 
@@ -59,11 +52,11 @@ public class DefaultSecureCredentialStoreTest extends TestCase {
         List<String> values = valueCaptor.getAllValues();
 
         for (int i = 0; i < keys.size(); i++) {
-            when(mockPrefs.getString(keys.get(i), "")).thenReturn(values.get(i));
+            when(mockPrefs.getString(keys.get(i), null)).thenReturn(values.get(i));
         }
 
-        String finalClient = credentialStore.getClientId();
-        String finalSecret = credentialStore.getClientSecret();
+        String finalClient = credentialStore.getClientId().orElse("missing");
+        String finalSecret = credentialStore.getClientSecret().orElse("missing");
         assertEquals("clientID should not be mutated", "client", finalClient);
         assertEquals("client secret should not be mutated", "secret", finalSecret);
     }
@@ -81,16 +74,13 @@ public class DefaultSecureCredentialStoreTest extends TestCase {
         List<String> values = valueCaptor.getAllValues();
 
         for (int i = 0; i < keys.size(); i++) {
-            when(mockPrefs.getString(keys.get(i), "")).thenReturn(values.get(i));
+            when(mockPrefs.getString(keys.get(i), null)).thenReturn(values.get(i));
         }
 
-        byte[] finalData = credentialStore.loadData("unitTest");
+        byte[] finalData = credentialStore.loadData("unitTest").orElse(new byte[0]);
         assertTrue("Data should not be mutated", Arrays.equals(initialData, finalData));
 
-        try {
-            credentialStore.loadData("bogus");
-            fail("Call should throw when no saved data");
-        } catch (Exception ignored) {}
+        assertFalse("Empty optional should be returned when no saved data", credentialStore.loadData("bogus").isPresent());
     }
 
     @Test
@@ -106,17 +96,13 @@ public class DefaultSecureCredentialStoreTest extends TestCase {
         List<String> values = valueCaptor.getAllValues();
 
         for (int i = 0; i < keys.size(); i++) {
-            when(mockPrefs.getString(keys.get(i), "")).thenReturn(values.get(i));
+            when(mockPrefs.getString(keys.get(i), null)).thenReturn(values.get(i));
         }
 
         credentialStore.deleteData("deleteUnitTest");
         verify(mockEditor, times(2)).remove(Mockito.anyString());
 
-        try {
-            byte[] data = credentialStore.loadData("deleteUnitTest");
-            System.out.println(new String(data, StandardCharsets.UTF_8));
-            fail("Data should be deleted");
-        } catch (Exception ignored) {}
+        assertFalse("Data should be deleted", credentialStore.loadData("deleteUnitTest").isPresent());
 
          // No error should be thrown on deleting an already deleted item
          credentialStore.deleteData("deleteUnitTest");

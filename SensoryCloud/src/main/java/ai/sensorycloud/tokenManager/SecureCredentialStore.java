@@ -1,22 +1,24 @@
 package ai.sensorycloud.tokenManager;
 
+import java.util.Optional;
+
 /**
  * Generic interface for a secure credential store that OAuth service may use
  */
 public interface SecureCredentialStore {
     /**
      * Fetches the client ID from secure storage
-     * @return the saved client ID
-     * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
+     * @return An Optional clientID, an empty optional means no saved clientID was found
+     * @throws Exception if an error occurs while loading from the secure credential store
      */
-    String getClientId() throws Exception;
+    Optional<String> getClientId() throws Exception;
 
     /**
      * Fetches the client Secret from secure storage
-     * @return the saved client Secret
+     * @return An Optional client secret, an empty optional means no saved client secret was found
      * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
      */
-    String getClientSecret() throws Exception;
+    Optional<String> getClientSecret() throws Exception;
 
     /**
      * Securely saves arbitrary data in secure storage. This is used for saving enrollment tokens on device
@@ -29,10 +31,10 @@ public interface SecureCredentialStore {
     /**
      * Loads arbitrary data from secure storage. This is used for loading enrollment tokens on device
      * @param id string identifier of the data to load
-     * @return the saved data
+     * @return The Optional data, an empty optional means no saved data was found
      * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
      */
-    byte[] loadData(String id) throws Exception;
+    Optional<byte[]> loadData(String id) throws Exception;
 
     /**
      * Deletes saved data from secure storage

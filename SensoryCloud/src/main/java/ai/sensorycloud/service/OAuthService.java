@@ -151,8 +151,8 @@ public class OAuthService {
             OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
             TokenRequest tokenRequest = TokenRequest.newBuilder()
-                    .setClientId(secureCredentialStore.getClientId())
-                    .setSecret(secureCredentialStore.getClientSecret())
+                    .setClientId(secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage")))
+                    .setSecret(secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage")))
                     .build();
 
             TokenResponse token = client.getToken(tokenRequest);
@@ -175,8 +175,8 @@ public class OAuthService {
 
         String clientID, clientSecret;
         try {
-            clientID = secureCredentialStore.getClientId();
-            clientSecret = secureCredentialStore.getClientSecret();
+            clientID = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
+            clientSecret = secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage"));
         } catch (Exception e) {
             listener.onFailure(e);
             return;
@@ -227,8 +227,8 @@ public class OAuthService {
 
         String clientID, clientSecret;
         try {
-            clientID = secureCredentialStore.getClientId();
-            clientSecret = secureCredentialStore.getClientSecret();
+            clientID = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
+            clientSecret = secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage"));
         } catch (Exception e) {
             listener.onFailure(e);
             return;
@@ -325,7 +325,7 @@ public class OAuthService {
 
         String clientId;
         try {
-            clientId = secureCredentialStore.getClientId();
+            clientId = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
         } catch (Exception e) {
             listener.onFailure(e);
             return;

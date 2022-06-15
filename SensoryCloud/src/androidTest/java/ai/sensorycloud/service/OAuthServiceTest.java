@@ -33,6 +33,7 @@ import static org.mockito.AdditionalAnswers.delegatesTo;
 import static org.awaitility.Awaitility.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -184,8 +185,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetTokenSync() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         TokenResponse response = oAuthService.getTokenSync();
 
@@ -193,8 +194,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetToken() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         oAuthService.getToken(new OAuthService.GetTokenListener() {
             @Override
@@ -213,8 +214,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testRegister() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedEnrollRequest.getClient().getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedEnrollRequest.getClient().getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getSecret()));
 
         oAuthService.register(
                 expectedEnrollRequest.getName(),
@@ -236,8 +237,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetWhoAmI() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         oAuthService.getWhoAmI(new OAuthService.GetWhoAmIListener() {
             @Override
@@ -256,7 +257,7 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testRenewDeviceCredentials() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedRenewDeviceRequest.getClientId());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedRenewDeviceRequest.getClientId()));
 
         oAuthService.renewDeviceCredential(
                 expectedRenewDeviceRequest.getCredential(),

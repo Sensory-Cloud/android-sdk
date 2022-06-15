@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
+import java.util.Optional;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -79,10 +80,11 @@ public class DefaultSecureCredentialStore implements SecureCredentialStore {
      * @throws Exception if no saved credentials were found or if another error occurred
      */
     @Override
-    public String getClientId() throws Exception {
+    public Optional<String> getClientId() throws Exception {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        byte[] bytes = load(credentialID + CLIENT_ID_ALIAS, prefs);
-        return new String(bytes, StandardCharsets.UTF_8);
+
+        return load(credentialID + CLIENT_ID_ALIAS, prefs)
+                .map(bytes -> new String(bytes, StandardCharsets.UTF_8));
     }
 
     /**
@@ -91,10 +93,11 @@ public class DefaultSecureCredentialStore implements SecureCredentialStore {
      * @throws Exception if no saved credentials were found or if another error occurred
      */
     @Override
-    public String getClientSecret() throws Exception {
+    public Optional<String> getClientSecret() throws Exception {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        byte[] bytes = load(credentialID + CLIENT_SECRET_ALIAS, prefs);
-        return new String(bytes, StandardCharsets.UTF_8);
+
+        return load(credentialID + CLIENT_SECRET_ALIAS, prefs)
+                .map(bytes -> new String(bytes, StandardCharsets.UTF_8));
     }
 
     /**
@@ -120,7 +123,7 @@ public class DefaultSecureCredentialStore implements SecureCredentialStore {
      * @throws Exception if an error occurs while loading from the secure credential store or if the item is not found
      */
     @Override
-    public byte[] loadData(String id) throws Exception {
+    public Optional<byte[]> loadData(String id) throws Exception {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return load(id + GENERIC_DATA_ALIAS, prefs);
     }
@@ -146,17 +149,18 @@ public class DefaultSecureCredentialStore implements SecureCredentialStore {
         editor.putString(alias + "_iv", new String(result.iv, StandardCharsets.ISO_8859_1));
     }
 
-    private byte[] load(String alias, SharedPreferences prefs) throws Exception {
-        String encryptedStr = prefs.getString(alias, "");
-        String ivStr = prefs.getString(alias + "_iv", "");
-        if (encryptedStr.isEmpty() || ivStr.isEmpty()) {
-            throw new Exception("The specified item could not be found in shared prefs: " + alias);
+    private Optional<byte[]> load(String alias, SharedPreferences prefs) throws Exception {
+        String encryptedStr = prefs.getString(alias, null);
+        String ivStr = prefs.getString(alias + "_iv", null);
+        if (encryptedStr == null || ivStr == null) {
+            return Optional.empty();
         }
 
         return decrypt(
                 alias,
                 encryptedStr.getBytes(StandardCharsets.ISO_8859_1),
-                ivStr.getBytes(StandardCharsets.ISO_8859_1));
+                ivStr.getBytes(StandardCharsets.ISO_8859_1)
+        );
     }
 
     private EncryptionResult encrypt(String alias, byte[] value) throws Exception {
@@ -176,20 +180,23 @@ public class DefaultSecureCredentialStore implements SecureCredentialStore {
         return new EncryptionResult(encrypted, iv);
     }
 
-    private byte[] decrypt(String alias, byte[] encrypted, byte[] iv) throws Exception {
+    private Optional<byte[]> decrypt(String alias, byte[] encrypted, byte[] iv) throws Exception {
         System.out.println("decrypt alias");
         System.out.println(alias);
         KeyStore keyStore = KeyStore.getInstance(KEY_STORE);
         keyStore.load(null);
 
         KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) keyStore.getEntry(alias, null);
+        if (secretKeyEntry == null) {
+            return Optional.empty();
+        }
         SecretKey secretKey = secretKeyEntry.getSecretKey();
 
         Cipher cipher = Cipher.getInstance(CIPHER_TRANSFORM);
         GCMParameterSpec spec = new GCMParameterSpec(128, iv);
         cipher.init(Cipher.DECRYPT_MODE, secretKey, spec);
 
-        return cipher.doFinal(encrypted);
+        return Optional.of(cipher.doFinal(encrypted));
     }
 
     private void deleteFromKeyStore(String alias) throws Exception {
