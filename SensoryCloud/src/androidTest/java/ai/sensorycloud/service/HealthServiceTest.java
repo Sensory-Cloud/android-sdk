@@ -15,7 +15,7 @@ import io.grpc.testing.GrpcCleanupRule;
 import ai.sensorycloud.api.common.ServerHealthResponse;
 import ai.sensorycloud.api.health.HealthRequest;
 import ai.sensorycloud.api.health.HealthServiceGrpc;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 
 import static org.mockito.Mockito.*;
 import static org.mockito.AdditionalAnswers.delegatesTo;

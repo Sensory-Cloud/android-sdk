@@ -1,6 +1,6 @@
 package ai.sensorycloud.service;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;

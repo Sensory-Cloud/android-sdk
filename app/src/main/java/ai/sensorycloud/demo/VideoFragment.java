@@ -19,7 +19,7 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.interactors.VideoStreamInteractor;
 import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.service.VideoService;

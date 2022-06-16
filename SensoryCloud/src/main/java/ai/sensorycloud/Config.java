@@ -1,10 +1,22 @@
-package ai.sensorycloud.config;
+package ai.sensorycloud;
+
+import ai.sensorycloud.SDKInitConfig;
 
 /**
  * Configuration object for setting default values for Sensory Cloud
  */
 public class Config {
 
+    static SDKInitConfig sharedConfig;
+
+    public static SDKInitConfig getSharedConfig() {
+        return sharedConfig;
+    }
+
+    // TODO: default value
+    public static String defaultLanguageCode;
+
+    // TODO: rm below?
     /**
      * Configurations for the cloud host to connect to
      */

@@ -5,7 +5,7 @@ import ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig;
 import ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig;
 import ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest;
 import ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;

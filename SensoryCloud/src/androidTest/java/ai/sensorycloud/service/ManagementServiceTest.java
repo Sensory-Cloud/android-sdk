@@ -25,7 +25,7 @@ import ai.sensorycloud.api.v1.management.EnrollmentServiceGrpc;
 import ai.sensorycloud.api.v1.management.GetEnrollmentGroupsResponse;
 import ai.sensorycloud.api.v1.management.GetEnrollmentsRequest;
 import ai.sensorycloud.api.v1.management.GetEnrollmentsResponse;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 
 import static org.mockito.Mockito.*;

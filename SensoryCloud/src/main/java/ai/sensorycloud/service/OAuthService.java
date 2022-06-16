@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
@@ -102,6 +102,13 @@ public class OAuthService {
     private SecureCredentialStore secureCredentialStore;
     private ManagedChannel unitTestingManagedChannel;
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+
+    /**
+     * @return The underlying SecureCredentialStore being used
+     */
+    public SecureCredentialStore getSecureCredentialStore() {
+        return secureCredentialStore;
+    }
 
     /**
      * Creates a new OAuthService instance
@@ -215,24 +222,19 @@ public class OAuthService {
      *  - A signed JWT
      *
      * @param deviceName Name of the enrolling device
-     * @param credential Credential string to authenticate that this device is alled to enroll
+     * @param credential Credential string to authenticate that this device is allowed to enroll
+     * @param clientID ClientID to use for OAuth token generation
+     * @param clientSecret Client secret to use for OAuth token generation
      * @param listener Listener that the results will be passed back to
      */
     public void register(
             String deviceName,
             String credential,
+            String clientID,
+            String clientSecret,
             EnrollDeviceListener listener ) {
         ManagedChannel managedChannel = getManagedChannel();
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
-
-        String clientID, clientSecret;
-        try {
-            clientID = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
-            clientSecret = secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage"));
-        } catch (Exception e) {
-            listener.onFailure(e);
-            return;
-        }
 
         GenericClient genericClient = GenericClient.newBuilder()
                 .setClientId(clientID)

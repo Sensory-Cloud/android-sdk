@@ -6,6 +6,15 @@ import java.util.Optional;
  * Generic interface for a secure credential store that OAuth service may use
  */
 public interface SecureCredentialStore {
+
+    /**
+     * Saves credentials to the credential store
+     * @param clientId client ID to save
+     * @param clientSecret client secret to save
+     * @throws Exception if an error occurs while saving the credentials
+     */
+    void setCredentials(String clientId, String clientSecret) throws Exception;
+
     /**
      * Fetches the client ID from secure storage
      * @return An Optional clientID, an empty optional means no saved clientID was found

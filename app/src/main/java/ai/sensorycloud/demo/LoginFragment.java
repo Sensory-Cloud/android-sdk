@@ -18,7 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.UUID;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import ai.sensorycloud.demo.databinding.LoginFragmentBinding;

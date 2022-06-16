@@ -1,6 +1,6 @@
 package ai.sensorycloud.service;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;

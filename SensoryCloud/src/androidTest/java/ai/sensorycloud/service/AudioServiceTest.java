@@ -51,7 +51,7 @@ import ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse;
 import ai.sensorycloud.api.v1.audio.ValidateEventConfig;
 import ai.sensorycloud.api.v1.audio.ValidateEventRequest;
 import ai.sensorycloud.api.v1.audio.ValidateEventResponse;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 
 public class AudioServiceTest extends TestCase {

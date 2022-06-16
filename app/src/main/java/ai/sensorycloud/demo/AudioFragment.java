@@ -17,7 +17,7 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.interactors.AudioStreamInteractor;
 import ai.sensorycloud.service.AudioService;
 import ai.sensorycloud.service.OAuthService;

@@ -25,7 +25,7 @@ import ai.sensorycloud.api.v1.management.DeviceResponse;
 import ai.sensorycloud.api.v1.management.DeviceServiceGrpc;
 import ai.sensorycloud.api.v1.management.EnrollDeviceRequest;
 import ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 
 import static org.mockito.Mockito.*;
