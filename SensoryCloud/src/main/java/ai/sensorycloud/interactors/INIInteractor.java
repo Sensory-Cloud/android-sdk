@@ -1,6 +1,7 @@
 package ai.sensorycloud.interactors;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -9,12 +10,12 @@ import ai.sensorycloud.SDKInitConfig;
 /**
  * Class for parsing config INI files
  *
- * This is not a full INI file parser, this implementation does not support INI sections
+ * This is *not* a full featured INI file parser. For example, this implementation ignores INI sections
  */
 public class INIInteractor {
 
-    // Truthy values for boolean values
-    private static final String[] TRUTHY_VALUES = {"ture", "True", "TRUE", "T", "t", "yes", "Yes", "YES", "1"};
+    // Strings that will evaluate as true when used as a boolean
+    private static final String[] TRUTHY_VALUES = {"true", "True", "TRUE", "T", "t", "yes", "Yes", "YES", "1"};
 
     // Configuration keys that are parsed
     private static final String FQDN = "fullyQualifiedDomainName";
@@ -36,6 +37,15 @@ public class INIInteractor {
     public INIInteractor(String filename) throws java.io.FileNotFoundException, java.io.IOException {
         FileInputStream inputStream = new FileInputStream(filename);
         props.load(inputStream);
+    }
+
+    /**
+     * Creates a new INIParser instance
+     * @param stream Input stream of the config file to load
+     * @throws java.io.IOException
+     */
+    public INIInteractor(InputStream stream) throws java.io.IOException {
+        props.load(stream);
     }
 
     /**
@@ -64,6 +74,8 @@ public class INIInteractor {
         } else if (value == null) {
             return defaultValue;
         }
-        return value;
+
+        // clean up any comments/extra spacing/quotes on the value
+        return value.split(" ", 2)[0].trim().replace("\"", "");
     }
 }

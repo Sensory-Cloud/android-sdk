@@ -217,9 +217,12 @@ public class OAuthServiceTest extends TestCase {
         when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getClientId()));
         when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getSecret()));
 
+        // TODO: fix params
         oAuthService.register(
                 expectedEnrollRequest.getName(),
                 expectedEnrollRequest.getCredential(),
+                "clientID",
+                "clientSecret",
                 new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {

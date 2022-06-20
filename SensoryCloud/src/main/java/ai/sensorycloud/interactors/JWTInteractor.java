@@ -9,13 +9,27 @@ import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
+/**
+ * Helper class for generating enrollment JWTs
+ * A security provider should be set by calling `Security.addProvider(...)` before using this class
+ * (Initializer.initialize uses this implementation when the enrollment type is JWT)
+ */
 public class JWTInteractor {
 
+    /**
+     * Generates an enrollment JWT
+     * @param enrollmentKey private signing key. This value should be a hex string of the private key.
+     * @param deviceName device friendly name
+     * @param tenantID tenant ID to enroll into
+     * @param clientID client ID of the device
+     * @return A signed JWT that may be used for device enrollment
+     * @throws Exception thrown if the private key cannot be parsed
+     */
     public static String genJWT(String enrollmentKey, String deviceName, String tenantID, String clientID) throws Exception {
         // load the private key
-        KeyFactory kf = KeyFactory.getInstance("ed25519"); // maybe just "edDSA"
-        // TODO: hex string to bytes, not utf-8
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(enrollmentKey.getBytes(StandardCharsets.UTF_8));
+        byte[] keyBytes = hexToBytes(enrollmentKey);
+        KeyFactory kf = KeyFactory.getInstance("ECDSA"); // edDSA?
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
         PrivateKey key = kf.generatePrivate(spec);
 
         // header
@@ -46,5 +60,21 @@ public class JWTInteractor {
                 .encodeToString(signed);
 
         return headerBase64 + "." + payloadBase64 + "." + signedBase64;
+    }
+
+    static byte[] hexToBytes(String str) throws IllegalArgumentException {
+        int len = str.length();
+        if (len%2 != 0) {
+            throw new IllegalArgumentException("hex string must have even length");
+        }
+
+        byte[] data = new byte[len/2];
+        for (int i = 0; i < len; i += 2) {
+            data[i/2] = (byte) (
+                    (Character.digit(str.charAt(i), 16) << 4)
+                    + Character.digit(str.charAt(i+1), 16)
+            );
+        }
+        return data;
     }
 }

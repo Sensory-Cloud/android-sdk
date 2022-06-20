@@ -31,7 +31,7 @@ public class OAuthService {
     /**
      * Wrapper struct for OAuth client credentials
      */
-    public class OAuthClient {
+    public static class OAuthClient {
         /**
          * OAuth client ID
          */

@@ -73,13 +73,11 @@ public class SDKInitConfig {
 
     /**
      * Unique identifier for the current device
-     * If this is an empty string, the SDK will generate a device ID
      */
     public String deviceID;
 
     /**
-     * Name of the enrolling device
-     * If this is an empty string, the system device name will be used
+     * Display name of the enrolling device
      */
     public String deviceName;
 }

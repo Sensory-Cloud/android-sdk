@@ -9,12 +9,20 @@ public class Config {
 
     static SDKInitConfig sharedConfig;
 
+    /**
+     * The main configurations used by the Sensory Cloud SDK
+     * This config is set when `Initializer.initialize(...)` is called
+     * @return the saved configuration object
+     */
     public static SDKInitConfig getSharedConfig() {
         return sharedConfig;
     }
 
-    // TODO: default value
-    public static String defaultLanguageCode;
+    /**
+     * Default language code used for audio calls.
+     */
+    public static String defaultLanguageCode = "en-US";
+
 
     // TODO: rm below?
     /**
