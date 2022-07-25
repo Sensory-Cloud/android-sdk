@@ -2,6 +2,7 @@ package ai.sensorycloud.service;
 
 import junit.framework.TestCase;
 
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.Metadata;
@@ -25,7 +26,6 @@ import ai.sensorycloud.api.v1.management.EnrollmentServiceGrpc;
 import ai.sensorycloud.api.v1.management.GetEnrollmentGroupsResponse;
 import ai.sensorycloud.api.v1.management.GetEnrollmentsRequest;
 import ai.sensorycloud.api.v1.management.GetEnrollmentsResponse;
-import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 
 import static org.mockito.Mockito.*;
@@ -42,10 +42,14 @@ public class ManagementServiceTest extends TestCase {
     final Metadata.Key<String> authKey = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
     final String authValue = "Bearer Some-OAuth-Token";
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final EnrollmentResponse mockEnrollment1 = EnrollmentResponse.newBuilder()
@@ -200,6 +204,9 @@ public class ManagementServiceTest extends TestCase {
     public void setUp() throws Exception {
         responseReceived = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(serviceImpl, mockServerInterceptor))
@@ -213,7 +220,7 @@ public class ManagementServiceTest extends TestCase {
         ClientInterceptor mockAuth = MetadataUtils.newAttachHeadersInterceptor(mockHeader);
         when(mockTokenManager.getAuthorizationMetadata()).thenReturn(mockAuth);
 
-        service = new ManagementService(mockConfig, mockTokenManager, channel);
+        service = new ManagementService(mockTokenManager, channel);
     }
 
     public void testGetEnrollments() {

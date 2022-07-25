@@ -76,7 +76,7 @@ public class InitializerTest extends TestCase {
                 "deviceSecret"
         );
 
-        Initializer.initialize(mockService, config, new OAuthService.EnrollDeviceListener() {
+        Initializer.initialize(mockService, null, config, new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
                 assertResponse(response, config);
@@ -106,7 +106,7 @@ public class InitializerTest extends TestCase {
         when(mockKeychain.getClientId()).thenReturn(java.util.Optional.of("clientID"));
         when(mockKeychain.getClientSecret()).thenReturn(java.util.Optional.of("clientSecret"));
 
-        Initializer.initialize(mockService, config, new OAuthService.EnrollDeviceListener() {
+        Initializer.initialize(mockService, null, config, new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
                 assertNull(response);
@@ -136,7 +136,7 @@ public class InitializerTest extends TestCase {
                 "override-deviceName"
         );
 
-        Initializer.initialize(mockService, stream, expectedConfig.deviceID, expectedConfig.deviceName, new OAuthService.EnrollDeviceListener() {
+        Initializer.initialize(mockService, null, stream, expectedConfig.deviceID, expectedConfig.deviceName, new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
                 assertResponse(response, expectedConfig);

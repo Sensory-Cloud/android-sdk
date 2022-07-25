@@ -2,11 +2,8 @@ package ai.sensorycloud.tokenManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
-
-import androidx.annotation.RequiresApi;
 
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
@@ -20,7 +17,6 @@ import javax.crypto.spec.GCMParameterSpec;
 /**
  * A default secure credential store that may be used if the current device has a secure enclave
  */
-@RequiresApi(api = Build.VERSION_CODES.M)
 public class DefaultSecureCredentialStore implements SecureCredentialStore {
 
     private class EncryptionResult {

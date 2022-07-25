@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.UUID;
 
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest;
 import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
@@ -98,7 +99,6 @@ public class OAuthService {
         void onFailure(Throwable t);
     }
 
-    private Config config;
     private SecureCredentialStore secureCredentialStore;
     private ManagedChannel unitTestingManagedChannel;
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
@@ -113,11 +113,9 @@ public class OAuthService {
     /**
      * Creates a new OAuthService instance
      *
-     * @param config SDK configuration to use
      * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
      */
-    public OAuthService(Config config, SecureCredentialStore secureCredentialStore) {
-        this.config = config;
+    public OAuthService(SecureCredentialStore secureCredentialStore) {
         this.secureCredentialStore = secureCredentialStore;
         this.unitTestingManagedChannel = null;
     }
@@ -125,12 +123,10 @@ public class OAuthService {
     /**
      * Creates a new OAuthService instance
      *
-     * @param config SDK configuration to use
      * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
      * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
      */
-    public OAuthService(Config config, SecureCredentialStore secureCredentialStore, ManagedChannel managedChannel) {
-        this.config = config;
+    public OAuthService(SecureCredentialStore secureCredentialStore, ManagedChannel managedChannel) {
         this.secureCredentialStore = secureCredentialStore;
         this.unitTestingManagedChannel = managedChannel;
     }
@@ -234,6 +230,7 @@ public class OAuthService {
             String clientSecret,
             EnrollDeviceListener listener ) {
         ManagedChannel managedChannel = getManagedChannel();
+        SDKInitConfig config = Config.getSharedConfig();
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
 
         GenericClient genericClient = GenericClient.newBuilder()
@@ -242,8 +239,8 @@ public class OAuthService {
                 .build();
         EnrollDeviceRequest enrollDeviceRequest = EnrollDeviceRequest.newBuilder()
                 .setName(deviceName)
-                .setDeviceId(config.deviceConfig.deviceId)
-                .setTenantId(config.tenantConfig.tenantId)
+                .setDeviceId(config.deviceID)
+                .setTenantId(config.tenantID)
                 .setClient(genericClient)
                 .setCredential(credential)
                 .build();
@@ -323,6 +320,7 @@ public class OAuthService {
      */
     public void renewDeviceCredential(String credential, EnrollDeviceListener listener) {
         ManagedChannel managedChannel = getManagedChannel();
+        SDKInitConfig config = Config.getSharedConfig();
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
 
         String clientId;
@@ -334,9 +332,9 @@ public class OAuthService {
         }
 
         RenewDeviceCredentialRequest request = RenewDeviceCredentialRequest.newBuilder()
-                .setDeviceId(config.deviceConfig.deviceId)
+                .setDeviceId(config.deviceID)
                 .setClientId(clientId)
-                .setTenantId(config.tenantConfig.tenantId)
+                .setTenantId(config.tenantID)
                 .setCredential(credential)
                 .build();
 
@@ -374,7 +372,12 @@ public class OAuthService {
     private ManagedChannel getManagedChannel() {
         ManagedChannel managedChannel = unitTestingManagedChannel;
         if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+            SDKInitConfig config = Config.getSharedConfig();
+            if (config.isSecure) {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).useTransportSecurity().build();
+            } else {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).usePlaintext().build();
+            }
         }
         return managedChannel;
     }

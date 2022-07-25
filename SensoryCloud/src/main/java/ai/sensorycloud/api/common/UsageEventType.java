@@ -37,6 +37,22 @@ public enum UsageEventType
    * <code>ENROLLMENT = 2;</code>
    */
   ENROLLMENT(2),
+  /**
+   * <pre>
+   * Synthesis usage event
+   * </pre>
+   *
+   * <code>SYNTHESIS = 3;</code>
+   */
+  SYNTHESIS(3),
+  /**
+   * <pre>
+   * Speech to text usage event
+   * </pre>
+   *
+   * <code>TRANSCRIPTION = 4;</code>
+   */
+  TRANSCRIPTION(4),
   UNRECOGNIZED(-1),
   ;
 
@@ -64,6 +80,22 @@ public enum UsageEventType
    * <code>ENROLLMENT = 2;</code>
    */
   public static final int ENROLLMENT_VALUE = 2;
+  /**
+   * <pre>
+   * Synthesis usage event
+   * </pre>
+   *
+   * <code>SYNTHESIS = 3;</code>
+   */
+  public static final int SYNTHESIS_VALUE = 3;
+  /**
+   * <pre>
+   * Speech to text usage event
+   * </pre>
+   *
+   * <code>TRANSCRIPTION = 4;</code>
+   */
+  public static final int TRANSCRIPTION_VALUE = 4;
 
 
   @java.lang.Override
@@ -90,6 +122,8 @@ public enum UsageEventType
       case 0: return AUTHENTICATION;
       case 1: return RECOGNITION;
       case 2: return ENROLLMENT;
+      case 3: return SYNTHESIS;
+      case 4: return TRANSCRIPTION;
       default: return null;
     }
   }

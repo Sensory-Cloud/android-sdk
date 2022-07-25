@@ -4,19 +4,20 @@
 package ai.sensorycloud.api.v1.event;
 
 /**
- * Protobuf type {@code sensory.api.v1.event.UsageEvent}
+ * Protobuf type {@code sensory.api.v1.event.UsageEventResponse}
  */
-public  final class UsageEvent extends
+public  final class UsageEventResponse extends
     com.google.protobuf.GeneratedMessageLite<
-        UsageEvent, UsageEvent.Builder> implements
-    // @@protoc_insertion_point(message_implements:sensory.api.v1.event.UsageEvent)
-    UsageEventOrBuilder {
-  private UsageEvent() {
+        UsageEventResponse, UsageEventResponse.Builder> implements
+    // @@protoc_insertion_point(message_implements:sensory.api.v1.event.UsageEventResponse)
+    UsageEventResponseOrBuilder {
+  private UsageEventResponse() {
     id_ = "";
     clientId_ = "";
     route_ = "";
     technologies_ = emptyIntList();
     models_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    billableUnits_ = "";
     tenantId_ = "";
   }
   public static final int TIMESTAMP_FIELD_NUMBER = 1;
@@ -694,80 +695,109 @@ public  final class UsageEvent extends
     models_.add(value.toStringUtf8());
   }
 
-  public static final int AUDIODURATIONMS_FIELD_NUMBER = 9;
-  private long audioDurationMs_;
+  public static final int BILLABLEVALUE_FIELD_NUMBER = 9;
+  private long billableValue_;
   /**
    * <pre>
-   * The duration audio processed in milliseconds
+   * The value that is billed for this event
    * </pre>
    *
-   * <code>int64 audioDurationMs = 9;</code>
-   * @return The audioDurationMs.
+   * <code>int64 billableValue = 9;</code>
+   * @return The billableValue.
    */
   @java.lang.Override
-  public long getAudioDurationMs() {
-    return audioDurationMs_;
+  public long getBillableValue() {
+    return billableValue_;
   }
   /**
    * <pre>
-   * The duration audio processed in milliseconds
+   * The value that is billed for this event
    * </pre>
    *
-   * <code>int64 audioDurationMs = 9;</code>
-   * @param value The audioDurationMs to set.
+   * <code>int64 billableValue = 9;</code>
+   * @param value The billableValue to set.
    */
-  private void setAudioDurationMs(long value) {
+  private void setBillableValue(long value) {
     
-    audioDurationMs_ = value;
+    billableValue_ = value;
   }
   /**
    * <pre>
-   * The duration audio processed in milliseconds
+   * The value that is billed for this event
    * </pre>
    *
-   * <code>int64 audioDurationMs = 9;</code>
+   * <code>int64 billableValue = 9;</code>
    */
-  private void clearAudioDurationMs() {
+  private void clearBillableValue() {
     
-    audioDurationMs_ = 0L;
+    billableValue_ = 0L;
   }
 
-  public static final int VIDEOFRAMECOUNT_FIELD_NUMBER = 10;
-  private long videoFrameCount_;
+  public static final int BILLABLEUNITS_FIELD_NUMBER = 10;
+  private java.lang.String billableUnits_;
   /**
    * <pre>
-   * The number of video frames processed
+   * The units of this billed event
    * </pre>
    *
-   * <code>int64 videoFrameCount = 10;</code>
-   * @return The videoFrameCount.
+   * <code>string billableUnits = 10;</code>
+   * @return The billableUnits.
    */
   @java.lang.Override
-  public long getVideoFrameCount() {
-    return videoFrameCount_;
+  public java.lang.String getBillableUnits() {
+    return billableUnits_;
   }
   /**
    * <pre>
-   * The number of video frames processed
+   * The units of this billed event
    * </pre>
    *
-   * <code>int64 videoFrameCount = 10;</code>
-   * @param value The videoFrameCount to set.
+   * <code>string billableUnits = 10;</code>
+   * @return The bytes for billableUnits.
    */
-  private void setVideoFrameCount(long value) {
-    
-    videoFrameCount_ = value;
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getBillableUnitsBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(billableUnits_);
   }
   /**
    * <pre>
-   * The number of video frames processed
+   * The units of this billed event
    * </pre>
    *
-   * <code>int64 videoFrameCount = 10;</code>
+   * <code>string billableUnits = 10;</code>
+   * @param value The billableUnits to set.
    */
-  private void clearVideoFrameCount() {
+  private void setBillableUnits(
+      java.lang.String value) {
+    java.lang.Class<?> valueClass = value.getClass();
+  
+    billableUnits_ = value;
+  }
+  /**
+   * <pre>
+   * The units of this billed event
+   * </pre>
+   *
+   * <code>string billableUnits = 10;</code>
+   */
+  private void clearBillableUnits() {
     
-    videoFrameCount_ = 0L;
+    billableUnits_ = getDefaultInstance().getBillableUnits();
+  }
+  /**
+   * <pre>
+   * The units of this billed event
+   * </pre>
+   *
+   * <code>string billableUnits = 10;</code>
+   * @param value The bytes for billableUnits to set.
+   */
+  private void setBillableUnitsBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    billableUnits_ = value.toStringUtf8();
+    
   }
 
   public static final int TENANTID_FIELD_NUMBER = 11;
@@ -899,73 +929,73 @@ public  final class UsageEvent extends
     billableFunction_ = 0;
   }
 
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(byte[] data)
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, data, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(java.io.InputStream input)
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseDelimitedFrom(java.io.InputStream input)
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseDelimitedFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input);
   }
-  public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -976,19 +1006,19 @@ public  final class UsageEvent extends
   public static Builder newBuilder() {
     return (Builder) DEFAULT_INSTANCE.createBuilder();
   }
-  public static Builder newBuilder(ai.sensorycloud.api.v1.event.UsageEvent prototype) {
+  public static Builder newBuilder(ai.sensorycloud.api.v1.event.UsageEventResponse prototype) {
     return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
   }
 
   /**
-   * Protobuf type {@code sensory.api.v1.event.UsageEvent}
+   * Protobuf type {@code sensory.api.v1.event.UsageEventResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageLite.Builder<
-        ai.sensorycloud.api.v1.event.UsageEvent, Builder> implements
-      // @@protoc_insertion_point(builder_implements:sensory.api.v1.event.UsageEvent)
-      ai.sensorycloud.api.v1.event.UsageEventOrBuilder {
-    // Construct using ai.sensorycloud.api.v1.event.UsageEvent.newBuilder()
+        ai.sensorycloud.api.v1.event.UsageEventResponse, Builder> implements
+      // @@protoc_insertion_point(builder_implements:sensory.api.v1.event.UsageEventResponse)
+      ai.sensorycloud.api.v1.event.UsageEventResponseOrBuilder {
+    // Construct using ai.sensorycloud.api.v1.event.UsageEventResponse.newBuilder()
     private Builder() {
       super(DEFAULT_INSTANCE);
     }
@@ -1674,81 +1704,110 @@ public  final class UsageEvent extends
 
     /**
      * <pre>
-     * The duration audio processed in milliseconds
+     * The value that is billed for this event
      * </pre>
      *
-     * <code>int64 audioDurationMs = 9;</code>
-     * @return The audioDurationMs.
+     * <code>int64 billableValue = 9;</code>
+     * @return The billableValue.
      */
     @java.lang.Override
-    public long getAudioDurationMs() {
-      return instance.getAudioDurationMs();
+    public long getBillableValue() {
+      return instance.getBillableValue();
     }
     /**
      * <pre>
-     * The duration audio processed in milliseconds
+     * The value that is billed for this event
      * </pre>
      *
-     * <code>int64 audioDurationMs = 9;</code>
-     * @param value The audioDurationMs to set.
+     * <code>int64 billableValue = 9;</code>
+     * @param value The billableValue to set.
      * @return This builder for chaining.
      */
-    public Builder setAudioDurationMs(long value) {
+    public Builder setBillableValue(long value) {
       copyOnWrite();
-      instance.setAudioDurationMs(value);
+      instance.setBillableValue(value);
       return this;
     }
     /**
      * <pre>
-     * The duration audio processed in milliseconds
+     * The value that is billed for this event
      * </pre>
      *
-     * <code>int64 audioDurationMs = 9;</code>
+     * <code>int64 billableValue = 9;</code>
      * @return This builder for chaining.
      */
-    public Builder clearAudioDurationMs() {
+    public Builder clearBillableValue() {
       copyOnWrite();
-      instance.clearAudioDurationMs();
+      instance.clearBillableValue();
       return this;
     }
 
     /**
      * <pre>
-     * The number of video frames processed
+     * The units of this billed event
      * </pre>
      *
-     * <code>int64 videoFrameCount = 10;</code>
-     * @return The videoFrameCount.
+     * <code>string billableUnits = 10;</code>
+     * @return The billableUnits.
      */
     @java.lang.Override
-    public long getVideoFrameCount() {
-      return instance.getVideoFrameCount();
+    public java.lang.String getBillableUnits() {
+      return instance.getBillableUnits();
     }
     /**
      * <pre>
-     * The number of video frames processed
+     * The units of this billed event
      * </pre>
      *
-     * <code>int64 videoFrameCount = 10;</code>
-     * @param value The videoFrameCount to set.
+     * <code>string billableUnits = 10;</code>
+     * @return The bytes for billableUnits.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getBillableUnitsBytes() {
+      return instance.getBillableUnitsBytes();
+    }
+    /**
+     * <pre>
+     * The units of this billed event
+     * </pre>
+     *
+     * <code>string billableUnits = 10;</code>
+     * @param value The billableUnits to set.
      * @return This builder for chaining.
      */
-    public Builder setVideoFrameCount(long value) {
+    public Builder setBillableUnits(
+        java.lang.String value) {
       copyOnWrite();
-      instance.setVideoFrameCount(value);
+      instance.setBillableUnits(value);
       return this;
     }
     /**
      * <pre>
-     * The number of video frames processed
+     * The units of this billed event
      * </pre>
      *
-     * <code>int64 videoFrameCount = 10;</code>
+     * <code>string billableUnits = 10;</code>
      * @return This builder for chaining.
      */
-    public Builder clearVideoFrameCount() {
+    public Builder clearBillableUnits() {
       copyOnWrite();
-      instance.clearVideoFrameCount();
+      instance.clearBillableUnits();
+      return this;
+    }
+    /**
+     * <pre>
+     * The units of this billed event
+     * </pre>
+     *
+     * <code>string billableUnits = 10;</code>
+     * @param value The bytes for billableUnits to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBillableUnitsBytes(
+        com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setBillableUnitsBytes(value);
       return this;
     }
 
@@ -1887,7 +1946,7 @@ public  final class UsageEvent extends
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEvent)
+    // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEventResponse)
   }
   @java.lang.Override
   @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
@@ -1896,7 +1955,7 @@ public  final class UsageEvent extends
       java.lang.Object arg0, java.lang.Object arg1) {
     switch (method) {
       case NEW_MUTABLE_INSTANCE: {
-        return new ai.sensorycloud.api.v1.event.UsageEvent();
+        return new ai.sensorycloud.api.v1.event.UsageEventResponse();
       }
       case NEW_BUILDER: {
         return new Builder();
@@ -1911,14 +1970,14 @@ public  final class UsageEvent extends
             "route_",
             "technologies_",
             "models_",
-            "audioDurationMs_",
-            "videoFrameCount_",
+            "billableValue_",
+            "billableUnits_",
             "tenantId_",
             "billableFunction_",
           };
           java.lang.String info =
               "\u0000\f\u0000\u0000\u0001\f\f\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
-              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0002\u000b\u0208\f\f";
+              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0208\u000b\u0208\f\f";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through
@@ -1926,13 +1985,13 @@ public  final class UsageEvent extends
         return DEFAULT_INSTANCE;
       }
       case GET_PARSER: {
-        com.google.protobuf.Parser<ai.sensorycloud.api.v1.event.UsageEvent> parser = PARSER;
+        com.google.protobuf.Parser<ai.sensorycloud.api.v1.event.UsageEventResponse> parser = PARSER;
         if (parser == null) {
-          synchronized (ai.sensorycloud.api.v1.event.UsageEvent.class) {
+          synchronized (ai.sensorycloud.api.v1.event.UsageEventResponse.class) {
             parser = PARSER;
             if (parser == null) {
               parser =
-                  new DefaultInstanceBasedParser<ai.sensorycloud.api.v1.event.UsageEvent>(
+                  new DefaultInstanceBasedParser<ai.sensorycloud.api.v1.event.UsageEventResponse>(
                       DEFAULT_INSTANCE);
               PARSER = parser;
             }
@@ -1951,24 +2010,24 @@ public  final class UsageEvent extends
   }
 
 
-  // @@protoc_insertion_point(class_scope:sensory.api.v1.event.UsageEvent)
-  private static final ai.sensorycloud.api.v1.event.UsageEvent DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:sensory.api.v1.event.UsageEventResponse)
+  private static final ai.sensorycloud.api.v1.event.UsageEventResponse DEFAULT_INSTANCE;
   static {
-    UsageEvent defaultInstance = new UsageEvent();
+    UsageEventResponse defaultInstance = new UsageEventResponse();
     // New instances are implicitly immutable so no need to make
     // immutable.
     DEFAULT_INSTANCE = defaultInstance;
     com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-      UsageEvent.class, defaultInstance);
+      UsageEventResponse.class, defaultInstance);
   }
 
-  public static ai.sensorycloud.api.v1.event.UsageEvent getDefaultInstance() {
+  public static ai.sensorycloud.api.v1.event.UsageEventResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static volatile com.google.protobuf.Parser<UsageEvent> PARSER;
+  private static volatile com.google.protobuf.Parser<UsageEventResponse> PARSER;
 
-  public static com.google.protobuf.Parser<UsageEvent> parser() {
+  public static com.google.protobuf.Parser<UsageEventResponse> parser() {
     return DEFAULT_INSTANCE.getParserForType();
   }
 }

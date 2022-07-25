@@ -1,6 +1,9 @@
 package ai.sensorycloud.service;
 
+import com.google.protobuf.ByteString;
+
 import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
@@ -44,30 +47,25 @@ public class VideoService {
         void onFailure(Throwable t);
     }
 
-    private Config config;
     private TokenManager tokenManager;
     private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new VideoService instance
      *
-     * @param config SDK configuration to use for video calls
      * @param tokenManager Token Manager instance to get OAuth credentials from
      */
-    public VideoService(Config config, TokenManager tokenManager) {
-        this.config = config;
+    public VideoService(TokenManager tokenManager) {
         this.tokenManager = tokenManager;
     }
 
     /**
      * Creates a new VideoService instance
      *
-     * @param config SDK configuration to use for video calls
      * @param tokenManager Token Manager instance to get OAuth credentials from
      * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
      */
-    public VideoService(Config config, TokenManager tokenManager, ManagedChannel managedChannel) {
-        this.config = config;
+    public VideoService(TokenManager tokenManager, ManagedChannel managedChannel) {
         this.tokenManager = tokenManager;
         this.unitTestingManagedChannel = managedChannel;
     }
@@ -119,6 +117,9 @@ public class VideoService {
      * @param livenessThreshold Liveness threshold for the potential liveness check
      * @param numLiveFramesRequired The number of frames that need to pass the liveness check for a successful enrollment (if liveness is enabled)
      *                              A value of 0 means that *all* frames need to pass the liveness check
+     * @param disableServerEnrollmentStorage If true this will prevent the server from storing
+     *                                       enrollment tokens locally and always force it to return
+     *                                       a token upon successful enrollment regardless of server configuration.
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -129,8 +130,10 @@ public class VideoService {
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
             int numLiveFramesRequired,
+            boolean disableServerEnrollmentStorage,
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
+        SDKInitConfig config = Config.getSharedConfig();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
 
         try {
@@ -146,11 +149,12 @@ public class VideoService {
         CreateEnrollmentConfig enrollmentConfig = CreateEnrollmentConfig.newBuilder()
                 .setModelName(modelName)
                 .setUserId(userID)
-                .setDeviceId(config.deviceConfig.deviceId)
+                .setDeviceId(config.deviceID)
                 .setDescription(description)
                 .setIsLivenessEnabled(isLivenessEnabled)
                 .setLivenessThreshold(livenessThreshold)
                 .setNumLivenessFramesRequired(numLiveFramesRequired)
+                .setDisableServerEnrollmentTemplateStorage(disableServerEnrollmentStorage)
                 .build();
         CreateEnrollmentRequest request = CreateEnrollmentRequest.newBuilder().setConfig(enrollmentConfig).build();
         requestObserver.onNext(request);
@@ -166,6 +170,7 @@ public class VideoService {
      * @param enrollmentID Either the enrollment ID or the enrollment group ID to authenticate against
      * @param isLivenessEnabled Determines if a liveness check should be conducted as well as an enrollment
      * @param livenessThreshold Liveness threshold for the potential liveness check
+     * @param enrollmentToken Encrypted enrollment token that was provided on enrollment. If no token was provided, pass in null or an empty array
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -174,6 +179,7 @@ public class VideoService {
             String enrollmentID,
             boolean isLivenessEnabled,
             RecognitionThreshold livenessThreshold,
+            byte[] enrollmentToken,
             StreamObserver<AuthenticateResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         VideoBiometricsGrpc.VideoBiometricsStub videoClient = VideoBiometricsGrpc.newStub(managedChannel);
@@ -199,6 +205,9 @@ public class VideoService {
             case ENROLLMENT_GROUP_ID:
                 authConfigBuilder.setEnrollmentGroupId(enrollmentID);
                 break;
+        }
+        if (enrollmentToken != null && enrollmentToken.length > 0) {
+            authConfigBuilder.setEnrollmentToken(ByteString.copyFrom(enrollmentToken));
         }
 
         AuthenticateConfig authConfig = authConfigBuilder.build();
@@ -250,7 +259,12 @@ public class VideoService {
     private ManagedChannel getManagedChannel() {
         ManagedChannel managedChannel = unitTestingManagedChannel;
         if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+            SDKInitConfig config = Config.getSharedConfig();
+            if (config.isSecure) {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).useTransportSecurity().build();
+            } else {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).usePlaintext().build();
+            }
         }
         return managedChannel;
     }

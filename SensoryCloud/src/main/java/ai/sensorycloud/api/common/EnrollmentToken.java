@@ -62,6 +62,7 @@ public  final class EnrollmentToken extends
   /**
    * <pre>
    * The number of seconds until the enrollment token expires
+   * An expiration of 0 means that the enrollment token never expires
    * </pre>
    *
    * <code>int64 expiration = 2;</code>
@@ -74,6 +75,7 @@ public  final class EnrollmentToken extends
   /**
    * <pre>
    * The number of seconds until the enrollment token expires
+   * An expiration of 0 means that the enrollment token never expires
    * </pre>
    *
    * <code>int64 expiration = 2;</code>
@@ -86,6 +88,7 @@ public  final class EnrollmentToken extends
   /**
    * <pre>
    * The number of seconds until the enrollment token expires
+   * An expiration of 0 means that the enrollment token never expires
    * </pre>
    *
    * <code>int64 expiration = 2;</code>
@@ -237,6 +240,7 @@ public  final class EnrollmentToken extends
     /**
      * <pre>
      * The number of seconds until the enrollment token expires
+     * An expiration of 0 means that the enrollment token never expires
      * </pre>
      *
      * <code>int64 expiration = 2;</code>
@@ -249,6 +253,7 @@ public  final class EnrollmentToken extends
     /**
      * <pre>
      * The number of seconds until the enrollment token expires
+     * An expiration of 0 means that the enrollment token never expires
      * </pre>
      *
      * <code>int64 expiration = 2;</code>
@@ -263,6 +268,7 @@ public  final class EnrollmentToken extends
     /**
      * <pre>
      * The number of seconds until the enrollment token expires
+     * An expiration of 0 means that the enrollment token never expires
      * </pre>
      *
      * <code>int64 expiration = 2;</code>

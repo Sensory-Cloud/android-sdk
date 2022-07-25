@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
 
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.ManagedChannel;
 import io.grpc.Metadata;
 import io.grpc.ServerCall;
@@ -43,10 +44,14 @@ public class OAuthServiceTest extends TestCase {
     final String authToken = "Some-OAuth-Token";
     final String authValue = "Bearer " + authToken;
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final TokenRequest expectedTokenRequest = TokenRequest.newBuilder()
@@ -63,8 +68,8 @@ public class OAuthServiceTest extends TestCase {
 
     final EnrollDeviceRequest expectedEnrollRequest = EnrollDeviceRequest.newBuilder()
             .setName("MockDeviceName")
-            .setDeviceId(mockConfig.deviceConfig.deviceId)
-            .setTenantId(mockConfig.tenantConfig.tenantId)
+            .setDeviceId(mockConfig.deviceID)
+            .setTenantId(mockConfig.tenantID)
             .setCredential("Enrollment-Credential")
             .setClient(GenericClient.newBuilder().setClientId("MockClientID").setSecret("MockClientSecret"))
             .build();
@@ -80,8 +85,8 @@ public class OAuthServiceTest extends TestCase {
             .build();
 
     final RenewDeviceCredentialRequest expectedRenewDeviceRequest = RenewDeviceCredentialRequest.newBuilder()
-            .setDeviceId(mockConfig.deviceConfig.deviceId)
-            .setTenantId(mockConfig.tenantConfig.tenantId)
+            .setDeviceId(mockConfig.deviceID)
+            .setTenantId(mockConfig.tenantID)
             .setClientId("MockClientID")
             .setCredential("Credential")
             .build();
@@ -151,6 +156,9 @@ public class OAuthServiceTest extends TestCase {
     public void setUp() throws Exception {
         responseReceived = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(oauthServiceImpl, mockServerInterceptor))
@@ -161,7 +169,7 @@ public class OAuthServiceTest extends TestCase {
 
         mockCredentialStore = mock(SecureCredentialStore.class);
 
-        oAuthService = new OAuthService(mockConfig, mockCredentialStore, channel);
+        oAuthService = new OAuthService(mockCredentialStore, channel);
     }
 
     public void testGenerateCredentials() {
@@ -217,12 +225,11 @@ public class OAuthServiceTest extends TestCase {
         when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getClientId()));
         when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getSecret()));
 
-        // TODO: fix params
         oAuthService.register(
                 expectedEnrollRequest.getName(),
                 expectedEnrollRequest.getCredential(),
-                "clientID",
-                "clientSecret",
+                expectedEnrollRequest.getClient().getClientId(),
+                expectedEnrollRequest.getClient().getSecret(),
                 new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
@@ -277,5 +284,11 @@ public class OAuthServiceTest extends TestCase {
         );
 
         await().until(() -> responseReceived);
+    }
+}
+
+class MockConfig extends Config {
+    void setConfig(SDKInitConfig config) {
+        Config.sharedConfig = config;
     }
 }

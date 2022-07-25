@@ -47,7 +47,7 @@ public class EnrollmentTokenInteractor {
     /**
      * Retrieves a saved enrollment token from secure storage
      * ExpiredTokenException will be thrown if the enrollment token has expired
-     * @param enrollmentID enrollment ID to get teh enrollment token for
+     * @param enrollmentID enrollment ID to get the enrollment token for
      * @return The saved enrollment token or an empty optional if no token was found
      * @throws Exception thrown if the token is expired or if SecureCredentialStore generates an error
      */

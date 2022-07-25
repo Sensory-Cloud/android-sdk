@@ -1,6 +1,7 @@
 package ai.sensorycloud.service;
 
 import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -30,26 +31,20 @@ public class HealthService {
         void onFailure(Throwable t);
     }
 
-    private Config config;
     private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new HealthService instance
-     *
-     * @param config SDK configuration to use
      */
-    public HealthService(Config config) {
-        this.config = config;
+    public HealthService() {
     }
 
     /**
      * Creates a new HealthService instance
      *
-     * @param config SDK configuration to use
      * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
      */
-    public HealthService(Config config, ManagedChannel managedChannel) {
-        this.config = config;
+    public HealthService(ManagedChannel managedChannel) {
         this.unitTestingManagedChannel = managedChannel;
     }
 
@@ -61,7 +56,12 @@ public class HealthService {
     public void getHealth(GetHealthListener listener) {
         ManagedChannel managedChannel = unitTestingManagedChannel;
         if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+            SDKInitConfig config = Config.getSharedConfig();
+            if (config.isSecure) {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).useTransportSecurity().build();
+            } else {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).usePlaintext().build();
+            }
         }
         HealthServiceGrpc.HealthServiceStub client = HealthServiceGrpc.newStub(managedChannel);
 

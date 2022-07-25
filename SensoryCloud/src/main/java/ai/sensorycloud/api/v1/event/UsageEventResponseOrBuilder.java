@@ -3,8 +3,8 @@
 
 package ai.sensorycloud.api.v1.event;
 
-public interface UsageEventOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:sensory.api.v1.event.UsageEvent)
+public interface UsageEventResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:sensory.api.v1.event.UsageEventResponse)
     com.google.protobuf.MessageLiteOrBuilder {
 
   /**
@@ -207,23 +207,33 @@ public interface UsageEventOrBuilder extends
 
   /**
    * <pre>
-   * The duration audio processed in milliseconds
+   * The value that is billed for this event
    * </pre>
    *
-   * <code>int64 audioDurationMs = 9;</code>
-   * @return The audioDurationMs.
+   * <code>int64 billableValue = 9;</code>
+   * @return The billableValue.
    */
-  long getAudioDurationMs();
+  long getBillableValue();
 
   /**
    * <pre>
-   * The number of video frames processed
+   * The units of this billed event
    * </pre>
    *
-   * <code>int64 videoFrameCount = 10;</code>
-   * @return The videoFrameCount.
+   * <code>string billableUnits = 10;</code>
+   * @return The billableUnits.
    */
-  long getVideoFrameCount();
+  java.lang.String getBillableUnits();
+  /**
+   * <pre>
+   * The units of this billed event
+   * </pre>
+   *
+   * <code>string billableUnits = 10;</code>
+   * @return The bytes for billableUnits.
+   */
+  com.google.protobuf.ByteString
+      getBillableUnitsBytes();
 
   /**
    * <pre>

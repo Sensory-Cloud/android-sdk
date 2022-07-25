@@ -584,6 +584,44 @@ public  final class CreateEnrollmentConfig extends
     numLivenessFramesRequired_ = 0;
   }
 
+  public static final int DISABLESERVERENROLLMENTTEMPLATESTORAGE_FIELD_NUMBER = 10;
+  private boolean disableServerEnrollmentTemplateStorage_;
+  /**
+   * <pre>
+   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+   * </pre>
+   *
+   * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+   * @return The disableServerEnrollmentTemplateStorage.
+   */
+  @java.lang.Override
+  public boolean getDisableServerEnrollmentTemplateStorage() {
+    return disableServerEnrollmentTemplateStorage_;
+  }
+  /**
+   * <pre>
+   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+   * </pre>
+   *
+   * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+   * @param value The disableServerEnrollmentTemplateStorage to set.
+   */
+  private void setDisableServerEnrollmentTemplateStorage(boolean value) {
+    
+    disableServerEnrollmentTemplateStorage_ = value;
+  }
+  /**
+   * <pre>
+   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+   * </pre>
+   *
+   * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+   */
+  private void clearDisableServerEnrollmentTemplateStorage() {
+    
+    disableServerEnrollmentTemplateStorage_ = false;
+  }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentConfig parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1268,6 +1306,46 @@ public  final class CreateEnrollmentConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @return The disableServerEnrollmentTemplateStorage.
+     */
+    @java.lang.Override
+    public boolean getDisableServerEnrollmentTemplateStorage() {
+      return instance.getDisableServerEnrollmentTemplateStorage();
+    }
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @param value The disableServerEnrollmentTemplateStorage to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDisableServerEnrollmentTemplateStorage(boolean value) {
+      copyOnWrite();
+      instance.setDisableServerEnrollmentTemplateStorage(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDisableServerEnrollmentTemplateStorage() {
+      copyOnWrite();
+      instance.clearDisableServerEnrollmentTemplateStorage();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.video.CreateEnrollmentConfig)
   }
   @java.lang.Override
@@ -1293,10 +1371,11 @@ public  final class CreateEnrollmentConfig extends
             "compression_",
             "referenceId_",
             "numLivenessFramesRequired_",
+            "disableServerEnrollmentTemplateStorage_",
           };
           java.lang.String info =
-              "\u0000\t\u0000\u0000\u0001\t\t\u0000\u0000\u0000\u0001\u0208\u0002\u0208\u0003\u0208" +
-              "\u0004\u0208\u0005\u0007\u0006\f\u0007\t\b\u0208\t\u0004";
+              "\u0000\n\u0000\u0000\u0001\n\n\u0000\u0000\u0000\u0001\u0208\u0002\u0208\u0003\u0208" +
+              "\u0004\u0208\u0005\u0007\u0006\f\u0007\t\b\u0208\t\u0004\n\u0007";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through
