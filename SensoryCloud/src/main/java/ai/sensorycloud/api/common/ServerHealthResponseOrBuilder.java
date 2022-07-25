@@ -101,4 +101,10 @@ public interface ServerHealthResponseOrBuilder extends
    * @return The serverType.
    */
   ai.sensorycloud.api.common.ServerType getServerType();
+
+  /**
+   * <code>bool isLeader = 6;</code>
+   * @return The isLeader.
+   */
+  boolean getIsLeader();
 }

@@ -219,6 +219,44 @@ public  final class UsageEventModelSummary extends
     count_ = 0L;
   }
 
+  public static final int CREDITS_FIELD_NUMBER = 5;
+  private double credits_;
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 5;</code>
+   * @return The credits.
+   */
+  @java.lang.Override
+  public double getCredits() {
+    return credits_;
+  }
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 5;</code>
+   * @param value The credits to set.
+   */
+  private void setCredits(double value) {
+    
+    credits_ = value;
+  }
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 5;</code>
+   */
+  private void clearCredits() {
+    
+    credits_ = 0D;
+  }
+
   public static ai.sensorycloud.api.v1.event.UsageEventModelSummary parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -529,6 +567,46 @@ public  final class UsageEventModelSummary extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @return The credits.
+     */
+    @java.lang.Override
+    public double getCredits() {
+      return instance.getCredits();
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @param value The credits to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCredits(double value) {
+      copyOnWrite();
+      instance.setCredits(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCredits() {
+      copyOnWrite();
+      instance.clearCredits();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEventModelSummary)
   }
   @java.lang.Override
@@ -549,10 +627,11 @@ public  final class UsageEventModelSummary extends
             "units_",
             "value_",
             "count_",
+            "credits_",
           };
           java.lang.String info =
-              "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\f\u0002\u0208" +
-              "\u0003\u0002\u0004\u0002";
+              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\f\u0002\u0208" +
+              "\u0003\u0002\u0004\u0002\u0005\u0000";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

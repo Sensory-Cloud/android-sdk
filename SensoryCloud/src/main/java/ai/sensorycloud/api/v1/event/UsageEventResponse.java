@@ -929,6 +929,44 @@ public  final class UsageEventResponse extends
     billableFunction_ = 0;
   }
 
+  public static final int CREDITS_FIELD_NUMBER = 13;
+  private double credits_;
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 13;</code>
+   * @return The credits.
+   */
+  @java.lang.Override
+  public double getCredits() {
+    return credits_;
+  }
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 13;</code>
+   * @param value The credits to set.
+   */
+  private void setCredits(double value) {
+    
+    credits_ = value;
+  }
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 13;</code>
+   */
+  private void clearCredits() {
+    
+    credits_ = 0D;
+  }
+
   public static ai.sensorycloud.api.v1.event.UsageEventResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1946,6 +1984,46 @@ public  final class UsageEventResponse extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @return The credits.
+     */
+    @java.lang.Override
+    public double getCredits() {
+      return instance.getCredits();
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @param value The credits to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCredits(double value) {
+      copyOnWrite();
+      instance.setCredits(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCredits() {
+      copyOnWrite();
+      instance.clearCredits();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEventResponse)
   }
   @java.lang.Override
@@ -1974,10 +2052,12 @@ public  final class UsageEventResponse extends
             "billableUnits_",
             "tenantId_",
             "billableFunction_",
+            "credits_",
           };
           java.lang.String info =
-              "\u0000\f\u0000\u0000\u0001\f\f\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
-              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0208\u000b\u0208\f\f";
+              "\u0000\r\u0000\u0000\u0001\r\r\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
+              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0208\u000b\u0208\f\f\r" +
+              "\u0000";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

@@ -530,44 +530,6 @@ public  final class CreateEnrollmentEventConfig extends
     
   }
 
-  public static final int DISABLESERVERENROLLMENTTEMPLATESTORAGE_FIELD_NUMBER = 8;
-  private boolean disableServerEnrollmentTemplateStorage_;
-  /**
-   * <pre>
-   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-   * </pre>
-   *
-   * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-   * @return The disableServerEnrollmentTemplateStorage.
-   */
-  @java.lang.Override
-  public boolean getDisableServerEnrollmentTemplateStorage() {
-    return disableServerEnrollmentTemplateStorage_;
-  }
-  /**
-   * <pre>
-   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-   * </pre>
-   *
-   * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-   * @param value The disableServerEnrollmentTemplateStorage to set.
-   */
-  private void setDisableServerEnrollmentTemplateStorage(boolean value) {
-    
-    disableServerEnrollmentTemplateStorage_ = value;
-  }
-  /**
-   * <pre>
-   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-   * </pre>
-   *
-   * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-   */
-  private void clearDisableServerEnrollmentTemplateStorage() {
-    
-    disableServerEnrollmentTemplateStorage_ = false;
-  }
-
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1155,46 +1117,6 @@ public  final class CreateEnrollmentEventConfig extends
       return this;
     }
 
-    /**
-     * <pre>
-     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-     * </pre>
-     *
-     * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-     * @return The disableServerEnrollmentTemplateStorage.
-     */
-    @java.lang.Override
-    public boolean getDisableServerEnrollmentTemplateStorage() {
-      return instance.getDisableServerEnrollmentTemplateStorage();
-    }
-    /**
-     * <pre>
-     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-     * </pre>
-     *
-     * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-     * @param value The disableServerEnrollmentTemplateStorage to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDisableServerEnrollmentTemplateStorage(boolean value) {
-      copyOnWrite();
-      instance.setDisableServerEnrollmentTemplateStorage(value);
-      return this;
-    }
-    /**
-     * <pre>
-     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-     * </pre>
-     *
-     * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDisableServerEnrollmentTemplateStorage() {
-      copyOnWrite();
-      instance.clearDisableServerEnrollmentTemplateStorage();
-      return this;
-    }
-
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.CreateEnrollmentEventConfig)
   }
   @java.lang.Override
@@ -1218,11 +1140,10 @@ public  final class CreateEnrollmentEventConfig extends
             "modelName_",
             "description_",
             "referenceId_",
-            "disableServerEnrollmentTemplateStorage_",
           };
           java.lang.String info =
-              "\u0000\b\u0001\u0000\u0001\b\b\u0000\u0000\u0000\u0001\t\u0002\u0208\u0003\u0208" +
-              "\u0004\u0208\u0005>\u0000\u00064\u0000\u0007\u0208\b\u0007";
+              "\u0000\u0007\u0001\u0000\u0001\u0007\u0007\u0000\u0000\u0000\u0001\t\u0002\u0208" +
+              "\u0003\u0208\u0004\u0208\u0005>\u0000\u00064\u0000\u0007\u0208";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

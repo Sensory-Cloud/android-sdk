@@ -273,4 +273,14 @@ public interface UsageEventResponseOrBuilder extends
    * @return The billableFunction.
    */
   ai.sensorycloud.api.common.ModelType getBillableFunction();
+
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 13;</code>
+   * @return The credits.
+   */
+  double getCredits();
 }

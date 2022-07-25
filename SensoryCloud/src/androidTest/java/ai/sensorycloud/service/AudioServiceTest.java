@@ -507,7 +507,6 @@ public class AudioServiceTest extends TestCase {
                 expectedEnrollEventRequest.getConfig().getUserId(),
                 "",
                 expectedEnrollEventRequest.getConfig().getDescription(),
-                false,
                 new StreamObserver<CreateEnrollmentResponse>() {
                     @Override
                     public void onNext(CreateEnrollmentResponse value) {

@@ -301,9 +301,6 @@ public class AudioService {
      * @param userID Unique user identifier
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
      * @param description User supplied description of the enrollment
-     * @param disableServerEnrollmentStorage If true this will prevent the server from storing
-     *                                       enrollment tokens locally and always force it to return
-     *                                       a token upon successful enrollment regardless of server configuration.
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -312,7 +309,6 @@ public class AudioService {
             String userID,
             String languageCode,
             String description,
-            boolean disableServerEnrollmentStorage,
             StreamObserver<CreateEnrollmentResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         AudioEventsGrpc.AudioEventsStub audioClient = AudioEventsGrpc.newStub(managedChannel);
@@ -333,7 +329,6 @@ public class AudioService {
                 .setModelName(modelName)
                 .setUserId(userID)
                 .setDescription(description)
-                .setDisableServerEnrollmentTemplateStorage(disableServerEnrollmentStorage)
                 .build();
         CreateEnrolledEventRequest enrollmentRequest = CreateEnrolledEventRequest.newBuilder()
                 .setConfig(enrollmentConfig)

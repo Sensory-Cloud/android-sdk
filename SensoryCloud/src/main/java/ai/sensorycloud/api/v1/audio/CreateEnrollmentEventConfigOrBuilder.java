@@ -156,15 +156,5 @@ public interface CreateEnrollmentEventConfigOrBuilder extends
   com.google.protobuf.ByteString
       getReferenceIdBytes();
 
-  /**
-   * <pre>
-   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
-   * </pre>
-   *
-   * <code>bool disableServerEnrollmentTemplateStorage = 8;</code>
-   * @return The disableServerEnrollmentTemplateStorage.
-   */
-  boolean getDisableServerEnrollmentTemplateStorage();
-
   public ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig.EnrollLengthCase getEnrollLengthCase();
 }

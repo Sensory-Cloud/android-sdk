@@ -65,4 +65,14 @@ public interface UsageEventModelSummaryOrBuilder extends
    * @return The count.
    */
   long getCount();
+
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 5;</code>
+   * @return The credits.
+   */
+  double getCredits();
 }
