@@ -375,7 +375,7 @@ StreamObserver<ValidateEventRequest> requestObserver = audioService.validateTrig
 requestObserver.onCompleted();
 ```
 
-### Transcription
+### Transcription (Sliding Window Transcript)
 
 Transcription is used to convert audio into text.
 
@@ -394,8 +394,53 @@ StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio
                 // Response contains information about the audio such as:
                 // * audioEnergy
 
-                // Transcript contains the current running transcript of the data
+                // Transcript contains the current running transcript of the last 7 seconds of processed audio
+                // If you want a full transcript, see the below example
                 String transcript = value.getTranscript();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // Handle server error
+            }
+
+            @Override
+            public void onCompleted() {
+                // Handle grpc stream close
+            }
+        }
+);
+
+// Start Audio Recording
+// See audio enrollment example for details
+
+// The SDK implementer can decide when they want to close the audio stream by calling
+requestObserver.onCompleted();
+```
+
+### Transcription (Full Transcript)
+
+Transcription is used to convert audio into text.
+
+```Java
+String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
+String modelName = "wakeword-16kHz-open_sesame.ubm";
+TranscriptAggregator aggregator = new TranscriptAggregator();
+
+// Open the grpc stream
+StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio(
+        modelName,
+        userId,
+        "",
+        new StreamObserver<TranscribeResponse>() {
+            @Override
+            public void onNext(TranscribeResponse value) {
+                // Response contains information about the audio such as:
+                // * audioEnergy
+
+                // The transcript aggregator will collect all of the server responses and save a full transcript
+                aggregator.processResponse(value.getWordList());
+                String transcript = aggregator.getTranscript();
             }
 
             @Override
