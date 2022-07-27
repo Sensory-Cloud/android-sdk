@@ -392,6 +392,32 @@ public  final class ServerHealthResponse extends
     serverType_ = 0;
   }
 
+  public static final int ISLEADER_FIELD_NUMBER = 6;
+  private boolean isLeader_;
+  /**
+   * <code>bool isLeader = 6;</code>
+   * @return The isLeader.
+   */
+  @java.lang.Override
+  public boolean getIsLeader() {
+    return isLeader_;
+  }
+  /**
+   * <code>bool isLeader = 6;</code>
+   * @param value The isLeader to set.
+   */
+  private void setIsLeader(boolean value) {
+    
+    isLeader_ = value;
+  }
+  /**
+   * <code>bool isLeader = 6;</code>
+   */
+  private void clearIsLeader() {
+    
+    isLeader_ = false;
+  }
+
   public static ai.sensorycloud.api.common.ServerHealthResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -885,6 +911,34 @@ public  final class ServerHealthResponse extends
       return this;
     }
 
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @return The isLeader.
+     */
+    @java.lang.Override
+    public boolean getIsLeader() {
+      return instance.getIsLeader();
+    }
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @param value The isLeader to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsLeader(boolean value) {
+      copyOnWrite();
+      instance.setIsLeader(value);
+      return this;
+    }
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsLeader() {
+      copyOnWrite();
+      instance.clearIsLeader();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.common.ServerHealthResponse)
   }
   @java.lang.Override
@@ -907,10 +961,11 @@ public  final class ServerHealthResponse extends
             "services_",
             ai.sensorycloud.api.common.ServiceHealth.class,
             "serverType_",
+            "isLeader_",
           };
           java.lang.String info =
-              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0001\u0000\u0001\u0007\u0002\u0208" +
-              "\u0003\u0208\u0004\u001b\u0005\f";
+              "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0001\u0000\u0001\u0007\u0002\u0208" +
+              "\u0003\u0208\u0004\u001b\u0005\f\u0006\u0007";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

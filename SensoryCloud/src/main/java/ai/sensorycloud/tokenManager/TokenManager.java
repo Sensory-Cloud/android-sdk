@@ -1,35 +1,32 @@
 package ai.sensorycloud.tokenManager;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import ai.sensorycloud.api.common.TokenResponse;
 import ai.sensorycloud.service.OAuthService;
 import io.grpc.ClientInterceptor;
 import io.grpc.Metadata;
 import io.grpc.stub.MetadataUtils;
-import ai.sensorycloud.api.common.TokenResponse;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * A token manager that manages storing and fetching OAuth tokens for Sensory Cloud
  */
 public class TokenManager {
 
-    private final String prefsName = "SensoryCloud";
-    private final String accessTokenKey = "accessToken";
-    private final String expirationKey = "tokenExpiration";
+    protected String token = "";
+    protected Long expires = 0L;
+
     private final long expirationBuffer = 5 * 60 * 1000; // 5 minutes in ms
 
-    private Context context;
     private OAuthService oAuthService;
+    private ReentrantLock tokenMutex = new ReentrantLock();
 
     /**
      * Creates a new Token Manager instance
      *
-     * @param context Application context, used for caching the current OAuth token
      * @param oAuthService OAuth service for fetching new OAuth tokens from
      */
-    public TokenManager(Context context, OAuthService oAuthService) {
-        this.context = context;
+    public TokenManager(OAuthService oAuthService) {
         this.oAuthService = oAuthService;
     }
 
@@ -41,15 +38,19 @@ public class TokenManager {
      * @Throws Exception – if an error occurs while requesting a new token
      */
     public String getAccessToken() throws Exception {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        String accessToken = prefs.getString(accessTokenKey, "");
-        long expiration = prefs.getLong(expirationKey, 0);
+        tokenMutex.lock();
         long now = System.currentTimeMillis();
-        if (accessToken.equals("") || now > expiration - expirationBuffer) {
-            return fetchNewAccessToken();
-        } else {
-            return accessToken;
+        if (token.equals("") || now > expires - expirationBuffer) {
+            try {
+                token = fetchNewAccessToken();
+            } catch (Exception ex) {
+                tokenMutex.unlock();
+                throw  ex;
+            }
         }
+
+        tokenMutex.unlock();
+        return token;
     }
 
     /**
@@ -71,20 +72,22 @@ public class TokenManager {
      * Deletes the currently cached OAuth token
      */
     public void deleteCachedToken() {
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.remove(accessTokenKey);
-        editor.remove(expirationKey);
-        editor.apply();
+        this.token = "";
+        this.expires = 0L;
     }
 
     private String fetchNewAccessToken() throws Exception {
         TokenResponse response = oAuthService.getTokenSync();
-        SharedPreferences prefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(accessTokenKey, response.getAccessToken());
-        editor.putLong(expirationKey, System.currentTimeMillis() + (response.getExpiresIn() * 1000L));
-        editor.apply();
+        this.token = response.getAccessToken();
+        this.expires = System.currentTimeMillis() + (response.getExpiresIn() * 1000L);
         return response.getAccessToken();
+    }
+
+    protected void setToken(String token) {
+        this.token = token;
+    }
+
+    protected void setExpires(Long expires) {
+        this.expires = expires;
     }
 }

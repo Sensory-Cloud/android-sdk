@@ -125,5 +125,16 @@ public interface AuthenticateConfigOrBuilder extends
    */
   boolean getDoIncludeToken();
 
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 7;</code>
+   * @return The enrollmentToken.
+   */
+  com.google.protobuf.ByteString getEnrollmentToken();
+
   public ai.sensorycloud.api.v1.video.AuthenticateConfig.AuthIdCase getAuthIdCase();
 }

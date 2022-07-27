@@ -173,4 +173,14 @@ public interface CreateEnrollmentConfigOrBuilder extends
    * @return The numLivenessFramesRequired.
    */
   int getNumLivenessFramesRequired();
+
+  /**
+   * <pre>
+   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+   * </pre>
+   *
+   * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+   * @return The disableServerEnrollmentTemplateStorage.
+   */
+  boolean getDisableServerEnrollmentTemplateStorage();
 }

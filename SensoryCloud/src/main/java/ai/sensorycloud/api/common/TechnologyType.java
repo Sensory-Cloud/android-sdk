@@ -52,6 +52,14 @@ public enum TechnologyType
    * <code>STT = 4;</code>
    */
   STT(4),
+  /**
+   * <pre>
+   * Text to Speech, a voice synthesis tool
+   * </pre>
+   *
+   * <code>TTS = 5;</code>
+   */
+  TTS(5),
   UNRECOGNIZED(-1),
   ;
 
@@ -95,6 +103,14 @@ public enum TechnologyType
    * <code>STT = 4;</code>
    */
   public static final int STT_VALUE = 4;
+  /**
+   * <pre>
+   * Text to Speech, a voice synthesis tool
+   * </pre>
+   *
+   * <code>TTS = 5;</code>
+   */
+  public static final int TTS_VALUE = 5;
 
 
   @java.lang.Override
@@ -123,6 +139,7 @@ public enum TechnologyType
       case 2: return TS;
       case 3: return TNL;
       case 4: return STT;
+      case 5: return TTS;
       default: return null;
     }
   }

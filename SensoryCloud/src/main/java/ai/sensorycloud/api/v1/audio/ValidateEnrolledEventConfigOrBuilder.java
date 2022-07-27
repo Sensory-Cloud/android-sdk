@@ -105,5 +105,16 @@ public interface ValidateEnrolledEventConfigOrBuilder extends
    */
   ai.sensorycloud.api.v1.audio.ThresholdSensitivity getSensitivity();
 
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 5;</code>
+   * @return The enrollmentToken.
+   */
+  com.google.protobuf.ByteString getEnrollmentToken();
+
   public ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig.AuthIdCase getAuthIdCase();
 }

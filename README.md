@@ -75,50 +75,57 @@ try {
 }
 ```
 
-## Registering OAuth Credentials
+## SDK Initialization
 
-OAuth credentials should be registered once per device. Registration is simple and provided as part of the SDK. The below example shows how to create an `OAuthService` and register a client for the first time.
+The SDK must be explicitly initialized every time the app is launched. This initialization sets up internal configurations and will also enroll the device into the Sensory Cloud server if the device has not been previously enrolled. SDK initialization is completed by calling `Initializer.initialize(...)`. There are two versions of this function. One that takes in an explicit configuration object, and one that takes in a file input stream to a config file. The following configurations are set during initialization:
+ - fullyQualifiedDomainName: This is the fqdn of the Sensory Cloud server to communicate with
+ - tenantID: The unique identifier (UUID) for your Sensory Cloud tenant
+ - enrollmentType: The amount of security required for device enrollment. This should be one of `none`, `sharedSecret` or `jwt`. If the device has already been enrolled during a previous app session, this field is ignored
+ - credential: The credential required for device enrollment, the value depends on the enrollment type:
+    - `none` enrollmentType: credential should be an empty string
+    - `sharedSecret` enrollmentType: credential should be the shared secret (password)
+    - `jwt` enrollmentType: credential should be a hex string of the enrollment private key
 
-```Java
-String friendlyDeviceName = "My Android Device";
-
-// Get config from a central source
-Config config = getConfig();
-
-// Initialize the credential store
+    If the device has already been enrolled during a previous app session, this field is ignored
+ - deviceID: A unique device identifier (UUID)
+ - deviceName: The friendly name of the device
+ 
+ The Android SDK accepts config files in the `ini` format. Example config files can be found under `SensoryCloud/src/androidTest/resources/`. The below example shows how to initialize the SDK from a config file
+ 
+ ```Java
+ // Initialize a credential store and OAuth service
 DefaultSecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "default");
-
-// Generate and save the OAuth credentials
-OAuthService oAuthService = new OAuthService(config, credentialStore);
-OAuthService.OAuthClient clientCredentials = oAuthService.generateCredentials();
-credentialStore.setCredentials(clientCredentials.clientId, clientCredentials.clientSecret);
-
-// Authorization credential as configured on your instance of Sensory Cloud
-String sharedSecret = "password";
-
-oAuthService.register(friendlyDeviceName, sharedSecret, new OAuthService.EnrollDeviceListener() {
-    @Override
-    public void onSuccess(DeviceResponse response) {
-        // Successfully registered
+OAuthService oAuthService = new OAuthService(credentialStore);
+ 
+ InputStream fileStream = this.getClass().getClassLoader().getResourceAsStream("SensoryCloudConfig.ini");
+ Initializer.initialize(
+    oauthService,
+    null, // JWT signer class, only used when enrollmentType is `jwt`
+    fileStream,
+    "", // Optional override for deviceID, useful when sharing config files across multiple devices
+    "", // Optional override for deviceName, useful when sharing config files across multiple devices
+    new OAuthService.EnrollDeviceListener() {
+        @Override
+        public void onSuccess(DeviceResponse response) {
+            // SDK has been successfully initialized and the device has been enrolled
+            // `response` may be null if the device has previously been enrolled
+        }
+        
+        @Override
+        public void onFailure(Throwable t) {
+            // Handle error during SDK initialization
+        }
     }
-
-    @Override
-    public void onFailure(Throwable t) {
-        // Handle server error
-    }
-});
-```
+ );
+ ```
 
 ## Creating a Token Manager
 
-The `TokenManager` class handles refreshing OAuth tokens as they expire.
+The `TokenManager` class handles refreshing OAuth tokens as they expire. This will be passed into other services that require authorization to access
 
 ```Java
-// Get config from a central source
-Config config = getConfig();
-
 SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "default");
-OAuthService oAuthService = new OAuthService(config, credentialStore);
+OAuthService oAuthService = new OAuthService(credentialStore);
 TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
 
 String OAuthToken = tokenManager.getAccessToken();
@@ -129,19 +136,9 @@ String OAuthToken = tokenManager.getAccessToken();
 It's important to check the health of you Sensory Inference server. You can do so via the following:
 
 ```Java
-// Tenant ID granted by Sensory Inc.
-String tenantID = "f6580f3b-dcaf-465b-867e-59fbbb0ab3fc";
-// Globally Unique device ID generated by you.
-String deviceID = "337ed9ac-4c0f-4cd2-9ecc-51f712e53e92";
+// First ensure the SDK has been initialized
 
-// Configuration specific to your tenant
-Config config = new Config(
-        new Config.CloudConfig("https://your-inference-server.com"),
-        new Config.TenantConfig(tenantID),
-        new Config.DeviceConfig(deviceID, "en-US")
-);
-
-HealthService healthService = new HealthService(config);
+HealthService healthService = new HealthService();
 healthService.getHealth(new HealthService.GetHealthListener() {
     @Override
     public void onSuccess(ServerHealthResponse response) {
@@ -159,10 +156,10 @@ healthService.getHealth(new HealthService.GetHealthListener() {
 
 ### Creating an Audio Service
 
-`AudioService` provides methods to stream audio to Sensory Cloud. It is recommended to only have 1 instance of `AudioService` per `Config`. In most circumstances you will only ever have one `Config`, unless you app communicates with multiple Sensory Cloud servers.
+`AudioService` provides methods to stream audio to Sensory Cloud. It is recommended to only have 1 instance of `AudioService`.
 
 ```Java
-AudioService audioService = new AudioService(config, tokenManager);
+AudioService audioService = new AudioService(tokenManager);
 ```
 
 ### Creating an Audio Stream Interactor
@@ -375,7 +372,7 @@ StreamObserver<ValidateEventRequest> requestObserver = audioService.validateTrig
 requestObserver.onCompleted();
 ```
 
-### Transcription
+### Transcription (Sliding Window Transcript)
 
 Transcription is used to convert audio into text.
 
@@ -394,8 +391,53 @@ StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio
                 // Response contains information about the audio such as:
                 // * audioEnergy
 
-                // Transcript contains the current running transcript of the data
+                // Transcript contains the current running transcript of the last 7 seconds of processed audio
+                // If you want a full transcript, see the below example
                 String transcript = value.getTranscript();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // Handle server error
+            }
+
+            @Override
+            public void onCompleted() {
+                // Handle grpc stream close
+            }
+        }
+);
+
+// Start Audio Recording
+// See audio enrollment example for details
+
+// The SDK implementer can decide when they want to close the audio stream by calling
+requestObserver.onCompleted();
+```
+
+### Transcription (Full Transcript)
+
+Transcription is used to convert audio into text.
+
+```Java
+String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
+String modelName = "wakeword-16kHz-open_sesame.ubm";
+TranscriptAggregator aggregator = new TranscriptAggregator();
+
+// Open the grpc stream
+StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio(
+        modelName,
+        userId,
+        "",
+        new StreamObserver<TranscribeResponse>() {
+            @Override
+            public void onNext(TranscribeResponse value) {
+                // Response contains information about the audio such as:
+                // * audioEnergy
+
+                // The transcript aggregator will collect all of the server responses and save a full transcript
+                aggregator.processResponse(value.getWordList());
+                String transcript = aggregator.getTranscript();
             }
 
             @Override
@@ -421,10 +463,10 @@ requestObserver.onCompleted();
 
 ### Creating a Video Service
 
-`VideoService` provides methods to stream images to Sensory Cloud. It is recommended to only have 1 instance of `VideoService` instantiated per `Config`. In most circumstances you will only ever have one `Config`, unless your app communicates with multiple Sensory Cloud servers.
+`VideoService` provides methods to stream images to Sensory Cloud. It is recommended to only have 1 instance of `VideoService`.
 
 ```Java
-VideoService videoService = new VideoService(config, tokenManager);
+VideoService videoService = new VideoService(tokenManager);
 ```
 
 ### Creating a Video Stream Interactor
@@ -664,5 +706,5 @@ videoStreamInteractor.takeImageCapture();
 The `ManagementService` is used to manage typical CRUD operations with Sensory Cloud, such as deleting enrollments or creating enrollment groups. For more information on the specific functions of the `ManagementService`, please refer to the ManagementService file located in the services folder.
 
 ```Java
-ManagementService managementService = new ManagementService(config, tokenManager);
+ManagementService managementService = new ManagementService(tokenManager);
 ```

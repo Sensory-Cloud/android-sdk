@@ -15,12 +15,12 @@ public enum ModelType
     implements com.google.protobuf.Internal.EnumLite {
   /**
    * <pre>
-   * Voice Auth Text Dependent (Enrollable)
+   * Unknown Model Type
    * </pre>
    *
-   * <code>VOICE_BIOMETRIC_TEXT_DEPENDENT = 0;</code>
+   * <code>UNKNOWN = 0;</code>
    */
-  VOICE_BIOMETRIC_TEXT_DEPENDENT(0),
+  UNKNOWN(0),
   /**
    * <pre>
    * Voice Auth Text Independent (Enrollable)
@@ -87,6 +87,22 @@ public enum ModelType
   VOICE_BIOMETRIC_LIVENESS_DIGIT(8),
   /**
    * <pre>
+   * Voice Auth Text Dependent (Enrollable)
+   * </pre>
+   *
+   * <code>VOICE_BIOMETRIC_TEXT_DEPENDENT = 9;</code>
+   */
+  VOICE_BIOMETRIC_TEXT_DEPENDENT(9),
+  /**
+   * <pre>
+   * Voice Synthesis
+   * </pre>
+   *
+   * <code>VOICE_SYNTHESIS = 10;</code>
+   */
+  VOICE_SYNTHESIS(10),
+  /**
+   * <pre>
    * Sound Event Auth (Enrollable)
    * </pre>
    *
@@ -149,25 +165,17 @@ public enum ModelType
    * <code>IMAGE_TRANSFORM = 204;</code>
    */
   IMAGE_TRANSFORM(204),
-  /**
-   * <pre>
-   * Unknown Model Type
-   * </pre>
-   *
-   * <code>UNKNOWN = 1000;</code>
-   */
-  UNKNOWN(1000),
   UNRECOGNIZED(-1),
   ;
 
   /**
    * <pre>
-   * Voice Auth Text Dependent (Enrollable)
+   * Unknown Model Type
    * </pre>
    *
-   * <code>VOICE_BIOMETRIC_TEXT_DEPENDENT = 0;</code>
+   * <code>UNKNOWN = 0;</code>
    */
-  public static final int VOICE_BIOMETRIC_TEXT_DEPENDENT_VALUE = 0;
+  public static final int UNKNOWN_VALUE = 0;
   /**
    * <pre>
    * Voice Auth Text Independent (Enrollable)
@@ -234,6 +242,22 @@ public enum ModelType
   public static final int VOICE_BIOMETRIC_LIVENESS_DIGIT_VALUE = 8;
   /**
    * <pre>
+   * Voice Auth Text Dependent (Enrollable)
+   * </pre>
+   *
+   * <code>VOICE_BIOMETRIC_TEXT_DEPENDENT = 9;</code>
+   */
+  public static final int VOICE_BIOMETRIC_TEXT_DEPENDENT_VALUE = 9;
+  /**
+   * <pre>
+   * Voice Synthesis
+   * </pre>
+   *
+   * <code>VOICE_SYNTHESIS = 10;</code>
+   */
+  public static final int VOICE_SYNTHESIS_VALUE = 10;
+  /**
+   * <pre>
    * Sound Event Auth (Enrollable)
    * </pre>
    *
@@ -296,14 +320,6 @@ public enum ModelType
    * <code>IMAGE_TRANSFORM = 204;</code>
    */
   public static final int IMAGE_TRANSFORM_VALUE = 204;
-  /**
-   * <pre>
-   * Unknown Model Type
-   * </pre>
-   *
-   * <code>UNKNOWN = 1000;</code>
-   */
-  public static final int UNKNOWN_VALUE = 1000;
 
 
   @java.lang.Override
@@ -327,7 +343,7 @@ public enum ModelType
 
   public static ModelType forNumber(int value) {
     switch (value) {
-      case 0: return VOICE_BIOMETRIC_TEXT_DEPENDENT;
+      case 0: return UNKNOWN;
       case 1: return VOICE_BIOMETRIC_TEXT_INDEPENDENT;
       case 2: return VOICE_BIOMETRIC_WAKEWORD;
       case 3: return VOICE_EVENT_WAKEWORD;
@@ -336,6 +352,8 @@ public enum ModelType
       case 6: return VOICE_RECOGNITION_ACTIVITY_DETECTION;
       case 7: return VOICE_FEATURE_EXTRACTOR;
       case 8: return VOICE_BIOMETRIC_LIVENESS_DIGIT;
+      case 9: return VOICE_BIOMETRIC_TEXT_DEPENDENT;
+      case 10: return VOICE_SYNTHESIS;
       case 100: return SOUND_EVENT_ENROLLABLE;
       case 101: return SOUND_EVENT_REVALIDATION;
       case 102: return SOUND_EVENT_FIXED;
@@ -344,7 +362,6 @@ public enum ModelType
       case 202: return FACE_RECOGNITION;
       case 203: return OBJECT_RECOGNITION;
       case 204: return IMAGE_TRANSFORM;
-      case 1000: return UNKNOWN;
       default: return null;
     }
   }

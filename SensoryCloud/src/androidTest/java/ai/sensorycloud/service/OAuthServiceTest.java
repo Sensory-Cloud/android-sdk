@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
 
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.ManagedChannel;
 import io.grpc.Metadata;
 import io.grpc.ServerCall;
@@ -25,7 +26,7 @@ import ai.sensorycloud.api.v1.management.DeviceResponse;
 import ai.sensorycloud.api.v1.management.DeviceServiceGrpc;
 import ai.sensorycloud.api.v1.management.EnrollDeviceRequest;
 import ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 
 import static org.mockito.Mockito.*;
@@ -33,6 +34,7 @@ import static org.mockito.AdditionalAnswers.delegatesTo;
 import static org.awaitility.Awaitility.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -42,10 +44,14 @@ public class OAuthServiceTest extends TestCase {
     final String authToken = "Some-OAuth-Token";
     final String authValue = "Bearer " + authToken;
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final TokenRequest expectedTokenRequest = TokenRequest.newBuilder()
@@ -62,8 +68,8 @@ public class OAuthServiceTest extends TestCase {
 
     final EnrollDeviceRequest expectedEnrollRequest = EnrollDeviceRequest.newBuilder()
             .setName("MockDeviceName")
-            .setDeviceId(mockConfig.deviceConfig.deviceId)
-            .setTenantId(mockConfig.tenantConfig.tenantId)
+            .setDeviceId(mockConfig.deviceID)
+            .setTenantId(mockConfig.tenantID)
             .setCredential("Enrollment-Credential")
             .setClient(GenericClient.newBuilder().setClientId("MockClientID").setSecret("MockClientSecret"))
             .build();
@@ -79,8 +85,8 @@ public class OAuthServiceTest extends TestCase {
             .build();
 
     final RenewDeviceCredentialRequest expectedRenewDeviceRequest = RenewDeviceCredentialRequest.newBuilder()
-            .setDeviceId(mockConfig.deviceConfig.deviceId)
-            .setTenantId(mockConfig.tenantConfig.tenantId)
+            .setDeviceId(mockConfig.deviceID)
+            .setTenantId(mockConfig.tenantID)
             .setClientId("MockClientID")
             .setCredential("Credential")
             .build();
@@ -150,6 +156,9 @@ public class OAuthServiceTest extends TestCase {
     public void setUp() throws Exception {
         responseReceived = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(oauthServiceImpl, mockServerInterceptor))
@@ -160,7 +169,7 @@ public class OAuthServiceTest extends TestCase {
 
         mockCredentialStore = mock(SecureCredentialStore.class);
 
-        oAuthService = new OAuthService(mockConfig, mockCredentialStore, channel);
+        oAuthService = new OAuthService(mockCredentialStore, channel);
     }
 
     public void testGenerateCredentials() {
@@ -184,8 +193,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetTokenSync() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         TokenResponse response = oAuthService.getTokenSync();
 
@@ -193,8 +202,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetToken() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         oAuthService.getToken(new OAuthService.GetTokenListener() {
             @Override
@@ -213,12 +222,14 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testRegister() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedEnrollRequest.getClient().getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedEnrollRequest.getClient().getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedEnrollRequest.getClient().getSecret()));
 
         oAuthService.register(
                 expectedEnrollRequest.getName(),
                 expectedEnrollRequest.getCredential(),
+                expectedEnrollRequest.getClient().getClientId(),
+                expectedEnrollRequest.getClient().getSecret(),
                 new OAuthService.EnrollDeviceListener() {
             @Override
             public void onSuccess(DeviceResponse response) {
@@ -236,8 +247,8 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testGetWhoAmI() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedTokenRequest.getClientId());
-        when(mockCredentialStore.getClientSecret()).thenReturn(expectedTokenRequest.getSecret());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedTokenRequest.getClientId()));
+        when(mockCredentialStore.getClientSecret()).thenReturn(Optional.of(expectedTokenRequest.getSecret()));
 
         oAuthService.getWhoAmI(new OAuthService.GetWhoAmIListener() {
             @Override
@@ -256,7 +267,7 @@ public class OAuthServiceTest extends TestCase {
     }
 
     public void testRenewDeviceCredentials() throws Exception {
-        when(mockCredentialStore.getClientId()).thenReturn(expectedRenewDeviceRequest.getClientId());
+        when(mockCredentialStore.getClientId()).thenReturn(Optional.of(expectedRenewDeviceRequest.getClientId()));
 
         oAuthService.renewDeviceCredential(
                 expectedRenewDeviceRequest.getCredential(),
@@ -273,5 +284,11 @@ public class OAuthServiceTest extends TestCase {
         );
 
         await().until(() -> responseReceived);
+    }
+}
+
+class MockConfig extends Config {
+    void setConfig(SDKInitConfig config) {
+        Config.sharedConfig = config;
     }
 }

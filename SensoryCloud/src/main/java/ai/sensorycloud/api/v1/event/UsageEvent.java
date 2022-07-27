@@ -17,6 +17,7 @@ public  final class UsageEvent extends
     route_ = "";
     technologies_ = emptyIntList();
     models_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    tenantId_ = "";
   }
   public static final int TIMESTAMP_FIELD_NUMBER = 1;
   private com.google.protobuf.Timestamp timestamp_;
@@ -767,6 +768,135 @@ public  final class UsageEvent extends
   private void clearVideoFrameCount() {
     
     videoFrameCount_ = 0L;
+  }
+
+  public static final int TENANTID_FIELD_NUMBER = 11;
+  private java.lang.String tenantId_;
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @return The tenantId.
+   */
+  @java.lang.Override
+  public java.lang.String getTenantId() {
+    return tenantId_;
+  }
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @return The bytes for tenantId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getTenantIdBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(tenantId_);
+  }
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @param value The tenantId to set.
+   */
+  private void setTenantId(
+      java.lang.String value) {
+    java.lang.Class<?> valueClass = value.getClass();
+  
+    tenantId_ = value;
+  }
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   */
+  private void clearTenantId() {
+    
+    tenantId_ = getDefaultInstance().getTenantId();
+  }
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @param value The bytes for tenantId to set.
+   */
+  private void setTenantIdBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    tenantId_ = value.toStringUtf8();
+    
+  }
+
+  public static final int BILLABLEFUNCTION_FIELD_NUMBER = 12;
+  private int billableFunction_;
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @return The enum numeric value on the wire for billableFunction.
+   */
+  @java.lang.Override
+  public int getBillableFunctionValue() {
+    return billableFunction_;
+  }
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @return The billableFunction.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.common.ModelType getBillableFunction() {
+    ai.sensorycloud.api.common.ModelType result = ai.sensorycloud.api.common.ModelType.forNumber(billableFunction_);
+    return result == null ? ai.sensorycloud.api.common.ModelType.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @param value The enum numeric value on the wire for billableFunction to set.
+   */
+  private void setBillableFunctionValue(int value) {
+      billableFunction_ = value;
+  }
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @param value The billableFunction to set.
+   */
+  private void setBillableFunction(ai.sensorycloud.api.common.ModelType value) {
+    billableFunction_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   */
+  private void clearBillableFunction() {
+    
+    billableFunction_ = 0;
   }
 
   public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
@@ -1622,6 +1752,141 @@ public  final class UsageEvent extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+     * </pre>
+     *
+     * <code>string tenantId = 11;</code>
+     * @return The tenantId.
+     */
+    @java.lang.Override
+    public java.lang.String getTenantId() {
+      return instance.getTenantId();
+    }
+    /**
+     * <pre>
+     * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+     * </pre>
+     *
+     * <code>string tenantId = 11;</code>
+     * @return The bytes for tenantId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTenantIdBytes() {
+      return instance.getTenantIdBytes();
+    }
+    /**
+     * <pre>
+     * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+     * </pre>
+     *
+     * <code>string tenantId = 11;</code>
+     * @param value The tenantId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTenantId(
+        java.lang.String value) {
+      copyOnWrite();
+      instance.setTenantId(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+     * </pre>
+     *
+     * <code>string tenantId = 11;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTenantId() {
+      copyOnWrite();
+      instance.clearTenantId();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+     * </pre>
+     *
+     * <code>string tenantId = 11;</code>
+     * @param value The bytes for tenantId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTenantIdBytes(
+        com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setTenantIdBytes(value);
+      return this;
+    }
+
+    /**
+     * <pre>
+     * Billable function, if applicable
+     * </pre>
+     *
+     * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+     * @return The enum numeric value on the wire for billableFunction.
+     */
+    @java.lang.Override
+    public int getBillableFunctionValue() {
+      return instance.getBillableFunctionValue();
+    }
+    /**
+     * <pre>
+     * Billable function, if applicable
+     * </pre>
+     *
+     * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+     * @param value The billableFunction to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBillableFunctionValue(int value) {
+      copyOnWrite();
+      instance.setBillableFunctionValue(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Billable function, if applicable
+     * </pre>
+     *
+     * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+     * @return The billableFunction.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.common.ModelType getBillableFunction() {
+      return instance.getBillableFunction();
+    }
+    /**
+     * <pre>
+     * Billable function, if applicable
+     * </pre>
+     *
+     * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+     * @param value The enum numeric value on the wire for billableFunction to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBillableFunction(ai.sensorycloud.api.common.ModelType value) {
+      copyOnWrite();
+      instance.setBillableFunction(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Billable function, if applicable
+     * </pre>
+     *
+     * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBillableFunction() {
+      copyOnWrite();
+      instance.clearBillableFunction();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEvent)
   }
   @java.lang.Override
@@ -1648,10 +1913,12 @@ public  final class UsageEvent extends
             "models_",
             "audioDurationMs_",
             "videoFrameCount_",
+            "tenantId_",
+            "billableFunction_",
           };
           java.lang.String info =
-              "\u0000\n\u0000\u0000\u0001\n\n\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
-              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0002";
+              "\u0000\f\u0000\u0000\u0001\f\f\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
+              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0002\u000b\u0208\f\f";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

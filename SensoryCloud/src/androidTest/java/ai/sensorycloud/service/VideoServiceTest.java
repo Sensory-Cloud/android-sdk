@@ -9,6 +9,7 @@ import static org.awaitility.Awaitility.*;
 import org.junit.Before;
 import org.junit.Rule;
 
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.Metadata;
@@ -39,7 +40,6 @@ import ai.sensorycloud.api.v1.video.VideoBiometricsGrpc;
 import ai.sensorycloud.api.v1.video.VideoModel;
 import ai.sensorycloud.api.v1.video.VideoModelsGrpc;
 import ai.sensorycloud.api.v1.video.VideoRecognitionGrpc;
-import ai.sensorycloud.config.Config;
 import ai.sensorycloud.tokenManager.TokenManager;
 
 public class VideoServiceTest extends TestCase {
@@ -47,10 +47,14 @@ public class VideoServiceTest extends TestCase {
     final Metadata.Key<String> authKey = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
     final String authValue = "Bearer Some-OAuth-Token";
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final GetModelsRequest expectedModelsRequest = GetModelsRequest.getDefaultInstance();
@@ -71,7 +75,7 @@ public class VideoServiceTest extends TestCase {
             .setConfig(CreateEnrollmentConfig.newBuilder()
                     .setModelName("Some Model")
                     .setUserId("User ID")
-                    .setDeviceId(mockConfig.deviceConfig.deviceId)
+                    .setDeviceId(mockConfig.deviceID)
                     .setDescription("Some Description")
                     .setIsLivenessEnabled(true)
                     .setLivenessThreshold(RecognitionThreshold.HIGHEST)
@@ -218,6 +222,9 @@ public class VideoServiceTest extends TestCase {
         requestReceived = false;
         responseReceived = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(modelsImpl, mockServerInterceptor))
@@ -233,7 +240,7 @@ public class VideoServiceTest extends TestCase {
         ClientInterceptor mockAuth = MetadataUtils.newAttachHeadersInterceptor(mockHeader);
         when(mockTokenManager.getAuthorizationMetadata()).thenReturn(mockAuth);
 
-        service = new VideoService(mockConfig, mockTokenManager, channel);
+        service = new VideoService(mockTokenManager, channel);
     }
 
     public void testGetModels() {
@@ -259,6 +266,7 @@ public class VideoServiceTest extends TestCase {
                 expectedEnrollmentRequest.getConfig().getIsLivenessEnabled(),
                 expectedEnrollmentRequest.getConfig().getLivenessThreshold(),
                 expectedEnrollmentRequest.getConfig().getNumLivenessFramesRequired(),
+                false,
                 new StreamObserver<CreateEnrollmentResponse>() {
                     @Override
                     public void onNext(CreateEnrollmentResponse value) {
@@ -282,6 +290,7 @@ public class VideoServiceTest extends TestCase {
                 expectedAuthenticationRequest.getConfig().getEnrollmentId(),
                 expectedAuthenticationRequest.getConfig().getIsLivenessEnabled(),
                 expectedAuthenticationRequest.getConfig().getLivenessThreshold(),
+                null,
                 new StreamObserver<AuthenticateResponse>() {
                     @Override
                     public void onNext(AuthenticateResponse value) {

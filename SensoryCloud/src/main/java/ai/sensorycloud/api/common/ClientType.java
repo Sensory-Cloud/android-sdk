@@ -22,7 +22,7 @@ public enum ClientType
   ROOT(0),
   /**
    * <pre>
-   * User End Device (E.G. Sensory SDK on Smartphone)
+   * User End Device       (E.G. Sensory SDK on Smartphone)
    * </pre>
    *
    * <code>DEVICE = 1;</code>
@@ -30,7 +30,7 @@ public enum ClientType
   DEVICE(1),
   /**
    * <pre>
-   * Remote Cluster   (E.G. Customer-Deployed Io Cluster)
+   * Remote Cluster        (E.G. Customer-Deployed Io Cluster)
    * </pre>
    *
    * <code>CLUSTER = 2;</code>
@@ -38,12 +38,28 @@ public enum ClientType
   CLUSTER(2),
   /**
    * <pre>
-   * User Account    (E.G. Customer-Portal)
+   * User Account          (E.G. Customer-Portal)
    * </pre>
    *
    * <code>USER = 3;</code>
    */
   USER(3),
+  /**
+   * <pre>
+   * Super User Account    (E.G. Admin)
+   * </pre>
+   *
+   * <code>SUPER_USER = 4;</code>
+   */
+  SUPER_USER(4),
+  /**
+   * <pre>
+   * Billing User Account   (E.G. CFO)
+   * </pre>
+   *
+   * <code>BILLING_USER = 5;</code>
+   */
+  BILLING_USER(5),
   UNRECOGNIZED(-1),
   ;
 
@@ -57,7 +73,7 @@ public enum ClientType
   public static final int ROOT_VALUE = 0;
   /**
    * <pre>
-   * User End Device (E.G. Sensory SDK on Smartphone)
+   * User End Device       (E.G. Sensory SDK on Smartphone)
    * </pre>
    *
    * <code>DEVICE = 1;</code>
@@ -65,7 +81,7 @@ public enum ClientType
   public static final int DEVICE_VALUE = 1;
   /**
    * <pre>
-   * Remote Cluster   (E.G. Customer-Deployed Io Cluster)
+   * Remote Cluster        (E.G. Customer-Deployed Io Cluster)
    * </pre>
    *
    * <code>CLUSTER = 2;</code>
@@ -73,12 +89,28 @@ public enum ClientType
   public static final int CLUSTER_VALUE = 2;
   /**
    * <pre>
-   * User Account    (E.G. Customer-Portal)
+   * User Account          (E.G. Customer-Portal)
    * </pre>
    *
    * <code>USER = 3;</code>
    */
   public static final int USER_VALUE = 3;
+  /**
+   * <pre>
+   * Super User Account    (E.G. Admin)
+   * </pre>
+   *
+   * <code>SUPER_USER = 4;</code>
+   */
+  public static final int SUPER_USER_VALUE = 4;
+  /**
+   * <pre>
+   * Billing User Account   (E.G. CFO)
+   * </pre>
+   *
+   * <code>BILLING_USER = 5;</code>
+   */
+  public static final int BILLING_USER_VALUE = 5;
 
 
   @java.lang.Override
@@ -106,6 +138,8 @@ public enum ClientType
       case 1: return DEVICE;
       case 2: return CLUSTER;
       case 3: return USER;
+      case 4: return SUPER_USER;
+      case 5: return BILLING_USER;
       default: return null;
     }
   }
