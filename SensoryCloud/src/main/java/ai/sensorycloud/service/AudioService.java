@@ -130,7 +130,7 @@ public class AudioService {
 
     /**
      * Opens a bidirectional stream to the server for the purpose of creating an audio enrollment
-     * This will will automatically send the initial `AudioConfig` message to the server
+     * This will automatically send the initial `AudioConfig` message to the server
      *
      * @param modelName Name of the model to enroll against
      * @param userID Unique user identifier

@@ -99,7 +99,7 @@ OAuthService oAuthService = new OAuthService(credentialStore);
  
  InputStream fileStream = this.getClass().getClassLoader().getResourceAsStream("SensoryCloudConfig.ini");
  Initializer.initialize(
-    oauthService, // TODO: init
+    oauthService,
     null, // JWT signer class, only used when enrollmentType is `jwt`
     fileStream,
     "", // Optional override for deviceID, useful when sharing config files across multiple devices
