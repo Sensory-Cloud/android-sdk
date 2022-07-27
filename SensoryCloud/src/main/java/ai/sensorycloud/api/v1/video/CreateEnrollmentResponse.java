@@ -335,6 +335,77 @@ public  final class CreateEnrollmentResponse extends
     score_ = 0F;
   }
 
+  public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 7;
+  private ai.sensorycloud.api.common.EnrollmentToken enrollmentToken_;
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  @java.lang.Override
+  public boolean hasEnrollmentToken() {
+    return enrollmentToken_ != null;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.common.EnrollmentToken getEnrollmentToken() {
+    return enrollmentToken_ == null ? ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance() : enrollmentToken_;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  private void setEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+    value.getClass();
+  enrollmentToken_ = value;
+    
+    }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+    value.getClass();
+  if (enrollmentToken_ != null &&
+        enrollmentToken_ != ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance()) {
+      enrollmentToken_ =
+        ai.sensorycloud.api.common.EnrollmentToken.newBuilder(enrollmentToken_).mergeFrom(value).buildPartial();
+    } else {
+      enrollmentToken_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  private void clearEnrollmentToken() {  enrollmentToken_ = null;
+    
+  }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -761,6 +832,83 @@ public  final class CreateEnrollmentResponse extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    @java.lang.Override
+    public boolean hasEnrollmentToken() {
+      return instance.hasEnrollmentToken();
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.common.EnrollmentToken getEnrollmentToken() {
+      return instance.getEnrollmentToken();
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder setEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+      copyOnWrite();
+      instance.setEnrollmentToken(value);
+      return this;
+      }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder setEnrollmentToken(
+        ai.sensorycloud.api.common.EnrollmentToken.Builder builderForValue) {
+      copyOnWrite();
+      instance.setEnrollmentToken(builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder mergeEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+      copyOnWrite();
+      instance.mergeEnrollmentToken(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder clearEnrollmentToken() {  copyOnWrite();
+      instance.clearEnrollmentToken();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.video.CreateEnrollmentResponse)
   }
   @java.lang.Override
@@ -783,10 +931,11 @@ public  final class CreateEnrollmentResponse extends
             "modelName_",
             "modelVersion_",
             "score_",
+            "enrollmentToken_",
           };
           java.lang.String info =
-              "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\u0002\u0002\u0007" +
-              "\u0003\u0208\u0004\u0208\u0005\u0208\u0006\u0001";
+              "\u0000\u0007\u0000\u0000\u0001\u0007\u0007\u0000\u0000\u0000\u0001\u0002\u0002\u0007" +
+              "\u0003\u0208\u0004\u0208\u0005\u0208\u0006\u0001\u0007\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

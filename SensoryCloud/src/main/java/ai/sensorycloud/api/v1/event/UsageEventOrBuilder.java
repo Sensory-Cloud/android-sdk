@@ -224,4 +224,43 @@ public interface UsageEventOrBuilder extends
    * @return The videoFrameCount.
    */
   long getVideoFrameCount();
+
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @return The tenantId.
+   */
+  java.lang.String getTenantId();
+  /**
+   * <pre>
+   * Optional Tenant ID of the event. Used internally by Sensory multi-tenant servers
+   * </pre>
+   *
+   * <code>string tenantId = 11;</code>
+   * @return The bytes for tenantId.
+   */
+  com.google.protobuf.ByteString
+      getTenantIdBytes();
+
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @return The enum numeric value on the wire for billableFunction.
+   */
+  int getBillableFunctionValue();
+  /**
+   * <pre>
+   * Billable function, if applicable
+   * </pre>
+   *
+   * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
+   * @return The billableFunction.
+   */
+  ai.sensorycloud.api.common.ModelType getBillableFunction();
 }

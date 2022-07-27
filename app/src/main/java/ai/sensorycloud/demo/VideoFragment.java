@@ -19,7 +19,7 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.interactors.VideoStreamInteractor;
 import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.service.VideoService;
@@ -64,7 +64,7 @@ public class VideoFragment extends Fragment {
 
         SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
         OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
+        TokenManager tokenManager = new TokenManager(oAuthService);
         videoService = new VideoService(sensoryConfig, tokenManager);
 
         binding = VideoFragmentBinding.inflate(inflater, container, false);

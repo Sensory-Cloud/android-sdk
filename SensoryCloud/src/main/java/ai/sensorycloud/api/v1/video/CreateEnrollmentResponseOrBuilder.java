@@ -96,4 +96,25 @@ public interface CreateEnrollmentResponseOrBuilder extends
    * @return The score.
    */
   float getScore();
+
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   * @return Whether the enrollmentToken field is set.
+   */
+  boolean hasEnrollmentToken();
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   * @return The enrollmentToken.
+   */
+  ai.sensorycloud.api.common.EnrollmentToken getEnrollmentToken();
 }

@@ -60,7 +60,7 @@ public  final class TranscribeResponse extends
   private java.lang.String transcript_;
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -72,7 +72,7 @@ public  final class TranscribeResponse extends
   }
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -85,7 +85,7 @@ public  final class TranscribeResponse extends
   }
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -99,7 +99,7 @@ public  final class TranscribeResponse extends
   }
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -110,7 +110,7 @@ public  final class TranscribeResponse extends
   }
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -130,11 +130,13 @@ public  final class TranscribeResponse extends
    * Indicates if the returned transcript is an intermediate result
    * </pre>
    *
-   * <code>bool isPartialResult = 3;</code>
+   * <code>bool isPartialResult = 3 [deprecated = true];</code>
+   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+   *     See v1/audio/audio.proto;l=402
    * @return The isPartialResult.
    */
   @java.lang.Override
-  public boolean getIsPartialResult() {
+  @java.lang.Deprecated public boolean getIsPartialResult() {
     return isPartialResult_;
   }
   /**
@@ -142,7 +144,9 @@ public  final class TranscribeResponse extends
    * Indicates if the returned transcript is an intermediate result
    * </pre>
    *
-   * <code>bool isPartialResult = 3;</code>
+   * <code>bool isPartialResult = 3 [deprecated = true];</code>
+   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+   *     See v1/audio/audio.proto;l=402
    * @param value The isPartialResult to set.
    */
   private void setIsPartialResult(boolean value) {
@@ -154,11 +158,79 @@ public  final class TranscribeResponse extends
    * Indicates if the returned transcript is an intermediate result
    * </pre>
    *
-   * <code>bool isPartialResult = 3;</code>
+   * <code>bool isPartialResult = 3 [deprecated = true];</code>
+   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+   *     See v1/audio/audio.proto;l=402
    */
   private void clearIsPartialResult() {
     
     isPartialResult_ = false;
+  }
+
+  public static final int WORDLIST_FIELD_NUMBER = 4;
+  private ai.sensorycloud.api.v1.audio.TranscribeWordResponse wordList_;
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  @java.lang.Override
+  public boolean hasWordList() {
+    return wordList_ != null;
+  }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.TranscribeWordResponse getWordList() {
+    return wordList_ == null ? ai.sensorycloud.api.v1.audio.TranscribeWordResponse.getDefaultInstance() : wordList_;
+  }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  private void setWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+    value.getClass();
+  wordList_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+    value.getClass();
+  if (wordList_ != null &&
+        wordList_ != ai.sensorycloud.api.v1.audio.TranscribeWordResponse.getDefaultInstance()) {
+      wordList_ =
+        ai.sensorycloud.api.v1.audio.TranscribeWordResponse.newBuilder(wordList_).mergeFrom(value).buildPartial();
+    } else {
+      wordList_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  private void clearWordList() {  wordList_ = null;
+    
   }
 
   public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
@@ -373,7 +445,7 @@ public  final class TranscribeResponse extends
 
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -385,7 +457,7 @@ public  final class TranscribeResponse extends
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -398,7 +470,7 @@ public  final class TranscribeResponse extends
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -413,7 +485,7 @@ public  final class TranscribeResponse extends
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -426,7 +498,7 @@ public  final class TranscribeResponse extends
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -445,11 +517,13 @@ public  final class TranscribeResponse extends
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @return The isPartialResult.
      */
     @java.lang.Override
-    public boolean getIsPartialResult() {
+    @java.lang.Deprecated public boolean getIsPartialResult() {
       return instance.getIsPartialResult();
     }
     /**
@@ -457,11 +531,13 @@ public  final class TranscribeResponse extends
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @param value The isPartialResult to set.
      * @return This builder for chaining.
      */
-    public Builder setIsPartialResult(boolean value) {
+    @java.lang.Deprecated public Builder setIsPartialResult(boolean value) {
       copyOnWrite();
       instance.setIsPartialResult(value);
       return this;
@@ -471,12 +547,85 @@ public  final class TranscribeResponse extends
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @return This builder for chaining.
      */
-    public Builder clearIsPartialResult() {
+    @java.lang.Deprecated public Builder clearIsPartialResult() {
       copyOnWrite();
       instance.clearIsPartialResult();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    @java.lang.Override
+    public boolean hasWordList() {
+      return instance.hasWordList();
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.TranscribeWordResponse getWordList() {
+      return instance.getWordList();
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder setWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+      copyOnWrite();
+      instance.setWordList(value);
+      return this;
+      }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder setWordList(
+        ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder builderForValue) {
+      copyOnWrite();
+      instance.setWordList(builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder mergeWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+      copyOnWrite();
+      instance.mergeWordList(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder clearWordList() {  copyOnWrite();
+      instance.clearWordList();
       return this;
     }
 
@@ -576,11 +725,12 @@ public  final class TranscribeResponse extends
             "audioEnergy_",
             "transcript_",
             "isPartialResult_",
+            "wordList_",
             "postProcessingAction_",
           };
           java.lang.String info =
-              "\u0000\u0004\u0000\u0000\u0001\n\u0004\u0000\u0000\u0000\u0001\u0001\u0002\u0208" +
-              "\u0003\u0007\n\t";
+              "\u0000\u0005\u0000\u0000\u0001\n\u0005\u0000\u0000\u0000\u0001\u0001\u0002\u0208" +
+              "\u0003\u0007\u0004\t\n\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

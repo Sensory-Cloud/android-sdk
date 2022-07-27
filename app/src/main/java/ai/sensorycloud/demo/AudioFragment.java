@@ -17,7 +17,7 @@ import com.google.protobuf.ByteString;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
 import ai.sensorycloud.interactors.AudioStreamInteractor;
 import ai.sensorycloud.service.AudioService;
 import ai.sensorycloud.service.OAuthService;
@@ -62,7 +62,7 @@ public class AudioFragment extends Fragment {
 
         SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
         OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
+        TokenManager tokenManager = new TokenManager(oAuthService);
         audioService = new AudioService(sensoryConfig, tokenManager);
 
         binding = AudioFragmentBinding.inflate(inflater, container, false);
