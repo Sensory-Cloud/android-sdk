@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.UUID;
 
 import ai.sensorycloud.Config;
+import ai.sensorycloud.Initializer;
 import ai.sensorycloud.service.OAuthService;
 import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import ai.sensorycloud.demo.databinding.LoginFragmentBinding;
@@ -44,27 +45,28 @@ public class LoginFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        credentialStore = new DefaultSecureCredentialStore(getContext(), "");
-
-        // Check if we're logged in
-        try {
-            credentialStore.getClientId();
-            credentialStore.getClientSecret();
-            showLoggedIn();
-        } catch (Exception e) {
-            deviceID = UUID.randomUUID().toString();
-            SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(deviceIDKey, deviceID);
-            editor.apply();
-
-            sensoryConfig = new Config(
-                    new Config.CloudConfig("10.0.2.2:50050"),
-                    new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                    new Config.DeviceConfig(deviceID, "en_US"));
-
-            oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        }
+        // TODO: - update to new init format
+//        credentialStore = new DefaultSecureCredentialStore(getContext(), "");
+//
+//        // Check if we're logged in
+//        try {
+//            credentialStore.getClientId();
+//            credentialStore.getClientSecret();
+//            showLoggedIn();
+//        } catch (Exception e) {
+//            deviceID = UUID.randomUUID().toString();
+//            SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = prefs.edit();
+//            editor.putString(deviceIDKey, deviceID);
+//            editor.apply();
+//
+//            sensoryConfig = new Config(
+//                    new Config.CloudConfig("10.0.2.2:50050"),
+//                    new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+//                    new Config.DeviceConfig(deviceID, "en_US"));
+//
+//            oAuthService = new OAuthService(sensoryConfig, credentialStore);
+//        }
 
         binding = LoginFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -97,38 +99,39 @@ public class LoginFragment extends Fragment {
 
     public void enrollDevice(String username, String password) {
 
-        OAuthService.OAuthClient client = oAuthService.generateCredentials();
-        Log.i(LOG_TAG, "Generated credentials with clientID: " + client.clientId);
-        try {
-            credentialStore.setCredentials(client.clientId, client.clientSecret);
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
-            e.printStackTrace();
-            return;
-        }
-
-        oAuthService.register(
-                username,
-                password,
-                new OAuthService.EnrollDeviceListener() {
-            @Override
-            public void onSuccess(DeviceResponse response) {
-                Log.i(LOG_TAG, "Received enrollment response");
-                showLoggedIn();
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                try {
-                    credentialStore.setCredentials("", "");
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, e.getMessage());
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, t.getMessage());
-                t.printStackTrace();
-            }
-        });
+        // TODO: - update to new input format
+//        OAuthService.OAuthClient client = oAuthService.generateCredentials();
+//        Log.i(LOG_TAG, "Generated credentials with clientID: " + client.clientId);
+//        try {
+//            credentialStore.setCredentials(client.clientId, client.clientSecret);
+//        } catch (Exception e) {
+//            Log.e(LOG_TAG, e.getMessage());
+//            e.printStackTrace();
+//            return;
+//        }
+//
+//        oAuthService.register(
+//                username,
+//                password,
+//                new OAuthService.EnrollDeviceListener() {
+//            @Override
+//            public void onSuccess(DeviceResponse response) {
+//                Log.i(LOG_TAG, "Received enrollment response");
+//                showLoggedIn();
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable t) {
+//                try {
+//                    credentialStore.setCredentials("", "");
+//                } catch (Exception e) {
+//                    Log.e(LOG_TAG, e.getMessage());
+//                    e.printStackTrace();
+//                }
+//                Log.e(LOG_TAG, t.getMessage());
+//                t.printStackTrace();
+//            }
+//        });
     }
 
     public void showLoggedIn() {

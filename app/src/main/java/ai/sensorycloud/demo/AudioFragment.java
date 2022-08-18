@@ -52,18 +52,18 @@ public class AudioFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        // TODO: - better config management
-        SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
-        String deviceID = prefs.getString(deviceIDKey, "");
-        sensoryConfig = new Config(
-                new Config.CloudConfig("10.0.2.2:50050"),
-                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
-                new Config.DeviceConfig(deviceID, "en_US"));
-
-        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
-        OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
-        TokenManager tokenManager = new TokenManager(oAuthService);
-        audioService = new AudioService(sensoryConfig, tokenManager);
+        // TODO: - update to new init format
+//        SharedPreferences prefs = getContext().getSharedPreferences(clientAppPrefs, Context.MODE_PRIVATE);
+//        String deviceID = prefs.getString(deviceIDKey, "");
+//        sensoryConfig = new Config(
+//                new Config.CloudConfig("10.0.2.2:50050"),
+//                new Config.TenantConfig("b6e1b848-75da-46cb-aad8-981cc3ccebcd"),
+//                new Config.DeviceConfig(deviceID, "en_US"));
+//
+//        SecureCredentialStore credentialStore = new DefaultSecureCredentialStore(getContext(), "");
+//        OAuthService oAuthService = new OAuthService(sensoryConfig, credentialStore);
+//        TokenManager tokenManager = new TokenManager(oAuthService);
+//        audioService = new AudioService(sensoryConfig, tokenManager);
 
         binding = AudioFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
