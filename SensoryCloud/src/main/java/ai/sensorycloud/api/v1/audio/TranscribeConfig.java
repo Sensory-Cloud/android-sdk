@@ -229,6 +229,190 @@ public  final class TranscribeConfig extends
     
   }
 
+  public static final int ENABLEPUNCTUATIONCAPITALIZATION_FIELD_NUMBER = 4;
+  private boolean enablePunctuationCapitalization_;
+  /**
+   * <pre>
+   * A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   * @return The enablePunctuationCapitalization.
+   */
+  @java.lang.Override
+  public boolean getEnablePunctuationCapitalization() {
+    return enablePunctuationCapitalization_;
+  }
+  /**
+   * <pre>
+   * A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   * @param value The enablePunctuationCapitalization to set.
+   */
+  private void setEnablePunctuationCapitalization(boolean value) {
+    
+    enablePunctuationCapitalization_ = value;
+  }
+  /**
+   * <pre>
+   * A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   */
+  private void clearEnablePunctuationCapitalization() {
+    
+    enablePunctuationCapitalization_ = false;
+  }
+
+  public static final int DOSINGLEUTTERANCE_FIELD_NUMBER = 5;
+  private boolean doSingleUtterance_;
+  /**
+   * <pre>
+   * If enabled, the server will automatically close the stream once the user has stopped speaking
+   * </pre>
+   *
+   * <code>bool doSingleUtterance = 5;</code>
+   * @return The doSingleUtterance.
+   */
+  @java.lang.Override
+  public boolean getDoSingleUtterance() {
+    return doSingleUtterance_;
+  }
+  /**
+   * <pre>
+   * If enabled, the server will automatically close the stream once the user has stopped speaking
+   * </pre>
+   *
+   * <code>bool doSingleUtterance = 5;</code>
+   * @param value The doSingleUtterance to set.
+   */
+  private void setDoSingleUtterance(boolean value) {
+    
+    doSingleUtterance_ = value;
+  }
+  /**
+   * <pre>
+   * If enabled, the server will automatically close the stream once the user has stopped speaking
+   * </pre>
+   *
+   * <code>bool doSingleUtterance = 5;</code>
+   */
+  private void clearDoSingleUtterance() {
+    
+    doSingleUtterance_ = false;
+  }
+
+  public static final int VADSENSITIVITY_FIELD_NUMBER = 6;
+  private int vadSensitivity_;
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The enum numeric value on the wire for vadSensitivity.
+   */
+  @java.lang.Override
+  public int getVadSensitivityValue() {
+    return vadSensitivity_;
+  }
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The vadSensitivity.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getVadSensitivity() {
+    ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.forNumber(vadSensitivity_);
+    return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @param value The enum numeric value on the wire for vadSensitivity to set.
+   */
+  private void setVadSensitivityValue(int value) {
+      vadSensitivity_ = value;
+  }
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @param value The vadSensitivity to set.
+   */
+  private void setVadSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+    vadSensitivity_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   */
+  private void clearVadSensitivity() {
+    
+    vadSensitivity_ = 0;
+  }
+
+  public static final int VADDURATION_FIELD_NUMBER = 7;
+  private float vadDuration_;
+  /**
+   * <pre>
+   * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+   * If not specified, 1 second is used by default
+   * </pre>
+   *
+   * <code>float vadDuration = 7;</code>
+   * @return The vadDuration.
+   */
+  @java.lang.Override
+  public float getVadDuration() {
+    return vadDuration_;
+  }
+  /**
+   * <pre>
+   * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+   * If not specified, 1 second is used by default
+   * </pre>
+   *
+   * <code>float vadDuration = 7;</code>
+   * @param value The vadDuration to set.
+   */
+  private void setVadDuration(float value) {
+    
+    vadDuration_ = value;
+  }
+  /**
+   * <pre>
+   * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+   * If not specified, 1 second is used by default
+   * </pre>
+   *
+   * <code>float vadDuration = 7;</code>
+   */
+  private void clearVadDuration() {
+    
+    vadDuration_ = 0F;
+  }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeConfig parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -548,6 +732,200 @@ public  final class TranscribeConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @return The enablePunctuationCapitalization.
+     */
+    @java.lang.Override
+    public boolean getEnablePunctuationCapitalization() {
+      return instance.getEnablePunctuationCapitalization();
+    }
+    /**
+     * <pre>
+     * A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @param value The enablePunctuationCapitalization to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnablePunctuationCapitalization(boolean value) {
+      copyOnWrite();
+      instance.setEnablePunctuationCapitalization(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnablePunctuationCapitalization() {
+      copyOnWrite();
+      instance.clearEnablePunctuationCapitalization();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @return The doSingleUtterance.
+     */
+    @java.lang.Override
+    public boolean getDoSingleUtterance() {
+      return instance.getDoSingleUtterance();
+    }
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @param value The doSingleUtterance to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDoSingleUtterance(boolean value) {
+      copyOnWrite();
+      instance.setDoSingleUtterance(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDoSingleUtterance() {
+      copyOnWrite();
+      instance.clearDoSingleUtterance();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return The enum numeric value on the wire for vadSensitivity.
+     */
+    @java.lang.Override
+    public int getVadSensitivityValue() {
+      return instance.getVadSensitivityValue();
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @param value The vadSensitivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadSensitivityValue(int value) {
+      copyOnWrite();
+      instance.setVadSensitivityValue(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return The vadSensitivity.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getVadSensitivity() {
+      return instance.getVadSensitivity();
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @param value The enum numeric value on the wire for vadSensitivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+      copyOnWrite();
+      instance.setVadSensitivity(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearVadSensitivity() {
+      copyOnWrite();
+      instance.clearVadSensitivity();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @return The vadDuration.
+     */
+    @java.lang.Override
+    public float getVadDuration() {
+      return instance.getVadDuration();
+    }
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @param value The vadDuration to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadDuration(float value) {
+      copyOnWrite();
+      instance.setVadDuration(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearVadDuration() {
+      copyOnWrite();
+      instance.clearVadDuration();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.TranscribeConfig)
   }
   @java.lang.Override
@@ -567,10 +945,14 @@ public  final class TranscribeConfig extends
             "audio_",
             "modelName_",
             "userId_",
+            "enablePunctuationCapitalization_",
+            "doSingleUtterance_",
+            "vadSensitivity_",
+            "vadDuration_",
           };
           java.lang.String info =
-              "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\t\u0002\u0208" +
-              "\u0003\u0208";
+              "\u0000\u0007\u0000\u0000\u0001\u0007\u0007\u0000\u0000\u0000\u0001\t\u0002\u0208" +
+              "\u0003\u0208\u0004\u0007\u0005\u0007\u0006\f\u0007\u0001";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

@@ -69,4 +69,56 @@ public interface TranscribeConfigOrBuilder extends
    */
   com.google.protobuf.ByteString
       getUserIdBytes();
+
+  /**
+   * <pre>
+   * A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   * @return The enablePunctuationCapitalization.
+   */
+  boolean getEnablePunctuationCapitalization();
+
+  /**
+   * <pre>
+   * If enabled, the server will automatically close the stream once the user has stopped speaking
+   * </pre>
+   *
+   * <code>bool doSingleUtterance = 5;</code>
+   * @return The doSingleUtterance.
+   */
+  boolean getDoSingleUtterance();
+
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The enum numeric value on the wire for vadSensitivity.
+   */
+  int getVadSensitivityValue();
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The vadSensitivity.
+   */
+  ai.sensorycloud.api.v1.audio.ThresholdSensitivity getVadSensitivity();
+
+  /**
+   * <pre>
+   * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+   * If not specified, 1 second is used by default
+   * </pre>
+   *
+   * <code>float vadDuration = 7;</code>
+   * @return The vadDuration.
+   */
+  float getVadDuration();
 }
