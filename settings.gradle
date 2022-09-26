@@ -7,5 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Sensory Cloud Demo"
-include ':app'
 include ':SensoryCloud'
