@@ -9,6 +9,7 @@ USAGE="Usage: ./sc.sh [COMMAND]"
 COMMANDS="
     Commands:\n
     genproto | gp [tag]\t Pulls and generates proto files from master or from an optional git tag\n
+    release | rv [version]\ Releases and tags the SDK
     help | h\t\t Display This Help Message\n
 "
 
@@ -52,6 +53,27 @@ gen_proto() {
   done
 }
 
+release_version() {
+  version=$1
+  regex_version='^v[0-9]+\.[0-9]+\.[0-9]+$'
+
+  if [[ ! ${version} =~ ${regex_version} ]]; then
+    echo "Version string should be of the format v{Major}.{Minor}.{Trivial} ex: v1.2.3"
+    exit 1
+  fi
+
+  # Check if version exists
+  git fetch --tags
+  if [ $(git tag -l "${version}") ]; then
+    echo "Version ${version} already exists. Exiting."
+    exit 1
+  fi
+
+  git add *
+  git commit -am "Release [${version}]"
+  git tag ${version}
+  git push --atomic origin HEAD ${version}
+}
 # --- Body ---------------------------------------------------------
 case "$1" in
 
@@ -72,6 +94,16 @@ case "$1" in
     echo "Deleting raw proto files"
     rm -rf "${PROTO_PATH}"
 
+    exit 0;
+    ;;
+
+  "release"|"rv")
+    if [[ $# -ne 2 ]]; then
+        echo "Please supply a version string in the format {Major}.{Minor}.{Trivial} ex: 1.2.3"
+        exit 1;
+    fi
+
+    release_version $2
     exit 0;
     ;;
 
