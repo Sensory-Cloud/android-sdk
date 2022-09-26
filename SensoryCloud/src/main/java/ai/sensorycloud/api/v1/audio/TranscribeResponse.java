@@ -132,7 +132,7 @@ public  final class TranscribeResponse extends
    *
    * <code>bool isPartialResult = 3 [deprecated = true];</code>
    * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
+   *     See v1/audio/audio.proto;l=403
    * @return The isPartialResult.
    */
   @java.lang.Override
@@ -146,7 +146,7 @@ public  final class TranscribeResponse extends
    *
    * <code>bool isPartialResult = 3 [deprecated = true];</code>
    * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
+   *     See v1/audio/audio.proto;l=403
    * @param value The isPartialResult to set.
    */
   private void setIsPartialResult(boolean value) {
@@ -160,7 +160,7 @@ public  final class TranscribeResponse extends
    *
    * <code>bool isPartialResult = 3 [deprecated = true];</code>
    * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
+   *     See v1/audio/audio.proto;l=403
    */
   private void clearIsPartialResult() {
     
@@ -231,6 +231,44 @@ public  final class TranscribeResponse extends
    */
   private void clearWordList() {  wordList_ = null;
     
+  }
+
+  public static final int HASVOICEACTIVITY_FIELD_NUMBER = 5;
+  private boolean hasVoiceActivity_;
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   * @return The hasVoiceActivity.
+   */
+  @java.lang.Override
+  public boolean getHasVoiceActivity() {
+    return hasVoiceActivity_;
+  }
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   * @param value The hasVoiceActivity to set.
+   */
+  private void setHasVoiceActivity(boolean value) {
+    
+    hasVoiceActivity_ = value;
+  }
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   */
+  private void clearHasVoiceActivity() {
+    
+    hasVoiceActivity_ = false;
   }
 
   public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
@@ -519,7 +557,7 @@ public  final class TranscribeResponse extends
      *
      * <code>bool isPartialResult = 3 [deprecated = true];</code>
      * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
+     *     See v1/audio/audio.proto;l=403
      * @return The isPartialResult.
      */
     @java.lang.Override
@@ -533,7 +571,7 @@ public  final class TranscribeResponse extends
      *
      * <code>bool isPartialResult = 3 [deprecated = true];</code>
      * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
+     *     See v1/audio/audio.proto;l=403
      * @param value The isPartialResult to set.
      * @return This builder for chaining.
      */
@@ -549,7 +587,7 @@ public  final class TranscribeResponse extends
      *
      * <code>bool isPartialResult = 3 [deprecated = true];</code>
      * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
+     *     See v1/audio/audio.proto;l=403
      * @return This builder for chaining.
      */
     @java.lang.Deprecated public Builder clearIsPartialResult() {
@@ -626,6 +664,46 @@ public  final class TranscribeResponse extends
      */
     public Builder clearWordList() {  copyOnWrite();
       instance.clearWordList();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @return The hasVoiceActivity.
+     */
+    @java.lang.Override
+    public boolean getHasVoiceActivity() {
+      return instance.getHasVoiceActivity();
+    }
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @param value The hasVoiceActivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHasVoiceActivity(boolean value) {
+      copyOnWrite();
+      instance.setHasVoiceActivity(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearHasVoiceActivity() {
+      copyOnWrite();
+      instance.clearHasVoiceActivity();
       return this;
     }
 
@@ -726,11 +804,12 @@ public  final class TranscribeResponse extends
             "transcript_",
             "isPartialResult_",
             "wordList_",
+            "hasVoiceActivity_",
             "postProcessingAction_",
           };
           java.lang.String info =
-              "\u0000\u0005\u0000\u0000\u0001\n\u0005\u0000\u0000\u0000\u0001\u0001\u0002\u0208" +
-              "\u0003\u0007\u0004\t\n\t";
+              "\u0000\u0006\u0000\u0000\u0001\n\u0006\u0000\u0000\u0000\u0001\u0001\u0002\u0208" +
+              "\u0003\u0007\u0004\t\u0005\u0007\n\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

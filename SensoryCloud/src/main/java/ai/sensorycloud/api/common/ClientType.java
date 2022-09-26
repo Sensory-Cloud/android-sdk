@@ -14,12 +14,12 @@ public enum ClientType
     implements com.google.protobuf.Internal.EnumLite {
   /**
    * <pre>
-   * Sensory Root Token
+   * Invalid, not set role
    * </pre>
    *
-   * <code>ROOT = 0;</code>
+   * <code>INVALID = 0;</code>
    */
-  ROOT(0),
+  INVALID(0),
   /**
    * <pre>
    * User End Device       (E.G. Sensory SDK on Smartphone)
@@ -60,17 +60,33 @@ public enum ClientType
    * <code>BILLING_USER = 5;</code>
    */
   BILLING_USER(5),
-  UNRECOGNIZED(-1),
-  ;
-
+  /**
+   * <pre>
+   * Read-Only Account
+   * </pre>
+   *
+   * <code>READ_ONLY_USER = 6;</code>
+   */
+  READ_ONLY_USER(6),
   /**
    * <pre>
    * Sensory Root Token
    * </pre>
    *
-   * <code>ROOT = 0;</code>
+   * <code>ROOT = 100;</code>
    */
-  public static final int ROOT_VALUE = 0;
+  ROOT(100),
+  UNRECOGNIZED(-1),
+  ;
+
+  /**
+   * <pre>
+   * Invalid, not set role
+   * </pre>
+   *
+   * <code>INVALID = 0;</code>
+   */
+  public static final int INVALID_VALUE = 0;
   /**
    * <pre>
    * User End Device       (E.G. Sensory SDK on Smartphone)
@@ -111,6 +127,22 @@ public enum ClientType
    * <code>BILLING_USER = 5;</code>
    */
   public static final int BILLING_USER_VALUE = 5;
+  /**
+   * <pre>
+   * Read-Only Account
+   * </pre>
+   *
+   * <code>READ_ONLY_USER = 6;</code>
+   */
+  public static final int READ_ONLY_USER_VALUE = 6;
+  /**
+   * <pre>
+   * Sensory Root Token
+   * </pre>
+   *
+   * <code>ROOT = 100;</code>
+   */
+  public static final int ROOT_VALUE = 100;
 
 
   @java.lang.Override
@@ -134,12 +166,14 @@ public enum ClientType
 
   public static ClientType forNumber(int value) {
     switch (value) {
-      case 0: return ROOT;
+      case 0: return INVALID;
       case 1: return DEVICE;
       case 2: return CLUSTER;
       case 3: return USER;
       case 4: return SUPER_USER;
       case 5: return BILLING_USER;
+      case 6: return READ_ONLY_USER;
+      case 100: return ROOT;
       default: return null;
     }
   }

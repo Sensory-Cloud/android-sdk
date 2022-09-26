@@ -44,7 +44,7 @@ public interface TranscribeResponseOrBuilder extends
    *
    * <code>bool isPartialResult = 3 [deprecated = true];</code>
    * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
+   *     See v1/audio/audio.proto;l=403
    * @return The isPartialResult.
    */
   @java.lang.Deprecated boolean getIsPartialResult();
@@ -67,6 +67,16 @@ public interface TranscribeResponseOrBuilder extends
    * @return The wordList.
    */
   ai.sensorycloud.api.v1.audio.TranscribeWordResponse getWordList();
+
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   * @return The hasVoiceActivity.
+   */
+  boolean getHasVoiceActivity();
 
   /**
    * <pre>
