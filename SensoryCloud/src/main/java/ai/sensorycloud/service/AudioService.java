@@ -399,6 +399,10 @@ public class AudioService {
      * @param modelName Name of model to validate
      * @param userID Unique user identifier
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param enablePunctuationCapitalization: If true, the resulting transcript will include punctuation and capitalization
+     * @param doSingleUtterance: If true, the server will automatically close the stream once the user stops talking
+     * @param vadSensitivity: The sensitivity of the voice activity detector. `Low` should be used in most cases
+     * @param vadDuration: The duration of silence to detect before automatically closing the stream as a number of seconds. 1 should be used as default
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -406,9 +410,17 @@ public class AudioService {
             String modelName,
             String userID,
             String languageCode,
+            boolean enablePunctuationCapitalization,
+            boolean doSingleUtterance,
+            ThresholdSensitivity vadSensitivity,
+            float vadDuration,
             StreamObserver<TranscribeResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         AudioTranscriptionsGrpc.AudioTranscriptionsStub audioClient = AudioTranscriptionsGrpc.newStub(managedChannel);
+
+        if (vadSensitivity == null) {
+            vadSensitivity = ThresholdSensitivity.LOW;
+        }
 
         try {
             ClientInterceptor header = tokenManager.getAuthorizationMetadata();
@@ -425,6 +437,10 @@ public class AudioService {
                 .setAudio(audioConfig)
                 .setModelName(modelName)
                 .setUserId(userID)
+                .setEnablePunctuationCapitalization(enablePunctuationCapitalization)
+                .setDoSingleUtterance(doSingleUtterance)
+                .setVadSensitivity(vadSensitivity)
+                .setVadDuration(vadDuration)
                 .build();
         TranscribeRequest request = TranscribeRequest.newBuilder().setConfig(transcribeConfig).build();
         requestObserver.onNext(request);
