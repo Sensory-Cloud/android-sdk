@@ -35,7 +35,7 @@ public class Initializer {
             if (deviceID != null && !deviceID.isEmpty()) {
                 config.deviceID = deviceID;
             }
-            if (deviceName != null || !deviceName.isEmpty()) {
+            if (deviceName != null && !deviceName.isEmpty()) {
                 config.deviceName = deviceName;
             }
             initialize(oAuthService, jwtSigner, config, listener);
