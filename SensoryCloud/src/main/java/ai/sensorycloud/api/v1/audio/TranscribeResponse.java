@@ -16,7 +16,6 @@ public  final class TranscribeResponse extends
     // @@protoc_insertion_point(message_implements:sensory.api.v1.audio.TranscribeResponse)
     TranscribeResponseOrBuilder {
   private TranscribeResponse() {
-    transcript_ = "";
   }
   public static final int AUDIOENERGY_FIELD_NUMBER = 1;
   private float audioEnergy_;
@@ -54,117 +53,6 @@ public  final class TranscribeResponse extends
   private void clearAudioEnergy() {
     
     audioEnergy_ = 0F;
-  }
-
-  public static final int TRANSCRIPT_FIELD_NUMBER = 2;
-  private java.lang.String transcript_;
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The transcript.
-   */
-  @java.lang.Override
-  public java.lang.String getTranscript() {
-    return transcript_;
-  }
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The bytes for transcript.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTranscriptBytes() {
-    return com.google.protobuf.ByteString.copyFromUtf8(transcript_);
-  }
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @param value The transcript to set.
-   */
-  private void setTranscript(
-      java.lang.String value) {
-    java.lang.Class<?> valueClass = value.getClass();
-  
-    transcript_ = value;
-  }
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   */
-  private void clearTranscript() {
-    
-    transcript_ = getDefaultInstance().getTranscript();
-  }
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @param value The bytes for transcript to set.
-   */
-  private void setTranscriptBytes(
-      com.google.protobuf.ByteString value) {
-    checkByteStringIsUtf8(value);
-    transcript_ = value.toStringUtf8();
-    
-  }
-
-  public static final int ISPARTIALRESULT_FIELD_NUMBER = 3;
-  private boolean isPartialResult_;
-  /**
-   * <pre>
-   * Indicates if the returned transcript is an intermediate result
-   * </pre>
-   *
-   * <code>bool isPartialResult = 3 [deprecated = true];</code>
-   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=403
-   * @return The isPartialResult.
-   */
-  @java.lang.Override
-  @java.lang.Deprecated public boolean getIsPartialResult() {
-    return isPartialResult_;
-  }
-  /**
-   * <pre>
-   * Indicates if the returned transcript is an intermediate result
-   * </pre>
-   *
-   * <code>bool isPartialResult = 3 [deprecated = true];</code>
-   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=403
-   * @param value The isPartialResult to set.
-   */
-  private void setIsPartialResult(boolean value) {
-    
-    isPartialResult_ = value;
-  }
-  /**
-   * <pre>
-   * Indicates if the returned transcript is an intermediate result
-   * </pre>
-   *
-   * <code>bool isPartialResult = 3 [deprecated = true];</code>
-   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=403
-   */
-  private void clearIsPartialResult() {
-    
-    isPartialResult_ = false;
   }
 
   public static final int WORDLIST_FIELD_NUMBER = 4;
@@ -483,121 +371,6 @@ public  final class TranscribeResponse extends
 
     /**
      * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return The transcript.
-     */
-    @java.lang.Override
-    public java.lang.String getTranscript() {
-      return instance.getTranscript();
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return The bytes for transcript.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTranscriptBytes() {
-      return instance.getTranscriptBytes();
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @param value The transcript to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTranscript(
-        java.lang.String value) {
-      copyOnWrite();
-      instance.setTranscript(value);
-      return this;
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearTranscript() {
-      copyOnWrite();
-      instance.clearTranscript();
-      return this;
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @param value The bytes for transcript to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTranscriptBytes(
-        com.google.protobuf.ByteString value) {
-      copyOnWrite();
-      instance.setTranscriptBytes(value);
-      return this;
-    }
-
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=403
-     * @return The isPartialResult.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated public boolean getIsPartialResult() {
-      return instance.getIsPartialResult();
-    }
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=403
-     * @param value The isPartialResult to set.
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder setIsPartialResult(boolean value) {
-      copyOnWrite();
-      instance.setIsPartialResult(value);
-      return this;
-    }
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=403
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder clearIsPartialResult() {
-      copyOnWrite();
-      instance.clearIsPartialResult();
-      return this;
-    }
-
-    /**
-     * <pre>
      * A response including word metadata
      * </pre>
      *
@@ -801,15 +574,13 @@ public  final class TranscribeResponse extends
       case BUILD_MESSAGE_INFO: {
           java.lang.Object[] objects = new java.lang.Object[] {
             "audioEnergy_",
-            "transcript_",
-            "isPartialResult_",
             "wordList_",
             "hasVoiceActivity_",
             "postProcessingAction_",
           };
           java.lang.String info =
-              "\u0000\u0006\u0000\u0000\u0001\n\u0006\u0000\u0000\u0000\u0001\u0001\u0002\u0208" +
-              "\u0003\u0007\u0004\t\u0005\u0007\n\t";
+              "\u0000\u0004\u0000\u0000\u0001\n\u0004\u0000\u0000\u0000\u0001\u0001\u0004\t\u0005" +
+              "\u0007\n\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

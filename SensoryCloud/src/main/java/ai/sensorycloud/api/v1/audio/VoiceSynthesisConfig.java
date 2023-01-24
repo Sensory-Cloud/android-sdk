@@ -16,139 +16,116 @@ public  final class VoiceSynthesisConfig extends
     // @@protoc_insertion_point(message_implements:sensory.api.v1.audio.VoiceSynthesisConfig)
     VoiceSynthesisConfigOrBuilder {
   private VoiceSynthesisConfig() {
-    voice_ = "";
+    modelName_ = "";
   }
-  public static final int AUDIO_FIELD_NUMBER = 1;
-  private ai.sensorycloud.api.v1.audio.AudioConfig audio_;
+  public static final int MODELNAME_FIELD_NUMBER = 2;
+  private java.lang.String modelName_;
   /**
    * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @return The modelName.
    */
   @java.lang.Override
-  public boolean hasAudio() {
-    return audio_ != null;
+  public java.lang.String getModelName() {
+    return modelName_;
   }
   /**
    * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   */
-  @java.lang.Override
-  public ai.sensorycloud.api.v1.audio.AudioConfig getAudio() {
-    return audio_ == null ? ai.sensorycloud.api.v1.audio.AudioConfig.getDefaultInstance() : audio_;
-  }
-  /**
-   * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
-   * </pre>
-   *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   */
-  private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
-    value.getClass();
-  audio_ = value;
-    
-    }
-  /**
-   * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
-   * </pre>
-   *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   */
-  @java.lang.SuppressWarnings({"ReferenceEquality"})
-  private void mergeAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
-    value.getClass();
-  if (audio_ != null &&
-        audio_ != ai.sensorycloud.api.v1.audio.AudioConfig.getDefaultInstance()) {
-      audio_ =
-        ai.sensorycloud.api.v1.audio.AudioConfig.newBuilder(audio_).mergeFrom(value).buildPartial();
-    } else {
-      audio_ = value;
-    }
-    
-  }
-  /**
-   * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
-   * </pre>
-   *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   */
-  private void clearAudio() {  audio_ = null;
-    
-  }
-
-  public static final int VOICE_FIELD_NUMBER = 2;
-  private java.lang.String voice_;
-  /**
-   * <pre>
-   * Required. The name of the voice to use for voice synthesis
-   * </pre>
-   *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @return The voice.
-   */
-  @java.lang.Override
-  public java.lang.String getVoice() {
-    return voice_;
-  }
-  /**
-   * <pre>
-   * Required. The name of the voice to use for voice synthesis
-   * </pre>
-   *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @return The bytes for voice.
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @return The bytes for modelName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getVoiceBytes() {
-    return com.google.protobuf.ByteString.copyFromUtf8(voice_);
+      getModelNameBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(modelName_);
   }
   /**
    * <pre>
-   * Required. The name of the voice to use for voice synthesis
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @param value The voice to set.
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @param value The modelName to set.
    */
-  private void setVoice(
+  private void setModelName(
       java.lang.String value) {
     java.lang.Class<?> valueClass = value.getClass();
   
-    voice_ = value;
+    modelName_ = value;
   }
   /**
    * <pre>
-   * Required. The name of the voice to use for voice synthesis
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
    */
-  private void clearVoice() {
+  private void clearModelName() {
     
-    voice_ = getDefaultInstance().getVoice();
+    modelName_ = getDefaultInstance().getModelName();
   }
   /**
    * <pre>
-   * Required. The name of the voice to use for voice synthesis
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @param value The bytes for voice to set.
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @param value The bytes for modelName to set.
    */
-  private void setVoiceBytes(
+  private void setModelNameBytes(
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
-    voice_ = value.toStringUtf8();
+    modelName_ = value.toStringUtf8();
     
+  }
+
+  public static final int SAMPLERATEHERTZ_FIELD_NUMBER = 3;
+  private int sampleRateHertz_;
+  /**
+   * <pre>
+   * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
+   * </pre>
+   *
+   * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+   * @return The sampleRateHertz.
+   */
+  @java.lang.Override
+  public int getSampleRateHertz() {
+    return sampleRateHertz_;
+  }
+  /**
+   * <pre>
+   * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
+   * </pre>
+   *
+   * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+   * @param value The sampleRateHertz to set.
+   */
+  private void setSampleRateHertz(int value) {
+    
+    sampleRateHertz_ = value;
+  }
+  /**
+   * <pre>
+   * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
+   * </pre>
+   *
+   * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+   */
+  private void clearSampleRateHertz() {
+    
+    sampleRateHertz_ = 0;
   }
 
   public static ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig parseFrom(
@@ -252,141 +229,115 @@ public  final class VoiceSynthesisConfig extends
 
     /**
      * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
+     * Name of model to use for voice synthesis
+     * Model can be retrieved from the GetModels() gRPC call
      * </pre>
      *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+     * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+     * @return The modelName.
      */
     @java.lang.Override
-    public boolean hasAudio() {
-      return instance.hasAudio();
+    public java.lang.String getModelName() {
+      return instance.getModelName();
     }
     /**
      * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
+     * Name of model to use for voice synthesis
+     * Model can be retrieved from the GetModels() gRPC call
      * </pre>
      *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+     * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+     * @return The bytes for modelName.
      */
     @java.lang.Override
-    public ai.sensorycloud.api.v1.audio.AudioConfig getAudio() {
-      return instance.getAudio();
+    public com.google.protobuf.ByteString
+        getModelNameBytes() {
+      return instance.getModelNameBytes();
     }
     /**
      * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
+     * Name of model to use for voice synthesis
+     * Model can be retrieved from the GetModels() gRPC call
      * </pre>
      *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+     * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+     * @param value The modelName to set.
+     * @return This builder for chaining.
      */
-    public Builder setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
+    public Builder setModelName(
+        java.lang.String value) {
       copyOnWrite();
-      instance.setAudio(value);
-      return this;
-      }
-    /**
-     * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
-     * </pre>
-     *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-     */
-    public Builder setAudio(
-        ai.sensorycloud.api.v1.audio.AudioConfig.Builder builderForValue) {
-      copyOnWrite();
-      instance.setAudio(builderForValue.build());
+      instance.setModelName(value);
       return this;
     }
     /**
      * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
+     * Name of model to use for voice synthesis
+     * Model can be retrieved from the GetModels() gRPC call
      * </pre>
      *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+     * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+     * @return This builder for chaining.
      */
-    public Builder mergeAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
+    public Builder clearModelName() {
       copyOnWrite();
-      instance.mergeAudio(value);
+      instance.clearModelName();
       return this;
     }
     /**
      * <pre>
-     * Required. Provides information that specifies how the synthesized audio should be formatted
+     * Name of model to use for voice synthesis
+     * Model can be retrieved from the GetModels() gRPC call
      * </pre>
      *
-     * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
+     * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+     * @param value The bytes for modelName to set.
+     * @return This builder for chaining.
      */
-    public Builder clearAudio() {  copyOnWrite();
-      instance.clearAudio();
+    public Builder setModelNameBytes(
+        com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setModelNameBytes(value);
       return this;
     }
 
     /**
      * <pre>
-     * Required. The name of the voice to use for voice synthesis
+     * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
      * </pre>
      *
-     * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-     * @return The voice.
+     * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+     * @return The sampleRateHertz.
      */
     @java.lang.Override
-    public java.lang.String getVoice() {
-      return instance.getVoice();
+    public int getSampleRateHertz() {
+      return instance.getSampleRateHertz();
     }
     /**
      * <pre>
-     * Required. The name of the voice to use for voice synthesis
+     * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
      * </pre>
      *
-     * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-     * @return The bytes for voice.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getVoiceBytes() {
-      return instance.getVoiceBytes();
-    }
-    /**
-     * <pre>
-     * Required. The name of the voice to use for voice synthesis
-     * </pre>
-     *
-     * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-     * @param value The voice to set.
+     * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+     * @param value The sampleRateHertz to set.
      * @return This builder for chaining.
      */
-    public Builder setVoice(
-        java.lang.String value) {
+    public Builder setSampleRateHertz(int value) {
       copyOnWrite();
-      instance.setVoice(value);
+      instance.setSampleRateHertz(value);
       return this;
     }
     /**
      * <pre>
-     * Required. The name of the voice to use for voice synthesis
+     * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
      * </pre>
      *
-     * <code>string voice = 2 [(.validate.rules) = { ... }</code>
+     * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
      * @return This builder for chaining.
      */
-    public Builder clearVoice() {
+    public Builder clearSampleRateHertz() {
       copyOnWrite();
-      instance.clearVoice();
-      return this;
-    }
-    /**
-     * <pre>
-     * Required. The name of the voice to use for voice synthesis
-     * </pre>
-     *
-     * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-     * @param value The bytes for voice to set.
-     * @return This builder for chaining.
-     */
-    public Builder setVoiceBytes(
-        com.google.protobuf.ByteString value) {
-      copyOnWrite();
-      instance.setVoiceBytes(value);
+      instance.clearSampleRateHertz();
       return this;
     }
 
@@ -406,11 +357,11 @@ public  final class VoiceSynthesisConfig extends
       }
       case BUILD_MESSAGE_INFO: {
           java.lang.Object[] objects = new java.lang.Object[] {
-            "audio_",
-            "voice_",
+            "modelName_",
+            "sampleRateHertz_",
           };
           java.lang.String info =
-              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\t\u0002\u0208" +
+              "\u0000\u0002\u0000\u0000\u0002\u0003\u0002\u0000\u0000\u0000\u0002\u0208\u0003\u0004" +
               "";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }

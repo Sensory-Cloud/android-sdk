@@ -121,4 +121,62 @@ public interface TranscribeConfigOrBuilder extends
    * @return The vadDuration.
    */
   float getVadDuration();
+
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The enum numeric value on the wire for customVocabRewardThreshold.
+   */
+  int getCustomVocabRewardThresholdValue();
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The customVocabRewardThreshold.
+   */
+  ai.sensorycloud.api.v1.audio.ThresholdSensitivity getCustomVocabRewardThreshold();
+
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The customVocabularyId.
+   */
+  java.lang.String getCustomVocabularyId();
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The bytes for customVocabularyId.
+   */
+  com.google.protobuf.ByteString
+      getCustomVocabularyIdBytes();
+
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   * @return Whether the customWordList field is set.
+   */
+  boolean hasCustomWordList();
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   * @return The customWordList.
+   */
+  ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList();
 }

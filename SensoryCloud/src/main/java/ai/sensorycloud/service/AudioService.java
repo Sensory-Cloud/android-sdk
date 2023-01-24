@@ -453,22 +453,21 @@ public class AudioService {
      *
      * Concatenating all of the `audioContent` responses passed to the responseObserver will result in a complete WAV file of the resultant audio
      * @param phrase The text phrase to synthesize a voice saying
-     * @param voiceName The name of the voice to use during speech synthesis
-     * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param modelName The name of the model to use for speech synthesis
+     * @param sampleRateHertz The desired sample rate of the synthesized audio, 16000Hz should be used in most cases
      * @param responseObserver Observer that will be populated with the stream responses
      */
     public void synthesizeSpeech(
             String phrase,
-            String voiceName,
-            String languageCode,
+            String modelName,
+            int sampleRateHertz,
             StreamObserver<SynthesizeSpeechResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         AudioSynthesisGrpc.AudioSynthesisStub audioClient = AudioSynthesisGrpc.newStub(managedChannel);
 
-        AudioConfig audioConfig = getDefaultAudioConfig(languageCode);
         VoiceSynthesisConfig voiceConfig = VoiceSynthesisConfig.newBuilder()
-                .setAudio(audioConfig)
-                .setVoice(voiceName)
+                .setModelName(modelName)
+                .setSampleRateHertz(sampleRateHertz)
                 .build();
         SynthesizeSpeechRequest request = SynthesizeSpeechRequest.newBuilder()
                 .setPhrase(phrase)
