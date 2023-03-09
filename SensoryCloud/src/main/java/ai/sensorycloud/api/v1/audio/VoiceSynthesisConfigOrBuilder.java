@@ -9,40 +9,33 @@ public interface VoiceSynthesisConfigOrBuilder extends
 
   /**
    * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   * @return Whether the audio field is set.
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @return The modelName.
    */
-  boolean hasAudio();
+  java.lang.String getModelName();
   /**
    * <pre>
-   * Required. Provides information that specifies how the synthesized audio should be formatted
+   * Name of model to use for voice synthesis
+   * Model can be retrieved from the GetModels() gRPC call
    * </pre>
    *
-   * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
-   * @return The audio.
+   * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
+   * @return The bytes for modelName.
    */
-  ai.sensorycloud.api.v1.audio.AudioConfig getAudio();
+  com.google.protobuf.ByteString
+      getModelNameBytes();
 
   /**
    * <pre>
-   * Required. The name of the voice to use for voice synthesis
+   * The sample rate of the output audio file. Value should be between 8000Hz and 96000Hz
    * </pre>
    *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @return The voice.
+   * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
+   * @return The sampleRateHertz.
    */
-  java.lang.String getVoice();
-  /**
-   * <pre>
-   * Required. The name of the voice to use for voice synthesis
-   * </pre>
-   *
-   * <code>string voice = 2 [(.validate.rules) = { ... }</code>
-   * @return The bytes for voice.
-   */
-  com.google.protobuf.ByteString
-      getVoiceBytes();
+  int getSampleRateHertz();
 }

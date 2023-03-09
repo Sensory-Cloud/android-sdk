@@ -18,6 +18,7 @@ public  final class TranscribeConfig extends
   private TranscribeConfig() {
     modelName_ = "";
     userId_ = "";
+    customVocabularyId_ = "";
   }
   public static final int AUDIO_FIELD_NUMBER = 1;
   private ai.sensorycloud.api.v1.audio.AudioConfig audio_;
@@ -411,6 +412,201 @@ public  final class TranscribeConfig extends
   private void clearVadDuration() {
     
     vadDuration_ = 0F;
+  }
+
+  public static final int CUSTOMVOCABREWARDTHRESHOLD_FIELD_NUMBER = 8;
+  private int customVocabRewardThreshold_;
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The enum numeric value on the wire for customVocabRewardThreshold.
+   */
+  @java.lang.Override
+  public int getCustomVocabRewardThresholdValue() {
+    return customVocabRewardThreshold_;
+  }
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The customVocabRewardThreshold.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getCustomVocabRewardThreshold() {
+    ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.forNumber(customVocabRewardThreshold_);
+    return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+  }
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @param value The enum numeric value on the wire for customVocabRewardThreshold to set.
+   */
+  private void setCustomVocabRewardThresholdValue(int value) {
+      customVocabRewardThreshold_ = value;
+  }
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @param value The customVocabRewardThreshold to set.
+   */
+  private void setCustomVocabRewardThreshold(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+    customVocabRewardThreshold_ = value.getNumber();
+    
+  }
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   */
+  private void clearCustomVocabRewardThreshold() {
+    
+    customVocabRewardThreshold_ = 0;
+  }
+
+  public static final int CUSTOMVOCABULARYID_FIELD_NUMBER = 9;
+  private java.lang.String customVocabularyId_;
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The customVocabularyId.
+   */
+  @java.lang.Override
+  public java.lang.String getCustomVocabularyId() {
+    return customVocabularyId_;
+  }
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The bytes for customVocabularyId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getCustomVocabularyIdBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(customVocabularyId_);
+  }
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @param value The customVocabularyId to set.
+   */
+  private void setCustomVocabularyId(
+      java.lang.String value) {
+    java.lang.Class<?> valueClass = value.getClass();
+  
+    customVocabularyId_ = value;
+  }
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   */
+  private void clearCustomVocabularyId() {
+    
+    customVocabularyId_ = getDefaultInstance().getCustomVocabularyId();
+  }
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @param value The bytes for customVocabularyId to set.
+   */
+  private void setCustomVocabularyIdBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    customVocabularyId_ = value.toStringUtf8();
+    
+  }
+
+  public static final int CUSTOMWORDLIST_FIELD_NUMBER = 10;
+  private ai.sensorycloud.api.v1.audio.CustomVocabularyWords customWordList_;
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  @java.lang.Override
+  public boolean hasCustomWordList() {
+    return customWordList_ != null;
+  }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList() {
+    return customWordList_ == null ? ai.sensorycloud.api.v1.audio.CustomVocabularyWords.getDefaultInstance() : customWordList_;
+  }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  private void setCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+    value.getClass();
+  customWordList_ = value;
+    
+    }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+    value.getClass();
+  if (customWordList_ != null &&
+        customWordList_ != ai.sensorycloud.api.v1.audio.CustomVocabularyWords.getDefaultInstance()) {
+      customWordList_ =
+        ai.sensorycloud.api.v1.audio.CustomVocabularyWords.newBuilder(customWordList_).mergeFrom(value).buildPartial();
+    } else {
+      customWordList_ = value;
+    }
+    
+  }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  private void clearCustomWordList() {  customWordList_ = null;
+    
   }
 
   public static ai.sensorycloud.api.v1.audio.TranscribeConfig parseFrom(
@@ -926,6 +1122,212 @@ public  final class TranscribeConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return The enum numeric value on the wire for customVocabRewardThreshold.
+     */
+    @java.lang.Override
+    public int getCustomVocabRewardThresholdValue() {
+      return instance.getCustomVocabRewardThresholdValue();
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @param value The customVocabRewardThreshold to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabRewardThresholdValue(int value) {
+      copyOnWrite();
+      instance.setCustomVocabRewardThresholdValue(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return The customVocabRewardThreshold.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getCustomVocabRewardThreshold() {
+      return instance.getCustomVocabRewardThreshold();
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @param value The enum numeric value on the wire for customVocabRewardThreshold to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabRewardThreshold(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+      copyOnWrite();
+      instance.setCustomVocabRewardThreshold(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCustomVocabRewardThreshold() {
+      copyOnWrite();
+      instance.clearCustomVocabRewardThreshold();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return The customVocabularyId.
+     */
+    @java.lang.Override
+    public java.lang.String getCustomVocabularyId() {
+      return instance.getCustomVocabularyId();
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return The bytes for customVocabularyId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCustomVocabularyIdBytes() {
+      return instance.getCustomVocabularyIdBytes();
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @param value The customVocabularyId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabularyId(
+        java.lang.String value) {
+      copyOnWrite();
+      instance.setCustomVocabularyId(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCustomVocabularyId() {
+      copyOnWrite();
+      instance.clearCustomVocabularyId();
+      return this;
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @param value The bytes for customVocabularyId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabularyIdBytes(
+        com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setCustomVocabularyIdBytes(value);
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    @java.lang.Override
+    public boolean hasCustomWordList() {
+      return instance.hasCustomWordList();
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList() {
+      return instance.getCustomWordList();
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder setCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+      copyOnWrite();
+      instance.setCustomWordList(value);
+      return this;
+      }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder setCustomWordList(
+        ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder builderForValue) {
+      copyOnWrite();
+      instance.setCustomWordList(builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder mergeCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+      copyOnWrite();
+      instance.mergeCustomWordList(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder clearCustomWordList() {  copyOnWrite();
+      instance.clearCustomWordList();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.TranscribeConfig)
   }
   @java.lang.Override
@@ -949,10 +1351,13 @@ public  final class TranscribeConfig extends
             "doSingleUtterance_",
             "vadSensitivity_",
             "vadDuration_",
+            "customVocabRewardThreshold_",
+            "customVocabularyId_",
+            "customWordList_",
           };
           java.lang.String info =
-              "\u0000\u0007\u0000\u0000\u0001\u0007\u0007\u0000\u0000\u0000\u0001\t\u0002\u0208" +
-              "\u0003\u0208\u0004\u0007\u0005\u0007\u0006\f\u0007\u0001";
+              "\u0000\n\u0000\u0000\u0001\n\n\u0000\u0000\u0000\u0001\t\u0002\u0208\u0003\u0208" +
+              "\u0004\u0007\u0005\u0007\u0006\f\u0007\u0001\b\f\t\u0208\n\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

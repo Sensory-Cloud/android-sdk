@@ -21,7 +21,7 @@ public class AudioStreamInteractor {
     final static int AUDIO_SAMPLE_RATE = 16000;
     final static int AUDIO_CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
     final static int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
-    final static int AUDIO_SOURCE = MediaRecorder.AudioSource.MIC;
+    final static int AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_RECOGNITION;
 
     /**
      * Checks device permissions and returns a new AudioStreamInteractor if allowed

@@ -188,14 +188,12 @@ public class AudioServiceTest extends TestCase {
 
     final TranscribeResponse expectedTranscriptionResponse = TranscribeResponse.newBuilder()
             .setAudioEnergy(25)
-            .setIsPartialResult(true)
-            .setTranscript("Some Transcription")
             .build();
 
     final SynthesizeSpeechRequest expectedSynthesizeSpeechRequest = SynthesizeSpeechRequest.newBuilder()
             .setConfig(VoiceSynthesisConfig.newBuilder()
-                    .setAudio(mockAudioConfig)
-                    .setVoice("Some Voice")
+                    .setModelName("Synthesis Model")
+                    .setSampleRateHertz(16000)
             )
             .setPhrase("Some Phrase")
             .build();
@@ -581,8 +579,8 @@ public class AudioServiceTest extends TestCase {
     public void testSynthesizeSpeech() {
         service.synthesizeSpeech(
                 expectedSynthesizeSpeechRequest.getPhrase(),
-                expectedSynthesizeSpeechRequest.getConfig().getVoice(),
-                "",
+                expectedSynthesizeSpeechRequest.getConfig().getModelName(),
+                expectedSynthesizeSpeechRequest.getConfig().getSampleRateHertz(),
                 new StreamObserver<SynthesizeSpeechResponse>() {
                     @Override
                     public void onNext(SynthesizeSpeechResponse value) {

@@ -9,7 +9,7 @@ USAGE="Usage: ./sc.sh [COMMAND]"
 COMMANDS="
     Commands:\n
     genproto | gp [tag]\t Pulls and generates proto files from master or from an optional git tag\n
-    release | rv [version]\ Releases and tags the SDK
+    release | rv [version]\t Releases and tags the SDK\n
     help | h\t\t Display This Help Message\n
 "
 
