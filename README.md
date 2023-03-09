@@ -389,50 +389,7 @@ StreamObserver<ValidateEventRequest> requestObserver = audioService.validateTrig
 requestObserver.onCompleted();
 ```
 
-### Transcription (Sliding Window Transcript)
-
-Transcription is used to convert audio into text.
-
-```Java
-String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
-String modelName = "wakeword-16kHz-open_sesame.ubm";
-
-// Open the grpc stream
-StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio(
-        modelName,
-        userId,
-        "",
-        new StreamObserver<TranscribeResponse>() {
-            @Override
-            public void onNext(TranscribeResponse value) {
-                // Response contains information about the audio such as:
-                // * audioEnergy
-
-                // Transcript contains the current running transcript of the last 7 seconds of processed audio
-                // If you want a full transcript, see the below example
-                String transcript = value.getTranscript();
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                // Handle server error
-            }
-
-            @Override
-            public void onCompleted() {
-                // Handle grpc stream close
-            }
-        }
-);
-
-// Start Audio Recording
-// See audio enrollment example for details
-
-// The SDK implementer can decide when they want to close the audio stream by calling
-requestObserver.onCompleted();
-```
-
-### Transcription (Full Transcript)
+### Transcription
 
 Transcription is used to convert audio into text.
 
