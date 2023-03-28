@@ -13,6 +13,7 @@ public  final class UsageEventModelSummary extends
     UsageEventModelSummaryOrBuilder {
   private UsageEventModelSummary() {
     units_ = "";
+    tenantId_ = "";
   }
   public static final int BILLABLEFUNCTION_FIELD_NUMBER = 1;
   private int billableFunction_;
@@ -255,6 +256,73 @@ public  final class UsageEventModelSummary extends
   private void clearCredits() {
     
     credits_ = 0D;
+  }
+
+  public static final int TENANTID_FIELD_NUMBER = 6;
+  private java.lang.String tenantId_;
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @return The tenantId.
+   */
+  @java.lang.Override
+  public java.lang.String getTenantId() {
+    return tenantId_;
+  }
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @return The bytes for tenantId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getTenantIdBytes() {
+    return com.google.protobuf.ByteString.copyFromUtf8(tenantId_);
+  }
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @param value The tenantId to set.
+   */
+  private void setTenantId(
+      java.lang.String value) {
+    java.lang.Class<?> valueClass = value.getClass();
+  
+    tenantId_ = value;
+  }
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   */
+  private void clearTenantId() {
+    
+    tenantId_ = getDefaultInstance().getTenantId();
+  }
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @param value The bytes for tenantId to set.
+   */
+  private void setTenantIdBytes(
+      com.google.protobuf.ByteString value) {
+    checkByteStringIsUtf8(value);
+    tenantId_ = value.toStringUtf8();
+    
   }
 
   public static ai.sensorycloud.api.v1.event.UsageEventModelSummary parseFrom(
@@ -607,6 +675,75 @@ public  final class UsageEventModelSummary extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+     * </pre>
+     *
+     * <code>string tenantId = 6;</code>
+     * @return The tenantId.
+     */
+    @java.lang.Override
+    public java.lang.String getTenantId() {
+      return instance.getTenantId();
+    }
+    /**
+     * <pre>
+     * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+     * </pre>
+     *
+     * <code>string tenantId = 6;</code>
+     * @return The bytes for tenantId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTenantIdBytes() {
+      return instance.getTenantIdBytes();
+    }
+    /**
+     * <pre>
+     * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+     * </pre>
+     *
+     * <code>string tenantId = 6;</code>
+     * @param value The tenantId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTenantId(
+        java.lang.String value) {
+      copyOnWrite();
+      instance.setTenantId(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+     * </pre>
+     *
+     * <code>string tenantId = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTenantId() {
+      copyOnWrite();
+      instance.clearTenantId();
+      return this;
+    }
+    /**
+     * <pre>
+     * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+     * </pre>
+     *
+     * <code>string tenantId = 6;</code>
+     * @param value The bytes for tenantId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTenantIdBytes(
+        com.google.protobuf.ByteString value) {
+      copyOnWrite();
+      instance.setTenantIdBytes(value);
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEventModelSummary)
   }
   @java.lang.Override
@@ -628,10 +765,11 @@ public  final class UsageEventModelSummary extends
             "value_",
             "count_",
             "credits_",
+            "tenantId_",
           };
           java.lang.String info =
-              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\f\u0002\u0208" +
-              "\u0003\u0002\u0004\u0002\u0005\u0000";
+              "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\f\u0002\u0208" +
+              "\u0003\u0002\u0004\u0002\u0005\u0000\u0006\u0208";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

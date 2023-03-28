@@ -108,6 +108,36 @@ public final class EventServiceGrpc {
     return getGetUsageEventSummaryMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest,
+      ai.sensorycloud.api.v1.event.UsageEventSummary> getGetGlobalUsageSummaryMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetGlobalUsageSummary",
+      requestType = ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest.class,
+      responseType = ai.sensorycloud.api.v1.event.UsageEventSummary.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest,
+      ai.sensorycloud.api.v1.event.UsageEventSummary> getGetGlobalUsageSummaryMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest, ai.sensorycloud.api.v1.event.UsageEventSummary> getGetGlobalUsageSummaryMethod;
+    if ((getGetGlobalUsageSummaryMethod = EventServiceGrpc.getGetGlobalUsageSummaryMethod) == null) {
+      synchronized (EventServiceGrpc.class) {
+        if ((getGetGlobalUsageSummaryMethod = EventServiceGrpc.getGetGlobalUsageSummaryMethod) == null) {
+          EventServiceGrpc.getGetGlobalUsageSummaryMethod = getGetGlobalUsageSummaryMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest, ai.sensorycloud.api.v1.event.UsageEventSummary>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetGlobalUsageSummary"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  ai.sensorycloud.api.v1.event.UsageEventSummary.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getGetGlobalUsageSummaryMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -192,6 +222,17 @@ public final class EventServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetUsageEventSummaryMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * Obtains a usage summary of events across all specified tenants
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void getGlobalUsageSummary(ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.event.UsageEventSummary> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetGlobalUsageSummaryMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -215,6 +256,13 @@ public final class EventServiceGrpc {
                 ai.sensorycloud.api.v1.event.UsageEventListRequest,
                 ai.sensorycloud.api.v1.event.UsageEventSummary>(
                   this, METHODID_GET_USAGE_EVENT_SUMMARY)))
+          .addMethod(
+            getGetGlobalUsageSummaryMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest,
+                ai.sensorycloud.api.v1.event.UsageEventSummary>(
+                  this, METHODID_GET_GLOBAL_USAGE_SUMMARY)))
           .build();
     }
   }
@@ -271,6 +319,18 @@ public final class EventServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetUsageEventSummaryMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Obtains a usage summary of events across all specified tenants
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public void getGlobalUsageSummary(ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.event.UsageEventSummary> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetGlobalUsageSummaryMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -321,6 +381,17 @@ public final class EventServiceGrpc {
     public ai.sensorycloud.api.v1.event.UsageEventSummary getUsageEventSummary(ai.sensorycloud.api.v1.event.UsageEventListRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetUsageEventSummaryMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Obtains a usage summary of events across all specified tenants
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.event.UsageEventSummary getGlobalUsageSummary(ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetGlobalUsageSummaryMethod(), getCallOptions(), request);
     }
   }
 
@@ -376,11 +447,24 @@ public final class EventServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetUsageEventSummaryMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Obtains a usage summary of events across all specified tenants
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.event.UsageEventSummary> getGlobalUsageSummary(
+        ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetGlobalUsageSummaryMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PUBLISH_USAGE_EVENTS = 0;
   private static final int METHODID_GET_USAGE_EVENT_LIST = 1;
   private static final int METHODID_GET_USAGE_EVENT_SUMMARY = 2;
+  private static final int METHODID_GET_GLOBAL_USAGE_SUMMARY = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -411,6 +495,10 @@ public final class EventServiceGrpc {
           serviceImpl.getUsageEventSummary((ai.sensorycloud.api.v1.event.UsageEventListRequest) request,
               (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.event.UsageEventSummary>) responseObserver);
           break;
+        case METHODID_GET_GLOBAL_USAGE_SUMMARY:
+          serviceImpl.getGlobalUsageSummary((ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.event.UsageEventSummary>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -439,6 +527,7 @@ public final class EventServiceGrpc {
               .addMethod(getPublishUsageEventsMethod())
               .addMethod(getGetUsageEventListMethod())
               .addMethod(getGetUsageEventSummaryMethod())
+              .addMethod(getGetGlobalUsageSummaryMethod())
               .build();
         }
       }
