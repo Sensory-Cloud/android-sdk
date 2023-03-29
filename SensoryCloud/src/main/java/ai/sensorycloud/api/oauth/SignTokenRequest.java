@@ -59,6 +59,14 @@ public  final class SignTokenRequest extends
      * <code>READ_ONLY_ADMIN = 3;</code>
      */
     READ_ONLY_ADMIN(3),
+    /**
+     * <pre>
+     * Email verification, only allowed to verify user's email
+     * </pre>
+     *
+     * <code>EMAIL_SELF_VERIFY = 4;</code>
+     */
+    EMAIL_SELF_VERIFY(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -94,6 +102,14 @@ public  final class SignTokenRequest extends
      * <code>READ_ONLY_ADMIN = 3;</code>
      */
     public static final int READ_ONLY_ADMIN_VALUE = 3;
+    /**
+     * <pre>
+     * Email verification, only allowed to verify user's email
+     * </pre>
+     *
+     * <code>EMAIL_SELF_VERIFY = 4;</code>
+     */
+    public static final int EMAIL_SELF_VERIFY_VALUE = 4;
 
 
     @java.lang.Override
@@ -121,6 +137,7 @@ public  final class SignTokenRequest extends
         case 1: return SUPER_ADMIN;
         case 2: return BILLING_ADMIN;
         case 3: return READ_ONLY_ADMIN;
+        case 4: return EMAIL_SELF_VERIFY;
         default: return null;
       }
     }

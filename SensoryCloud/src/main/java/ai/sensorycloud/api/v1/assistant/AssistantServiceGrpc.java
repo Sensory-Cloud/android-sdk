@@ -3,9 +3,6 @@ package ai.sensorycloud.api.v1.assistant;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * Serivce to comunicate with an assistant
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
@@ -18,34 +15,34 @@ public final class AssistantServiceGrpc {
   public static final String SERVICE_NAME = "sensory.api.v1.assistant.AssistantService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest,
-      ai.sensorycloud.api.v1.assistant.AssistantMessageResponse> getProcessMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.TextChatRequest,
+      ai.sensorycloud.api.v1.assistant.TextChatResponse> getTextChatMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ProcessMessage",
-      requestType = ai.sensorycloud.api.v1.assistant.AssistantMessageRequest.class,
-      responseType = ai.sensorycloud.api.v1.assistant.AssistantMessageResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest,
-      ai.sensorycloud.api.v1.assistant.AssistantMessageResponse> getProcessMessageMethod() {
-    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest, ai.sensorycloud.api.v1.assistant.AssistantMessageResponse> getProcessMessageMethod;
-    if ((getProcessMessageMethod = AssistantServiceGrpc.getProcessMessageMethod) == null) {
+      fullMethodName = SERVICE_NAME + '/' + "TextChat",
+      requestType = ai.sensorycloud.api.v1.assistant.TextChatRequest.class,
+      responseType = ai.sensorycloud.api.v1.assistant.TextChatResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.TextChatRequest,
+      ai.sensorycloud.api.v1.assistant.TextChatResponse> getTextChatMethod() {
+    io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.TextChatRequest, ai.sensorycloud.api.v1.assistant.TextChatResponse> getTextChatMethod;
+    if ((getTextChatMethod = AssistantServiceGrpc.getTextChatMethod) == null) {
       synchronized (AssistantServiceGrpc.class) {
-        if ((getProcessMessageMethod = AssistantServiceGrpc.getProcessMessageMethod) == null) {
-          AssistantServiceGrpc.getProcessMessageMethod = getProcessMessageMethod =
-              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest, ai.sensorycloud.api.v1.assistant.AssistantMessageResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ProcessMessage"))
+        if ((getTextChatMethod = AssistantServiceGrpc.getTextChatMethod) == null) {
+          AssistantServiceGrpc.getTextChatMethod = getTextChatMethod =
+              io.grpc.MethodDescriptor.<ai.sensorycloud.api.v1.assistant.TextChatRequest, ai.sensorycloud.api.v1.assistant.TextChatResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TextChat"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  ai.sensorycloud.api.v1.assistant.AssistantMessageRequest.getDefaultInstance()))
+                  ai.sensorycloud.api.v1.assistant.TextChatRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  ai.sensorycloud.api.v1.assistant.AssistantMessageResponse.getDefaultInstance()))
+                  ai.sensorycloud.api.v1.assistant.TextChatResponse.getDefaultInstance()))
               .build();
         }
       }
     }
-    return getProcessMessageMethod;
+    return getTextChatMethod;
   }
 
   /**
@@ -93,40 +90,34 @@ public final class AssistantServiceGrpc {
   }
 
   /**
-   * <pre>
-   * Serivce to comunicate with an assistant
-   * </pre>
    */
   public static abstract class AssistantServiceImplBase implements io.grpc.BindableService {
 
     /**
      * <pre>
-     * Sends and process messages from a virtual assistant
+     * Allows a user to verify their own email. Will fail if the email is already verified.
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest> processMessage(
-        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.AssistantMessageResponse> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getProcessMessageMethod(), responseObserver);
+    public void textChat(ai.sensorycloud.api.v1.assistant.TextChatRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.TextChatResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTextChatMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getProcessMessageMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            getTextChatMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                ai.sensorycloud.api.v1.assistant.AssistantMessageRequest,
-                ai.sensorycloud.api.v1.assistant.AssistantMessageResponse>(
-                  this, METHODID_PROCESS_MESSAGE)))
+                ai.sensorycloud.api.v1.assistant.TextChatRequest,
+                ai.sensorycloud.api.v1.assistant.TextChatResponse>(
+                  this, METHODID_TEXT_CHAT)))
           .build();
     }
   }
 
   /**
-   * <pre>
-   * Serivce to comunicate with an assistant
-   * </pre>
    */
   public static final class AssistantServiceStub extends io.grpc.stub.AbstractAsyncStub<AssistantServiceStub> {
     private AssistantServiceStub(
@@ -142,21 +133,18 @@ public final class AssistantServiceGrpc {
 
     /**
      * <pre>
-     * Sends and process messages from a virtual assistant
+     * Allows a user to verify their own email. Will fail if the email is already verified.
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.AssistantMessageRequest> processMessage(
-        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.AssistantMessageResponse> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
-          getChannel().newCall(getProcessMessageMethod(), getCallOptions()), responseObserver);
+    public void textChat(ai.sensorycloud.api.v1.assistant.TextChatRequest request,
+        io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.TextChatResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getTextChatMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
-   * <pre>
-   * Serivce to comunicate with an assistant
-   * </pre>
    */
   public static final class AssistantServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<AssistantServiceBlockingStub> {
     private AssistantServiceBlockingStub(
@@ -169,12 +157,20 @@ public final class AssistantServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AssistantServiceBlockingStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     * Allows a user to verify their own email. Will fail if the email is already verified.
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public ai.sensorycloud.api.v1.assistant.TextChatResponse textChat(ai.sensorycloud.api.v1.assistant.TextChatRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getTextChatMethod(), getCallOptions(), request);
+    }
   }
 
   /**
-   * <pre>
-   * Serivce to comunicate with an assistant
-   * </pre>
    */
   public static final class AssistantServiceFutureStub extends io.grpc.stub.AbstractFutureStub<AssistantServiceFutureStub> {
     private AssistantServiceFutureStub(
@@ -187,9 +183,21 @@ public final class AssistantServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AssistantServiceFutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     * Allows a user to verify their own email. Will fail if the email is already verified.
+     * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ai.sensorycloud.api.v1.assistant.TextChatResponse> textChat(
+        ai.sensorycloud.api.v1.assistant.TextChatRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getTextChatMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_PROCESS_MESSAGE = 0;
+  private static final int METHODID_TEXT_CHAT = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +216,10 @@ public final class AssistantServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_TEXT_CHAT:
+          serviceImpl.textChat((ai.sensorycloud.api.v1.assistant.TextChatRequest) request,
+              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.TextChatResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -218,9 +230,6 @@ public final class AssistantServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_PROCESS_MESSAGE:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.processMessage(
-              (io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.AssistantMessageResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -236,7 +245,7 @@ public final class AssistantServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .addMethod(getProcessMessageMethod())
+              .addMethod(getTextChatMethod())
               .build();
         }
       }

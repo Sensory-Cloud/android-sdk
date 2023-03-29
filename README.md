@@ -353,7 +353,7 @@ Audio events are used to recognize specific words, phrases, or sounds.
 
 ```Java
 String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
-String modelName = "wakeword-16kHz-open_sesame.ubm";
+String modelName = "wakeword-16kHz-open_sesame.trg";
 
 // Open the grpc stream
 StreamObserver<ValidateEventRequest> requestObserver = audioService.validateTrigger(
@@ -395,7 +395,7 @@ Transcription is used to convert audio into text.
 
 ```Java
 String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
-String modelName = "wakeword-16kHz-open_sesame.ubm";
+String modelName = "speech_recognition_en";
 TranscriptAggregator aggregator = new TranscriptAggregator();
 
 // Open the grpc stream
@@ -501,7 +501,7 @@ In order to enroll with video, you must first ensure you have an enrollable mode
 
 ```Java
 // Get basic enrollment information
-String modelName = "face_biometric_hektor";
+String modelName = "face_recognition";
 String userID = "72f286b8-173f-436a-8869-6f7887789ee9";
 String enrollmentDescription = "My Enrollment";
 boolean isLivenessEnabled = true;
@@ -633,7 +633,7 @@ Video Liveness allows one to send images to Sensory Cloud in order to determine 
 ```Java
 // Get basic liveness information
 String userId = "bea536c2-45d7-47b3-94e2-4962e1bb8a2f";
-String modelName = "face_recognition_mathilde";
+String modelName = "face_liveness";
 RecognitionThreshold threshold = RecognitionThreshold.MEDIUM;
 
 StreamObserver<ValidateRecognitionRequest> requestObserver = null;

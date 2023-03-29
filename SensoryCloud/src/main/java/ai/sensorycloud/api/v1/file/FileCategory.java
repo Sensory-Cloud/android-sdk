@@ -22,12 +22,12 @@ public enum FileCategory
   TSSV_MODEL(0),
   /**
    * <pre>
-   * A model used with the fenrir library
+   * A model used with the Atlas library
    * </pre>
    *
-   * <code>FENRIR_MODEL = 1;</code>
+   * <code>ATLAS_MODEL = 1;</code>
    */
-  FENRIR_MODEL(1),
+  ATLAS_MODEL(1),
   /**
    * <pre>
    * A model used with the TNL library
@@ -57,12 +57,12 @@ public enum FileCategory
   public static final int TSSV_MODEL_VALUE = 0;
   /**
    * <pre>
-   * A model used with the fenrir library
+   * A model used with the Atlas library
    * </pre>
    *
-   * <code>FENRIR_MODEL = 1;</code>
+   * <code>ATLAS_MODEL = 1;</code>
    */
-  public static final int FENRIR_MODEL_VALUE = 1;
+  public static final int ATLAS_MODEL_VALUE = 1;
   /**
    * <pre>
    * A model used with the TNL library
@@ -103,7 +103,7 @@ public enum FileCategory
   public static FileCategory forNumber(int value) {
     switch (value) {
       case 0: return TSSV_MODEL;
-      case 1: return FENRIR_MODEL;
+      case 1: return ATLAS_MODEL;
       case 2: return TNL_MODEL;
       case 100: return UNKNOWN;
       default: return null;
