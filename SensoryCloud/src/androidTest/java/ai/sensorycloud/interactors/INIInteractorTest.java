@@ -45,21 +45,15 @@ public class INIInteractorTest extends TestCase {
     }
 
     public void testNoDeviceInfo() throws Exception {
+        String expected = "Missing configuration for `deviceID`";
         InputStream stream = this.getClass().getClassLoader().getResourceAsStream("noDeviceInfo.ini");
-        INIInteractor parser = new INIInteractor(stream);
-
-        SDKInitConfig expected = new SDKInitConfig(
-                "sensorycloud.ai:443",
-                false,
-                "tenant",
-                SDKInitConfig.EnrollmentType.SHARED_SECRET,
-                "credential",
-                "",
-                ""
-        );
-
-        SDKInitConfig parsed = parser.getConfig();
-        checkSDKsEqual(expected, parsed);
+        try {
+            INIInteractor parser = new INIInteractor(stream);
+            SDKInitConfig parsed = parser.getConfig();
+            fail("Expected to catch an exception with message:"+expected);
+        } catch (Exception e){
+            assertEquals(expected,e.getMessage());
+        }
     }
 
     public void testMissingConfig() throws Exception {
