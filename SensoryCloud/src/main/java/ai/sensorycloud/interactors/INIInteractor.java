@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 import ai.sensorycloud.SDKInitConfig;
+import ai.sensorycloud.tokenManager.DefaultSecureCredentialStore;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 
 /**
@@ -119,14 +120,10 @@ public class INIInteractor {
             return "";
         }
         if(!secureCredentialStore.loadData(DEFAULT_DEVICE_ID).isPresent()){
-            UUID uuid = UUID.randomUUID();
-            byte[] uuidBytes = new byte[16];
-            ByteBuffer.wrap(uuidBytes)
-                    .putLong(uuid.getMostSignificantBits())
-                    .putLong(uuid.getLeastSignificantBits());
-            secureCredentialStore.saveData(DEFAULT_DEVICE_ID,uuidBytes);
-            return uuid.toString();
+            String uuid = UUID.randomUUID().toString();
+            secureCredentialStore.saveData(DEFAULT_DEVICE_ID,uuid.getBytes());
+            return uuid;
         }
-        return String.valueOf(secureCredentialStore.loadData(DEFAULT_DEVICE_ID));
+        return new String(secureCredentialStore.loadData(DEFAULT_DEVICE_ID).orElse(new byte[0]));
     }
 }
