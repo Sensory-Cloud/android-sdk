@@ -21,6 +21,7 @@ public class Initializer {
      * @param deviceID Optional device ID. If this is non-null and non-empty this will override the deviceID in the config file
      * @param deviceName Optional device name. If this is non-null and non-empty this will override the device name in the config file
      * @param listener Listener that will be updated when initialization is complete. The response may be null if the device has been previously enrolled
+     * @deprecated This method is no longer recommended for use and has been marked as deprecated. Please use the `initialize` method that takes an `SDKInitConfig` parameter instead.
      */
     public static void initialize(
             OAuthService oAuthService,
