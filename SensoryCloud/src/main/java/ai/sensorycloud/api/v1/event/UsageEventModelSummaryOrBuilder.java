@@ -75,4 +75,24 @@ public interface UsageEventModelSummaryOrBuilder extends
    * @return The credits.
    */
   double getCredits();
+
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @return The tenantId.
+   */
+  java.lang.String getTenantId();
+  /**
+   * <pre>
+   * Tenant that the events are from. For summaries that span multiple tenants, this field will be empty
+   * </pre>
+   *
+   * <code>string tenantId = 6;</code>
+   * @return The bytes for tenantId.
+   */
+  com.google.protobuf.ByteString
+      getTenantIdBytes();
 }

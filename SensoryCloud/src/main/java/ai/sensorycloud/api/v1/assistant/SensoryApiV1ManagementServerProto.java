@@ -3,8 +3,8 @@
 
 package ai.sensorycloud.api.v1.assistant;
 
-public final class SensoryApiV1AssistantProto {
-  private SensoryApiV1AssistantProto() {}
+public final class SensoryApiV1ManagementServerProto {
+  private SensoryApiV1ManagementServerProto() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }

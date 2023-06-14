@@ -18,6 +18,7 @@ public  final class AuthenticateResponse extends
   private AuthenticateResponse() {
     userId_ = "";
     enrollmentId_ = "";
+    boundingBox_ = emptyLongList();
   }
   public static final int SUCCESS_FIELD_NUMBER = 1;
   private boolean success_;
@@ -341,6 +342,181 @@ public  final class AuthenticateResponse extends
     checkByteStringIsUtf8(value);
     enrollmentId_ = value.toStringUtf8();
     
+  }
+
+  public static final int DIDFINDFACE_FIELD_NUMBER = 7;
+  private boolean didFindFace_;
+  /**
+   * <pre>
+   * Indicates if a face was found in the uploaded image
+   * </pre>
+   *
+   * <code>bool didFindFace = 7;</code>
+   * @return The didFindFace.
+   */
+  @java.lang.Override
+  public boolean getDidFindFace() {
+    return didFindFace_;
+  }
+  /**
+   * <pre>
+   * Indicates if a face was found in the uploaded image
+   * </pre>
+   *
+   * <code>bool didFindFace = 7;</code>
+   * @param value The didFindFace to set.
+   */
+  private void setDidFindFace(boolean value) {
+    
+    didFindFace_ = value;
+  }
+  /**
+   * <pre>
+   * Indicates if a face was found in the uploaded image
+   * </pre>
+   *
+   * <code>bool didFindFace = 7;</code>
+   */
+  private void clearDidFindFace() {
+    
+    didFindFace_ = false;
+  }
+
+  public static final int BOUNDINGBOX_FIELD_NUMBER = 8;
+  private com.google.protobuf.Internal.LongList boundingBox_;
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @return A list containing the boundingBox.
+   */
+  @java.lang.Override
+  public java.util.List<java.lang.Long>
+      getBoundingBoxList() {
+    return boundingBox_;
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @return The count of boundingBox.
+   */
+  @java.lang.Override
+  public int getBoundingBoxCount() {
+    return boundingBox_.size();
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @param index The index of the element to return.
+   * @return The boundingBox at the given index.
+   */
+  @java.lang.Override
+  public long getBoundingBox(int index) {
+    return boundingBox_.getLong(index);
+  }
+  private int boundingBoxMemoizedSerializedSize = -1;
+  private void ensureBoundingBoxIsMutable() {
+    com.google.protobuf.Internal.LongList tmp = boundingBox_;
+    if (!tmp.isModifiable()) {
+      boundingBox_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @param index The index to set the value at.
+   * @param value The boundingBox to set.
+   */
+  private void setBoundingBox(
+      int index, long value) {
+    ensureBoundingBoxIsMutable();
+    boundingBox_.setLong(index, value);
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @param value The boundingBox to add.
+   */
+  private void addBoundingBox(long value) {
+    ensureBoundingBoxIsMutable();
+    boundingBox_.addLong(value);
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   * @param values The boundingBox to add.
+   */
+  private void addAllBoundingBox(
+      java.lang.Iterable<? extends java.lang.Long> values) {
+    ensureBoundingBoxIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, boundingBox_);
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 8;</code>
+   */
+  private void clearBoundingBox() {
+    boundingBox_ = emptyLongList();
+  }
+
+  public static final int PROBABILITYFACE_FIELD_NUMBER = 9;
+  private float probabilityFace_;
+  /**
+   * <pre>
+   * The model's confidence in its face detection
+   * </pre>
+   *
+   * <code>float probabilityFace = 9;</code>
+   * @return The probabilityFace.
+   */
+  @java.lang.Override
+  public float getProbabilityFace() {
+    return probabilityFace_;
+  }
+  /**
+   * <pre>
+   * The model's confidence in its face detection
+   * </pre>
+   *
+   * <code>float probabilityFace = 9;</code>
+   * @param value The probabilityFace to set.
+   */
+  private void setProbabilityFace(float value) {
+    
+    probabilityFace_ = value;
+  }
+  /**
+   * <pre>
+   * The model's confidence in its face detection
+   * </pre>
+   *
+   * <code>float probabilityFace = 9;</code>
+   */
+  private void clearProbabilityFace() {
+    
+    probabilityFace_ = 0F;
   }
 
   public static ai.sensorycloud.api.v1.video.AuthenticateResponse parseFrom(
@@ -781,6 +957,183 @@ public  final class AuthenticateResponse extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 7;</code>
+     * @return The didFindFace.
+     */
+    @java.lang.Override
+    public boolean getDidFindFace() {
+      return instance.getDidFindFace();
+    }
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 7;</code>
+     * @param value The didFindFace to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDidFindFace(boolean value) {
+      copyOnWrite();
+      instance.setDidFindFace(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDidFindFace() {
+      copyOnWrite();
+      instance.clearDidFindFace();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @return A list containing the boundingBox.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Long>
+        getBoundingBoxList() {
+      return java.util.Collections.unmodifiableList(
+          instance.getBoundingBoxList());
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @return The count of boundingBox.
+     */
+    @java.lang.Override
+    public int getBoundingBoxCount() {
+      return instance.getBoundingBoxCount();
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @param index The index of the element to return.
+     * @return The boundingBox at the given index.
+     */
+    @java.lang.Override
+    public long getBoundingBox(int index) {
+      return instance.getBoundingBox(index);
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @param value The boundingBox to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBoundingBox(
+        int index, long value) {
+      copyOnWrite();
+      instance.setBoundingBox(index, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @param value The boundingBox to add.
+     * @return This builder for chaining.
+     */
+    public Builder addBoundingBox(long value) {
+      copyOnWrite();
+      instance.addBoundingBox(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @param values The boundingBox to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllBoundingBox(
+        java.lang.Iterable<? extends java.lang.Long> values) {
+      copyOnWrite();
+      instance.addAllBoundingBox(values);
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBoundingBox() {
+      copyOnWrite();
+      instance.clearBoundingBox();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 9;</code>
+     * @return The probabilityFace.
+     */
+    @java.lang.Override
+    public float getProbabilityFace() {
+      return instance.getProbabilityFace();
+    }
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 9;</code>
+     * @param value The probabilityFace to set.
+     * @return This builder for chaining.
+     */
+    public Builder setProbabilityFace(float value) {
+      copyOnWrite();
+      instance.setProbabilityFace(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearProbabilityFace() {
+      copyOnWrite();
+      instance.clearProbabilityFace();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.video.AuthenticateResponse)
   }
   @java.lang.Override
@@ -803,10 +1156,13 @@ public  final class AuthenticateResponse extends
             "token_",
             "userId_",
             "enrollmentId_",
+            "didFindFace_",
+            "boundingBox_",
+            "probabilityFace_",
           };
           java.lang.String info =
-              "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\u0007\u0002\u0001" +
-              "\u0003\u0007\u0004\t\u0005\u0208\u0006\u0208";
+              "\u0000\t\u0000\u0000\u0001\t\t\u0000\u0001\u0000\u0001\u0007\u0002\u0001\u0003\u0007" +
+              "\u0004\t\u0005\u0208\u0006\u0208\u0007\u0007\b%\t\u0001";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through
