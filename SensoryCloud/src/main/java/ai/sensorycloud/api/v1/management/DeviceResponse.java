@@ -68,7 +68,7 @@ public  final class DeviceResponse extends
    * <code>string name = 1;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -83,7 +83,7 @@ public  final class DeviceResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DEVICEID_FIELD_NUMBER = 2;
@@ -135,7 +135,7 @@ public  final class DeviceResponse extends
    * <code>string deviceId = 2;</code>
    */
   private void clearDeviceId() {
-    
+
     deviceId_ = getDefaultInstance().getDeviceId();
   }
   /**
@@ -150,7 +150,7 @@ public  final class DeviceResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     deviceId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.DeviceResponse parseFrom(
@@ -203,10 +203,12 @@ public  final class DeviceResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.DeviceResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.DeviceResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

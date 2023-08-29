@@ -115,25 +115,31 @@ DefaultSecureCredentialStore credentialStore = new DefaultSecureCredentialStore(
 OAuthService oAuthService = new OAuthService(credentialStore);
  
  InputStream fileStream = this.getClass().getClassLoader().getResourceAsStream("SensoryCloudConfig.ini");
- Initializer.initialize(
-    oauthService,
-    null, // JWT signer class, only used when enrollmentType is `jwt`
-    fileStream,
-    "", // Optional override for deviceID, useful when sharing config files across multiple devices
-    "", // Optional override for deviceName, useful when sharing config files across multiple devices
-    new OAuthService.EnrollDeviceListener() {
-        @Override
-        public void onSuccess(DeviceResponse response) {
-            // SDK has been successfully initialized and the device has been enrolled
-            // `response` may be null if the device has previously been enrolled
+SDKInitConfig config = null;
+try {
+    INIInteractor parser = new INIInteractor(fileStream,credentialStore);
+    config = parser.getConfig();
+} catch (Exception e) {
+     // Handle error setting up INIInteractor
+}
+
+Initializer.initialize(
+   oAuthService,
+   null, // JWT signer class, only used when enrollmentType is `jwt`
+   config,
+   new OAuthService.EnrollDeviceListener() {
+         @Override
+         public void onSuccess(DeviceResponse response) {
+           // SDK has been successfully initialized and the device has been enrolled
+           // `response` may be null if the device has previously been enrolled
         }
-        
-        @Override
-        public void onFailure(Throwable t) {
+         
+         @Override
+         public void onFailure(Throwable t) {
             // Handle error during SDK initialization
-        }
-    }
- );
+         }
+   }
+);
  ```
 
 ## Creating a Token Manager

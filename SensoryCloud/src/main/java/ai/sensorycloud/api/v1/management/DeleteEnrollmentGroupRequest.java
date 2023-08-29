@@ -67,7 +67,7 @@ public  final class DeleteEnrollmentGroupRequest extends
    * <code>string id = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -82,7 +82,7 @@ public  final class DeleteEnrollmentGroupRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest parseFrom(
@@ -135,10 +135,12 @@ public  final class DeleteEnrollmentGroupRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

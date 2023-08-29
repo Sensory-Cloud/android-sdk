@@ -247,10 +247,12 @@ public  final class CompressionConfiguration extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.CompressionConfiguration parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.CompressionConfiguration parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -443,6 +445,7 @@ public  final class CompressionConfiguration extends
      * @return This builder for chaining.
      */
     public Builder addCompressionsValue(int value) {
+      copyOnWrite();
       instance.addCompressionsValue(value);
       return this;
     }

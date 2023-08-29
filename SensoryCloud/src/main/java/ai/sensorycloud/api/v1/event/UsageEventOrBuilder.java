@@ -263,4 +263,14 @@ public interface UsageEventOrBuilder extends
    * @return The billableFunction.
    */
   ai.sensorycloud.api.common.ModelType getBillableFunction();
+
+  /**
+   * <pre>
+   * The number of tokens processed
+   * </pre>
+   *
+   * <code>int64 tokenCount = 13;</code>
+   * @return The tokenCount.
+   */
+  long getTokenCount();
 }

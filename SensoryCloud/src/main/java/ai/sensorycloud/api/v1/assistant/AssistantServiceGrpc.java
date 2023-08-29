@@ -5,14 +5,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/assistant/assistant.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AssistantServiceGrpc {
 
   private AssistantServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.assistant.AssistantService";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.assistant.AssistantService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.assistant.TextChatRequest,
@@ -91,7 +91,7 @@ public final class AssistantServiceGrpc {
 
   /**
    */
-  public static abstract class AssistantServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -99,27 +99,28 @@ public final class AssistantServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void textChat(ai.sensorycloud.api.v1.assistant.TextChatRequest request,
+    default void textChat(ai.sensorycloud.api.v1.assistant.TextChatRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.assistant.TextChatResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTextChatMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getTextChatMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.assistant.TextChatRequest,
-                ai.sensorycloud.api.v1.assistant.TextChatResponse>(
-                  this, METHODID_TEXT_CHAT)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AssistantService.
    */
-  public static final class AssistantServiceStub extends io.grpc.stub.AbstractAsyncStub<AssistantServiceStub> {
+  public static abstract class AssistantServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AssistantServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AssistantService.
+   */
+  public static final class AssistantServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<AssistantServiceStub> {
     private AssistantServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -145,8 +146,10 @@ public final class AssistantServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AssistantService.
    */
-  public static final class AssistantServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<AssistantServiceBlockingStub> {
+  public static final class AssistantServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AssistantServiceBlockingStub> {
     private AssistantServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -171,8 +174,10 @@ public final class AssistantServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AssistantService.
    */
-  public static final class AssistantServiceFutureStub extends io.grpc.stub.AbstractFutureStub<AssistantServiceFutureStub> {
+  public static final class AssistantServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AssistantServiceFutureStub> {
     private AssistantServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -204,10 +209,10 @@ public final class AssistantServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AssistantServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AssistantServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -234,6 +239,18 @@ public final class AssistantServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getTextChatMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.assistant.TextChatRequest,
+              ai.sensorycloud.api.v1.assistant.TextChatResponse>(
+                service, METHODID_TEXT_CHAT)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

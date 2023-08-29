@@ -54,7 +54,7 @@ public  final class AuthenticateResponse extends
    * <code>float audioEnergy = 1;</code>
    */
   private void clearAudioEnergy() {
-    
+
     audioEnergy_ = 0F;
   }
 
@@ -92,7 +92,7 @@ public  final class AuthenticateResponse extends
    * <code>bool success = 2;</code>
    */
   private void clearSuccess() {
-    
+
     success_ = false;
   }
 
@@ -130,7 +130,7 @@ public  final class AuthenticateResponse extends
   private void setToken(ai.sensorycloud.api.common.TokenResponse value) {
     value.getClass();
   token_ = value;
-    
+
     }
   /**
    * <pre>
@@ -149,7 +149,7 @@ public  final class AuthenticateResponse extends
     } else {
       token_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -159,7 +159,7 @@ public  final class AuthenticateResponse extends
    * <code>.sensory.api.common.TokenResponse token = 3;</code>
    */
   private void clearToken() {  token_ = null;
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 4;
@@ -215,7 +215,7 @@ public  final class AuthenticateResponse extends
    * <code>string userId = 4;</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -231,7 +231,7 @@ public  final class AuthenticateResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ENROLLMENTID_FIELD_NUMBER = 5;
@@ -287,7 +287,7 @@ public  final class AuthenticateResponse extends
    * <code>string enrollmentId = 5;</code>
    */
   private void clearEnrollmentId() {
-    
+
     enrollmentId_ = getDefaultInstance().getEnrollmentId();
   }
   /**
@@ -303,7 +303,7 @@ public  final class AuthenticateResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     enrollmentId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELPROMPT_FIELD_NUMBER = 6;
@@ -355,7 +355,7 @@ public  final class AuthenticateResponse extends
    * <code>string modelPrompt = 6;</code>
    */
   private void clearModelPrompt() {
-    
+
     modelPrompt_ = getDefaultInstance().getModelPrompt();
   }
   /**
@@ -370,7 +370,7 @@ public  final class AuthenticateResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelPrompt_ = value.toStringUtf8();
-    
+
   }
 
   public static final int PERCENTSEGMENTCOMPLETE_FIELD_NUMBER = 7;
@@ -410,7 +410,7 @@ public  final class AuthenticateResponse extends
    * <code>int64 percentSegmentComplete = 7;</code>
    */
   private void clearPercentSegmentComplete() {
-    
+
     percentSegmentComplete_ = 0L;
   }
 
@@ -464,10 +464,12 @@ public  final class AuthenticateResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.AuthenticateResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.AuthenticateResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

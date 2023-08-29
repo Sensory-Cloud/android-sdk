@@ -53,7 +53,7 @@ public  final class PublicKeyResponse extends
    * <code>bytes publicKey = 1;</code>
    */
   private void clearPublicKey() {
-    
+
     publicKey_ = getDefaultInstance().getPublicKey();
   }
 
@@ -105,7 +105,7 @@ public  final class PublicKeyResponse extends
    */
   private void setKeyType(ai.sensorycloud.api.common.KeyType value) {
     keyType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -115,7 +115,7 @@ public  final class PublicKeyResponse extends
    * <code>.sensory.api.common.KeyType keyType = 2;</code>
    */
   private void clearKeyType() {
-    
+
     keyType_ = 0;
   }
 
@@ -169,10 +169,12 @@ public  final class PublicKeyResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.oauth.PublicKeyResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.oauth.PublicKeyResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

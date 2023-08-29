@@ -179,4 +179,34 @@ public interface TranscribeConfigOrBuilder extends
    * @return The customWordList.
    */
   ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList();
+
+  /**
+   * <pre>
+   * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+   * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+   * </pre>
+   *
+   * <code>bool doOfflineMode = 11;</code>
+   * @return The doOfflineMode.
+   */
+  boolean getDoOfflineMode();
+
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   * @return Whether the wakeWordConfig field is set.
+   */
+  boolean hasWakeWordConfig();
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   * @return The wakeWordConfig.
+   */
+  ai.sensorycloud.api.v1.audio.TranscribeEventConfig getWakeWordConfig();
 }

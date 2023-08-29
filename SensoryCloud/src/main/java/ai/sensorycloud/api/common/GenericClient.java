@@ -69,7 +69,7 @@ public  final class GenericClient extends
    * <code>string clientId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearClientId() {
-    
+
     clientId_ = getDefaultInstance().getClientId();
   }
   /**
@@ -84,7 +84,7 @@ public  final class GenericClient extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     clientId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SECRET_FIELD_NUMBER = 2;
@@ -136,7 +136,7 @@ public  final class GenericClient extends
    * <code>string secret = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearSecret() {
-    
+
     secret_ = getDefaultInstance().getSecret();
   }
   /**
@@ -151,7 +151,7 @@ public  final class GenericClient extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     secret_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.common.GenericClient parseFrom(
@@ -204,10 +204,12 @@ public  final class GenericClient extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.GenericClient parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.GenericClient parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

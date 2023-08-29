@@ -57,7 +57,7 @@ public  final class TranscribeConfig extends
   private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
     value.getClass();
   audio_ = value;
-    
+
     }
   /**
    * <pre>
@@ -77,7 +77,7 @@ public  final class TranscribeConfig extends
     } else {
       audio_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -88,7 +88,7 @@ public  final class TranscribeConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearAudio() {  audio_ = null;
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 2;
@@ -144,7 +144,7 @@ public  final class TranscribeConfig extends
    * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -160,7 +160,7 @@ public  final class TranscribeConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 3;
@@ -212,7 +212,7 @@ public  final class TranscribeConfig extends
    * <code>string userId = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -227,7 +227,7 @@ public  final class TranscribeConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ENABLEPUNCTUATIONCAPITALIZATION_FIELD_NUMBER = 4;
@@ -264,7 +264,7 @@ public  final class TranscribeConfig extends
    * <code>bool enablePunctuationCapitalization = 4;</code>
    */
   private void clearEnablePunctuationCapitalization() {
-    
+
     enablePunctuationCapitalization_ = false;
   }
 
@@ -302,7 +302,7 @@ public  final class TranscribeConfig extends
    * <code>bool doSingleUtterance = 5;</code>
    */
   private void clearDoSingleUtterance() {
-    
+
     doSingleUtterance_ = false;
   }
 
@@ -358,7 +358,7 @@ public  final class TranscribeConfig extends
    */
   private void setVadSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
     vadSensitivity_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -369,7 +369,7 @@ public  final class TranscribeConfig extends
    * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
    */
   private void clearVadSensitivity() {
-    
+
     vadSensitivity_ = 0;
   }
 
@@ -410,7 +410,7 @@ public  final class TranscribeConfig extends
    * <code>float vadDuration = 7;</code>
    */
   private void clearVadDuration() {
-    
+
     vadDuration_ = 0F;
   }
 
@@ -462,7 +462,7 @@ public  final class TranscribeConfig extends
    */
   private void setCustomVocabRewardThreshold(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
     customVocabRewardThreshold_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -472,7 +472,7 @@ public  final class TranscribeConfig extends
    * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
    */
   private void clearCustomVocabRewardThreshold() {
-    
+
     customVocabRewardThreshold_ = 0;
   }
 
@@ -525,7 +525,7 @@ public  final class TranscribeConfig extends
    * <code>string customVocabularyId = 9;</code>
    */
   private void clearCustomVocabularyId() {
-    
+
     customVocabularyId_ = getDefaultInstance().getCustomVocabularyId();
   }
   /**
@@ -540,7 +540,7 @@ public  final class TranscribeConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     customVocabularyId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CUSTOMWORDLIST_FIELD_NUMBER = 10;
@@ -577,7 +577,7 @@ public  final class TranscribeConfig extends
   private void setCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
     value.getClass();
   customWordList_ = value;
-    
+
     }
   /**
    * <pre>
@@ -596,7 +596,7 @@ public  final class TranscribeConfig extends
     } else {
       customWordList_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -606,7 +606,114 @@ public  final class TranscribeConfig extends
    * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
    */
   private void clearCustomWordList() {  customWordList_ = null;
+
+  }
+
+  public static final int DOOFFLINEMODE_FIELD_NUMBER = 11;
+  private boolean doOfflineMode_;
+  /**
+   * <pre>
+   * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+   * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+   * </pre>
+   *
+   * <code>bool doOfflineMode = 11;</code>
+   * @return The doOfflineMode.
+   */
+  @java.lang.Override
+  public boolean getDoOfflineMode() {
+    return doOfflineMode_;
+  }
+  /**
+   * <pre>
+   * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+   * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+   * </pre>
+   *
+   * <code>bool doOfflineMode = 11;</code>
+   * @param value The doOfflineMode to set.
+   */
+  private void setDoOfflineMode(boolean value) {
     
+    doOfflineMode_ = value;
+  }
+  /**
+   * <pre>
+   * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+   * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+   * </pre>
+   *
+   * <code>bool doOfflineMode = 11;</code>
+   */
+  private void clearDoOfflineMode() {
+
+    doOfflineMode_ = false;
+  }
+
+  public static final int WAKEWORDCONFIG_FIELD_NUMBER = 12;
+  private ai.sensorycloud.api.v1.audio.TranscribeEventConfig wakeWordConfig_;
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   */
+  @java.lang.Override
+  public boolean hasWakeWordConfig() {
+    return wakeWordConfig_ != null;
+  }
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.TranscribeEventConfig getWakeWordConfig() {
+    return wakeWordConfig_ == null ? ai.sensorycloud.api.v1.audio.TranscribeEventConfig.getDefaultInstance() : wakeWordConfig_;
+  }
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   */
+  private void setWakeWordConfig(ai.sensorycloud.api.v1.audio.TranscribeEventConfig value) {
+    value.getClass();
+  wakeWordConfig_ = value;
+
+    }
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   */
+  @java.lang.SuppressWarnings({"ReferenceEquality"})
+  private void mergeWakeWordConfig(ai.sensorycloud.api.v1.audio.TranscribeEventConfig value) {
+    value.getClass();
+  if (wakeWordConfig_ != null &&
+        wakeWordConfig_ != ai.sensorycloud.api.v1.audio.TranscribeEventConfig.getDefaultInstance()) {
+      wakeWordConfig_ =
+        ai.sensorycloud.api.v1.audio.TranscribeEventConfig.newBuilder(wakeWordConfig_).mergeFrom(value).buildPartial();
+    } else {
+      wakeWordConfig_ = value;
+    }
+
+  }
+  /**
+   * <pre>
+   * A wakeword that must be recognized before transcription will be returned.
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+   */
+  private void clearWakeWordConfig() {  wakeWordConfig_ = null;
+
   }
 
   public static ai.sensorycloud.api.v1.audio.TranscribeConfig parseFrom(
@@ -659,10 +766,12 @@ public  final class TranscribeConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1328,6 +1437,120 @@ public  final class TranscribeConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+     * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+     * </pre>
+     *
+     * <code>bool doOfflineMode = 11;</code>
+     * @return The doOfflineMode.
+     */
+    @java.lang.Override
+    public boolean getDoOfflineMode() {
+      return instance.getDoOfflineMode();
+    }
+    /**
+     * <pre>
+     * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+     * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+     * </pre>
+     *
+     * <code>bool doOfflineMode = 11;</code>
+     * @param value The doOfflineMode to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDoOfflineMode(boolean value) {
+      copyOnWrite();
+      instance.setDoOfflineMode(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Offline mode is faster at processing large transcripts, but increases the latency in individual transcription responses.
+     * This mode is not recommended when streaming audio from a microphone, and should only be used for processing audio files.
+     * </pre>
+     *
+     * <code>bool doOfflineMode = 11;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDoOfflineMode() {
+      copyOnWrite();
+      instance.clearDoOfflineMode();
+      return this;
+    }
+
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    @java.lang.Override
+    public boolean hasWakeWordConfig() {
+      return instance.hasWakeWordConfig();
+    }
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.TranscribeEventConfig getWakeWordConfig() {
+      return instance.getWakeWordConfig();
+    }
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    public Builder setWakeWordConfig(ai.sensorycloud.api.v1.audio.TranscribeEventConfig value) {
+      copyOnWrite();
+      instance.setWakeWordConfig(value);
+      return this;
+      }
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    public Builder setWakeWordConfig(
+        ai.sensorycloud.api.v1.audio.TranscribeEventConfig.Builder builderForValue) {
+      copyOnWrite();
+      instance.setWakeWordConfig(builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    public Builder mergeWakeWordConfig(ai.sensorycloud.api.v1.audio.TranscribeEventConfig value) {
+      copyOnWrite();
+      instance.mergeWakeWordConfig(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * A wakeword that must be recognized before transcription will be returned.
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeEventConfig wakeWordConfig = 12;</code>
+     */
+    public Builder clearWakeWordConfig() {  copyOnWrite();
+      instance.clearWakeWordConfig();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.TranscribeConfig)
   }
   @java.lang.Override
@@ -1354,10 +1577,12 @@ public  final class TranscribeConfig extends
             "customVocabRewardThreshold_",
             "customVocabularyId_",
             "customWordList_",
+            "doOfflineMode_",
+            "wakeWordConfig_",
           };
           java.lang.String info =
-              "\u0000\n\u0000\u0000\u0001\n\n\u0000\u0000\u0000\u0001\t\u0002\u0208\u0003\u0208" +
-              "\u0004\u0007\u0005\u0007\u0006\f\u0007\u0001\b\f\t\u0208\n\t";
+              "\u0000\f\u0000\u0000\u0001\f\f\u0000\u0000\u0000\u0001\t\u0002\u0208\u0003\u0208" +
+              "\u0004\u0007\u0005\u0007\u0006\f\u0007\u0001\b\f\t\u0208\n\t\u000b\u0007\f\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

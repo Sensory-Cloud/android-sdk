@@ -46,13 +46,13 @@ public  final class ChatMessage extends
    */
   private void setRole(ai.sensorycloud.api.v1.assistant.ChatRole value) {
     role_ = value.getNumber();
-    
+
   }
   /**
    * <code>.sensory.api.v1.assistant.ChatRole role = 1;</code>
    */
   private void clearRole() {
-    
+
     role_ = 0;
   }
 
@@ -89,7 +89,7 @@ public  final class ChatMessage extends
    * <code>string content = 2;</code>
    */
   private void clearContent() {
-    
+
     content_ = getDefaultInstance().getContent();
   }
   /**
@@ -100,7 +100,7 @@ public  final class ChatMessage extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     content_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.assistant.ChatMessage parseFrom(
@@ -153,10 +153,12 @@ public  final class ChatMessage extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.assistant.ChatMessage parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.assistant.ChatMessage parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

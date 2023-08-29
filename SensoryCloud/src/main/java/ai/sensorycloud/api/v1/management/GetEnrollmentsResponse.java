@@ -193,7 +193,7 @@ public  final class GetEnrollmentsResponse extends
    * <code>bool isRequestorTrusted = 2;</code>
    */
   private void clearIsRequestorTrusted() {
-    
+
     isRequestorTrusted_ = false;
   }
 
@@ -247,10 +247,12 @@ public  final class GetEnrollmentsResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.GetEnrollmentsResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.GetEnrollmentsResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

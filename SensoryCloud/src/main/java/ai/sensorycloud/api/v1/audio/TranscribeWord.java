@@ -48,7 +48,7 @@ public  final class TranscribeWord extends
    * <code>uint64 begintimeMs = 1;</code>
    */
   private void clearBegintimeMs() {
-    
+
     begintimeMs_ = 0L;
   }
 
@@ -86,7 +86,7 @@ public  final class TranscribeWord extends
    * <code>uint64 endtimeMs = 2;</code>
    */
   private void clearEndtimeMs() {
-    
+
     endtimeMs_ = 0L;
   }
 
@@ -124,7 +124,7 @@ public  final class TranscribeWord extends
    * <code>float confidence = 3;</code>
    */
   private void clearConfidence() {
-    
+
     confidence_ = 0F;
   }
 
@@ -176,7 +176,7 @@ public  final class TranscribeWord extends
    */
   private void setWordState(ai.sensorycloud.api.v1.audio.WordState value) {
     wordState_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -186,7 +186,7 @@ public  final class TranscribeWord extends
    * <code>.sensory.api.v1.audio.WordState wordState = 4;</code>
    */
   private void clearWordState() {
-    
+
     wordState_ = 0;
   }
 
@@ -224,7 +224,7 @@ public  final class TranscribeWord extends
    * <code>uint64 wordIndex = 5;</code>
    */
   private void clearWordIndex() {
-    
+
     wordIndex_ = 0L;
   }
 
@@ -277,7 +277,7 @@ public  final class TranscribeWord extends
    * <code>string word = 6;</code>
    */
   private void clearWord() {
-    
+
     word_ = getDefaultInstance().getWord();
   }
   /**
@@ -292,7 +292,7 @@ public  final class TranscribeWord extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     word_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.TranscribeWord parseFrom(
@@ -345,10 +345,12 @@ public  final class TranscribeWord extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeWord parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeWord parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

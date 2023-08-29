@@ -39,7 +39,7 @@ public  final class SystemSummary extends
   private void setCpu(ai.sensorycloud.api.common.CpuSummary value) {
     value.getClass();
   cpu_ = value;
-    
+
     }
   /**
    * <code>.sensory.api.common.CpuSummary cpu = 1 [(.validate.rules) = { ... }</code>
@@ -54,13 +54,13 @@ public  final class SystemSummary extends
     } else {
       cpu_ = value;
     }
-    
+
   }
   /**
    * <code>.sensory.api.common.CpuSummary cpu = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearCpu() {  cpu_ = null;
-    
+
   }
 
   public static final int MEMORY_FIELD_NUMBER = 2;
@@ -85,7 +85,7 @@ public  final class SystemSummary extends
   private void setMemory(ai.sensorycloud.api.common.MemorySummary value) {
     value.getClass();
   memory_ = value;
-    
+
     }
   /**
    * <code>.sensory.api.common.MemorySummary memory = 2 [(.validate.rules) = { ... }</code>
@@ -100,13 +100,13 @@ public  final class SystemSummary extends
     } else {
       memory_ = value;
     }
-    
+
   }
   /**
    * <code>.sensory.api.common.MemorySummary memory = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearMemory() {  memory_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.common.SystemSummary parseFrom(
@@ -159,10 +159,12 @@ public  final class SystemSummary extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.SystemSummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.SystemSummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -54,7 +54,7 @@ public  final class UsageEventResponse extends
   private void setTimestamp(com.google.protobuf.Timestamp value) {
     value.getClass();
   timestamp_ = value;
-    
+
     }
   /**
    * <pre>
@@ -73,7 +73,7 @@ public  final class UsageEventResponse extends
     } else {
       timestamp_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -83,7 +83,7 @@ public  final class UsageEventResponse extends
    * <code>.google.protobuf.Timestamp timestamp = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearTimestamp() {  timestamp_ = null;
-    
+
   }
 
   public static final int DURATION_FIELD_NUMBER = 2;
@@ -120,7 +120,7 @@ public  final class UsageEventResponse extends
    * <code>int64 duration = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearDuration() {
-    
+
     duration_ = 0L;
   }
 
@@ -173,7 +173,7 @@ public  final class UsageEventResponse extends
    * <code>string id = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -188,7 +188,7 @@ public  final class UsageEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CLIENTID_FIELD_NUMBER = 4;
@@ -240,7 +240,7 @@ public  final class UsageEventResponse extends
    * <code>string clientId = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearClientId() {
-    
+
     clientId_ = getDefaultInstance().getClientId();
   }
   /**
@@ -255,7 +255,7 @@ public  final class UsageEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     clientId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TYPE_FIELD_NUMBER = 5;
@@ -306,7 +306,7 @@ public  final class UsageEventResponse extends
    */
   private void setType(ai.sensorycloud.api.common.UsageEventType value) {
     type_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -316,7 +316,7 @@ public  final class UsageEventResponse extends
    * <code>.sensory.api.common.UsageEventType type = 5 [(.validate.rules) = { ... }</code>
    */
   private void clearType() {
-    
+
     type_ = 0;
   }
 
@@ -369,7 +369,7 @@ public  final class UsageEventResponse extends
    * <code>string route = 6 [(.validate.rules) = { ... }</code>
    */
   private void clearRoute() {
-    
+
     route_ = getDefaultInstance().getRoute();
   }
   /**
@@ -384,7 +384,7 @@ public  final class UsageEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     route_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TECHNOLOGIES_FIELD_NUMBER = 7;
@@ -729,7 +729,7 @@ public  final class UsageEventResponse extends
    * <code>int64 billableValue = 9;</code>
    */
   private void clearBillableValue() {
-    
+
     billableValue_ = 0L;
   }
 
@@ -782,7 +782,7 @@ public  final class UsageEventResponse extends
    * <code>string billableUnits = 10;</code>
    */
   private void clearBillableUnits() {
-    
+
     billableUnits_ = getDefaultInstance().getBillableUnits();
   }
   /**
@@ -797,7 +797,7 @@ public  final class UsageEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     billableUnits_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TENANTID_FIELD_NUMBER = 11;
@@ -849,7 +849,7 @@ public  final class UsageEventResponse extends
    * <code>string tenantId = 11;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -864,7 +864,7 @@ public  final class UsageEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int BILLABLEFUNCTION_FIELD_NUMBER = 12;
@@ -915,7 +915,7 @@ public  final class UsageEventResponse extends
    */
   private void setBillableFunction(ai.sensorycloud.api.common.ModelType value) {
     billableFunction_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -925,7 +925,7 @@ public  final class UsageEventResponse extends
    * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
    */
   private void clearBillableFunction() {
-    
+
     billableFunction_ = 0;
   }
 
@@ -963,7 +963,7 @@ public  final class UsageEventResponse extends
    * <code>double credits = 13;</code>
    */
   private void clearCredits() {
-    
+
     credits_ = 0D;
   }
 
@@ -1017,10 +1017,12 @@ public  final class UsageEventResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1593,6 +1595,7 @@ public  final class UsageEventResponse extends
      * @return This builder for chaining.
      */
     public Builder addTechnologiesValue(int value) {
+      copyOnWrite();
       instance.addTechnologiesValue(value);
       return this;
     }

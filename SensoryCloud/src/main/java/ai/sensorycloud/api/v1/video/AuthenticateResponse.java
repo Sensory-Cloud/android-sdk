@@ -54,7 +54,7 @@ public  final class AuthenticateResponse extends
    * <code>bool success = 1;</code>
    */
   private void clearSuccess() {
-    
+
     success_ = false;
   }
 
@@ -92,7 +92,7 @@ public  final class AuthenticateResponse extends
    * <code>float score = 2;</code>
    */
   private void clearScore() {
-    
+
     score_ = 0F;
   }
 
@@ -130,7 +130,7 @@ public  final class AuthenticateResponse extends
    * <code>bool isAlive = 3;</code>
    */
   private void clearIsAlive() {
-    
+
     isAlive_ = false;
   }
 
@@ -168,7 +168,7 @@ public  final class AuthenticateResponse extends
   private void setToken(ai.sensorycloud.api.common.TokenResponse value) {
     value.getClass();
   token_ = value;
-    
+
     }
   /**
    * <pre>
@@ -187,7 +187,7 @@ public  final class AuthenticateResponse extends
     } else {
       token_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -197,7 +197,7 @@ public  final class AuthenticateResponse extends
    * <code>.sensory.api.common.TokenResponse token = 4;</code>
    */
   private void clearToken() {  token_ = null;
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 5;
@@ -253,7 +253,7 @@ public  final class AuthenticateResponse extends
    * <code>string userId = 5;</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -269,7 +269,7 @@ public  final class AuthenticateResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ENROLLMENTID_FIELD_NUMBER = 6;
@@ -325,7 +325,7 @@ public  final class AuthenticateResponse extends
    * <code>string enrollmentId = 6;</code>
    */
   private void clearEnrollmentId() {
-    
+
     enrollmentId_ = getDefaultInstance().getEnrollmentId();
   }
   /**
@@ -341,7 +341,7 @@ public  final class AuthenticateResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     enrollmentId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DIDFINDFACE_FIELD_NUMBER = 7;
@@ -378,7 +378,7 @@ public  final class AuthenticateResponse extends
    * <code>bool didFindFace = 7;</code>
    */
   private void clearDidFindFace() {
-    
+
     didFindFace_ = false;
   }
 
@@ -515,7 +515,7 @@ public  final class AuthenticateResponse extends
    * <code>float probabilityFace = 9;</code>
    */
   private void clearProbabilityFace() {
-    
+
     probabilityFace_ = 0F;
   }
 
@@ -569,10 +569,12 @@ public  final class AuthenticateResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.AuthenticateResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.video.AuthenticateResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/audio/audio.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AudioSynthesisGrpc {
 
   private AudioSynthesisGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.audio.AudioSynthesis";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.audio.AudioSynthesis";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest,
@@ -97,7 +97,7 @@ public final class AudioSynthesisGrpc {
    * Handles synthesizing audio from text
    * </pre>
    */
-  public static abstract class AudioSynthesisImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -105,30 +105,34 @@ public final class AudioSynthesisGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKNE&gt;"}
      * </pre>
      */
-    public void synthesizeSpeech(ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest request,
+    default void synthesizeSpeech(ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.SynthesizeSpeechResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSynthesizeSpeechMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSynthesizeSpeechMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest,
-                ai.sensorycloud.api.v1.audio.SynthesizeSpeechResponse>(
-                  this, METHODID_SYNTHESIZE_SPEECH)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AudioSynthesis.
    * <pre>
    * Handles synthesizing audio from text
    * </pre>
    */
-  public static final class AudioSynthesisStub extends io.grpc.stub.AbstractAsyncStub<AudioSynthesisStub> {
+  public static abstract class AudioSynthesisImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AudioSynthesisGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AudioSynthesis.
+   * <pre>
+   * Handles synthesizing audio from text
+   * </pre>
+   */
+  public static final class AudioSynthesisStub
+      extends io.grpc.stub.AbstractAsyncStub<AudioSynthesisStub> {
     private AudioSynthesisStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -154,11 +158,13 @@ public final class AudioSynthesisGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AudioSynthesis.
    * <pre>
    * Handles synthesizing audio from text
    * </pre>
    */
-  public static final class AudioSynthesisBlockingStub extends io.grpc.stub.AbstractBlockingStub<AudioSynthesisBlockingStub> {
+  public static final class AudioSynthesisBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AudioSynthesisBlockingStub> {
     private AudioSynthesisBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -184,11 +190,13 @@ public final class AudioSynthesisGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AudioSynthesis.
    * <pre>
    * Handles synthesizing audio from text
    * </pre>
    */
-  public static final class AudioSynthesisFutureStub extends io.grpc.stub.AbstractFutureStub<AudioSynthesisFutureStub> {
+  public static final class AudioSynthesisFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AudioSynthesisFutureStub> {
     private AudioSynthesisFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -208,10 +216,10 @@ public final class AudioSynthesisGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AudioSynthesisImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AudioSynthesisImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -238,6 +246,18 @@ public final class AudioSynthesisGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSynthesizeSpeechMethod(),
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest,
+              ai.sensorycloud.api.v1.audio.SynthesizeSpeechResponse>(
+                service, METHODID_SYNTHESIZE_SPEECH)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

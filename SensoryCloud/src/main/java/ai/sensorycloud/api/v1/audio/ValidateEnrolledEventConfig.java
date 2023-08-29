@@ -98,7 +98,7 @@ public  final class ValidateEnrolledEventConfig extends
   private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
     value.getClass();
   audio_ = value;
-    
+
     }
   /**
    * <pre>
@@ -118,7 +118,7 @@ public  final class ValidateEnrolledEventConfig extends
     } else {
       audio_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -129,7 +129,7 @@ public  final class ValidateEnrolledEventConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearAudio() {  audio_ = null;
-    
+
   }
 
   public static final int ENROLLMENTID_FIELD_NUMBER = 2;
@@ -356,7 +356,7 @@ public  final class ValidateEnrolledEventConfig extends
    */
   private void setSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
     sensitivity_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -366,7 +366,7 @@ public  final class ValidateEnrolledEventConfig extends
    * <code>.sensory.api.v1.audio.ThresholdSensitivity sensitivity = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearSensitivity() {
-    
+
     sensitivity_ = 0;
   }
 
@@ -408,7 +408,7 @@ public  final class ValidateEnrolledEventConfig extends
    * <code>bytes enrollmentToken = 5;</code>
    */
   private void clearEnrollmentToken() {
-    
+
     enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
   }
 
@@ -462,10 +462,12 @@ public  final class ValidateEnrolledEventConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -17,6 +17,7 @@ public  final class ValidateEventResponse extends
     ValidateEventResponseOrBuilder {
   private ValidateEventResponse() {
     resultId_ = "";
+    topNResponse_ = emptyProtobufList();
   }
   public static final int AUDIOENERGY_FIELD_NUMBER = 1;
   private float audioEnergy_;
@@ -52,7 +53,7 @@ public  final class ValidateEventResponse extends
    * <code>float audioEnergy = 1;</code>
    */
   private void clearAudioEnergy() {
-    
+
     audioEnergy_ = 0F;
   }
 
@@ -90,7 +91,7 @@ public  final class ValidateEventResponse extends
    * <code>bool success = 2;</code>
    */
   private void clearSuccess() {
-    
+
     success_ = false;
   }
 
@@ -147,7 +148,7 @@ public  final class ValidateEventResponse extends
    * <code>string resultId = 3;</code>
    */
   private void clearResultId() {
-    
+
     resultId_ = getDefaultInstance().getResultId();
   }
   /**
@@ -163,7 +164,7 @@ public  final class ValidateEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     resultId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SCORE_FIELD_NUMBER = 4;
@@ -200,18 +201,218 @@ public  final class ValidateEventResponse extends
    * <code>float score = 4;</code>
    */
   private void clearScore() {
-    
+
     score_ = 0F;
   }
 
-  public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
-  private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;
+  public static final int TOPNRESPONSE_FIELD_NUMBER = 5;
+  private com.google.protobuf.Internal.ProtobufList<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> topNResponse_;
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> getTopNResponseList() {
+    return topNResponse_;
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  public java.util.List<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> 
+      getTopNResponseOrBuilderList() {
+    return topNResponse_;
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public int getTopNResponseCount() {
+    return topNResponse_.size();
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index) {
+    return topNResponse_.get(index);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  public ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder getTopNResponseOrBuilder(
+      int index) {
+    return topNResponse_.get(index);
+  }
+  private void ensureTopNResponseIsMutable() {
+    com.google.protobuf.Internal.ProtobufList<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> tmp = topNResponse_;
+    if (!tmp.isModifiable()) {
+      topNResponse_ =
+          com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
+     }
+  }
+
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void setTopNResponse(
+      int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+    value.getClass();
+  ensureTopNResponseIsMutable();
+    topNResponse_.set(index, value);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void addTopNResponse(ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+    value.getClass();
+  ensureTopNResponseIsMutable();
+    topNResponse_.add(value);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void addTopNResponse(
+      int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+    value.getClass();
+  ensureTopNResponseIsMutable();
+    topNResponse_.add(index, value);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void addAllTopNResponse(
+      java.lang.Iterable<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> values) {
+    ensureTopNResponseIsMutable();
+    com.google.protobuf.AbstractMessageLite.addAll(
+        values, topNResponse_);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void clearTopNResponse() {
+    topNResponse_ = emptyProtobufList();
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  private void removeTopNResponse(int index) {
+    ensureTopNResponseIsMutable();
+    topNResponse_.remove(index);
+  }
+
+  public static final int RESULTSTARTTIME_FIELD_NUMBER = 6;
+  private float resultStartTime_;
   /**
    * <pre>
    * If a post processing audio action was requested, this will be populated with the specific
    * action that was completed along with the actionId optionally set by the client.
    * </pre>
    *
+   * <code>float ResultStartTime = 6;</code>
+   * @return The resultStartTime.
+   */
+  @java.lang.Override
+  public float getResultStartTime() {
+    return resultStartTime_;
+  }
+  /**
+   * <pre>
+   * If a post processing audio action was requested, this will be populated with the specific
+   * action that was completed along with the actionId optionally set by the client.
+   * </pre>
+   *
+   * <code>float ResultStartTime = 6;</code>
+   * @param value The resultStartTime to set.
+   */
+  private void setResultStartTime(float value) {
+    
+    resultStartTime_ = value;
+  }
+  /**
+   * <pre>
+   * If a post processing audio action was requested, this will be populated with the specific
+   * action that was completed along with the actionId optionally set by the client.
+   * </pre>
+   *
+   * <code>float ResultStartTime = 6;</code>
+   */
+  private void clearResultStartTime() {
+
+    resultStartTime_ = 0F;
+  }
+
+  public static final int RESULTENDTIME_FIELD_NUMBER = 7;
+  private float resultEndTime_;
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   * @return The resultEndTime.
+   */
+  @java.lang.Override
+  public float getResultEndTime() {
+    return resultEndTime_;
+  }
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   * @param value The resultEndTime to set.
+   */
+  private void setResultEndTime(float value) {
+    
+    resultEndTime_ = value;
+  }
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   */
+  private void clearResultEndTime() {
+
+    resultEndTime_ = 0F;
+  }
+
+  public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
+  private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;
+  /**
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   @java.lang.Override
@@ -219,11 +420,6 @@ public  final class ValidateEventResponse extends
     return postProcessingAction_ != null;
   }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   @java.lang.Override
@@ -231,24 +427,14 @@ public  final class ValidateEventResponse extends
     return postProcessingAction_ == null ? ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.getDefaultInstance() : postProcessingAction_;
   }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   private void setPostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
     value.getClass();
   postProcessingAction_ = value;
-    
+
     }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   @java.lang.SuppressWarnings({"ReferenceEquality"})
@@ -261,18 +447,13 @@ public  final class ValidateEventResponse extends
     } else {
       postProcessingAction_ = value;
     }
-    
+
   }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   private void clearPostProcessingAction() {  postProcessingAction_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.ValidateEventResponse parseFrom(
@@ -325,10 +506,12 @@ public  final class ValidateEventResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -570,10 +753,226 @@ public  final class ValidateEventResponse extends
 
     /**
      * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    @java.lang.Override
+    public java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> getTopNResponseList() {
+      return java.util.Collections.unmodifiableList(
+          instance.getTopNResponseList());
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    @java.lang.Override
+    public int getTopNResponseCount() {
+      return instance.getTopNResponseCount();
+    }/**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index) {
+      return instance.getTopNResponse(index);
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder setTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      copyOnWrite();
+      instance.setTopNResponse(index, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder setTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      copyOnWrite();
+      instance.setTopNResponse(index,
+          builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      copyOnWrite();
+      instance.addTopNResponse(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      copyOnWrite();
+      instance.addTopNResponse(index, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      copyOnWrite();
+      instance.addTopNResponse(builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      copyOnWrite();
+      instance.addTopNResponse(index,
+          builderForValue.build());
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addAllTopNResponse(
+        java.lang.Iterable<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> values) {
+      copyOnWrite();
+      instance.addAllTopNResponse(values);
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder clearTopNResponse() {
+      copyOnWrite();
+      instance.clearTopNResponse();
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder removeTopNResponse(int index) {
+      copyOnWrite();
+      instance.removeTopNResponse(index);
+      return this;
+    }
+
+    /**
+     * <pre>
      * If a post processing audio action was requested, this will be populated with the specific
      * action that was completed along with the actionId optionally set by the client.
      * </pre>
      *
+     * <code>float ResultStartTime = 6;</code>
+     * @return The resultStartTime.
+     */
+    @java.lang.Override
+    public float getResultStartTime() {
+      return instance.getResultStartTime();
+    }
+    /**
+     * <pre>
+     * If a post processing audio action was requested, this will be populated with the specific
+     * action that was completed along with the actionId optionally set by the client.
+     * </pre>
+     *
+     * <code>float ResultStartTime = 6;</code>
+     * @param value The resultStartTime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setResultStartTime(float value) {
+      copyOnWrite();
+      instance.setResultStartTime(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * If a post processing audio action was requested, this will be populated with the specific
+     * action that was completed along with the actionId optionally set by the client.
+     * </pre>
+     *
+     * <code>float ResultStartTime = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearResultStartTime() {
+      copyOnWrite();
+      instance.clearResultStartTime();
+      return this;
+    }
+
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @return The resultEndTime.
+     */
+    @java.lang.Override
+    public float getResultEndTime() {
+      return instance.getResultEndTime();
+    }
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @param value The resultEndTime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setResultEndTime(float value) {
+      copyOnWrite();
+      instance.setResultEndTime(value);
+      return this;
+    }
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearResultEndTime() {
+      copyOnWrite();
+      instance.clearResultEndTime();
+      return this;
+    }
+
+    /**
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     @java.lang.Override
@@ -581,11 +980,6 @@ public  final class ValidateEventResponse extends
       return instance.hasPostProcessingAction();
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     @java.lang.Override
@@ -593,11 +987,6 @@ public  final class ValidateEventResponse extends
       return instance.getPostProcessingAction();
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder setPostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
@@ -606,11 +995,6 @@ public  final class ValidateEventResponse extends
       return this;
       }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder setPostProcessingAction(
@@ -620,11 +1004,6 @@ public  final class ValidateEventResponse extends
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder mergePostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
@@ -633,11 +1012,6 @@ public  final class ValidateEventResponse extends
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder clearPostProcessingAction() {  copyOnWrite();
@@ -665,11 +1039,15 @@ public  final class ValidateEventResponse extends
             "success_",
             "resultId_",
             "score_",
+            "topNResponse_",
+            ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.class,
+            "resultStartTime_",
+            "resultEndTime_",
             "postProcessingAction_",
           };
           java.lang.String info =
-              "\u0000\u0005\u0000\u0000\u0001\n\u0005\u0000\u0000\u0000\u0001\u0001\u0002\u0007" +
-              "\u0003\u0208\u0004\u0001\n\t";
+              "\u0000\b\u0000\u0000\u0001\n\b\u0000\u0001\u0000\u0001\u0001\u0002\u0007\u0003\u0208" +
+              "\u0004\u0001\u0005\u001b\u0006\u0001\u0007\u0001\n\t";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

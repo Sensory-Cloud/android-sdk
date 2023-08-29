@@ -68,7 +68,7 @@ public  final class GetEnrollmentsRequest extends
    * <code>string userId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -83,7 +83,7 @@ public  final class GetEnrollmentsRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.GetEnrollmentsRequest parseFrom(
@@ -136,10 +136,12 @@ public  final class GetEnrollmentsRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.GetEnrollmentsRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.GetEnrollmentsRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

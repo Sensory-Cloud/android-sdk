@@ -66,7 +66,7 @@ public  final class VersionedFileCategory extends
    */
   private void setCategory(ai.sensorycloud.api.v1.file.FileCategory value) {
     category_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -76,7 +76,7 @@ public  final class VersionedFileCategory extends
    * <code>.sensory.api.v1.file.FileCategory category = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearCategory() {
-    
+
     category_ = 0;
   }
 
@@ -129,7 +129,7 @@ public  final class VersionedFileCategory extends
    * <code>string version = 2;</code>
    */
   private void clearVersion() {
-    
+
     version_ = getDefaultInstance().getVersion();
   }
   /**
@@ -144,7 +144,7 @@ public  final class VersionedFileCategory extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     version_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.file.VersionedFileCategory parseFrom(
@@ -197,10 +197,12 @@ public  final class VersionedFileCategory extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.VersionedFileCategory parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.VersionedFileCategory parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

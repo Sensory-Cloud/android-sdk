@@ -68,7 +68,7 @@ public  final class UpdateEnrollmentRequest extends
    * <code>string id = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -83,7 +83,7 @@ public  final class UpdateEnrollmentRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 2;
@@ -135,7 +135,7 @@ public  final class UpdateEnrollmentRequest extends
    * <code>string description = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearDescription() {
-    
+
     description_ = getDefaultInstance().getDescription();
   }
   /**
@@ -150,7 +150,7 @@ public  final class UpdateEnrollmentRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     description_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest parseFrom(
@@ -203,10 +203,12 @@ public  final class UpdateEnrollmentRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

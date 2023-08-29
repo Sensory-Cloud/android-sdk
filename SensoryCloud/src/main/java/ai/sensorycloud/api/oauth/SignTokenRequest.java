@@ -227,7 +227,7 @@ public  final class SignTokenRequest extends
    * <code>string subject = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearSubject() {
-    
+
     subject_ = getDefaultInstance().getSubject();
   }
   /**
@@ -242,7 +242,7 @@ public  final class SignTokenRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     subject_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SCOPE_FIELD_NUMBER = 2;
@@ -293,7 +293,7 @@ public  final class SignTokenRequest extends
    */
   private void setScope(ai.sensorycloud.api.oauth.SignTokenRequest.TokenScope value) {
     scope_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -303,7 +303,7 @@ public  final class SignTokenRequest extends
    * <code>.sensory.api.oauth.SignTokenRequest.TokenScope scope = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearScope() {
-    
+
     scope_ = 0;
   }
 
@@ -357,10 +357,12 @@ public  final class SignTokenRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.oauth.SignTokenRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.oauth.SignTokenRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

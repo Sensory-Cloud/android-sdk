@@ -70,7 +70,7 @@ public  final class EnrollDeviceRequest extends
    * <code>string name = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -85,7 +85,7 @@ public  final class EnrollDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DEVICEID_FIELD_NUMBER = 2;
@@ -141,7 +141,7 @@ public  final class EnrollDeviceRequest extends
    * <code>string deviceId = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearDeviceId() {
-    
+
     deviceId_ = getDefaultInstance().getDeviceId();
   }
   /**
@@ -157,7 +157,7 @@ public  final class EnrollDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     deviceId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TENANTID_FIELD_NUMBER = 3;
@@ -209,7 +209,7 @@ public  final class EnrollDeviceRequest extends
    * <code>string tenantId = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -224,7 +224,7 @@ public  final class EnrollDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CLIENT_FIELD_NUMBER = 4;
@@ -261,7 +261,7 @@ public  final class EnrollDeviceRequest extends
   private void setClient(ai.sensorycloud.api.common.GenericClient value) {
     value.getClass();
   client_ = value;
-    
+
     }
   /**
    * <pre>
@@ -280,7 +280,7 @@ public  final class EnrollDeviceRequest extends
     } else {
       client_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -290,7 +290,7 @@ public  final class EnrollDeviceRequest extends
    * <code>.sensory.api.common.GenericClient client = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearClient() {  client_ = null;
-    
+
   }
 
   public static final int CREDENTIAL_FIELD_NUMBER = 5;
@@ -346,7 +346,7 @@ public  final class EnrollDeviceRequest extends
    * <code>string credential = 5;</code>
    */
   private void clearCredential() {
-    
+
     credential_ = getDefaultInstance().getCredential();
   }
   /**
@@ -362,7 +362,7 @@ public  final class EnrollDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     credential_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.EnrollDeviceRequest parseFrom(
@@ -415,10 +415,12 @@ public  final class EnrollDeviceRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.EnrollDeviceRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.EnrollDeviceRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

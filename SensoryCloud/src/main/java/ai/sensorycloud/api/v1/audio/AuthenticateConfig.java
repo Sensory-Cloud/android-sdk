@@ -225,7 +225,7 @@ public  final class AuthenticateConfig extends
   private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
     value.getClass();
   audio_ = value;
-    
+
     }
   /**
    * <pre>
@@ -245,7 +245,7 @@ public  final class AuthenticateConfig extends
     } else {
       audio_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -256,7 +256,7 @@ public  final class AuthenticateConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearAudio() {  audio_ = null;
-    
+
   }
 
   public static final int ENROLLMENTID_FIELD_NUMBER = 2;
@@ -475,7 +475,7 @@ public  final class AuthenticateConfig extends
    * <code>bool doIncludeToken = 4;</code>
    */
   private void clearDoIncludeToken() {
-    
+
     doIncludeToken_ = false;
   }
 
@@ -527,7 +527,7 @@ public  final class AuthenticateConfig extends
    */
   private void setSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
     sensitivity_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -537,7 +537,7 @@ public  final class AuthenticateConfig extends
    * <code>.sensory.api.v1.audio.ThresholdSensitivity sensitivity = 5 [(.validate.rules) = { ... }</code>
    */
   private void clearSensitivity() {
-    
+
     sensitivity_ = 0;
   }
 
@@ -589,7 +589,7 @@ public  final class AuthenticateConfig extends
    */
   private void setSecurity(ai.sensorycloud.api.v1.audio.AuthenticateConfig.ThresholdSecurity value) {
     security_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -599,7 +599,7 @@ public  final class AuthenticateConfig extends
    * <code>.sensory.api.v1.audio.AuthenticateConfig.ThresholdSecurity security = 6 [(.validate.rules) = { ... }</code>
    */
   private void clearSecurity() {
-    
+
     security_ = 0;
   }
 
@@ -637,7 +637,7 @@ public  final class AuthenticateConfig extends
    * <code>bool isLivenessEnabled = 7;</code>
    */
   private void clearIsLivenessEnabled() {
-    
+
     isLivenessEnabled_ = false;
   }
 
@@ -679,7 +679,7 @@ public  final class AuthenticateConfig extends
    * <code>bytes enrollmentToken = 8;</code>
    */
   private void clearEnrollmentToken() {
-    
+
     enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
   }
 
@@ -733,10 +733,12 @@ public  final class AuthenticateConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.AuthenticateConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.AuthenticateConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

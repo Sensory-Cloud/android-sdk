@@ -67,7 +67,7 @@ public  final class PaginationOptions extends
    * <code>string ordering = 1;</code>
    */
   private void clearOrdering() {
-    
+
     ordering_ = getDefaultInstance().getOrdering();
   }
   /**
@@ -82,7 +82,7 @@ public  final class PaginationOptions extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     ordering_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DECENDING_FIELD_NUMBER = 2;
@@ -119,7 +119,7 @@ public  final class PaginationOptions extends
    * <code>bool decending = 2;</code>
    */
   private void clearDecending() {
-    
+
     decending_ = false;
   }
 
@@ -157,7 +157,7 @@ public  final class PaginationOptions extends
    * <code>int32 pageIndex = 3;</code>
    */
   private void clearPageIndex() {
-    
+
     pageIndex_ = 0;
   }
 
@@ -198,7 +198,7 @@ public  final class PaginationOptions extends
    * <code>int32 pageSize = 4;</code>
    */
   private void clearPageSize() {
-    
+
     pageSize_ = 0;
   }
 
@@ -252,10 +252,12 @@ public  final class PaginationOptions extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.PaginationOptions parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.PaginationOptions parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

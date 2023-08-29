@@ -198,7 +198,7 @@ public  final class AudioConfig extends
    */
   private void setEncoding(ai.sensorycloud.api.v1.audio.AudioConfig.AudioEncoding value) {
     encoding_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -208,7 +208,7 @@ public  final class AudioConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig.AudioEncoding encoding = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearEncoding() {
-    
+
     encoding_ = 0;
   }
 
@@ -246,7 +246,7 @@ public  final class AudioConfig extends
    * <code>int32 sampleRateHertz = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearSampleRateHertz() {
-    
+
     sampleRateHertz_ = 0;
   }
 
@@ -284,7 +284,7 @@ public  final class AudioConfig extends
    * <code>int32 audioChannelCount = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearAudioChannelCount() {
-    
+
     audioChannelCount_ = 0;
   }
 
@@ -345,7 +345,7 @@ public  final class AudioConfig extends
    * <code>string languageCode = 4;</code>
    */
   private void clearLanguageCode() {
-    
+
     languageCode_ = getDefaultInstance().getLanguageCode();
   }
   /**
@@ -362,7 +362,7 @@ public  final class AudioConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     languageCode_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.AudioConfig parseFrom(
@@ -415,10 +415,12 @@ public  final class AudioConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

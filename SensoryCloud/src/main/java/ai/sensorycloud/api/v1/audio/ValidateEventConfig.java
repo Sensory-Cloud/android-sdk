@@ -56,7 +56,7 @@ public  final class ValidateEventConfig extends
   private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
     value.getClass();
   audio_ = value;
-    
+
     }
   /**
    * <pre>
@@ -76,7 +76,7 @@ public  final class ValidateEventConfig extends
     } else {
       audio_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -87,7 +87,7 @@ public  final class ValidateEventConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearAudio() {  audio_ = null;
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 2;
@@ -143,7 +143,7 @@ public  final class ValidateEventConfig extends
    * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -159,7 +159,7 @@ public  final class ValidateEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 3;
@@ -211,7 +211,7 @@ public  final class ValidateEventConfig extends
    * <code>string userId = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -226,7 +226,7 @@ public  final class ValidateEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SENSITIVITY_FIELD_NUMBER = 4;
@@ -277,7 +277,7 @@ public  final class ValidateEventConfig extends
    */
   private void setSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
     sensitivity_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -287,8 +287,49 @@ public  final class ValidateEventConfig extends
    * <code>.sensory.api.v1.audio.ThresholdSensitivity sensitivity = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearSensitivity() {
-    
+
     sensitivity_ = 0;
+  }
+
+  public static final int TOPN_FIELD_NUMBER = 5;
+  private int topN_;
+  /**
+   * <pre>
+   * TopN is for the sound_id_topn model and dictates the top N most likely
+   * results to return
+   * </pre>
+   *
+   * <code>int32 topN = 5;</code>
+   * @return The topN.
+   */
+  @java.lang.Override
+  public int getTopN() {
+    return topN_;
+  }
+  /**
+   * <pre>
+   * TopN is for the sound_id_topn model and dictates the top N most likely
+   * results to return
+   * </pre>
+   *
+   * <code>int32 topN = 5;</code>
+   * @param value The topN to set.
+   */
+  private void setTopN(int value) {
+    
+    topN_ = value;
+  }
+  /**
+   * <pre>
+   * TopN is for the sound_id_topn model and dictates the top N most likely
+   * results to return
+   * </pre>
+   *
+   * <code>int32 topN = 5;</code>
+   */
+  private void clearTopN() {
+
+    topN_ = 0;
   }
 
   public static ai.sensorycloud.api.v1.audio.ValidateEventConfig parseFrom(
@@ -341,10 +382,12 @@ public  final class ValidateEventConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -676,6 +719,49 @@ public  final class ValidateEventConfig extends
       return this;
     }
 
+    /**
+     * <pre>
+     * TopN is for the sound_id_topn model and dictates the top N most likely
+     * results to return
+     * </pre>
+     *
+     * <code>int32 topN = 5;</code>
+     * @return The topN.
+     */
+    @java.lang.Override
+    public int getTopN() {
+      return instance.getTopN();
+    }
+    /**
+     * <pre>
+     * TopN is for the sound_id_topn model and dictates the top N most likely
+     * results to return
+     * </pre>
+     *
+     * <code>int32 topN = 5;</code>
+     * @param value The topN to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTopN(int value) {
+      copyOnWrite();
+      instance.setTopN(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * TopN is for the sound_id_topn model and dictates the top N most likely
+     * results to return
+     * </pre>
+     *
+     * <code>int32 topN = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTopN() {
+      copyOnWrite();
+      instance.clearTopN();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.audio.ValidateEventConfig)
   }
   @java.lang.Override
@@ -696,10 +782,11 @@ public  final class ValidateEventConfig extends
             "modelName_",
             "userId_",
             "sensitivity_",
+            "topN_",
           };
           java.lang.String info =
-              "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\t\u0002\u0208" +
-              "\u0003\u0208\u0004\f";
+              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\t\u0002\u0208" +
+              "\u0003\u0208\u0004\f\u0005\u0004";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

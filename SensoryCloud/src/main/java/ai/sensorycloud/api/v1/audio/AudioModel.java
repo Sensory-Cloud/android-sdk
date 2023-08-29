@@ -69,7 +69,7 @@ public  final class AudioModel extends
    * <code>string name = 1;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -84,7 +84,7 @@ public  final class AudioModel extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ISENROLLABLE_FIELD_NUMBER = 2;
@@ -121,7 +121,7 @@ public  final class AudioModel extends
    * <code>bool isEnrollable = 2;</code>
    */
   private void clearIsEnrollable() {
-    
+
     isEnrollable_ = false;
   }
 
@@ -173,7 +173,7 @@ public  final class AudioModel extends
    */
   private void setModelType(ai.sensorycloud.api.common.ModelType value) {
     modelType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -183,7 +183,7 @@ public  final class AudioModel extends
    * <code>.sensory.api.common.ModelType modelType = 3;</code>
    */
   private void clearModelType() {
-    
+
     modelType_ = 0;
   }
 
@@ -236,7 +236,7 @@ public  final class AudioModel extends
    * <code>string fixedPhrase = 4;</code>
    */
   private void clearFixedPhrase() {
-    
+
     fixedPhrase_ = getDefaultInstance().getFixedPhrase();
   }
   /**
@@ -251,7 +251,7 @@ public  final class AudioModel extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     fixedPhrase_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SAMPLERATE_FIELD_NUMBER = 5;
@@ -288,7 +288,7 @@ public  final class AudioModel extends
    * <code>int32 sampleRate = 5;</code>
    */
   private void clearSampleRate() {
-    
+
     sampleRate_ = 0;
   }
 
@@ -469,7 +469,7 @@ public  final class AudioModel extends
    */
   private void setTechnology(ai.sensorycloud.api.common.TechnologyType value) {
     technology_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -479,7 +479,7 @@ public  final class AudioModel extends
    * <code>.sensory.api.common.TechnologyType technology = 7;</code>
    */
   private void clearTechnology() {
-    
+
     technology_ = 0;
   }
 
@@ -517,7 +517,7 @@ public  final class AudioModel extends
    * <code>bool isLivenessSupported = 8;</code>
    */
   private void clearIsLivenessSupported() {
-    
+
     isLivenessSupported_ = false;
   }
 
@@ -571,10 +571,12 @@ public  final class AudioModel extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioModel parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioModel parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

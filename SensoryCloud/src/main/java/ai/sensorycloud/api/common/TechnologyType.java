@@ -60,6 +60,14 @@ public enum TechnologyType
    * <code>TTS = 5;</code>
    */
   TTS(5),
+  /**
+   * <pre>
+   * Sound Id, a sound identification tool
+   * </pre>
+   *
+   * <code>SOUND_ID = 6;</code>
+   */
+  SOUND_ID(6),
   UNRECOGNIZED(-1),
   ;
 
@@ -111,6 +119,14 @@ public enum TechnologyType
    * <code>TTS = 5;</code>
    */
   public static final int TTS_VALUE = 5;
+  /**
+   * <pre>
+   * Sound Id, a sound identification tool
+   * </pre>
+   *
+   * <code>SOUND_ID = 6;</code>
+   */
+  public static final int SOUND_ID_VALUE = 6;
 
 
   @java.lang.Override
@@ -140,6 +156,7 @@ public enum TechnologyType
       case 3: return TNL;
       case 4: return STT;
       case 5: return TTS;
+      case 6: return SOUND_ID;
       default: return null;
     }
   }

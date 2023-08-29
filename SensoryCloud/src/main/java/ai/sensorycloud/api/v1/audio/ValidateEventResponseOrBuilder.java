@@ -61,20 +61,53 @@ public interface ValidateEventResponseOrBuilder extends
 
   /**
    * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
+   * Array of the top N most likely results
    * </pre>
    *
-   * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
-   * @return Whether the postProcessingAction field is set.
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
    */
-  boolean hasPostProcessingAction();
+  java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> 
+      getTopNResponseList();
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index);
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  int getTopNResponseCount();
+
   /**
    * <pre>
    * If a post processing audio action was requested, this will be populated with the specific
    * action that was completed along with the actionId optionally set by the client.
    * </pre>
    *
+   * <code>float ResultStartTime = 6;</code>
+   * @return The resultStartTime.
+   */
+  float getResultStartTime();
+
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   * @return The resultEndTime.
+   */
+  float getResultEndTime();
+
+  /**
+   * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
+   * @return Whether the postProcessingAction field is set.
+   */
+  boolean hasPostProcessingAction();
+  /**
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    * @return The postProcessingAction.
    */

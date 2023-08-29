@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/file/file.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class FileGrpc {
 
   private FileGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.file.File";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.file.File";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.file.FileRequest,
@@ -187,7 +187,7 @@ public final class FileGrpc {
    * Handles all file-related functions
    * </pre>
    */
-  public static abstract class FileImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -195,7 +195,7 @@ public final class FileGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getInfo(ai.sensorycloud.api.v1.file.FileRequest request,
+    default void getInfo(ai.sensorycloud.api.v1.file.FileRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.file.FileInfo> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetInfoMethod(), responseObserver);
     }
@@ -206,7 +206,7 @@ public final class FileGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getCatalog(ai.sensorycloud.api.v1.file.FileCatalogRequest request,
+    default void getCatalog(ai.sensorycloud.api.v1.file.FileCatalogRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.file.FileCatalogResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetCatalogMethod(), responseObserver);
     }
@@ -217,7 +217,7 @@ public final class FileGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getCompleteCatalog(ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest request,
+    default void getCompleteCatalog(ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.file.FileCatalogResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetCompleteCatalogMethod(), responseObserver);
     }
@@ -229,51 +229,34 @@ public final class FileGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void download(ai.sensorycloud.api.v1.file.FileRequest request,
+    default void download(ai.sensorycloud.api.v1.file.FileRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.file.FileResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDownloadMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetInfoMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.file.FileRequest,
-                ai.sensorycloud.api.v1.file.FileInfo>(
-                  this, METHODID_GET_INFO)))
-          .addMethod(
-            getGetCatalogMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.file.FileCatalogRequest,
-                ai.sensorycloud.api.v1.file.FileCatalogResponse>(
-                  this, METHODID_GET_CATALOG)))
-          .addMethod(
-            getGetCompleteCatalogMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest,
-                ai.sensorycloud.api.v1.file.FileCatalogResponse>(
-                  this, METHODID_GET_COMPLETE_CATALOG)))
-          .addMethod(
-            getDownloadMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.file.FileRequest,
-                ai.sensorycloud.api.v1.file.FileResponse>(
-                  this, METHODID_DOWNLOAD)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service File.
    * <pre>
    * Handles all file-related functions
    * </pre>
    */
-  public static final class FileStub extends io.grpc.stub.AbstractAsyncStub<FileStub> {
+  public static abstract class FileImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return FileGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service File.
+   * <pre>
+   * Handles all file-related functions
+   * </pre>
+   */
+  public static final class FileStub
+      extends io.grpc.stub.AbstractAsyncStub<FileStub> {
     private FileStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -336,11 +319,13 @@ public final class FileGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service File.
    * <pre>
    * Handles all file-related functions
    * </pre>
    */
-  public static final class FileBlockingStub extends io.grpc.stub.AbstractBlockingStub<FileBlockingStub> {
+  public static final class FileBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<FileBlockingStub> {
     private FileBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -400,11 +385,13 @@ public final class FileGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service File.
    * <pre>
    * Handles all file-related functions
    * </pre>
    */
-  public static final class FileFutureStub extends io.grpc.stub.AbstractFutureStub<FileFutureStub> {
+  public static final class FileFutureStub
+      extends io.grpc.stub.AbstractFutureStub<FileFutureStub> {
     private FileFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -463,10 +450,10 @@ public final class FileGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final FileImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(FileImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -505,6 +492,39 @@ public final class FileGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.file.FileRequest,
+              ai.sensorycloud.api.v1.file.FileInfo>(
+                service, METHODID_GET_INFO)))
+        .addMethod(
+          getGetCatalogMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.file.FileCatalogRequest,
+              ai.sensorycloud.api.v1.file.FileCatalogResponse>(
+                service, METHODID_GET_CATALOG)))
+        .addMethod(
+          getGetCompleteCatalogMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest,
+              ai.sensorycloud.api.v1.file.FileCatalogResponse>(
+                service, METHODID_GET_COMPLETE_CATALOG)))
+        .addMethod(
+          getDownloadMethod(),
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.file.FileRequest,
+              ai.sensorycloud.api.v1.file.FileResponse>(
+                service, METHODID_DOWNLOAD)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

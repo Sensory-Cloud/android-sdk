@@ -69,7 +69,7 @@ public  final class TokenResponse extends
    * <code>string accessToken = 1;</code>
    */
   private void clearAccessToken() {
-    
+
     accessToken_ = getDefaultInstance().getAccessToken();
   }
   /**
@@ -84,7 +84,7 @@ public  final class TokenResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     accessToken_ = value.toStringUtf8();
-    
+
   }
 
   public static final int EXPIRESIN_FIELD_NUMBER = 2;
@@ -121,7 +121,7 @@ public  final class TokenResponse extends
    * <code>int32 expiresIn = 2;</code>
    */
   private void clearExpiresIn() {
-    
+
     expiresIn_ = 0;
   }
 
@@ -174,7 +174,7 @@ public  final class TokenResponse extends
    * <code>string keyId = 3;</code>
    */
   private void clearKeyId() {
-    
+
     keyId_ = getDefaultInstance().getKeyId();
   }
   /**
@@ -189,7 +189,7 @@ public  final class TokenResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     keyId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TOKENTYPE_FIELD_NUMBER = 4;
@@ -241,7 +241,7 @@ public  final class TokenResponse extends
    * <code>string tokenType = 4;</code>
    */
   private void clearTokenType() {
-    
+
     tokenType_ = getDefaultInstance().getTokenType();
   }
   /**
@@ -256,7 +256,7 @@ public  final class TokenResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tokenType_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.common.TokenResponse parseFrom(
@@ -309,10 +309,12 @@ public  final class TokenResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.TokenResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.TokenResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -68,7 +68,7 @@ public  final class TenantResponse extends
    * <code>string id = 1;</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -83,7 +83,7 @@ public  final class TenantResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
@@ -135,7 +135,7 @@ public  final class TenantResponse extends
    * <code>string name = 2;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -150,7 +150,7 @@ public  final class TenantResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CREATEDAT_FIELD_NUMBER = 3;
@@ -187,7 +187,7 @@ public  final class TenantResponse extends
   private void setCreatedAt(com.google.protobuf.Timestamp value) {
     value.getClass();
   createdAt_ = value;
-    
+
     }
   /**
    * <pre>
@@ -206,7 +206,7 @@ public  final class TenantResponse extends
     } else {
       createdAt_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -216,7 +216,7 @@ public  final class TenantResponse extends
    * <code>.google.protobuf.Timestamp createdAt = 3;</code>
    */
   private void clearCreatedAt() {  createdAt_ = null;
-    
+
   }
 
   public static final int UPDATEDAT_FIELD_NUMBER = 4;
@@ -253,7 +253,7 @@ public  final class TenantResponse extends
   private void setUpdatedAt(com.google.protobuf.Timestamp value) {
     value.getClass();
   updatedAt_ = value;
-    
+
     }
   /**
    * <pre>
@@ -272,7 +272,7 @@ public  final class TenantResponse extends
     } else {
       updatedAt_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -282,7 +282,7 @@ public  final class TenantResponse extends
    * <code>.google.protobuf.Timestamp updatedAt = 4;</code>
    */
   private void clearUpdatedAt() {  updatedAt_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.common.TenantResponse parseFrom(
@@ -335,10 +335,12 @@ public  final class TenantResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.TenantResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.TenantResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

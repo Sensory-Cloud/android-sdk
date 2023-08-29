@@ -53,7 +53,7 @@ public  final class FileChunk extends
    * <code>bytes bytes = 1;</code>
    */
   private void clearBytes() {
-    
+
     bytes_ = getDefaultInstance().getBytes();
   }
 
@@ -91,7 +91,7 @@ public  final class FileChunk extends
    * <code>int64 offset = 2;</code>
    */
   private void clearOffset() {
-    
+
     offset_ = 0L;
   }
 
@@ -145,10 +145,12 @@ public  final class FileChunk extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileChunk parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileChunk parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

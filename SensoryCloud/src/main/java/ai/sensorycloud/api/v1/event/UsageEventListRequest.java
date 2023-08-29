@@ -64,7 +64,7 @@ public  final class UsageEventListRequest extends
    * <code>string tenantId = 1;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -79,7 +79,7 @@ public  final class UsageEventListRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int PAGINATION_FIELD_NUMBER = 2;
@@ -116,7 +116,7 @@ public  final class UsageEventListRequest extends
   private void setPagination(ai.sensorycloud.api.common.PaginationOptions value) {
     value.getClass();
   pagination_ = value;
-    
+
     }
   /**
    * <pre>
@@ -135,7 +135,7 @@ public  final class UsageEventListRequest extends
     } else {
       pagination_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -145,7 +145,7 @@ public  final class UsageEventListRequest extends
    * <code>.sensory.api.common.PaginationOptions pagination = 2;</code>
    */
   private void clearPagination() {  pagination_ = null;
-    
+
   }
 
   public static final int AFTER_FIELD_NUMBER = 3;
@@ -182,7 +182,7 @@ public  final class UsageEventListRequest extends
   private void setAfter(com.google.protobuf.Timestamp value) {
     value.getClass();
   after_ = value;
-    
+
     }
   /**
    * <pre>
@@ -201,7 +201,7 @@ public  final class UsageEventListRequest extends
     } else {
       after_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -211,7 +211,7 @@ public  final class UsageEventListRequest extends
    * <code>.google.protobuf.Timestamp after = 3;</code>
    */
   private void clearAfter() {  after_ = null;
-    
+
   }
 
   public static final int BEFORE_FIELD_NUMBER = 4;
@@ -248,7 +248,7 @@ public  final class UsageEventListRequest extends
   private void setBefore(com.google.protobuf.Timestamp value) {
     value.getClass();
   before_ = value;
-    
+
     }
   /**
    * <pre>
@@ -267,7 +267,7 @@ public  final class UsageEventListRequest extends
     } else {
       before_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -277,7 +277,7 @@ public  final class UsageEventListRequest extends
    * <code>.google.protobuf.Timestamp before = 4;</code>
    */
   private void clearBefore() {  before_ = null;
-    
+
   }
 
   public static final int BILLABLEFUNCTIONS_FIELD_NUMBER = 5;
@@ -509,10 +509,12 @@ public  final class UsageEventListRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventListRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventListRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -983,6 +985,7 @@ public  final class UsageEventListRequest extends
      * @return This builder for chaining.
      */
     public Builder addBillableFunctionsValue(int value) {
+      copyOnWrite();
       instance.addBillableFunctionsValue(value);
       return this;
     }

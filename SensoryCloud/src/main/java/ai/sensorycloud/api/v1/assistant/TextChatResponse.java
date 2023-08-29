@@ -35,7 +35,7 @@ public  final class TextChatResponse extends
   private void setMessage(ai.sensorycloud.api.v1.assistant.ChatMessage value) {
     value.getClass();
   message_ = value;
-    
+
     }
   /**
    * <code>.sensory.api.v1.assistant.ChatMessage message = 1;</code>
@@ -50,13 +50,13 @@ public  final class TextChatResponse extends
     } else {
       message_ = value;
     }
-    
+
   }
   /**
    * <code>.sensory.api.v1.assistant.ChatMessage message = 1;</code>
    */
   private void clearMessage() {  message_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.assistant.TextChatResponse parseFrom(
@@ -109,10 +109,12 @@ public  final class TextChatResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.assistant.TextChatResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.assistant.TextChatResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

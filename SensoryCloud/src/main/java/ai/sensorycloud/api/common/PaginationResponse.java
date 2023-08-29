@@ -68,7 +68,7 @@ public  final class PaginationResponse extends
    * <code>string ordering = 1;</code>
    */
   private void clearOrdering() {
-    
+
     ordering_ = getDefaultInstance().getOrdering();
   }
   /**
@@ -83,7 +83,7 @@ public  final class PaginationResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     ordering_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DECENDING_FIELD_NUMBER = 2;
@@ -120,7 +120,7 @@ public  final class PaginationResponse extends
    * <code>bool decending = 2;</code>
    */
   private void clearDecending() {
-    
+
     decending_ = false;
   }
 
@@ -287,7 +287,7 @@ public  final class PaginationResponse extends
    * <code>int64 totalCount = 4;</code>
    */
   private void clearTotalCount() {
-    
+
     totalCount_ = 0L;
   }
 
@@ -325,7 +325,7 @@ public  final class PaginationResponse extends
    * <code>int32 pageSize = 5;</code>
    */
   private void clearPageSize() {
-    
+
     pageSize_ = 0;
   }
 
@@ -363,7 +363,7 @@ public  final class PaginationResponse extends
    * <code>int32 prevPageIndex = 6;</code>
    */
   private void clearPrevPageIndex() {
-    
+
     prevPageIndex_ = 0;
   }
 
@@ -401,7 +401,7 @@ public  final class PaginationResponse extends
    * <code>int32 currentPageIndex = 7;</code>
    */
   private void clearCurrentPageIndex() {
-    
+
     currentPageIndex_ = 0;
   }
 
@@ -439,7 +439,7 @@ public  final class PaginationResponse extends
    * <code>int32 nextPageIndex = 8;</code>
    */
   private void clearNextPageIndex() {
-    
+
     nextPageIndex_ = 0;
   }
 
@@ -493,10 +493,12 @@ public  final class PaginationResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.PaginationResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.PaginationResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

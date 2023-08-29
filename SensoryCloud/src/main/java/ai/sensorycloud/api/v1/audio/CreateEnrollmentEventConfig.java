@@ -97,7 +97,7 @@ public  final class CreateEnrollmentEventConfig extends
   private void setAudio(ai.sensorycloud.api.v1.audio.AudioConfig value) {
     value.getClass();
   audio_ = value;
-    
+
     }
   /**
    * <pre>
@@ -117,7 +117,7 @@ public  final class CreateEnrollmentEventConfig extends
     } else {
       audio_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -128,7 +128,7 @@ public  final class CreateEnrollmentEventConfig extends
    * <code>.sensory.api.v1.audio.AudioConfig audio = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearAudio() {  audio_ = null;
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 2;
@@ -180,7 +180,7 @@ public  final class CreateEnrollmentEventConfig extends
    * <code>string userId = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -195,7 +195,7 @@ public  final class CreateEnrollmentEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 3;
@@ -251,7 +251,7 @@ public  final class CreateEnrollmentEventConfig extends
    * <code>string modelName = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -267,7 +267,7 @@ public  final class CreateEnrollmentEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 4;
@@ -323,7 +323,7 @@ public  final class CreateEnrollmentEventConfig extends
    * <code>string description = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearDescription() {
-    
+
     description_ = getDefaultInstance().getDescription();
   }
   /**
@@ -339,7 +339,7 @@ public  final class CreateEnrollmentEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     description_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ENROLLMENTNUMUTTERANCES_FIELD_NUMBER = 5;
@@ -511,7 +511,7 @@ public  final class CreateEnrollmentEventConfig extends
    * <code>string referenceId = 7 [(.validate.rules) = { ... }</code>
    */
   private void clearReferenceId() {
-    
+
     referenceId_ = getDefaultInstance().getReferenceId();
   }
   /**
@@ -527,7 +527,7 @@ public  final class CreateEnrollmentEventConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     referenceId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig parseFrom(
@@ -580,10 +580,12 @@ public  final class CreateEnrollmentEventConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

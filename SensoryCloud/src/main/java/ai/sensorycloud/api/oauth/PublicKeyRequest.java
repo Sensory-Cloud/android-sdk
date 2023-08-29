@@ -67,7 +67,7 @@ public  final class PublicKeyRequest extends
    * <code>string keyId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearKeyId() {
-    
+
     keyId_ = getDefaultInstance().getKeyId();
   }
   /**
@@ -82,7 +82,7 @@ public  final class PublicKeyRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     keyId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.oauth.PublicKeyRequest parseFrom(
@@ -135,10 +135,12 @@ public  final class PublicKeyRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.oauth.PublicKeyRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.oauth.PublicKeyRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -54,7 +54,7 @@ public  final class ServerHealthResponse extends
    * <code>bool isHealthy = 1;</code>
    */
   private void clearIsHealthy() {
-    
+
     isHealthy_ = false;
   }
 
@@ -107,7 +107,7 @@ public  final class ServerHealthResponse extends
    * <code>string serverVersion = 2;</code>
    */
   private void clearServerVersion() {
-    
+
     serverVersion_ = getDefaultInstance().getServerVersion();
   }
   /**
@@ -122,7 +122,7 @@ public  final class ServerHealthResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     serverVersion_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ID_FIELD_NUMBER = 3;
@@ -174,7 +174,7 @@ public  final class ServerHealthResponse extends
    * <code>string id = 3;</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -189,7 +189,7 @@ public  final class ServerHealthResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SERVICES_FIELD_NUMBER = 4;
@@ -378,7 +378,7 @@ public  final class ServerHealthResponse extends
    */
   private void setServerType(ai.sensorycloud.api.common.ServerType value) {
     serverType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -388,7 +388,7 @@ public  final class ServerHealthResponse extends
    * <code>.sensory.api.common.ServerType serverType = 5;</code>
    */
   private void clearServerType() {
-    
+
     serverType_ = 0;
   }
 
@@ -414,7 +414,7 @@ public  final class ServerHealthResponse extends
    * <code>bool isLeader = 6;</code>
    */
   private void clearIsLeader() {
-    
+
     isLeader_ = false;
   }
 
@@ -468,10 +468,12 @@ public  final class ServerHealthResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.ServerHealthResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.ServerHealthResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

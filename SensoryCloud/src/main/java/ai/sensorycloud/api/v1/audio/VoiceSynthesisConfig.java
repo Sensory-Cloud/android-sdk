@@ -71,7 +71,7 @@ public  final class VoiceSynthesisConfig extends
    * <code>string modelName = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -87,7 +87,7 @@ public  final class VoiceSynthesisConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SAMPLERATEHERTZ_FIELD_NUMBER = 3;
@@ -124,7 +124,7 @@ public  final class VoiceSynthesisConfig extends
    * <code>int32 sampleRateHertz = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearSampleRateHertz() {
-    
+
     sampleRateHertz_ = 0;
   }
 
@@ -178,10 +178,12 @@ public  final class VoiceSynthesisConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

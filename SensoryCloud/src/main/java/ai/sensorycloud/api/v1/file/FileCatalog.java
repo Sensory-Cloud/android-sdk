@@ -190,7 +190,7 @@ public  final class FileCatalog extends
   private void setCategory(ai.sensorycloud.api.v1.file.VersionedFileCategory value) {
     value.getClass();
   category_ = value;
-    
+
     }
   /**
    * <pre>
@@ -209,7 +209,7 @@ public  final class FileCatalog extends
     } else {
       category_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -219,7 +219,7 @@ public  final class FileCatalog extends
    * <code>.sensory.api.v1.file.VersionedFileCategory category = 2;</code>
    */
   private void clearCategory() {  category_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.file.FileCatalog parseFrom(
@@ -272,10 +272,12 @@ public  final class FileCatalog extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCatalog parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCatalog parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

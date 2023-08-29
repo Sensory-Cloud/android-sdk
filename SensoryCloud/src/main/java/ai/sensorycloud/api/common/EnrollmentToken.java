@@ -53,7 +53,7 @@ public  final class EnrollmentToken extends
    * <code>bytes token = 1;</code>
    */
   private void clearToken() {
-    
+
     token_ = getDefaultInstance().getToken();
   }
 
@@ -94,7 +94,7 @@ public  final class EnrollmentToken extends
    * <code>int64 expiration = 2;</code>
    */
   private void clearExpiration() {
-    
+
     expiration_ = 0L;
   }
 
@@ -148,10 +148,12 @@ public  final class EnrollmentToken extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.EnrollmentToken parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.EnrollmentToken parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

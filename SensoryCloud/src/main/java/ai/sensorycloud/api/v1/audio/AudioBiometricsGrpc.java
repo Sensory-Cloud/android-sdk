@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/audio/audio.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AudioBiometricsGrpc {
 
   private AudioBiometricsGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.audio.AudioBiometrics";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.audio.AudioBiometrics";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.audio.CreateEnrollmentRequest,
@@ -127,7 +127,7 @@ public final class AudioBiometricsGrpc {
    * Handles all audio-related biometrics
    * </pre>
    */
-  public static abstract class AudioBiometricsImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -136,7 +136,7 @@ public final class AudioBiometricsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrollmentRequest> createEnrollment(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrollmentRequest> createEnrollment(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCreateEnrollmentMethod(), responseObserver);
     }
@@ -149,37 +149,34 @@ public final class AudioBiometricsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.AuthenticateRequest> authenticate(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.AuthenticateRequest> authenticate(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.AuthenticateResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getAuthenticateMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getCreateEnrollmentMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.CreateEnrollmentRequest,
-                ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse>(
-                  this, METHODID_CREATE_ENROLLMENT)))
-          .addMethod(
-            getAuthenticateMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.AuthenticateRequest,
-                ai.sensorycloud.api.v1.audio.AuthenticateResponse>(
-                  this, METHODID_AUTHENTICATE)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AudioBiometrics.
    * <pre>
    * Handles all audio-related biometrics
    * </pre>
    */
-  public static final class AudioBiometricsStub extends io.grpc.stub.AbstractAsyncStub<AudioBiometricsStub> {
+  public static abstract class AudioBiometricsImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AudioBiometricsGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AudioBiometrics.
+   * <pre>
+   * Handles all audio-related biometrics
+   * </pre>
+   */
+  public static final class AudioBiometricsStub
+      extends io.grpc.stub.AbstractAsyncStub<AudioBiometricsStub> {
     private AudioBiometricsStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -220,11 +217,13 @@ public final class AudioBiometricsGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AudioBiometrics.
    * <pre>
    * Handles all audio-related biometrics
    * </pre>
    */
-  public static final class AudioBiometricsBlockingStub extends io.grpc.stub.AbstractBlockingStub<AudioBiometricsBlockingStub> {
+  public static final class AudioBiometricsBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AudioBiometricsBlockingStub> {
     private AudioBiometricsBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -238,11 +237,13 @@ public final class AudioBiometricsGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AudioBiometrics.
    * <pre>
    * Handles all audio-related biometrics
    * </pre>
    */
-  public static final class AudioBiometricsFutureStub extends io.grpc.stub.AbstractFutureStub<AudioBiometricsFutureStub> {
+  public static final class AudioBiometricsFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AudioBiometricsFutureStub> {
     private AudioBiometricsFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -263,10 +264,10 @@ public final class AudioBiometricsGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AudioBiometricsImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AudioBiometricsImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -295,6 +296,25 @@ public final class AudioBiometricsGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getCreateEnrollmentMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.CreateEnrollmentRequest,
+              ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse>(
+                service, METHODID_CREATE_ENROLLMENT)))
+        .addMethod(
+          getAuthenticateMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.AuthenticateRequest,
+              ai.sensorycloud.api.v1.audio.AuthenticateResponse>(
+                service, METHODID_AUTHENTICATE)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
