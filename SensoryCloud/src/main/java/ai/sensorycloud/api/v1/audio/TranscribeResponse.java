@@ -51,7 +51,7 @@ public  final class TranscribeResponse extends
    * <code>float audioEnergy = 1;</code>
    */
   private void clearAudioEnergy() {
-    
+
     audioEnergy_ = 0F;
   }
 
@@ -89,7 +89,7 @@ public  final class TranscribeResponse extends
   private void setWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
     value.getClass();
   wordList_ = value;
-    
+
     }
   /**
    * <pre>
@@ -108,7 +108,7 @@ public  final class TranscribeResponse extends
     } else {
       wordList_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -118,7 +118,7 @@ public  final class TranscribeResponse extends
    * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
    */
   private void clearWordList() {  wordList_ = null;
-    
+
   }
 
   public static final int HASVOICEACTIVITY_FIELD_NUMBER = 5;
@@ -155,7 +155,7 @@ public  final class TranscribeResponse extends
    * <code>bool hasVoiceActivity = 5;</code>
    */
   private void clearHasVoiceActivity() {
-    
+
     hasVoiceActivity_ = false;
   }
 
@@ -196,7 +196,7 @@ public  final class TranscribeResponse extends
   private void setPostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
     value.getClass();
   postProcessingAction_ = value;
-    
+
     }
   /**
    * <pre>
@@ -216,7 +216,7 @@ public  final class TranscribeResponse extends
     } else {
       postProcessingAction_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -227,7 +227,7 @@ public  final class TranscribeResponse extends
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   private void clearPostProcessingAction() {  postProcessingAction_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.TranscribeResponse parseFrom(
@@ -280,10 +280,12 @@ public  final class TranscribeResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

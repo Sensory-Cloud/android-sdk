@@ -53,7 +53,7 @@ public  final class UsageEvent extends
   private void setTimestamp(com.google.protobuf.Timestamp value) {
     value.getClass();
   timestamp_ = value;
-    
+
     }
   /**
    * <pre>
@@ -72,7 +72,7 @@ public  final class UsageEvent extends
     } else {
       timestamp_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -82,7 +82,7 @@ public  final class UsageEvent extends
    * <code>.google.protobuf.Timestamp timestamp = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearTimestamp() {  timestamp_ = null;
-    
+
   }
 
   public static final int DURATION_FIELD_NUMBER = 2;
@@ -119,7 +119,7 @@ public  final class UsageEvent extends
    * <code>int64 duration = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearDuration() {
-    
+
     duration_ = 0L;
   }
 
@@ -172,7 +172,7 @@ public  final class UsageEvent extends
    * <code>string id = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -187,7 +187,7 @@ public  final class UsageEvent extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CLIENTID_FIELD_NUMBER = 4;
@@ -239,7 +239,7 @@ public  final class UsageEvent extends
    * <code>string clientId = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearClientId() {
-    
+
     clientId_ = getDefaultInstance().getClientId();
   }
   /**
@@ -254,7 +254,7 @@ public  final class UsageEvent extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     clientId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TYPE_FIELD_NUMBER = 5;
@@ -305,7 +305,7 @@ public  final class UsageEvent extends
    */
   private void setType(ai.sensorycloud.api.common.UsageEventType value) {
     type_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -315,7 +315,7 @@ public  final class UsageEvent extends
    * <code>.sensory.api.common.UsageEventType type = 5 [(.validate.rules) = { ... }</code>
    */
   private void clearType() {
-    
+
     type_ = 0;
   }
 
@@ -368,7 +368,7 @@ public  final class UsageEvent extends
    * <code>string route = 6 [(.validate.rules) = { ... }</code>
    */
   private void clearRoute() {
-    
+
     route_ = getDefaultInstance().getRoute();
   }
   /**
@@ -383,7 +383,7 @@ public  final class UsageEvent extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     route_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TECHNOLOGIES_FIELD_NUMBER = 7;
@@ -728,7 +728,7 @@ public  final class UsageEvent extends
    * <code>int64 audioDurationMs = 9;</code>
    */
   private void clearAudioDurationMs() {
-    
+
     audioDurationMs_ = 0L;
   }
 
@@ -766,7 +766,7 @@ public  final class UsageEvent extends
    * <code>int64 videoFrameCount = 10;</code>
    */
   private void clearVideoFrameCount() {
-    
+
     videoFrameCount_ = 0L;
   }
 
@@ -819,7 +819,7 @@ public  final class UsageEvent extends
    * <code>string tenantId = 11;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -834,7 +834,7 @@ public  final class UsageEvent extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int BILLABLEFUNCTION_FIELD_NUMBER = 12;
@@ -885,7 +885,7 @@ public  final class UsageEvent extends
    */
   private void setBillableFunction(ai.sensorycloud.api.common.ModelType value) {
     billableFunction_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -895,8 +895,46 @@ public  final class UsageEvent extends
    * <code>.sensory.api.common.ModelType billableFunction = 12;</code>
    */
   private void clearBillableFunction() {
-    
+
     billableFunction_ = 0;
+  }
+
+  public static final int TOKENCOUNT_FIELD_NUMBER = 13;
+  private long tokenCount_;
+  /**
+   * <pre>
+   * The number of tokens processed
+   * </pre>
+   *
+   * <code>int64 tokenCount = 13;</code>
+   * @return The tokenCount.
+   */
+  @java.lang.Override
+  public long getTokenCount() {
+    return tokenCount_;
+  }
+  /**
+   * <pre>
+   * The number of tokens processed
+   * </pre>
+   *
+   * <code>int64 tokenCount = 13;</code>
+   * @param value The tokenCount to set.
+   */
+  private void setTokenCount(long value) {
+    
+    tokenCount_ = value;
+  }
+  /**
+   * <pre>
+   * The number of tokens processed
+   * </pre>
+   *
+   * <code>int64 tokenCount = 13;</code>
+   */
+  private void clearTokenCount() {
+
+    tokenCount_ = 0L;
   }
 
   public static ai.sensorycloud.api.v1.event.UsageEvent parseFrom(
@@ -949,10 +987,12 @@ public  final class UsageEvent extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEvent parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEvent parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1525,6 +1565,7 @@ public  final class UsageEvent extends
      * @return This builder for chaining.
      */
     public Builder addTechnologiesValue(int value) {
+      copyOnWrite();
       instance.addTechnologiesValue(value);
       return this;
     }
@@ -1887,6 +1928,46 @@ public  final class UsageEvent extends
       return this;
     }
 
+    /**
+     * <pre>
+     * The number of tokens processed
+     * </pre>
+     *
+     * <code>int64 tokenCount = 13;</code>
+     * @return The tokenCount.
+     */
+    @java.lang.Override
+    public long getTokenCount() {
+      return instance.getTokenCount();
+    }
+    /**
+     * <pre>
+     * The number of tokens processed
+     * </pre>
+     *
+     * <code>int64 tokenCount = 13;</code>
+     * @param value The tokenCount to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTokenCount(long value) {
+      copyOnWrite();
+      instance.setTokenCount(value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The number of tokens processed
+     * </pre>
+     *
+     * <code>int64 tokenCount = 13;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTokenCount() {
+      copyOnWrite();
+      instance.clearTokenCount();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:sensory.api.v1.event.UsageEvent)
   }
   @java.lang.Override
@@ -1915,10 +1996,12 @@ public  final class UsageEvent extends
             "videoFrameCount_",
             "tenantId_",
             "billableFunction_",
+            "tokenCount_",
           };
           java.lang.String info =
-              "\u0000\f\u0000\u0000\u0001\f\f\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
-              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0002\u000b\u0208\f\f";
+              "\u0000\r\u0000\u0000\u0001\r\r\u0000\u0002\u0000\u0001\t\u0002\u0002\u0003\u0208" +
+              "\u0004\u0208\u0005\f\u0006\u0208\u0007,\b\u021a\t\u0002\n\u0002\u000b\u0208\f\f\r" +
+              "\u0002";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

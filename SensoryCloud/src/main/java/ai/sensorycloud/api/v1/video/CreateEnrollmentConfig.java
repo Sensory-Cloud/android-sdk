@@ -71,7 +71,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>string userId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -86,7 +86,7 @@ public  final class CreateEnrollmentConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DEVICEID_FIELD_NUMBER = 2;
@@ -142,7 +142,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>string deviceId = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearDeviceId() {
-    
+
     deviceId_ = getDefaultInstance().getDeviceId();
   }
   /**
@@ -158,7 +158,7 @@ public  final class CreateEnrollmentConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     deviceId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 3;
@@ -214,7 +214,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>string modelName = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -230,7 +230,7 @@ public  final class CreateEnrollmentConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 4;
@@ -286,7 +286,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>string description = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearDescription() {
-    
+
     description_ = getDefaultInstance().getDescription();
   }
   /**
@@ -302,7 +302,7 @@ public  final class CreateEnrollmentConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     description_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ISLIVENESSENABLED_FIELD_NUMBER = 5;
@@ -339,7 +339,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>bool isLivenessEnabled = 5;</code>
    */
   private void clearIsLivenessEnabled() {
-    
+
     isLivenessEnabled_ = false;
   }
 
@@ -391,7 +391,7 @@ public  final class CreateEnrollmentConfig extends
    */
   private void setLivenessThreshold(ai.sensorycloud.api.v1.video.RecognitionThreshold value) {
     livenessThreshold_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -401,7 +401,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>.sensory.api.v1.video.RecognitionThreshold livenessThreshold = 6 [(.validate.rules) = { ... }</code>
    */
   private void clearLivenessThreshold() {
-    
+
     livenessThreshold_ = 0;
   }
 
@@ -439,7 +439,7 @@ public  final class CreateEnrollmentConfig extends
   private void setCompression(ai.sensorycloud.api.common.CompressionConfiguration value) {
     value.getClass();
   compression_ = value;
-    
+
     }
   /**
    * <pre>
@@ -458,7 +458,7 @@ public  final class CreateEnrollmentConfig extends
     } else {
       compression_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -468,7 +468,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>.sensory.api.common.CompressionConfiguration compression = 7;</code>
    */
   private void clearCompression() {  compression_ = null;
-    
+
   }
 
   public static final int REFERENCEID_FIELD_NUMBER = 8;
@@ -524,7 +524,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>string referenceId = 8 [(.validate.rules) = { ... }</code>
    */
   private void clearReferenceId() {
-    
+
     referenceId_ = getDefaultInstance().getReferenceId();
   }
   /**
@@ -540,7 +540,7 @@ public  final class CreateEnrollmentConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     referenceId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int NUMLIVENESSFRAMESREQUIRED_FIELD_NUMBER = 9;
@@ -580,7 +580,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>int32 numLivenessFramesRequired = 9;</code>
    */
   private void clearNumLivenessFramesRequired() {
-    
+
     numLivenessFramesRequired_ = 0;
   }
 
@@ -618,7 +618,7 @@ public  final class CreateEnrollmentConfig extends
    * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
    */
   private void clearDisableServerEnrollmentTemplateStorage() {
-    
+
     disableServerEnrollmentTemplateStorage_ = false;
   }
 
@@ -672,10 +672,12 @@ public  final class CreateEnrollmentConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

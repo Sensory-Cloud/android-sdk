@@ -67,7 +67,7 @@ public  final class FileCompleteCatalogRequest extends
    * <code>string tenantId = 1;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -82,7 +82,7 @@ public  final class FileCompleteCatalogRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest parseFrom(
@@ -135,10 +135,12 @@ public  final class FileCompleteCatalogRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCompleteCatalogRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

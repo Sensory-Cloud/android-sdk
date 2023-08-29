@@ -253,7 +253,7 @@ public  final class ValidateEventRequest extends
   private void setPostProcessingAction(ai.sensorycloud.api.v1.audio.AudioRequestPostProcessingAction value) {
     value.getClass();
   postProcessingAction_ = value;
-    
+
     }
   /**
    * <pre>
@@ -272,7 +272,7 @@ public  final class ValidateEventRequest extends
     } else {
       postProcessingAction_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -282,7 +282,7 @@ public  final class ValidateEventRequest extends
    * <code>.sensory.api.v1.audio.AudioRequestPostProcessingAction postProcessingAction = 10;</code>
    */
   private void clearPostProcessingAction() {  postProcessingAction_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.ValidateEventRequest parseFrom(
@@ -335,10 +335,12 @@ public  final class ValidateEventRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

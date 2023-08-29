@@ -71,7 +71,7 @@ public  final class FileRequest extends
    * <code>string file = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearFile() {
-    
+
     file_ = getDefaultInstance().getFile();
   }
   /**
@@ -87,7 +87,7 @@ public  final class FileRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     file_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CATEGORY_FIELD_NUMBER = 2;
@@ -124,7 +124,7 @@ public  final class FileRequest extends
   private void setCategory(ai.sensorycloud.api.v1.file.VersionedFileCategory value) {
     value.getClass();
   category_ = value;
-    
+
     }
   /**
    * <pre>
@@ -143,7 +143,7 @@ public  final class FileRequest extends
     } else {
       category_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -153,7 +153,7 @@ public  final class FileRequest extends
    * <code>.sensory.api.v1.file.VersionedFileCategory category = 2;</code>
    */
   private void clearCategory() {  category_ = null;
-    
+
   }
 
   public static final int OFFSET_FIELD_NUMBER = 3;
@@ -193,7 +193,7 @@ public  final class FileRequest extends
    * <code>int64 offset = 3;</code>
    */
   private void clearOffset() {
-    
+
     offset_ = 0L;
   }
 
@@ -247,10 +247,12 @@ public  final class FileRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

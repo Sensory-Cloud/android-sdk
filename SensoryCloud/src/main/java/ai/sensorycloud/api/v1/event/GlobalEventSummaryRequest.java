@@ -178,7 +178,7 @@ public  final class GlobalEventSummaryRequest extends
   private void setAfter(com.google.protobuf.Timestamp value) {
     value.getClass();
   after_ = value;
-    
+
     }
   /**
    * <pre>
@@ -197,7 +197,7 @@ public  final class GlobalEventSummaryRequest extends
     } else {
       after_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -207,7 +207,7 @@ public  final class GlobalEventSummaryRequest extends
    * <code>.google.protobuf.Timestamp after = 2;</code>
    */
   private void clearAfter() {  after_ = null;
-    
+
   }
 
   public static final int BEFORE_FIELD_NUMBER = 3;
@@ -244,7 +244,7 @@ public  final class GlobalEventSummaryRequest extends
   private void setBefore(com.google.protobuf.Timestamp value) {
     value.getClass();
   before_ = value;
-    
+
     }
   /**
    * <pre>
@@ -263,7 +263,7 @@ public  final class GlobalEventSummaryRequest extends
     } else {
       before_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -273,7 +273,7 @@ public  final class GlobalEventSummaryRequest extends
    * <code>.google.protobuf.Timestamp before = 3;</code>
    */
   private void clearBefore() {  before_ = null;
-    
+
   }
 
   public static final int BILLABLEFUNCTIONS_FIELD_NUMBER = 5;
@@ -505,10 +505,12 @@ public  final class GlobalEventSummaryRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.GlobalEventSummaryRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -967,6 +969,7 @@ public  final class GlobalEventSummaryRequest extends
      * @return This builder for chaining.
      */
     public Builder addBillableFunctionsValue(int value) {
+      copyOnWrite();
       instance.addBillableFunctionsValue(value);
       return this;
     }

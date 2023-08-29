@@ -63,7 +63,7 @@ public  final class UsageEventModelSummary extends
    */
   private void setBillableFunction(ai.sensorycloud.api.common.ModelType value) {
     billableFunction_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -73,7 +73,7 @@ public  final class UsageEventModelSummary extends
    * <code>.sensory.api.common.ModelType billableFunction = 1;</code>
    */
   private void clearBillableFunction() {
-    
+
     billableFunction_ = 0;
   }
 
@@ -126,7 +126,7 @@ public  final class UsageEventModelSummary extends
    * <code>string units = 2;</code>
    */
   private void clearUnits() {
-    
+
     units_ = getDefaultInstance().getUnits();
   }
   /**
@@ -141,7 +141,7 @@ public  final class UsageEventModelSummary extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     units_ = value.toStringUtf8();
-    
+
   }
 
   public static final int VALUE_FIELD_NUMBER = 3;
@@ -178,7 +178,7 @@ public  final class UsageEventModelSummary extends
    * <code>int64 value = 3;</code>
    */
   private void clearValue() {
-    
+
     value_ = 0L;
   }
 
@@ -216,7 +216,7 @@ public  final class UsageEventModelSummary extends
    * <code>int64 count = 4;</code>
    */
   private void clearCount() {
-    
+
     count_ = 0L;
   }
 
@@ -254,7 +254,7 @@ public  final class UsageEventModelSummary extends
    * <code>double credits = 5;</code>
    */
   private void clearCredits() {
-    
+
     credits_ = 0D;
   }
 
@@ -307,7 +307,7 @@ public  final class UsageEventModelSummary extends
    * <code>string tenantId = 6;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -322,7 +322,7 @@ public  final class UsageEventModelSummary extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.event.UsageEventModelSummary parseFrom(
@@ -375,10 +375,12 @@ public  final class UsageEventModelSummary extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventModelSummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventModelSummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -67,7 +67,7 @@ public  final class SynthesizeSpeechRequest extends
    * <code>string phrase = 1;</code>
    */
   private void clearPhrase() {
-    
+
     phrase_ = getDefaultInstance().getPhrase();
   }
   /**
@@ -82,7 +82,7 @@ public  final class SynthesizeSpeechRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     phrase_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CONFIG_FIELD_NUMBER = 2;
@@ -119,7 +119,7 @@ public  final class SynthesizeSpeechRequest extends
   private void setConfig(ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig value) {
     value.getClass();
   config_ = value;
-    
+
     }
   /**
    * <pre>
@@ -138,7 +138,7 @@ public  final class SynthesizeSpeechRequest extends
     } else {
       config_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -148,7 +148,7 @@ public  final class SynthesizeSpeechRequest extends
    * <code>.sensory.api.v1.audio.VoiceSynthesisConfig config = 2;</code>
    */
   private void clearConfig() {  config_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parseFrom(
@@ -201,10 +201,12 @@ public  final class SynthesizeSpeechRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

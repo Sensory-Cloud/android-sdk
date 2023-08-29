@@ -73,7 +73,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string id = 1;</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -88,7 +88,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CREATEDAT_FIELD_NUMBER = 2;
@@ -125,7 +125,7 @@ public  final class EnrollmentGroupResponse extends
   private void setCreatedAt(com.google.protobuf.Timestamp value) {
     value.getClass();
   createdAt_ = value;
-    
+
     }
   /**
    * <pre>
@@ -144,7 +144,7 @@ public  final class EnrollmentGroupResponse extends
     } else {
       createdAt_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -154,7 +154,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>.google.protobuf.Timestamp createdAt = 2;</code>
    */
   private void clearCreatedAt() {  createdAt_ = null;
-    
+
   }
 
   public static final int UPDATEDAT_FIELD_NUMBER = 3;
@@ -191,7 +191,7 @@ public  final class EnrollmentGroupResponse extends
   private void setUpdatedAt(com.google.protobuf.Timestamp value) {
     value.getClass();
   updatedAt_ = value;
-    
+
     }
   /**
    * <pre>
@@ -210,7 +210,7 @@ public  final class EnrollmentGroupResponse extends
     } else {
       updatedAt_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -220,7 +220,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>.google.protobuf.Timestamp updatedAt = 3;</code>
    */
   private void clearUpdatedAt() {  updatedAt_ = null;
-    
+
   }
 
   public static final int NAME_FIELD_NUMBER = 4;
@@ -272,7 +272,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string name = 4;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -287,7 +287,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 5;
@@ -339,7 +339,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string description = 5;</code>
    */
   private void clearDescription() {
-    
+
     description_ = getDefaultInstance().getDescription();
   }
   /**
@@ -354,7 +354,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     description_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 6;
@@ -406,7 +406,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string modelName = 6;</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -421,7 +421,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELTYPE_FIELD_NUMBER = 7;
@@ -472,7 +472,7 @@ public  final class EnrollmentGroupResponse extends
    */
   private void setModelType(ai.sensorycloud.api.common.ModelType value) {
     modelType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -482,7 +482,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>.sensory.api.common.ModelType modelType = 7;</code>
    */
   private void clearModelType() {
-    
+
     modelType_ = 0;
   }
 
@@ -535,7 +535,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string modelVersion = 8;</code>
    */
   private void clearModelVersion() {
-    
+
     modelVersion_ = getDefaultInstance().getModelVersion();
   }
   /**
@@ -550,7 +550,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelVersion_ = value.toStringUtf8();
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 9;
@@ -602,7 +602,7 @@ public  final class EnrollmentGroupResponse extends
    * <code>string userId = 9;</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -617,7 +617,7 @@ public  final class EnrollmentGroupResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ENROLLMENTS_FIELD_NUMBER = 10;
@@ -808,10 +808,12 @@ public  final class EnrollmentGroupResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.EnrollmentGroupResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.EnrollmentGroupResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

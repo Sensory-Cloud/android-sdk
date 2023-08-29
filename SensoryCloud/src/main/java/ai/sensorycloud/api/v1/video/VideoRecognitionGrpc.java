@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/video/video.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class VideoRecognitionGrpc {
 
   private VideoRecognitionGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.video.VideoRecognition";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.video.VideoRecognition";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.video.ValidateRecognitionRequest,
@@ -97,7 +97,7 @@ public final class VideoRecognitionGrpc {
    * Handles all video recognition endpoints
    * </pre>
    */
-  public static abstract class VideoRecognitionImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -106,30 +106,34 @@ public final class VideoRecognitionGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.ValidateRecognitionRequest> validateLiveness(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.ValidateRecognitionRequest> validateLiveness(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.LivenessRecognitionResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getValidateLivenessMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getValidateLivenessMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.video.ValidateRecognitionRequest,
-                ai.sensorycloud.api.v1.video.LivenessRecognitionResponse>(
-                  this, METHODID_VALIDATE_LIVENESS)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service VideoRecognition.
    * <pre>
    * Handles all video recognition endpoints
    * </pre>
    */
-  public static final class VideoRecognitionStub extends io.grpc.stub.AbstractAsyncStub<VideoRecognitionStub> {
+  public static abstract class VideoRecognitionImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return VideoRecognitionGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service VideoRecognition.
+   * <pre>
+   * Handles all video recognition endpoints
+   * </pre>
+   */
+  public static final class VideoRecognitionStub
+      extends io.grpc.stub.AbstractAsyncStub<VideoRecognitionStub> {
     private VideoRecognitionStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -156,11 +160,13 @@ public final class VideoRecognitionGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service VideoRecognition.
    * <pre>
    * Handles all video recognition endpoints
    * </pre>
    */
-  public static final class VideoRecognitionBlockingStub extends io.grpc.stub.AbstractBlockingStub<VideoRecognitionBlockingStub> {
+  public static final class VideoRecognitionBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<VideoRecognitionBlockingStub> {
     private VideoRecognitionBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -174,11 +180,13 @@ public final class VideoRecognitionGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service VideoRecognition.
    * <pre>
    * Handles all video recognition endpoints
    * </pre>
    */
-  public static final class VideoRecognitionFutureStub extends io.grpc.stub.AbstractFutureStub<VideoRecognitionFutureStub> {
+  public static final class VideoRecognitionFutureStub
+      extends io.grpc.stub.AbstractFutureStub<VideoRecognitionFutureStub> {
     private VideoRecognitionFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -198,10 +206,10 @@ public final class VideoRecognitionGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final VideoRecognitionImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(VideoRecognitionImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -227,6 +235,18 @@ public final class VideoRecognitionGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getValidateLivenessMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.video.ValidateRecognitionRequest,
+              ai.sensorycloud.api.v1.video.LivenessRecognitionResponse>(
+                service, METHODID_VALIDATE_LIVENESS)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

@@ -69,7 +69,7 @@ public  final class KeyResponse extends
    * <code>string id = 1;</code>
    */
   private void clearId() {
-    
+
     id_ = getDefaultInstance().getId();
   }
   /**
@@ -84,7 +84,7 @@ public  final class KeyResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     id_ = value.toStringUtf8();
-    
+
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
@@ -136,7 +136,7 @@ public  final class KeyResponse extends
    * <code>string name = 2;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -151,7 +151,7 @@ public  final class KeyResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int KEYTYPE_FIELD_NUMBER = 3;
@@ -202,7 +202,7 @@ public  final class KeyResponse extends
    */
   private void setKeyType(ai.sensorycloud.api.common.KeyType value) {
     keyType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -212,7 +212,7 @@ public  final class KeyResponse extends
    * <code>.sensory.api.common.KeyType keyType = 3;</code>
    */
   private void clearKeyType() {
-    
+
     keyType_ = 0;
   }
 
@@ -253,7 +253,7 @@ public  final class KeyResponse extends
    * <code>int64 expiration = 4;</code>
    */
   private void clearExpiration() {
-    
+
     expiration_ = 0L;
   }
 
@@ -306,7 +306,7 @@ public  final class KeyResponse extends
    * <code>string tenantId = 5;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -321,7 +321,7 @@ public  final class KeyResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int DISABLED_FIELD_NUMBER = 6;
@@ -358,7 +358,7 @@ public  final class KeyResponse extends
    * <code>bool disabled = 6;</code>
    */
   private void clearDisabled() {
-    
+
     disabled_ = false;
   }
 
@@ -412,10 +412,12 @@ public  final class KeyResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.KeyResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.KeyResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

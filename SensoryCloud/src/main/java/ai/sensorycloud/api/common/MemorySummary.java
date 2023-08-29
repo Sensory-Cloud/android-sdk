@@ -51,7 +51,7 @@ public  final class MemorySummary extends
    * <code>uint64 memTotal = 1;</code>
    */
   private void clearMemTotal() {
-    
+
     memTotal_ = 0L;
   }
 
@@ -89,7 +89,7 @@ public  final class MemorySummary extends
    * <code>uint64 memFree = 2;</code>
    */
   private void clearMemFree() {
-    
+
     memFree_ = 0L;
   }
 
@@ -127,7 +127,7 @@ public  final class MemorySummary extends
    * <code>uint64 memAvailable = 3;</code>
    */
   private void clearMemAvailable() {
-    
+
     memAvailable_ = 0L;
   }
 
@@ -181,10 +181,12 @@ public  final class MemorySummary extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.MemorySummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.MemorySummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

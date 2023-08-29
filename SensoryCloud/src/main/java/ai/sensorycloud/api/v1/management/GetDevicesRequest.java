@@ -64,7 +64,7 @@ public  final class GetDevicesRequest extends
    * <code>string tenantId = 1;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -79,7 +79,7 @@ public  final class GetDevicesRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int PAGINATION_FIELD_NUMBER = 2;
@@ -116,7 +116,7 @@ public  final class GetDevicesRequest extends
   private void setPagination(ai.sensorycloud.api.common.PaginationOptions value) {
     value.getClass();
   pagination_ = value;
-    
+
     }
   /**
    * <pre>
@@ -135,7 +135,7 @@ public  final class GetDevicesRequest extends
     } else {
       pagination_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -145,7 +145,7 @@ public  final class GetDevicesRequest extends
    * <code>.sensory.api.common.PaginationOptions pagination = 2;</code>
    */
   private void clearPagination() {  pagination_ = null;
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 3;
@@ -197,7 +197,7 @@ public  final class GetDevicesRequest extends
    * <code>string userId = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -212,7 +212,7 @@ public  final class GetDevicesRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.GetDevicesRequest parseFrom(
@@ -265,10 +265,12 @@ public  final class GetDevicesRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.GetDevicesRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.GetDevicesRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

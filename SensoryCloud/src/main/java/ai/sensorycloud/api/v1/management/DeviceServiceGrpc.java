@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/management/device.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class DeviceServiceGrpc {
 
   private DeviceServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.management.DeviceService";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.management.DeviceService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.EnrollDeviceRequest,
@@ -277,14 +277,14 @@ public final class DeviceServiceGrpc {
    * Service to manage Devices in the database
    * </pre>
    */
-  public static abstract class DeviceServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Create a new device in the database
      * </pre>
      */
-    public void enrollDevice(ai.sensorycloud.api.v1.management.EnrollDeviceRequest request,
+    default void enrollDevice(ai.sensorycloud.api.v1.management.EnrollDeviceRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEnrollDeviceMethod(), responseObserver);
     }
@@ -295,7 +295,7 @@ public final class DeviceServiceGrpc {
      * This endpoint can be used to assign a new credential to a device if the old credential has expired.
      * </pre>
      */
-    public void renewDeviceCredential(ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest request,
+    default void renewDeviceCredential(ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRenewDeviceCredentialMethod(), responseObserver);
     }
@@ -306,7 +306,7 @@ public final class DeviceServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getWhoAmI(ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest request,
+    default void getWhoAmI(ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetWhoAmIMethod(), responseObserver);
     }
@@ -316,7 +316,7 @@ public final class DeviceServiceGrpc {
      * Returns device information
      * </pre>
      */
-    public void getDevice(ai.sensorycloud.api.v1.management.DeviceRequest request,
+    default void getDevice(ai.sensorycloud.api.v1.management.DeviceRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.GetDeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetDeviceMethod(), responseObserver);
     }
@@ -326,7 +326,7 @@ public final class DeviceServiceGrpc {
      * Returns a list of devices associated with the given userId
      * </pre>
      */
-    public void getDevices(ai.sensorycloud.api.v1.management.GetDevicesRequest request,
+    default void getDevices(ai.sensorycloud.api.v1.management.GetDevicesRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceListResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetDevicesMethod(), responseObserver);
     }
@@ -336,7 +336,7 @@ public final class DeviceServiceGrpc {
      * Allows the name of a device to be updated
      * </pre>
      */
-    public void updateDevice(ai.sensorycloud.api.v1.management.UpdateDeviceRequest request,
+    default void updateDevice(ai.sensorycloud.api.v1.management.UpdateDeviceRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateDeviceMethod(), responseObserver);
     }
@@ -346,72 +346,34 @@ public final class DeviceServiceGrpc {
      * Allows a device to be deleted
      * </pre>
      */
-    public void deleteDevice(ai.sensorycloud.api.v1.management.DeviceRequest request,
+    default void deleteDevice(ai.sensorycloud.api.v1.management.DeviceRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.DeviceResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteDeviceMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getEnrollDeviceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.EnrollDeviceRequest,
-                ai.sensorycloud.api.v1.management.DeviceResponse>(
-                  this, METHODID_ENROLL_DEVICE)))
-          .addMethod(
-            getRenewDeviceCredentialMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest,
-                ai.sensorycloud.api.v1.management.DeviceResponse>(
-                  this, METHODID_RENEW_DEVICE_CREDENTIAL)))
-          .addMethod(
-            getGetWhoAmIMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest,
-                ai.sensorycloud.api.v1.management.DeviceResponse>(
-                  this, METHODID_GET_WHO_AM_I)))
-          .addMethod(
-            getGetDeviceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.DeviceRequest,
-                ai.sensorycloud.api.v1.management.GetDeviceResponse>(
-                  this, METHODID_GET_DEVICE)))
-          .addMethod(
-            getGetDevicesMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.GetDevicesRequest,
-                ai.sensorycloud.api.v1.management.DeviceListResponse>(
-                  this, METHODID_GET_DEVICES)))
-          .addMethod(
-            getUpdateDeviceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.UpdateDeviceRequest,
-                ai.sensorycloud.api.v1.management.DeviceResponse>(
-                  this, METHODID_UPDATE_DEVICE)))
-          .addMethod(
-            getDeleteDeviceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.DeviceRequest,
-                ai.sensorycloud.api.v1.management.DeviceResponse>(
-                  this, METHODID_DELETE_DEVICE)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service DeviceService.
    * <pre>
    * Service to manage Devices in the database
    * </pre>
    */
-  public static final class DeviceServiceStub extends io.grpc.stub.AbstractAsyncStub<DeviceServiceStub> {
+  public static abstract class DeviceServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return DeviceServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service DeviceService.
+   * <pre>
+   * Service to manage Devices in the database
+   * </pre>
+   */
+  public static final class DeviceServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<DeviceServiceStub> {
     private DeviceServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -504,11 +466,13 @@ public final class DeviceServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service DeviceService.
    * <pre>
    * Service to manage Devices in the database
    * </pre>
    */
-  public static final class DeviceServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<DeviceServiceBlockingStub> {
+  public static final class DeviceServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<DeviceServiceBlockingStub> {
     private DeviceServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -594,11 +558,13 @@ public final class DeviceServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service DeviceService.
    * <pre>
    * Service to manage Devices in the database
    * </pre>
    */
-  public static final class DeviceServiceFutureStub extends io.grpc.stub.AbstractFutureStub<DeviceServiceFutureStub> {
+  public static final class DeviceServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<DeviceServiceFutureStub> {
     private DeviceServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -703,10 +669,10 @@ public final class DeviceServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final DeviceServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(DeviceServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -757,6 +723,60 @@ public final class DeviceServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getEnrollDeviceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.EnrollDeviceRequest,
+              ai.sensorycloud.api.v1.management.DeviceResponse>(
+                service, METHODID_ENROLL_DEVICE)))
+        .addMethod(
+          getRenewDeviceCredentialMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest,
+              ai.sensorycloud.api.v1.management.DeviceResponse>(
+                service, METHODID_RENEW_DEVICE_CREDENTIAL)))
+        .addMethod(
+          getGetWhoAmIMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.DeviceGetWhoAmIRequest,
+              ai.sensorycloud.api.v1.management.DeviceResponse>(
+                service, METHODID_GET_WHO_AM_I)))
+        .addMethod(
+          getGetDeviceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.DeviceRequest,
+              ai.sensorycloud.api.v1.management.GetDeviceResponse>(
+                service, METHODID_GET_DEVICE)))
+        .addMethod(
+          getGetDevicesMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.GetDevicesRequest,
+              ai.sensorycloud.api.v1.management.DeviceListResponse>(
+                service, METHODID_GET_DEVICES)))
+        .addMethod(
+          getUpdateDeviceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.UpdateDeviceRequest,
+              ai.sensorycloud.api.v1.management.DeviceResponse>(
+                service, METHODID_UPDATE_DEVICE)))
+        .addMethod(
+          getDeleteDeviceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.DeviceRequest,
+              ai.sensorycloud.api.v1.management.DeviceResponse>(
+                service, METHODID_DELETE_DEVICE)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

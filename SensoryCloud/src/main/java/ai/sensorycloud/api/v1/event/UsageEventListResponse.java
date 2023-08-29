@@ -186,7 +186,7 @@ public  final class UsageEventListResponse extends
   private void setPagination(ai.sensorycloud.api.common.PaginationResponse value) {
     value.getClass();
   pagination_ = value;
-    
+
     }
   /**
    * <pre>
@@ -205,7 +205,7 @@ public  final class UsageEventListResponse extends
     } else {
       pagination_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -215,7 +215,7 @@ public  final class UsageEventListResponse extends
    * <code>.sensory.api.common.PaginationResponse pagination = 2;</code>
    */
   private void clearPagination() {  pagination_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.event.UsageEventListResponse parseFrom(
@@ -268,10 +268,12 @@ public  final class UsageEventListResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventListResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.event.UsageEventListResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

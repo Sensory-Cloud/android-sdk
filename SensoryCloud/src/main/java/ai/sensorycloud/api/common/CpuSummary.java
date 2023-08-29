@@ -51,7 +51,7 @@ public  final class CpuSummary extends
    * <code>uint64 user = 1;</code>
    */
   private void clearUser() {
-    
+
     user_ = 0L;
   }
 
@@ -89,7 +89,7 @@ public  final class CpuSummary extends
    * <code>uint64 nice = 2;</code>
    */
   private void clearNice() {
-    
+
     nice_ = 0L;
   }
 
@@ -127,7 +127,7 @@ public  final class CpuSummary extends
    * <code>uint64 system = 3;</code>
    */
   private void clearSystem() {
-    
+
     system_ = 0L;
   }
 
@@ -165,7 +165,7 @@ public  final class CpuSummary extends
    * <code>uint64 idle = 4;</code>
    */
   private void clearIdle() {
-    
+
     idle_ = 0L;
   }
 
@@ -203,7 +203,7 @@ public  final class CpuSummary extends
    * <code>uint64 ioWait = 5;</code>
    */
   private void clearIoWait() {
-    
+
     ioWait_ = 0L;
   }
 
@@ -241,7 +241,7 @@ public  final class CpuSummary extends
    * <code>uint64 irq = 6;</code>
    */
   private void clearIrq() {
-    
+
     irq_ = 0L;
   }
 
@@ -279,7 +279,7 @@ public  final class CpuSummary extends
    * <code>uint64 softIrq = 7;</code>
    */
   private void clearSoftIrq() {
-    
+
     softIrq_ = 0L;
   }
 
@@ -317,7 +317,7 @@ public  final class CpuSummary extends
    * <code>uint64 steal = 8;</code>
    */
   private void clearSteal() {
-    
+
     steal_ = 0L;
   }
 
@@ -355,7 +355,7 @@ public  final class CpuSummary extends
    * <code>uint64 guest = 9;</code>
    */
   private void clearGuest() {
-    
+
     guest_ = 0L;
   }
 
@@ -393,7 +393,7 @@ public  final class CpuSummary extends
    * <code>uint64 guestNice = 10;</code>
    */
   private void clearGuestNice() {
-    
+
     guestNice_ = 0L;
   }
 
@@ -447,10 +447,12 @@ public  final class CpuSummary extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.CpuSummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.CpuSummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

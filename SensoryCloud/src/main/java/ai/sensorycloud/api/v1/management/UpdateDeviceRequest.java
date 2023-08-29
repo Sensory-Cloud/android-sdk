@@ -68,7 +68,7 @@ public  final class UpdateDeviceRequest extends
    * <code>string deviceId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearDeviceId() {
-    
+
     deviceId_ = getDefaultInstance().getDeviceId();
   }
   /**
@@ -83,7 +83,7 @@ public  final class UpdateDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     deviceId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
@@ -135,7 +135,7 @@ public  final class UpdateDeviceRequest extends
    * <code>string name = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -150,7 +150,7 @@ public  final class UpdateDeviceRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.UpdateDeviceRequest parseFrom(
@@ -203,10 +203,12 @@ public  final class UpdateDeviceRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.UpdateDeviceRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.UpdateDeviceRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

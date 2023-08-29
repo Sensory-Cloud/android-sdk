@@ -88,4 +88,15 @@ public interface ValidateEventConfigOrBuilder extends
    * @return The sensitivity.
    */
   ai.sensorycloud.api.v1.audio.ThresholdSensitivity getSensitivity();
+
+  /**
+   * <pre>
+   * TopN is for the sound_id_topn model and dictates the top N most likely
+   * results to return
+   * </pre>
+   *
+   * <code>int32 topN = 5;</code>
+   * @return The topN.
+   */
+  int getTopN();
 }

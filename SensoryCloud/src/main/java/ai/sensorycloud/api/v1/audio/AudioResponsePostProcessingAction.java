@@ -67,7 +67,7 @@ public  final class AudioResponsePostProcessingAction extends
    * <code>string actionId = 1;</code>
    */
   private void clearActionId() {
-    
+
     actionId_ = getDefaultInstance().getActionId();
   }
   /**
@@ -82,7 +82,7 @@ public  final class AudioResponsePostProcessingAction extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     actionId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ACTION_FIELD_NUMBER = 2;
@@ -133,7 +133,7 @@ public  final class AudioResponsePostProcessingAction extends
    */
   private void setAction(ai.sensorycloud.api.v1.audio.AudioPostProcessingAction value) {
     action_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -143,7 +143,7 @@ public  final class AudioResponsePostProcessingAction extends
    * <code>.sensory.api.v1.audio.AudioPostProcessingAction action = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearAction() {
-    
+
     action_ = 0;
   }
 
@@ -197,10 +197,12 @@ public  final class AudioResponsePostProcessingAction extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

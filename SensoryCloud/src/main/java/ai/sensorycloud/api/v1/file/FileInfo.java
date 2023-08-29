@@ -71,7 +71,7 @@ public  final class FileInfo extends
    * <code>string file = 1;</code>
    */
   private void clearFile() {
-    
+
     file_ = getDefaultInstance().getFile();
   }
   /**
@@ -86,7 +86,7 @@ public  final class FileInfo extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     file_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ABSOLUTEPATH_FIELD_NUMBER = 2;
@@ -142,7 +142,7 @@ public  final class FileInfo extends
    * <code>string absolutePath = 2;</code>
    */
   private void clearAbsolutePath() {
-    
+
     absolutePath_ = getDefaultInstance().getAbsolutePath();
   }
   /**
@@ -158,7 +158,7 @@ public  final class FileInfo extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     absolutePath_ = value.toStringUtf8();
-    
+
   }
 
   public static final int SIZE_FIELD_NUMBER = 3;
@@ -195,7 +195,7 @@ public  final class FileInfo extends
    * <code>int64 size = 3;</code>
    */
   private void clearSize() {
-    
+
     size_ = 0L;
   }
 
@@ -248,7 +248,7 @@ public  final class FileInfo extends
    * <code>string contentType = 4;</code>
    */
   private void clearContentType() {
-    
+
     contentType_ = getDefaultInstance().getContentType();
   }
   /**
@@ -263,7 +263,7 @@ public  final class FileInfo extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     contentType_ = value.toStringUtf8();
-    
+
   }
 
   public static final int HASH_FIELD_NUMBER = 5;
@@ -315,7 +315,7 @@ public  final class FileInfo extends
    * <code>string hash = 5;</code>
    */
   private void clearHash() {
-    
+
     hash_ = getDefaultInstance().getHash();
   }
   /**
@@ -330,7 +330,7 @@ public  final class FileInfo extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     hash_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TENANTID_FIELD_NUMBER = 6;
@@ -382,7 +382,7 @@ public  final class FileInfo extends
    * <code>string tenantId = 6;</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -397,7 +397,7 @@ public  final class FileInfo extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.file.FileInfo parseFrom(
@@ -450,10 +450,12 @@ public  final class FileInfo extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileInfo parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileInfo parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

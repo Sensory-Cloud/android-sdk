@@ -48,7 +48,7 @@ public  final class TextChatRequest extends
    * <code>string modelName = 1;</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -59,7 +59,7 @@ public  final class TextChatRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MESSAGES_FIELD_NUMBER = 2;
@@ -206,10 +206,12 @@ public  final class TextChatRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.assistant.TextChatRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.assistant.TextChatRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

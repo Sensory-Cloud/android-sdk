@@ -190,7 +190,7 @@ public  final class DeviceListResponse extends
   private void setPagination(ai.sensorycloud.api.common.PaginationResponse value) {
     value.getClass();
   pagination_ = value;
-    
+
     }
   /**
    * <pre>
@@ -209,7 +209,7 @@ public  final class DeviceListResponse extends
     } else {
       pagination_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -219,7 +219,7 @@ public  final class DeviceListResponse extends
    * <code>.sensory.api.common.PaginationResponse pagination = 2;</code>
    */
   private void clearPagination() {  pagination_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.DeviceListResponse parseFrom(
@@ -272,10 +272,12 @@ public  final class DeviceListResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.DeviceListResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.DeviceListResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

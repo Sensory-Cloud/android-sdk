@@ -53,7 +53,7 @@ public  final class ServiceHealth extends
    * <code>bool isHealthy = 1;</code>
    */
   private void clearIsHealthy() {
-    
+
     isHealthy_ = false;
   }
 
@@ -106,7 +106,7 @@ public  final class ServiceHealth extends
    * <code>string name = 2;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -121,7 +121,7 @@ public  final class ServiceHealth extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MESSAGE_FIELD_NUMBER = 3;
@@ -173,7 +173,7 @@ public  final class ServiceHealth extends
    * <code>string message = 3;</code>
    */
   private void clearMessage() {
-    
+
     message_ = getDefaultInstance().getMessage();
   }
   /**
@@ -188,7 +188,7 @@ public  final class ServiceHealth extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     message_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.common.ServiceHealth parseFrom(
@@ -241,10 +241,12 @@ public  final class ServiceHealth extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.ServiceHealth parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.ServiceHealth parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

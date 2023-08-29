@@ -173,6 +173,14 @@ public enum ModelType
    * <code>FACE_EMBEDDING = 205;</code>
    */
   FACE_EMBEDDING(205),
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM_GPT_3_5 = 301;</code>
+   */
+  LLM_GPT_3_5(301),
   UNRECOGNIZED(-1),
   ;
 
@@ -336,6 +344,14 @@ public enum ModelType
    * <code>FACE_EMBEDDING = 205;</code>
    */
   public static final int FACE_EMBEDDING_VALUE = 205;
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM_GPT_3_5 = 301;</code>
+   */
+  public static final int LLM_GPT_3_5_VALUE = 301;
 
 
   @java.lang.Override
@@ -379,6 +395,7 @@ public enum ModelType
       case 203: return OBJECT_RECOGNITION;
       case 204: return IMAGE_TRANSFORM;
       case 205: return FACE_EMBEDDING;
+      case 301: return LLM_GPT_3_5;
       default: return null;
     }
   }

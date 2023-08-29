@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/management/enrollment.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class EnrollmentServiceGrpc {
 
   private EnrollmentServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.management.EnrollmentService";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.management.EnrollmentService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.management.GetEnrollmentsRequest,
@@ -337,7 +337,7 @@ public final class EnrollmentServiceGrpc {
    * Service to manage Enrollments in the database
    * </pre>
    */
-  public static abstract class EnrollmentServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -345,7 +345,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getEnrollments(ai.sensorycloud.api.v1.management.GetEnrollmentsRequest request,
+    default void getEnrollments(ai.sensorycloud.api.v1.management.GetEnrollmentsRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.GetEnrollmentsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetEnrollmentsMethod(), responseObserver);
     }
@@ -356,7 +356,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getEnrollmentGroups(ai.sensorycloud.api.v1.management.GetEnrollmentsRequest request,
+    default void getEnrollmentGroups(ai.sensorycloud.api.v1.management.GetEnrollmentsRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.GetEnrollmentGroupsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetEnrollmentGroupsMethod(), responseObserver);
     }
@@ -367,7 +367,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void createEnrollmentGroup(ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest request,
+    default void createEnrollmentGroup(ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateEnrollmentGroupMethod(), responseObserver);
     }
@@ -378,7 +378,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void appendEnrollmentGroup(ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest request,
+    default void appendEnrollmentGroup(ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAppendEnrollmentGroupMethod(), responseObserver);
     }
@@ -391,7 +391,7 @@ public final class EnrollmentServiceGrpc {
      * lock themselves out of the system forever.
      * </pre>
      */
-    public void deleteEnrollment(ai.sensorycloud.api.v1.management.DeleteEnrollmentRequest request,
+    default void deleteEnrollment(ai.sensorycloud.api.v1.management.DeleteEnrollmentRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteEnrollmentMethod(), responseObserver);
     }
@@ -402,7 +402,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void deleteEnrollmentGroup(ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest request,
+    default void deleteEnrollmentGroup(ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteEnrollmentGroupMethod(), responseObserver);
     }
@@ -413,7 +413,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void updateEnrollment(ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request,
+    default void updateEnrollment(ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateEnrollmentMethod(), responseObserver);
     }
@@ -424,7 +424,7 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void updateEnrollmentGroup(ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request,
+    default void updateEnrollmentGroup(ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateEnrollmentGroupMethod(), responseObserver);
     }
@@ -435,86 +435,34 @@ public final class EnrollmentServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void removeEnrollmentsFromGroup(ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request,
+    default void removeEnrollmentsFromGroup(ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.management.EnrollmentGroupResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveEnrollmentsFromGroupMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetEnrollmentsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.GetEnrollmentsRequest,
-                ai.sensorycloud.api.v1.management.GetEnrollmentsResponse>(
-                  this, METHODID_GET_ENROLLMENTS)))
-          .addMethod(
-            getGetEnrollmentGroupsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.GetEnrollmentsRequest,
-                ai.sensorycloud.api.v1.management.GetEnrollmentGroupsResponse>(
-                  this, METHODID_GET_ENROLLMENT_GROUPS)))
-          .addMethod(
-            getCreateEnrollmentGroupMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
-                  this, METHODID_CREATE_ENROLLMENT_GROUP)))
-          .addMethod(
-            getAppendEnrollmentGroupMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
-                  this, METHODID_APPEND_ENROLLMENT_GROUP)))
-          .addMethod(
-            getDeleteEnrollmentMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.DeleteEnrollmentRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentResponse>(
-                  this, METHODID_DELETE_ENROLLMENT)))
-          .addMethod(
-            getDeleteEnrollmentGroupMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
-                  this, METHODID_DELETE_ENROLLMENT_GROUP)))
-          .addMethod(
-            getUpdateEnrollmentMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentResponse>(
-                  this, METHODID_UPDATE_ENROLLMENT)))
-          .addMethod(
-            getUpdateEnrollmentGroupMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
-                  this, METHODID_UPDATE_ENROLLMENT_GROUP)))
-          .addMethod(
-            getRemoveEnrollmentsFromGroupMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest,
-                ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
-                  this, METHODID_REMOVE_ENROLLMENTS_FROM_GROUP)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service EnrollmentService.
    * <pre>
    * Service to manage Enrollments in the database
    * </pre>
    */
-  public static final class EnrollmentServiceStub extends io.grpc.stub.AbstractAsyncStub<EnrollmentServiceStub> {
+  public static abstract class EnrollmentServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return EnrollmentServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service EnrollmentService.
+   * <pre>
+   * Service to manage Enrollments in the database
+   * </pre>
+   */
+  public static final class EnrollmentServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<EnrollmentServiceStub> {
     private EnrollmentServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -638,11 +586,13 @@ public final class EnrollmentServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service EnrollmentService.
    * <pre>
    * Service to manage Enrollments in the database
    * </pre>
    */
-  public static final class EnrollmentServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<EnrollmentServiceBlockingStub> {
+  public static final class EnrollmentServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<EnrollmentServiceBlockingStub> {
     private EnrollmentServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -757,11 +707,13 @@ public final class EnrollmentServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service EnrollmentService.
    * <pre>
    * Service to manage Enrollments in the database
    * </pre>
    */
-  public static final class EnrollmentServiceFutureStub extends io.grpc.stub.AbstractFutureStub<EnrollmentServiceFutureStub> {
+  public static final class EnrollmentServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<EnrollmentServiceFutureStub> {
     private EnrollmentServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -899,10 +851,10 @@ public final class EnrollmentServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final EnrollmentServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(EnrollmentServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -961,6 +913,74 @@ public final class EnrollmentServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetEnrollmentsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.GetEnrollmentsRequest,
+              ai.sensorycloud.api.v1.management.GetEnrollmentsResponse>(
+                service, METHODID_GET_ENROLLMENTS)))
+        .addMethod(
+          getGetEnrollmentGroupsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.GetEnrollmentsRequest,
+              ai.sensorycloud.api.v1.management.GetEnrollmentGroupsResponse>(
+                service, METHODID_GET_ENROLLMENT_GROUPS)))
+        .addMethod(
+          getCreateEnrollmentGroupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                service, METHODID_CREATE_ENROLLMENT_GROUP)))
+        .addMethod(
+          getAppendEnrollmentGroupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                service, METHODID_APPEND_ENROLLMENT_GROUP)))
+        .addMethod(
+          getDeleteEnrollmentMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.DeleteEnrollmentRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentResponse>(
+                service, METHODID_DELETE_ENROLLMENT)))
+        .addMethod(
+          getDeleteEnrollmentGroupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.DeleteEnrollmentGroupRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                service, METHODID_DELETE_ENROLLMENT_GROUP)))
+        .addMethod(
+          getUpdateEnrollmentMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.UpdateEnrollmentRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentResponse>(
+                service, METHODID_UPDATE_ENROLLMENT)))
+        .addMethod(
+          getUpdateEnrollmentGroupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.UpdateEnrollmentGroupRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                service, METHODID_UPDATE_ENROLLMENT_GROUP)))
+        .addMethod(
+          getRemoveEnrollmentsFromGroupMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.management.RemoveEnrollmentsRequest,
+              ai.sensorycloud.api.v1.management.EnrollmentGroupResponse>(
+                service, METHODID_REMOVE_ENROLLMENTS_FROM_GROUP)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

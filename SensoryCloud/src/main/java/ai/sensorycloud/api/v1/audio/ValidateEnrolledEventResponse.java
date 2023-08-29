@@ -54,7 +54,7 @@ public  final class ValidateEnrolledEventResponse extends
    * <code>float audioEnergy = 1;</code>
    */
   private void clearAudioEnergy() {
-    
+
     audioEnergy_ = 0F;
   }
 
@@ -92,7 +92,7 @@ public  final class ValidateEnrolledEventResponse extends
    * <code>bool success = 2;</code>
    */
   private void clearSuccess() {
-    
+
     success_ = false;
   }
 
@@ -149,7 +149,7 @@ public  final class ValidateEnrolledEventResponse extends
    * <code>string enrollmentId = 3;</code>
    */
   private void clearEnrollmentId() {
-    
+
     enrollmentId_ = getDefaultInstance().getEnrollmentId();
   }
   /**
@@ -165,7 +165,7 @@ public  final class ValidateEnrolledEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     enrollmentId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 4;
@@ -221,7 +221,7 @@ public  final class ValidateEnrolledEventResponse extends
    * <code>string userId = 4;</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -237,7 +237,7 @@ public  final class ValidateEnrolledEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELPROMPT_FIELD_NUMBER = 5;
@@ -289,7 +289,7 @@ public  final class ValidateEnrolledEventResponse extends
    * <code>string modelPrompt = 5;</code>
    */
   private void clearModelPrompt() {
-    
+
     modelPrompt_ = getDefaultInstance().getModelPrompt();
   }
   /**
@@ -304,7 +304,7 @@ public  final class ValidateEnrolledEventResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelPrompt_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse parseFrom(
@@ -357,10 +357,12 @@ public  final class ValidateEnrolledEventResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

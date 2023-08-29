@@ -69,7 +69,7 @@ public  final class CreateKeyRequest extends
    * <code>string name = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -84,7 +84,7 @@ public  final class CreateKeyRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int KEYTYPE_FIELD_NUMBER = 2;
@@ -135,7 +135,7 @@ public  final class CreateKeyRequest extends
    */
   private void setKeyType(ai.sensorycloud.api.common.KeyType value) {
     keyType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -145,7 +145,7 @@ public  final class CreateKeyRequest extends
    * <code>.sensory.api.common.KeyType keyType = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearKeyType() {
-    
+
     keyType_ = 0;
   }
 
@@ -198,7 +198,7 @@ public  final class CreateKeyRequest extends
    * <code>string value = 3;</code>
    */
   private void clearValue() {
-    
+
     value_ = getDefaultInstance().getValue();
   }
   /**
@@ -213,7 +213,7 @@ public  final class CreateKeyRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     value_ = value.toStringUtf8();
-    
+
   }
 
   public static final int EXPIRATION_FIELD_NUMBER = 4;
@@ -250,7 +250,7 @@ public  final class CreateKeyRequest extends
    * <code>int64 expiration = 4;</code>
    */
   private void clearExpiration() {
-    
+
     expiration_ = 0L;
   }
 
@@ -304,10 +304,12 @@ public  final class CreateKeyRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.CreateKeyRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.common.CreateKeyRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

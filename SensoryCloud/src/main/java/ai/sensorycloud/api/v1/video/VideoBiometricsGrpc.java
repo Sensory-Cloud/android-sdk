@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/video/video.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class VideoBiometricsGrpc {
 
   private VideoBiometricsGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.video.VideoBiometrics";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.video.VideoBiometrics";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.video.CreateEnrollmentRequest,
@@ -127,7 +127,7 @@ public final class VideoBiometricsGrpc {
    * Handles all video-related biometrics
    * </pre>
    */
-  public static abstract class VideoBiometricsImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -136,7 +136,7 @@ public final class VideoBiometricsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.CreateEnrollmentRequest> createEnrollment(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.CreateEnrollmentRequest> createEnrollment(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.CreateEnrollmentResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCreateEnrollmentMethod(), responseObserver);
     }
@@ -148,37 +148,34 @@ public final class VideoBiometricsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.AuthenticateRequest> authenticate(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.AuthenticateRequest> authenticate(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.video.AuthenticateResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getAuthenticateMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getCreateEnrollmentMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.video.CreateEnrollmentRequest,
-                ai.sensorycloud.api.v1.video.CreateEnrollmentResponse>(
-                  this, METHODID_CREATE_ENROLLMENT)))
-          .addMethod(
-            getAuthenticateMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.video.AuthenticateRequest,
-                ai.sensorycloud.api.v1.video.AuthenticateResponse>(
-                  this, METHODID_AUTHENTICATE)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service VideoBiometrics.
    * <pre>
    * Handles all video-related biometrics
    * </pre>
    */
-  public static final class VideoBiometricsStub extends io.grpc.stub.AbstractAsyncStub<VideoBiometricsStub> {
+  public static abstract class VideoBiometricsImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return VideoBiometricsGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service VideoBiometrics.
+   * <pre>
+   * Handles all video-related biometrics
+   * </pre>
+   */
+  public static final class VideoBiometricsStub
+      extends io.grpc.stub.AbstractAsyncStub<VideoBiometricsStub> {
     private VideoBiometricsStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -218,11 +215,13 @@ public final class VideoBiometricsGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service VideoBiometrics.
    * <pre>
    * Handles all video-related biometrics
    * </pre>
    */
-  public static final class VideoBiometricsBlockingStub extends io.grpc.stub.AbstractBlockingStub<VideoBiometricsBlockingStub> {
+  public static final class VideoBiometricsBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<VideoBiometricsBlockingStub> {
     private VideoBiometricsBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -236,11 +235,13 @@ public final class VideoBiometricsGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service VideoBiometrics.
    * <pre>
    * Handles all video-related biometrics
    * </pre>
    */
-  public static final class VideoBiometricsFutureStub extends io.grpc.stub.AbstractFutureStub<VideoBiometricsFutureStub> {
+  public static final class VideoBiometricsFutureStub
+      extends io.grpc.stub.AbstractFutureStub<VideoBiometricsFutureStub> {
     private VideoBiometricsFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -261,10 +262,10 @@ public final class VideoBiometricsGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final VideoBiometricsImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(VideoBiometricsImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -293,6 +294,25 @@ public final class VideoBiometricsGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getCreateEnrollmentMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.video.CreateEnrollmentRequest,
+              ai.sensorycloud.api.v1.video.CreateEnrollmentResponse>(
+                service, METHODID_CREATE_ENROLLMENT)))
+        .addMethod(
+          getAuthenticateMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.video.AuthenticateRequest,
+              ai.sensorycloud.api.v1.video.AuthenticateResponse>(
+                service, METHODID_AUTHENTICATE)))
+        .build();
   }
 
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;

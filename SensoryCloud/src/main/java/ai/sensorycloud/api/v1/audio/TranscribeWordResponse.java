@@ -190,7 +190,7 @@ public  final class TranscribeWordResponse extends
    * <code>uint64 firstWordIndex = 2;</code>
    */
   private void clearFirstWordIndex() {
-    
+
     firstWordIndex_ = 0L;
   }
 
@@ -228,7 +228,7 @@ public  final class TranscribeWordResponse extends
    * <code>uint64 lastWordIndex = 3;</code>
    */
   private void clearLastWordIndex() {
-    
+
     lastWordIndex_ = 0L;
   }
 
@@ -282,10 +282,12 @@ public  final class TranscribeWordResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeWordResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.TranscribeWordResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

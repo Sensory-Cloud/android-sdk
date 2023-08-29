@@ -72,7 +72,7 @@ public  final class ValidateRecognitionConfig extends
    * <code>string modelName = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -88,7 +88,7 @@ public  final class ValidateRecognitionConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int USERID_FIELD_NUMBER = 2;
@@ -140,7 +140,7 @@ public  final class ValidateRecognitionConfig extends
    * <code>string userId = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearUserId() {
-    
+
     userId_ = getDefaultInstance().getUserId();
   }
   /**
@@ -155,7 +155,7 @@ public  final class ValidateRecognitionConfig extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     userId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int THRESHOLD_FIELD_NUMBER = 3;
@@ -206,7 +206,7 @@ public  final class ValidateRecognitionConfig extends
    */
   private void setThreshold(ai.sensorycloud.api.v1.video.RecognitionThreshold value) {
     threshold_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -216,7 +216,7 @@ public  final class ValidateRecognitionConfig extends
    * <code>.sensory.api.v1.video.RecognitionThreshold threshold = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearThreshold() {
-    
+
     threshold_ = 0;
   }
 
@@ -270,10 +270,12 @@ public  final class ValidateRecognitionConfig extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.ValidateRecognitionConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.video.ValidateRecognitionConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

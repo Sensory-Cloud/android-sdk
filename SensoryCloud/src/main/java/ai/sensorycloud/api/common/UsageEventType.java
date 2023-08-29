@@ -53,6 +53,14 @@ public enum UsageEventType
    * <code>TRANSCRIPTION = 4;</code>
    */
   TRANSCRIPTION(4),
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM = 5;</code>
+   */
+  LLM(5),
   UNRECOGNIZED(-1),
   ;
 
@@ -96,6 +104,14 @@ public enum UsageEventType
    * <code>TRANSCRIPTION = 4;</code>
    */
   public static final int TRANSCRIPTION_VALUE = 4;
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM = 5;</code>
+   */
+  public static final int LLM_VALUE = 5;
 
 
   @java.lang.Override
@@ -124,6 +140,7 @@ public enum UsageEventType
       case 2: return ENROLLMENT;
       case 3: return SYNTHESIS;
       case 4: return TRANSCRIPTION;
+      case 5: return LLM;
       default: return null;
     }
   }

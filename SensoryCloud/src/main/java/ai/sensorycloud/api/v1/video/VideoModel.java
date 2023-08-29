@@ -69,7 +69,7 @@ public  final class VideoModel extends
    * <code>string name = 1;</code>
    */
   private void clearName() {
-    
+
     name_ = getDefaultInstance().getName();
   }
   /**
@@ -84,7 +84,7 @@ public  final class VideoModel extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     name_ = value.toStringUtf8();
-    
+
   }
 
   public static final int ISENROLLABLE_FIELD_NUMBER = 2;
@@ -121,7 +121,7 @@ public  final class VideoModel extends
    * <code>bool isEnrollable = 2;</code>
    */
   private void clearIsEnrollable() {
-    
+
     isEnrollable_ = false;
   }
 
@@ -173,7 +173,7 @@ public  final class VideoModel extends
    */
   private void setModelType(ai.sensorycloud.api.common.ModelType value) {
     modelType_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -183,7 +183,7 @@ public  final class VideoModel extends
    * <code>.sensory.api.common.ModelType modelType = 3;</code>
    */
   private void clearModelType() {
-    
+
     modelType_ = 0;
   }
 
@@ -236,7 +236,7 @@ public  final class VideoModel extends
    * <code>string fixedObject = 4;</code>
    */
   private void clearFixedObject() {
-    
+
     fixedObject_ = getDefaultInstance().getFixedObject();
   }
   /**
@@ -251,7 +251,7 @@ public  final class VideoModel extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     fixedObject_ = value.toStringUtf8();
-    
+
   }
 
   public static final int VERSIONS_FIELD_NUMBER = 5;
@@ -431,7 +431,7 @@ public  final class VideoModel extends
    */
   private void setTechnology(ai.sensorycloud.api.common.TechnologyType value) {
     technology_ = value.getNumber();
-    
+
   }
   /**
    * <pre>
@@ -441,7 +441,7 @@ public  final class VideoModel extends
    * <code>.sensory.api.common.TechnologyType technology = 6;</code>
    */
   private void clearTechnology() {
-    
+
     technology_ = 0;
   }
 
@@ -479,7 +479,7 @@ public  final class VideoModel extends
    * <code>bool isLivenessSupported = 7;</code>
    */
   private void clearIsLivenessSupported() {
-    
+
     isLivenessSupported_ = false;
   }
 
@@ -533,10 +533,12 @@ public  final class VideoModel extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.VideoModel parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.video.VideoModel parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

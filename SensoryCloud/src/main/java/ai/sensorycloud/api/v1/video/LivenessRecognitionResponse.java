@@ -52,7 +52,7 @@ public  final class LivenessRecognitionResponse extends
    * <code>bool isAlive = 1;</code>
    */
   private void clearIsAlive() {
-    
+
     isAlive_ = false;
   }
 
@@ -90,7 +90,7 @@ public  final class LivenessRecognitionResponse extends
    * <code>float score = 2;</code>
    */
   private void clearScore() {
-    
+
     score_ = 0F;
   }
 
@@ -128,7 +128,7 @@ public  final class LivenessRecognitionResponse extends
    * <code>bool didFindFace = 3;</code>
    */
   private void clearDidFindFace() {
-    
+
     didFindFace_ = false;
   }
 
@@ -265,7 +265,7 @@ public  final class LivenessRecognitionResponse extends
    * <code>float probabilityFace = 5;</code>
    */
   private void clearProbabilityFace() {
-    
+
     probabilityFace_ = 0F;
   }
 
@@ -319,10 +319,12 @@ public  final class LivenessRecognitionResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.LivenessRecognitionResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.video.LivenessRecognitionResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

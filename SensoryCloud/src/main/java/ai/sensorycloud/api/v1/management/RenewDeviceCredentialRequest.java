@@ -74,7 +74,7 @@ public  final class RenewDeviceCredentialRequest extends
    * <code>string deviceId = 1 [(.validate.rules) = { ... }</code>
    */
   private void clearDeviceId() {
-    
+
     deviceId_ = getDefaultInstance().getDeviceId();
   }
   /**
@@ -90,7 +90,7 @@ public  final class RenewDeviceCredentialRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     deviceId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CLIENTID_FIELD_NUMBER = 2;
@@ -142,7 +142,7 @@ public  final class RenewDeviceCredentialRequest extends
    * <code>string clientId = 2 [(.validate.rules) = { ... }</code>
    */
   private void clearClientId() {
-    
+
     clientId_ = getDefaultInstance().getClientId();
   }
   /**
@@ -157,7 +157,7 @@ public  final class RenewDeviceCredentialRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     clientId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int TENANTID_FIELD_NUMBER = 3;
@@ -209,7 +209,7 @@ public  final class RenewDeviceCredentialRequest extends
    * <code>string tenantId = 3 [(.validate.rules) = { ... }</code>
    */
   private void clearTenantId() {
-    
+
     tenantId_ = getDefaultInstance().getTenantId();
   }
   /**
@@ -224,7 +224,7 @@ public  final class RenewDeviceCredentialRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     tenantId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int CREDENTIAL_FIELD_NUMBER = 4;
@@ -280,7 +280,7 @@ public  final class RenewDeviceCredentialRequest extends
    * <code>string credential = 4 [(.validate.rules) = { ... }</code>
    */
   private void clearCredential() {
-    
+
     credential_ = getDefaultInstance().getCredential();
   }
   /**
@@ -296,7 +296,7 @@ public  final class RenewDeviceCredentialRequest extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     credential_ = value.toStringUtf8();
-    
+
   }
 
   public static ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest parseFrom(
@@ -349,10 +349,12 @@ public  final class RenewDeviceCredentialRequest extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)

@@ -55,7 +55,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>int64 percentComplete = 1;</code>
    */
   private void clearPercentComplete() {
-    
+
     percentComplete_ = 0L;
   }
 
@@ -93,7 +93,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>float audioEnergy = 2;</code>
    */
   private void clearAudioEnergy() {
-    
+
     audioEnergy_ = 0F;
   }
 
@@ -146,7 +146,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>string enrollmentId = 3;</code>
    */
   private void clearEnrollmentId() {
-    
+
     enrollmentId_ = getDefaultInstance().getEnrollmentId();
   }
   /**
@@ -161,7 +161,7 @@ public  final class CreateEnrollmentResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     enrollmentId_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 4;
@@ -213,7 +213,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>string modelName = 4;</code>
    */
   private void clearModelName() {
-    
+
     modelName_ = getDefaultInstance().getModelName();
   }
   /**
@@ -228,7 +228,7 @@ public  final class CreateEnrollmentResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelName_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELVERSION_FIELD_NUMBER = 5;
@@ -280,7 +280,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>string modelVersion = 5;</code>
    */
   private void clearModelVersion() {
-    
+
     modelVersion_ = getDefaultInstance().getModelVersion();
   }
   /**
@@ -295,7 +295,7 @@ public  final class CreateEnrollmentResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelVersion_ = value.toStringUtf8();
-    
+
   }
 
   public static final int MODELPROMPT_FIELD_NUMBER = 6;
@@ -347,7 +347,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>string modelPrompt = 6;</code>
    */
   private void clearModelPrompt() {
-    
+
     modelPrompt_ = getDefaultInstance().getModelPrompt();
   }
   /**
@@ -362,7 +362,7 @@ public  final class CreateEnrollmentResponse extends
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
     modelPrompt_ = value.toStringUtf8();
-    
+
   }
 
   public static final int PERCENTSEGMENTCOMPLETE_FIELD_NUMBER = 7;
@@ -402,7 +402,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>int64 percentSegmentComplete = 7;</code>
    */
   private void clearPercentSegmentComplete() {
-    
+
     percentSegmentComplete_ = 0L;
   }
 
@@ -443,7 +443,7 @@ public  final class CreateEnrollmentResponse extends
   private void setEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
     value.getClass();
   enrollmentToken_ = value;
-    
+
     }
   /**
    * <pre>
@@ -463,7 +463,7 @@ public  final class CreateEnrollmentResponse extends
     } else {
       enrollmentToken_ = value;
     }
-    
+
   }
   /**
    * <pre>
@@ -474,7 +474,7 @@ public  final class CreateEnrollmentResponse extends
    * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 8;</code>
    */
   private void clearEnrollmentToken() {  enrollmentToken_ = null;
-    
+
   }
 
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse parseFrom(
@@ -527,10 +527,12 @@ public  final class CreateEnrollmentResponse extends
     return com.google.protobuf.GeneratedMessageLite.parseFrom(
         DEFAULT_INSTANCE, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return parseDelimitedFrom(DEFAULT_INSTANCE, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
